@@ -2,11 +2,10 @@
 # This script scraps Paco's gallery from FurAfinity and saves it to a JSON file.
 # ==============================================================================
 
-import requests
 import json
 import codecs
-# import pandas as pandapaco
 import re
+import requests
 from bs4 import BeautifulSoup
 
 total_pages = 1
@@ -60,7 +59,6 @@ for page in range(1, total_pages + 1):
 
       # Get tags
       tags_array = set()
-      
       art_tags = parse_art_id.find_all('span', {'class', 'tags'})
       
       for tags in art_tags:
@@ -82,7 +80,6 @@ for page in range(1, total_pages + 1):
       
       print(f"Currently on page {page} of {total_pages} | {art_title} | {art_date}")
       save_json()
-      # quit()
 
 print("""
 =====

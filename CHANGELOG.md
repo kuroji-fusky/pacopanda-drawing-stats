@@ -1,5 +1,9 @@
 # Changelog
 
+## 04-17-2022
+
+- Removed all past commits via rebase
+
 ## 04-09-2022
 
 - Restarted the whole project with Next.js + TypeScript
