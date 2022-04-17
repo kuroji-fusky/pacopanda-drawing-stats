@@ -1,25 +1,28 @@
 <h1 align="center">Panda Paco Analytics Site</h1>
 
-> Spanish translation of this README is available [here][es].
->
-> La traducción española de este README está disponible [aquí][es].
-
 > All raw data is stored in [this Google Sheet spreadsheet][sheet].
 
 > For more in-depth and thorough explanation on how I gather, render, and manage
-> data, refer to the [`paco-drawing-data.ipynb`][notebook] file.
+> data, click [here!][notebook]
 
 <p align="center">
   <img src="https://github.com/skepfusky/pandapaco-art-statistics/blob/main/docs/project-banner-new.png?raw=true" alt="Repo banner">
 </p>
 
-This is a project that collects all 1.9K (and counting) drawings from a furry artist and
+This is a project that collects all 1.8K+ drawings from a furry artist and
 illustrator *pandapaco*. It displays different types of data (i.e species
 drawn, expressions, number of characters drawn, etc, which are, for now,
 probably, hard-coded unfortunately and have to be updated manually)
 
-I use Google Sheets and some Python scripts to manage, parse, and plot
-data and Next.js for the website as a whole.
+## Stack
+
+I use Python to manage, update, parse, and plot data, and Flask and Supabase for the back-end
+all thanks to [@thatITfox](https://github.com/thatITfox) and Next.js for the website
+as a whole.
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,py,flask,supabase">
+</p>
 
 ## About this project
 
@@ -32,9 +35,8 @@ As mentioned previously, this project collects the following:
 
 - The title and date of the piece
 - Number of character(s) species and names
-- ~~Facial expressions~~ (dataset removed on March 13, 2022 because it was deemed too ambiguous and hard to distinguish a facial expression)
 - Media type (either drawn digital or traditional)
-- Programs/mediums used (added Feb 6, 2022)
+- Programs/mediums used (i.e. Photoshop, Procreate, etc.)
 - The source where I got the data from (either from FurAffinity or from DeviantArt)
 
 I have to manually source it through FurAffinity and DeviantArt for his draft
@@ -58,7 +60,5 @@ through this process, but I'm kinda lacking backend knowledge.
 
 - [Art & Biro Recreated](https://github.com/skepfusky/art-and-biro-comic-vue3)
 
-[es]: https://github.com/skepfusky/pandapaco-art-statistics/docs/readme_es.md
-[pancon]: https://www.youtube.com/channel/UCTI9uf8OMcIo7QQMFS0Sfzw
 [notebook]: https://github.com/skepfusky/pandapaco-art-statistics/blob/main/data/paco-drawing-data.ipynb
 [sheet]: https://docs.google.com/spreadsheets/d/1fpNL-qbfZ53H-6WdqEB2X9rwn9QmM1porJqKgBC7rPk/edit?usp=sharing
