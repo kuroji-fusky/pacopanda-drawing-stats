@@ -33,6 +33,7 @@ for page in range(1, total_pages + 1):
     if 'id' in sid.attrs:
       sid_concat = re.sub('sid-', '', sid['id'])
       find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS, timeout=5)
+      find_art_id_secs = find_art_id.elapsed.total_seconds()
       parse_art_id = BeautifulSoup(find_art_id.text, 'html.parser')
 
       # Get title
@@ -78,11 +79,17 @@ for page in range(1, total_pages + 1):
         "tags": list(tags_array),
       })
       
-      print(f"Currently on page {page} of {total_pages} | {art_title} | {art_date}")
+      print("=====")
+      print(f"Appended \"{art_title}\" - {art_date}")
+      print("=====")
+      print(f"Took {find_art_id_secs} seconds to load.")
+      print(f"More info: Currently on page {page} of {total_pages}, with {len(paco_db[page])} artworks.")
       save_json()
+  
+  print("=====")
+  print("Appended page to the JSON file!")    
+  print("=====")
 
-print("""
-=====
-Done
-=====
-""")
+print("=====")
+print("DONE!")
+print("=====")
