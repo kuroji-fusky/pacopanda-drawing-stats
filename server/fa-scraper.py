@@ -25,14 +25,14 @@ def save_json():
 # Get 48 artworks through a for loop in each pages
 for page in range(1, total_pages + 1):
   paco_db.update({page: []})
-  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=HEADERS)
+  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=HEADERS, timeout=5)
   parse_art = BeautifulSoup(find_art.text, 'html.parser')
   parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
   for sid in parse_art:
     if 'id' in sid.attrs:
       sid_concat = re.sub('sid-', '', sid['id'])
-      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS)
+      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS, timeout=5)
       parse_art_id = BeautifulSoup(find_art_id.text, 'html.parser')
 
       # Get title
