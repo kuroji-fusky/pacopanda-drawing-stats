@@ -2,7 +2,12 @@ import Head from "next/head"
 import Header from './Header'
 import Footer from './Footer'
 
-export default function Layout({ children }: any) {
+interface ILayout {
+  mainClassName: string
+  children: React.ReactNode
+}
+
+export default function Layout({ children, mainClassName }: ILayout) {
   return (
     <>
       <Head>
@@ -11,7 +16,9 @@ export default function Layout({ children }: any) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </Head>
       <Header />
-      {children}
+      <main className={mainClassName}>
+        {children}
+      </main>
       <Footer />
     </>
   )

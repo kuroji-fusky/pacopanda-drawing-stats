@@ -14,21 +14,22 @@ illustrator *pandapaco*. It displays different types of data (i.e species
 drawn, expressions, number of characters drawn, etc, which are, for now,
 probably, hard-coded unfortunately and have to be updated manually)
 
-## Stack
-
-I use Python to manage, update, parse, and plot data, and Flask and Supabase for the back-end
-all thanks to [@thatITfox](https://github.com/thatITfox) and Next.js for the website
-as a whole.
+## Technology stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,py,flask,supabase">
+  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,flask,firebase">
 </p>
+
+I use a Python scripts to do gather a bunch of data, while Flask and Firebase (probably) for the back-end
+thanks to [@thatITfox](https://github.com/thatITfox) and Next.js for the website
+as a whole. Previously Vue.js, but will be switched back to Vue once Nuxt 3 has a stable
+release.
 
 ## About this project
 
 This project began in October 31, 2021, and the possible inspiration from this
-project is through the McDonald's broken ice cream machine site and it'd be
-interesting to see in all of his drawings to see said data and it's various
+project is through McBroken (basically a McDonald's broken ice cream machine site)
+and it'd be interesting to see in all of his drawings to see said data and it's various
 datasets.
 
 As mentioned previously, this project collects the following:
@@ -49,12 +50,13 @@ as well since all the data gathered will be hardcoded to the site.
 It's really not my intention to impress him in general, I'm just a big fan of his
 artwork and his unique and adorable art style that I'd want to see how many characters
 he's drawn since mid-2000s but he'd for sure find it interesting as it's more of a fun
-project to a new hobby of mine, learning not only JavaScript, Vue.js, but also learning
+project to a new hobby of mine, learning not only JavaScript, but also learning
 a bit of back-end and basic data management in the process of other projects I do.
 
-Previously, I wanted to show realtime data from Google Sheets and render data via a chart
+Initially, I wanted to show realtime data from Google Sheets and render data via a chart
 library from a website and I'd thought I'll take one of my favorite artists and run it
-through this process, but I'm kinda lacking backend knowledge.
+through this process, but I'm kinda lacking backend knowledge and I needed a help with
+[@thatITfox](https://github.com/thatITfox) for setting up a Flask web server.
 
 ## Other related projects
 

@@ -35,13 +35,6 @@ plotDatGoodness.pie(ott, labels=ott_label, autopct='%.2f%%')
 plotDatGoodness.title("Total of species drawn")
 plotDatGoodness.show()
 
-# I can't believe that I've spent more than 2 days trying to figure out how to get the sum of each species and despite
-# hoping through Stack Overflow, Dev.to, and other dev blogs, I couldn't get to figure it out and starting to go insane
-# with errors throwing at my face, so screw it, I'll just hard-code arrays since I'm tired of it I might be me being
-# new coding in Python or I'm just a dumbass who couldn't figure things out but whatever, I can't be bothered anymore
-
-# Sorry but I lowkey had a mental breakdown while doing all this data analysis crap lmfao
-
 # sa = pandapaco.read_csv("data/merged/species_merged.csv")
 # total = sa.groupby('Species').count()
 # print(total)
