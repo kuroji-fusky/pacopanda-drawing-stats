@@ -1,14 +1,18 @@
-# ==============================================================================
-# This script scraps Paco's gallery from FurAfinity and saves it to a JSON file.
-# ==============================================================================
-
 import json
+import sys
 import codecs
 import re
+import os
 import requests
-from bs4 import BeautifulSoup
+from colorama import *
+from bs4 import *
+
+init(wrap=False)
+stream = AnsiToWin32(sys.stderr).stream
 
 total_pages = 1
+
+print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
 
 HEADERS = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)' 
                           'AppleWebKit/537.36 (KHTML, like Gecko)'
@@ -25,14 +29,14 @@ def save_json():
 # Get 48 artworks through a for loop in each pages
 for page in range(1, total_pages + 1):
   paco_db.update({page: []})
-  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=HEADERS, timeout=5)
+  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=HEADERS, timeout=None)
   parse_art = BeautifulSoup(find_art.text, 'html.parser')
   parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
   for sid in parse_art:
     if 'id' in sid.attrs:
       sid_concat = re.sub('sid-', '', sid['id'])
-      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS, timeout=5)
+      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS, timeout=None)
       find_art_id_secs = find_art_id.elapsed.total_seconds()
       parse_art_id = BeautifulSoup(find_art_id.text, 'html.parser')
 
@@ -79,17 +83,20 @@ for page in range(1, total_pages + 1):
         "tags": list(tags_array),
       })
       
-      print("=====")
-      print(f"Appended \"{art_title}\" - {art_date}")
-      print("=====")
-      print(f"Took {find_art_id_secs} seconds to load.")
-      print(f"More info: Currently on page {page} of {total_pages}, with {len(paco_db[page])} artworks.")
+      print('')
+      print('===========')
+      print('')
+      print(f"Appended \"{art_title}\"!")
+      if find_art_id_secs > 20:
+        print(f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+      elif find_art_id_secs > 10:
+        print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+      else:
+        print(f"{Back.GREEN}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[✔️] Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+
+      print('')
+      print(f"ID: {sid_concat}\nLink: {art_image}\nTags: {tags_array}")
+      
       save_json()
   
-  print("=====")
-  print("Appended page to the JSON file!")    
-  print("=====")
-
-print("=====")
-print("DONE!")
-print("=====")
+print(f"\n{Back.GREEN} DONE! {Back.RESET}\n")
