@@ -12,9 +12,9 @@ module.exports = {
       lg: '1024px',
       xl: '1536px'
     },
-    fontFamily: {
-      title: ['Dancing Script', 'sans-serif'],
-    },
+    // fontFamily: {
+    //   title: ['Dancing Script', 'sans-serif'],
+    // },
     zIndex: {
       1: -1,
     },
