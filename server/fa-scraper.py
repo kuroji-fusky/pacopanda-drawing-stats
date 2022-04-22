@@ -1,11 +1,10 @@
 import json
 import sys
-import codecs
 import re
 import os
 import requests
 from colorama import *
-from bs4 import *
+from bs4 import BeautifulSoup
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
@@ -21,10 +20,16 @@ HEADERS = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
 
 paco_db = {}
 
-# Save to JSON
 def save_json():
   with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
     json.dump(paco_db, paco_db_append, ensure_ascii=False)
+    
+def sanitize_json():
+  with open("paco-fa-database.json", 'r', encoding="utf-8") as paco_db_load:
+    paco_db = json.load(paco_db_load)
+    for key, value in paco_db.items():
+      paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
+    save_json()
 
 # Get 48 artworks through a for loop in each pages
 for page in range(1, total_pages + 1):
@@ -89,6 +94,7 @@ for page in range(1, total_pages + 1):
       print(f"Appended \"{art_title}\"!")
       if find_art_id_secs > 20:
         print(f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+        print(f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] WARNING: If it's taking longer than 20 seconds to send a HTTP request {Style.RESET_ALL}\n{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] then it would've been most likely due to slow or unstable connection. {Style.RESET_ALL}\n{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] If this happens, it'll retry from the beginning due to {Style.RESET_ALL}\n{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] a connection timeout. {Style.RESET_ALL}")
       elif find_art_id_secs > 10:
         print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT}[⚠️] Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
       else:
@@ -96,7 +102,7 @@ for page in range(1, total_pages + 1):
 
       print('')
       print(f"ID: {sid_concat}\nLink: {art_image}\nTags: {tags_array}")
-      
       save_json()
-  
-print(f"\n{Back.GREEN} DONE! {Back.RESET}\n")
+
+sanitize_json()
+print(f"\n{Back.GREEN}{Style.BRIGHT} DONE! {Back.RESET}\n")

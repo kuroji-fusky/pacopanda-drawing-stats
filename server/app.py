@@ -19,4 +19,4 @@ def test():
     return jsonify({'message': 'test'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
