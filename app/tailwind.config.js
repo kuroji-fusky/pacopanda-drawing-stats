@@ -3,7 +3,6 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       sm: '640px',
@@ -12,12 +11,28 @@ module.exports = {
       lg: '1024px',
       xl: '1536px'
     },
-    // fontFamily: {
-    //   title: ['Dancing Script', 'sans-serif'],
-    // },
-    zIndex: {
-      1: -1,
-    },
+    theme: {
+      fontFamily: {
+        display: ["Noto Sans KR", 'system-ui', 'sans-serif'],
+        body: ["Lato", 'system-ui', 'sans-serif'],
+      },
+      zIndex: {
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+        '6': '6',
+        '7': '7',
+        '8': '8',
+        '9': '9',
+        'mosttop': '9999',
+      },
+      borderRadius: {
+        'sm': '.125rem',
+        'md': '6px',
+        'full': '50%',
+      },
     extend: {},
   },
   plugins: [],

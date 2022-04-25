@@ -10,9 +10,5 @@ library.add(fas);
 library.add(fab);
 
 export default function PandaPacoStatsApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  )
+  return <Layout><Component {...pageProps} /></Layout>
 }

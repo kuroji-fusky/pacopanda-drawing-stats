@@ -1,11 +1,11 @@
 
 import Link from 'next/link';
-import styles from '../styles/Base.module.scss';
+import styles from "../styles/Layout.module.scss";
 
 export default function Header() {
   return (
     <header>
-      <div id={styles.wrapper}>
+      <div className={`${styles['content-wrapper']} py-5`}>
         {/* <img src="/static/images/logo.png" alt="logo" /> */}
         <nav className="flex gap-x-6">
           <Link href="/" passHref>Home</Link>

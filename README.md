@@ -1,13 +1,11 @@
-<h1 align="center">Panda Paco Analytics Site</h1>
-
-> All raw data is stored in [this Google Sheet spreadsheet][sheet].
-
-> For more in-depth and thorough explanation on how I gather, render, and manage
-> data, click [here!][notebook]
-
 <p align="center">
   <img src="https://github.com/skepfusky/pandapaco-art-statistics/blob/main/docs/project-banner-new.png?raw=true" alt="Repo banner">
 </p>
+
+<h1 align="center">Panda Paco Drawing Stats... site... thing...</h1>
+
+> For more in-depth and thorough explanation on how I gather, render, and manage
+> data, click [here!][notebook]
 
 This is a project that collects all 1.8K+ drawings from a furry artist and
 illustrator *pandapaco*. It displays different types of data (i.e species

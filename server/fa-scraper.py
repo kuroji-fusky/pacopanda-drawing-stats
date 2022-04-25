@@ -13,7 +13,7 @@ total_pages = 1
 
 print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
 
-HEADERS = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)' 
+user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)' 
                           'AppleWebKit/537.36 (KHTML, like Gecko)'
                           'Chrome/45.0.2454.101 Safari/537.36'),
                           'referer': 'https://furaffinity.net/'}
@@ -24,24 +24,24 @@ def save_json():
   with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
     json.dump(paco_db, paco_db_append, ensure_ascii=False)
     
-def sanitize_json():
-  with open("paco-fa-database.json", 'r', encoding="utf-8") as paco_db_load:
-    paco_db = json.load(paco_db_load)
-    for key, value in paco_db.items():
-      paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
-    save_json()
+# def sanitize_json():
+#   with open("paco-fa-database.json", 'r', encoding="utf-8") as paco_db_load:
+#     paco_db = json.load(paco_db_load)
+#     for key, value in paco_db.items():
+#       paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
+#     save_json()
 
 # Get 48 artworks through a for loop in each pages
 for page in range(1, total_pages + 1):
   paco_db.update({page: []})
-  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=HEADERS, timeout=None)
+  find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=None)
   parse_art = BeautifulSoup(find_art.text, 'html.parser')
   parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
   for sid in parse_art:
     if 'id' in sid.attrs:
       sid_concat = re.sub('sid-', '', sid['id'])
-      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=HEADERS, timeout=None)
+      find_art_id = requests.get(f"https://furaffinity.net/view/{sid_concat}/", headers=user_agent, timeout=None)
       find_art_id_secs = find_art_id.elapsed.total_seconds()
       parse_art_id = BeautifulSoup(find_art_id.text, 'html.parser')
 
@@ -104,5 +104,5 @@ for page in range(1, total_pages + 1):
       print(f"ID: {sid_concat}\nLink: {art_image}\nTags: {tags_array}")
       save_json()
 
-sanitize_json()
+# sanitize_json()
 print(f"\n{Back.GREEN}{Style.BRIGHT} DONE! {Back.RESET}\n")
