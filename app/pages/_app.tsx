@@ -1,14 +1,19 @@
-import '../styles/globals.scss'
-import type { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+import type { AppProps } from "next/app";
 import { library, config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import "../styles/globals.scss";
+import Layout from "../components/Layout";
+
+config.autoAddCss = false;
 library.add(fas);
 library.add(fab);
 
 export default function PandaPacoStatsApp({ Component, pageProps }: AppProps) {
-  return <Layout><Component {...pageProps} /></Layout>
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
