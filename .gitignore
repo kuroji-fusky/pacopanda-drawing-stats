@@ -37,5 +37,4 @@ yarn-error.log*
 
 # Local databases and Python stuff
 paco-fa-database.json
-paco-da-database.json
 /data/merged/*.txt
