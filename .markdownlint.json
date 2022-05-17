@@ -1,0 +1,12 @@
+{
+  "MD003": {
+    "style": "atx"
+  },
+  "MD004": false,
+  "MD007": {
+    "indent": 4
+  },
+  "MD033": false,
+  "MD041": false,
+  "no-hard-tabs": false
+}

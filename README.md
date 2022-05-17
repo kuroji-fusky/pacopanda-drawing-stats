@@ -2,8 +2,13 @@
   <img src="https://github.com/skepfusky/pandapaco-art-statistics/blob/main/docs/project-banner-new.png?raw=true" alt="Repo banner">
 </p>
 
-<h1 align="center">Panda Paco Drawing Stats Thing <a href="#license"><img src="https://img.shields.io/badge/license-MIT-336600" alt="License"></a>
-<a href="https://github.com/skepfusky/pandapaco-drawing-stats/issues"><img src="https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats" alt="issues - pandapaco-drawing-stats"></a>
+<h1 align="center">Panda Paco Drawing Stats Thing
+<a href="#license">
+  <img src="https://img.shields.io/badge/license-MIT-336600" alt="License">
+</a>
+<a href="https://github.com/skepfusky/pandapaco-drawing-stats/issues">
+  <img src="https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats" alt="issues - pandapaco-drawing-stats">
+</a>
 </h1>
 
 > For more in-depth and thorough explanation on how I gather, render, and manage
@@ -20,10 +25,9 @@ probably, hard-coded unfortunately and have to be updated manually)
   <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,flask,firebase">
 </p>
 
-I use a Python scripts to do gather a bunch of data, while Flask and Firebase (probably) for the back-end
-thanks to [@thatITfox][it] and Next.js for the website
-as a whole. Previously Vue.js, but will be switched back to Vue once Nuxt 3 has a stable
-release.
+I use a Python scripts to do gather a bunch of data, while Flask and Firebase
+(probably) for the back-end thanks to [@thatITfox][it] and Next.js for the website
+as a whole. Previously written in Vue.js.
 
 ## About this project
 
@@ -45,20 +49,20 @@ drawings (including his *Art & Biro* comics). Unfortunately, drawings from
 Twitter won't be counted in order to ease the load on my end and the dataset
 as well since all the data gathered will be hardcoded to the site.
 
-## Stuff you might be wondering...
+## Stuff you might be wondering
 
 ### Why did you create this project?
 
 It's really not my intention to impress him in general, I'm just a big fan of his
 artwork and his unique and adorable art style that I'd want to see how many characters
-he's drawn since mid-2000s but he'd for sure find it interesting as it's more of a fun
-project to a new hobby of mine, learning not only JavaScript, but also learning
+he's drawn since mid-2000s but he'd for sure find it interesting as it's more of
+a fun project to a new hobby of mine, learning not only JavaScript, but also learning
 a bit of back-end and basic data management in the process of other projects I do.
 
-Initially, I wanted to show realtime data from Google Sheets and render data via a chart
-library from a website and I'd thought I'll take one of my favorite artists and run it
-through this process, but I'm kinda lacking backend knowledge and I needed a help with
-[@thatITfox][it] for setting up a Flask web server.
+Initially, I wanted to show realtime data from Google Sheets and render data via
+a chart library from a website and I'd thought I'll take one of my favorite
+artists and run it through this process, but I'm kinda lacking backend knowledge
+ and I needed a help with [@thatITfox][it] for setting up a Flask web server.
 
 ### Isn't this taking it too far?
 
@@ -66,8 +70,8 @@ Well, as someone who admires his art, yes - to some extent. Well, sure - it may 
 like I watch him on every step, but trust me, I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be difficult.
 
-To be honest, it's more of a serious, yet passion project of mine to show various kinds
-of drawing data from his.
+To be honest, it's more of a serious, yet passion project of mine to show various
+kinds of drawing data from his.
 
 ## Other related projects
 
