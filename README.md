@@ -2,22 +2,15 @@
   <img src="https://github.com/skepfusky/pandapaco-art-statistics/blob/main/docs/project-banner-new.png?raw=true" alt="Repo banner">
 </p>
 
-<h1 align="center">Panda Paco Drawing Stats Thing
-<a href="#license">
-  <img src="https://img.shields.io/badge/license-MIT-336600" alt="License">
-</a>
-<a href="https://github.com/skepfusky/pandapaco-drawing-stats/issues">
-  <img src="https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats" alt="issues - pandapaco-drawing-stats">
-</a>
-</h1>
+<h1 align="center">Panda Paco Drawing Stats</h1>
 
-> For more in-depth and thorough explanation on how I gather, render, and manage
-> data, click [here!][notebook]
+![MIT License](https://img.shields.io/badge/license-MIT-336600)
+[![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
 
-This open source project that collects all 1.8K+ drawings from a furry artist and
-illustrator *pandapaco*. It displays different types of data (i.e species
-drawn, expressions, number of characters drawn, etc, which are, for now,
-probably, hard-coded unfortunately and have to be updated manually)
+This is an open source data visualization project that collects all 1.8K+ drawings from a furry artist and
+illustrator *pandapaco*. It displays different types of data.
+
+For more in-depth and thorough explanation on how I gather, render, and manage data, click [here!][notebook]
 
 ## Technology stack
 
@@ -25,7 +18,7 @@ probably, hard-coded unfortunately and have to be updated manually)
   <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,flask,firebase">
 </p>
 
-I use a Python scripts to do gather a bunch of data, while Flask and Firebase
+I use Python to gather a bunch of data, while Flask and Firebase
 (probably) for the back-end thanks to [@thatITfox][it] and Next.js for the website
 as a whole. Previously written in Vue.js.
 
@@ -79,4 +72,3 @@ kinds of drawing data from his.
 
 [it]: https://github.com/thatITfox
 [notebook]: https://github.com/skepfusky/pandapaco-art-statistics/blob/main/data/paco-drawing-data.ipynb
-[sheet]: https://docs.google.com/spreadsheets/d/1fpNL-qbfZ53H-6WdqEB2X9rwn9QmM1porJqKgBC7rPk/edit?usp=sharing
