@@ -14,6 +14,13 @@ types of data.
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, click [here!][notebook]
 
+## Project structure
+
+- `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
+- `data` - An old folder used to parse data
+- `script` - Bash scripts for bulk linting and for deployment
+- `server` - Python Flask back-end
+
 ## Technology stack
 
 <p align="center">
@@ -74,3 +81,7 @@ kinds of drawing data from his.
 
 [it]: https://github.com/thatITfox
 [notebook]: https://github.com/skepfusky/pandapaco-art-statistics/blob/main/data/paco-drawing-data.ipynb
+
+## License
+
+MIT
