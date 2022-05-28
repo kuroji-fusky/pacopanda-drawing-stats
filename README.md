@@ -7,10 +7,12 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
 
-This is an open source data visualization project that collects all 1.8K+ drawings from a furry artist and
-illustrator *pandapaco*. It displays different types of data.
+This is an open source data visualization project that collects all 1.8K+
+drawings from a furry artist and illustrator *pandapaco*. It displays different
+types of data.
 
-For more in-depth and thorough explanation on how I gather, render, and manage data, click [here!][notebook]
+For more in-depth and thorough explanation on how I gather, render, and manage
+data, click [here!][notebook]
 
 ## Technology stack
 
@@ -29,7 +31,7 @@ project is through McBroken (basically a McDonald's broken ice cream machine sit
 and it'd be interesting to see in all of his drawings to see said data and it's various
 datasets.
 
-As mentioned previously, this project collects the following:
+This project collects the following:
 
 - The title and date of the piece
 - Number of character(s) species and names

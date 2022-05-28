@@ -1,5 +1,5 @@
 {
-  "name": "paco-drawing-analytics",
+  "name": "pandapaco-drawing-stats",
   "description": "Gathers data and visualizes drawing data from a furry artist and illustrator pandapaco",
   "scripts": {
     "dev:next": "npm --prefix ./app run dev",
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenFurs/pandapaco-art-statistics.git"
+    "url": "git+https://github.com/skepfusky/pandapaco-drawing-stats.git"
   },
   "keywords": [
     "furry",
@@ -18,11 +18,10 @@
     "analytics"
   ],
   "author": "Kerby Keith Aquino",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OpenFurs/pandapaco-art-statistics/issues"
+    "url": "https://github.com/OpenFurs/pandapaco-drawing-stats/issues"
   },
-  "homepage": "https://github.com/OpenFurs/pandapaco-art-statistics#readme",
   "devDependencies": {
     "concurrently": "^7.1.0"
   }
