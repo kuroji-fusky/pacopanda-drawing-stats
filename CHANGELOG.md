@@ -14,7 +14,7 @@
 
 ## 04-07-2022
 
-- Moved all old Vue 3 files to the `vue-3-legacy` branch.
+- Moved all old Vue 3 files to the [`vue-3-legacy`](https://github.com/skepfusky/pandapaco-drawing-stats/tree/vue3-legacy) branch.
 
 ## 01-02-2022
 
