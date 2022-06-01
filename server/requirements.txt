@@ -1,4 +1,5 @@
-Flask
+uvicorn
+fastapi
 requests
 beautifulsoup4
 colorama

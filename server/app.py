@@ -1,22 +1,17 @@
-from flask import Flask, request, jsonify
-import threading
-import os
-import time
-app = Flask(__name__)
+"""
+Paco Drawing Stats FastAPI Back-end
+Written by Kerby Keith Aquino (skepfusky / Kokoro Husky)
+MIT License
+"""
 
-def update_database():
-    while True:
-        # i use a time.sleep and while loop since the timer thread didn't work
-        time.sleep(600)
-        print("Updating database")
-        os.system("python server/fa-scraper.py")
+import uvicorn
+from fastapi import FastAPI
 
-# Start thread to update database
-threading.Thread(target=update_database).start()
+app = FastAPI()
 
-@app.route('/test')
-def test():
-    return jsonify({'message': 'test'})
-
-if __name__ == '__main__':
-    app.run()
+@app.get("/")
+def home():
+    return {"message": "Hello World!"}
+  
+if __name__ == "__main__":
+    uvicorn.run("fastapi_code:app")
