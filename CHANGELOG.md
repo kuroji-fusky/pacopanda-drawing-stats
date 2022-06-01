@@ -1,5 +1,9 @@
 # Changelog
 
+## 06-01-2022
+
+- Changing backend infrastructure from Flask to FastAPI!
+
 ## 04-17-2022
 
 - Removed all past commits via rebase

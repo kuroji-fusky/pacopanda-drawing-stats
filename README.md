@@ -1,35 +1,35 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/94678583/171304604-7c569037-ede7-4fb1-8401-1f9e37562227.png" alt="Repo banner">
+  <h1 align="center">Panda Paco Drawing Stats</h1>
 </p>
-
-<h1 align="center">Panda Paco Drawing Stats</h1>
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
 
 This is an open source data visualization project that collects all 1.8K+
-drawings from a furry artist and illustrator *pandapaco*. It displays different
-types of data.
+drawings from a furry artist and illustrator *pandapaco*, written in
+TypeScript and Python.
 
 For more in-depth and thorough explanation on how I gather, render, and manage
-data, click [here!][notebook]
+data, go [here!][notebook]
 
 ## Project structure
 
 - `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
-- `data` - An old folder used to parse data
+- `data` - An old folder used to parse data and is used for [notebook][notebook] output
+only
 - `script` - Bash scripts for bulk linting and for deployment
-- `server` - Python Flask back-end
+- `server` - Python FastAPI back-end
 
 ## Technology stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,flask,firebase">
+  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,fastapi,firebase">
 </p>
 
-I use Python to gather a bunch of data, while Flask and Firebase
-(probably) for the back-end thanks to [@thatITfox][it] and Next.js for the website
-as a whole. Previously written in Vue.js.
+I use Python to gather a bunch of data, while FastAPI for the back-end, and
+special thanks to [@thatITfox][it] for initially setting up the backend with Flask!
+And Next.js for the website as a whole. Previously written in Vue.js.
 
 ## About this project
 
@@ -55,7 +55,7 @@ as well since all the data gathered will be hardcoded to the site.
 
 ### Why did you create this project?
 
-It's really not my intention to impress him in general, I'm just a big fan of his
+It's really not my intention to impress him in general, I'm just a huge fan of his
 artwork and his unique and adorable art style that I'd want to see how many characters
 he's drawn since mid-2000s but he'd for sure find it interesting as it's more of
 a fun project to a new hobby of mine, learning not only JavaScript, but also learning
@@ -75,13 +75,13 @@ informational purposes; parsing drawing data on his Twitter profile would be dif
 To be honest, it's more of a serious, yet passion project of mine to show various
 kinds of drawing data from his.
 
-## Other related projects
+## Related projects
 
-- [Art & Biro Recreated](https://github.com/skepfusky/art-and-biro-comic-vue3)
-
-[it]: https://github.com/thatITfox
-[notebook]: https://github.com/skepfusky/pandapaco-art-statistics/blob/main/data/paco-drawing-data.ipynb
+- [Art & Biro Recreated](https://github.com/skepfusky/art-and-biro-remastered)
 
 ## License
 
 MIT
+
+[it]: https://github.com/thatITfox
+[notebook]: https://github.com/skepfusky/pandapaco-drawing-stats/blob/main/data/paco-drawing-data.ipynb
