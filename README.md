@@ -24,7 +24,7 @@ only
 ## Technology stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,ts,tailwind,sass,py,fastapi,firebase">
+  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,py,fastapi,firebase">
 </p>
 
 I use Python to gather a bunch of data, while FastAPI for the back-end, and
