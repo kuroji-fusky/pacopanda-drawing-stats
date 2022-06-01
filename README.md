@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/skepfusky/pandapaco-art-statistics/blob/main/docs/project-banner-new.png?raw=true" alt="Repo banner">
+  <img src="https://user-images.githubusercontent.com/94678583/171304604-7c569037-ede7-4fb1-8401-1f9e37562227.png" alt="Repo banner">
 </p>
 
 <h1 align="center">Panda Paco Drawing Stats</h1>
