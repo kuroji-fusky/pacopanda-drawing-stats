@@ -1,7 +1,4 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/94678583/171304604-7c569037-ede7-4fb1-8401-1f9e37562227.png" alt="Repo banner">
-  <h1 align="center">Panda Paco Drawing Stats</h1>
-</p>
+<h1 align="center">Panda Paco Drawing Stats</h1>
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
@@ -13,13 +10,7 @@ TypeScript and Python.
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, go [here!][notebook]
 
-## Project structure
-
-- `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
-- `data` - An old folder used to parse data and is used for [notebook][notebook] output
-only
-- `script` - Bash scripts for bulk linting and for deployment
-- `server` - Python FastAPI back-end
+![Repo banner](https://user-images.githubusercontent.com/94678583/171304604-7c569037-ede7-4fb1-8401-1f9e37562227.png)
 
 ## Technology stack
 
@@ -30,6 +21,15 @@ only
 I use Python to gather a bunch of data, while FastAPI for the back-end, and
 special thanks to [@thatITfox][it] for initially setting up the backend with Flask!
 And Next.js for the website as a whole. Previously written in Vue.js.
+
+## Project structure
+
+- `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
+- `data` - An old folder used to parse data and is used for [notebook][notebook] output
+only
+- `script` - Bash scripts for bulk linting and for deployment
+- `server` - Python FastAPI back-end
+
 
 ## About this project
 
