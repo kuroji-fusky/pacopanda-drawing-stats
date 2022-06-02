@@ -3,4 +3,3 @@ fastapi
 requests
 beautifulsoup4
 colorama
-cython
