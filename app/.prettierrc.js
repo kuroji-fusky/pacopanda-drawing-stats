@@ -3,4 +3,5 @@ module.exports = {
   tabWidth: 2,
   quoteProps: 'consistent',
   trailingComma: 'none',
+  semi: false,
 }

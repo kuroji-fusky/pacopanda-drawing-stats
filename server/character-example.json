@@ -1,0 +1,50 @@
+{
+  "tags": {
+    "paco": {
+      "name": "paco",
+      "species": "panda",
+      "hybrid": false,
+      "breed": null,
+      "nicknames": [
+        "Parinton",
+        "Paco Panda",
+        "Panda Paco",
+        "pandapaco"
+      ]
+    },
+    "roni": {
+      "name": "roni",
+      "species": "dog",
+      "hybrid": false,
+      "breed": "border collie"
+    },
+    "yaps": {
+      "name": "yaps",
+      "species": "fox",
+      "hybrid": false,
+      "breed": null
+    },
+    "majira": {
+      "name": "Majira",
+      "species": "fox",
+      "hybrid": false,
+      "breed": null,
+      "full name": "Majira Strawberry",
+      "aliases": [
+        "Majira",
+        "Daddy"
+      ]
+    },
+    "t.j": {
+      "name": "T.J.",
+      "species": "fox-wolf-husky hybrid",
+      "hybrid": true,
+      "breed": null
+    },
+    "cosmic": {
+      "name": "Cosmic Wuffy",
+      "species": "wolf",
+      "hybrid": false
+    }
+  }
+}
