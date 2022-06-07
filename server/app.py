@@ -7,31 +7,45 @@ MIT License
 import argparse
 import uvicorn
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
+from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
 
-parser = argparse.ArgumentParser(description="Paco Drawing Stats FastAPI Back-end written in Python")
+parser = argparse.ArgumentParser(
+    description="Paco Drawing Stats FastAPI Back-end written in Python")
 
-parser.add_argument("--prod", action="store_true", help="Run the build/production app")
+parser.add_argument("--prod", action="store_true",
+                    help="Run the build/production app")
 
 args = parser.parse_args()
 config = vars(args)
 print(config)
 
-app = FastAPI()
+router = FastAPI()
 
-@app.get("/")
+@router.get("/")
 def main():
-  return {"message": "test"}
+    return {"message": "test"}
 
-@app.get("/artwork")
+
+@router.post("/artwork/")
+async def get_artwork():
+    return {"message": "test"}
+
+@router.get("/artwork/")
 def artwork():
-    artwork_data: object = json.load("paco-fa-database.json")
-    return artwork_data
+    return {"message": "wow"}
 
-@app.get("/character")
+@router.post("/character")
+def get_character():
+    json_data = jsonable_encoder("character-example.json")
+    return json_data
+
+
+@router.get("/character")
 def character():
-    character_data: object = json.load("character-example.json")
+    character_data: object = json.loads("character-example.json")
     return character_data
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", reload=True)
+    uvicorn.run("app:router", reload=True)

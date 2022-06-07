@@ -3,3 +3,4 @@ fastapi
 requests
 beautifulsoup4
 colorama
+python-multipart
