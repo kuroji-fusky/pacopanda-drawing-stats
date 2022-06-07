@@ -40,4 +40,5 @@ paco-fa-database.json
 /data/merged/*.txt
 
 # Python environment
+server/__pycache__
 venv
