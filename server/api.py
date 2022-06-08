@@ -21,31 +21,25 @@ args = parser.parse_args()
 config = vars(args)
 print(config)
 
-router = FastAPI()
+app = FastAPI()
 
-@router.get("/")
-def main():
+
+class CharacterModel(BaseModel):
+    name: str
+    species: str
+    hybrid: bool
+    breed: str | null = None
+
+
+@app.get("/")
+async def main():
     return {"message": "test"}
 
 
-@router.post("/artwork/")
-async def get_artwork():
+@app.get("/characters/")
+async def characters():
     return {"message": "test"}
 
-@router.get("/artwork/")
-def artwork():
-    return {"message": "wow"}
-
-@router.post("/character")
-def get_character():
-    json_data = jsonable_encoder("character-example.json")
-    return json_data
-
-
-@router.get("/character")
-def character():
-    character_data: object = json.loads("character-example.json")
-    return character_data
 
 if __name__ == "__main__":
-    uvicorn.run("app:router", reload=True)
+    uvicorn.run("api:app", reload=True)

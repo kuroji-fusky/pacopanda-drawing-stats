@@ -15,7 +15,7 @@ data, go [here!][notebook]
 ## Technology stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,py,fastapi,firebase">
+  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,py,fastapi,redis">
 </p>
 
 I use Python to gather a bunch of data, while FastAPI for the back-end, and
@@ -29,7 +29,6 @@ And Next.js for the website as a whole. Previously written in Vue.js.
 only
 - `script` - Bash scripts for bulk linting and for deployment
 - `server` - Python FastAPI back-end
-
 
 ## About this project
 

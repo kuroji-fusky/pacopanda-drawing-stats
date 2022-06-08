@@ -1,11 +1,14 @@
-// @ts-check
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   compress: true,
   images: {
     domains: ['https://d.furaffinity.net'],
+  },
+  i18n: {
+    locales: ['en-US', 'es'],
+    defaultLocale: 'en-US',
+    localeDetection: false
   }
 }
 
