@@ -76,7 +76,7 @@ kinds of drawing data from his.
 
 ## Related projects
 
-- [Art & Biro Recreated](https://github.com/skepfusky/art-and-biro-remastered)
+- [Art & Biro Comic Recreated](https://github.com/skepfusky/art-and-biro-comic-remastered)
 
 ## License
 
