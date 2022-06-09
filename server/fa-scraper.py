@@ -73,7 +73,7 @@ for page in range(1, total_pages + 1):
             # print(art_date)
 
             # TODO: filter only date using regex
-            # art_date = parse_art_id.find('span', {'title': re.compile(r" ([0-9]?[0-9]:[0-9]?[0-9]) ([AP]?M)")})
+            # TODO: art_date = parse_art_id.find('span', {'title': re.compile(r" ([0-9]?[0-9]:[0-9]?[0-9]) ([AP]?M)")})
 
             # Get tags
             tags_array = set()
@@ -114,7 +114,7 @@ for page in range(1, total_pages + 1):
                     f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
 
             print('')
-            print(f"Link: {art_image}\nTags: {tags_array}")
+            print(f"Date: {art_date}\nLink: {art_image}\nTags: {tags_array}")
             save_json()
 
 # ! This doesn't work, need to figure out a way to replace invisible Unicode
