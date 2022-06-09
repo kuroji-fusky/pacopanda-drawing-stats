@@ -10,7 +10,7 @@ TypeScript and Python.
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, go [here!][notebook]
 
-![Repo banner](https://user-images.githubusercontent.com/94678583/171304604-7c569037-ede7-4fb1-8401-1f9e37562227.png)
+![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
 
 ## Technology stack
 
