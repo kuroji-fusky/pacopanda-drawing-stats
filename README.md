@@ -18,7 +18,7 @@ data, go [here!][notebook]
 - [Project structure](#project-structure)
 - [About this project](#about-this-project)
   - [Why did you create this project?](#why-did-you-create-this-project)
-  - [Isn't taking this too far?](#isnt-this-taking-it-too-far)
+  - [Isn't this taking this too far?](#isnt-this-taking-it-too-far)
 - Installation
   - [Prerequisites](#prerequisites)
   - [Running the dev server](#running-the-dev-server)
