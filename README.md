@@ -80,7 +80,7 @@ kinds of drawing data from his.
 
 ## License
 
-MIT
+Source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox
 [notebook]: https://github.com/skepfusky/pandapaco-drawing-stats/blob/main/data/paco-drawing-data.ipynb
