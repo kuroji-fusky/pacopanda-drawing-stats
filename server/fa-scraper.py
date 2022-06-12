@@ -1,5 +1,6 @@
 from colorama import *
 from bs4 import BeautifulSoup
+import argparse
 import json
 import sys
 import re
@@ -9,9 +10,20 @@ import requests
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
-total_pages = 10
+parser = argparse.ArgumentParser(description="Scrape drawing stats from FA")
+parser.add_argument('-p', '--pages', type=int, metavar="<pages>",
+                    help="Specify the number of pages to scrape")
+parser.add_argument('-v', '--verbose', action="store_true",
+                    help="Log verbose output")
+args = parser.parse_args()
 
-print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
+if args.pages:
+    total_pages = args.pages
+    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
+
+else:
+    total_pages = 5
+    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Defaulting to 5 pages. {Style.RESET_ALL}")
 
 user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'AppleWebKit/537.36 (KHTML, like Gecko)'
@@ -19,6 +31,7 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
               'referer': 'https://furaffinity.net/'}
 
 paco_db = {}
+
 
 def save_json():
     with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
@@ -32,6 +45,7 @@ def save_json():
 #     for key, value in paco_db.items():
 #       paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
 #     save_json()
+
 
 # Get 48 artworks through a for loop in each pages
 for page in range(1, total_pages + 1):
@@ -97,24 +111,29 @@ for page in range(1, total_pages + 1):
                 "tags": list(tags_array),
             })
 
-            print('')
-            print('===========')
-            print('')
-            print(f"Appended \"{art_title}\"!")
-            if find_art_id_secs > 20:
-                print(
-                    f"{Fore.RED}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
-                print(
-                    f"{Fore.RED}{Style.BRIGHT}⚠️ WARNING: If it's taking longer than 20 seconds to send a HTTP request {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] then it would've been most likely due to slow or unstable connection. {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] If this happens, it'll retry from the beginning due to {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] a connection timeout. {Style.RESET_ALL}")
-            elif find_art_id_secs > 10:
-                print(
-                    f"{Fore.YELLOW}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
-            else:
-                print(
-                    f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+            if args.verbose:
+                print('\n===========\n')
+                print(f"Appended \"{art_title}\"!")
 
-            print('')
-            print(f"Date: {art_date}\nLink: {art_image}\nTags: {tags_array}")
+                if find_art_id_secs > 20:
+                    print(
+                        f"{Fore.RED}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+                    print(
+                        f"{Fore.RED}{Style.BRIGHT}⚠️ WARNING: If it's taking longer than 20 seconds to send a HTTP request {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] then it would've been most likely due to slow or unstable connection. {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] If this happens, it'll retry from the beginning due to {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] a connection timeout. {Style.RESET_ALL}")
+                elif find_art_id_secs > 10:
+                    print(
+                        f"{Fore.YELLOW}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+                else:
+                    print(
+                        f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+
+                print('')
+                print(
+                    f"Date: {art_date}\nLink: {art_image}\nTags: {tags_array}")
+
+            else:
+                print(f"Appended \"{art_title}\"!")
+
             save_json()
 
 # ! This doesn't work, need to figure out a way to replace invisible Unicode
