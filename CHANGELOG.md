@@ -1,5 +1,11 @@
 # Changelog
 
+## 06-12-2022
+
+- Removed `data` folder, including the Jupyter Notebook file (it's bad trust
+  me)
+- Added CC-BY-SA 4.0 license
+
 ## 06-01-2022
 
 - Changing backend infrastructure from Flask to FastAPI!
@@ -23,13 +29,13 @@
 ## 12-29-2021
 
 - Added a `paco-drawing-data.ipynb` file in an attempt to explain the dataset
-I've gathered manually, it was pain lol - at this time, I didn't have any
-automation tools to make gathering data less laborious lol
+  I've gathered manually, it was pain lol - at this time, I didn't have any
+  automation tools to make gathering data less laborious lol
 
 ## 12-23-2021
 
 - Tried Vue 3 + Vite. I've had issues with settings images prop from a component.
-There wasn't a clear way to do this when building for production.
+  There wasn't a clear way to do this when building for production.
 
 ## 12-04-2021
 
