@@ -1,12 +1,13 @@
-import Container from "../components/Container";
+import BaseHead from "@/components/base/BaseHead"
 
 export default function Characters() {
   return (
-    <Container
-      title="Characters"
-      description="Character stats for latest drawings"
-    >
+    <>
+      <BaseHead
+        title="Characters"
+        description="Character stats for latest drawings"
+      />
       <h2>Characters</h2>
-    </Container>
-  );
+    </>
+  )
 }

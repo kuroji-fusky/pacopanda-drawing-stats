@@ -1,25 +1,19 @@
 """
 Paco Drawing Stats FastAPI Back-end
-Written by Kerby Keith Aquino (skepfusky / Kokoro Husky)
+Written by Kerby Keith Aquino <skepfoosky15@gmail.com>
 MIT License
 """
 
-import argparse
-import uvicorn
-import json
 from fastapi import FastAPI, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
+import argparse
+import uvicorn
+import json
 
-parser = argparse.ArgumentParser(
-    description="Paco Drawing Stats FastAPI Back-end written in Python")
-
-parser.add_argument("--prod", action="store_true",
-                    help="Run the build/production app")
-
+parser = argparse.ArgumentParser(description="Paco Drawing Stats FastAPI Back-end")
+parser.add_argument('-b', '--prod', action="store_true", help="Run the build/production app")
 args = parser.parse_args()
-config = vars(args)
-print(config)
 
 app = FastAPI()
 
@@ -28,7 +22,7 @@ class CharacterModel(BaseModel):
     name: str
     species: str
     hybrid: bool
-    breed: str | null = None
+    breed: str
 
 
 @app.get("/")
@@ -42,4 +36,9 @@ async def characters():
 
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", reload=True)
+    if args.prod:
+        print("Running production build")
+        uvicorn.run("api:app")
+
+    else:
+        uvicorn.run("api:app", debug=True, reload=True)

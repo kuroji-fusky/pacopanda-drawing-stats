@@ -1,8 +1,9 @@
-import Container from "../components/Container";
+import BaseHead from "@/components/base/BaseHead"
 
 export default function About() {
   return (
-    <Container title="About" description="About page">
+    <>
+      <BaseHead title="About" description="About page" />
       <article>
         <h1>About this project</h1>
         <p>
@@ -32,6 +33,6 @@ export default function About() {
           database with the use of automated Python scripts.
         </p>
       </article>
-    </Container>
-  );
+    </>
+  )
 }

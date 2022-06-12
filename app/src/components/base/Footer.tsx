@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
-import styles from "../styles/Footer.module.scss";
-import { LinkGroup } from "./Header";
+import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import Link from "next/link"
+import styles from "@/styles/Footer.module.scss"
+import { LinkGroup } from "./Header"
 
 export default function Footer() {
   return (
@@ -47,10 +47,7 @@ export default function Footer() {
               passHref
             >
               <a>
-                <FontAwesomeIcon
-                  icon={faGithub}
-                  style={{ marginRight: "4px" }}
-                />
+                <FaIcon icon={faGithub} className="mr-[4px]" />
                 <span>Source code on GitHub</span>
               </a>
             </Link>
@@ -59,5 +56,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

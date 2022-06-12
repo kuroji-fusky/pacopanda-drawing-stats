@@ -12,6 +12,20 @@ data, go [here!][notebook]
 
 ![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
 
+## Table of contents
+
+- [Technology stack](#technology-stack)
+- [Project structure](#project-structure)
+- [About this project](#about-this-project)
+  - [Why did you create this project?](#why-did-you-create-this-project)
+  - [Isn't taking this too far?](#isnt-this-taking-it-too-far)
+- Installation
+  - [Prerequisites](#prerequisites)
+  - [Running the dev server](#running-the-dev-server)
+  - [Gathering data locally](#generating-data-locally)
+- [Related projects](#related-projects)
+- [License](#license)
+
 ## Technology stack
 
 <p align="center">
@@ -25,8 +39,6 @@ And Next.js for the website as a whole. Previously written in Vue.js.
 ## Project structure
 
 - `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
-- `data` - An old folder used to parse data and is used for [notebook][notebook] output
-only
 - `script` - Bash scripts for bulk linting and for deployment
 - `server` - Python FastAPI back-end
 
@@ -50,8 +62,6 @@ drawings (including his *Art & Biro* comics). Unfortunately, drawings from
 Twitter won't be counted in order to ease the load on my end and the dataset
 as well since all the data gathered will be hardcoded to the site.
 
-## Stuff you might be wondering
-
 ### Why did you create this project?
 
 It's really not my intention to impress him in general, I'm just a huge fan of his
@@ -73,6 +83,28 @@ informational purposes; parsing drawing data on his Twitter profile would be dif
 
 To be honest, it's more of a serious, yet passion project of mine to show various
 kinds of drawing data from his.
+
+## Installation
+
+### Prerequisites
+
+- Node.js v16 or higher (LTS recommended)
+- Python 3.9 or higher
+- WSL and/or Git Bash (for Windows users required to execute Bash scripts)
+
+### Running the dev server
+
+- Install both Node and Python environments by executing `sh scripts/setup.sh`.
+- Run both servers by `yarn dev` or `npm run dev`.
+
+## Generating data locally
+
+From the `server/fa-scraper.py` file, there are two parameters:
+
+- `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
+contains 48 items. If this parameter is not set, it will scrape the first 5 pages.
+- `-v`, `--verbose`: Log a bunch of stuff to the console, i.e. date, ID, tags,
+image link, and the amount of time to send a request.
 
 ## Related projects
 
