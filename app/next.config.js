@@ -6,21 +6,11 @@ const nextConfig = {
     domains: ['https://d.furaffinity.net'],
   },
   i18n: {
-    locales: ['en-US', 'es'],
-    defaultLocale: 'en-US',
+    locales: ['en-us', 'es'],
+    defaultLocale: 'en-us',
     localeDetection: false
+  },
+  compiler: {
+    removeConsole: true,
   }
 }
-
-module.exports = nextConfig
-
-const PWASupport = require('next-pwa');
-
-module.exports = PWASupport({
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === 'development',
-  }
-});
