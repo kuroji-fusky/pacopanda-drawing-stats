@@ -25,8 +25,6 @@ And Next.js for the website as a whole. Previously written in Vue.js.
 ## Project structure
 
 - `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
-- `data` - An old folder used to parse data and is used for [notebook][notebook] output
-only
 - `script` - Bash scripts for bulk linting and for deployment
 - `server` - Python FastAPI back-end
 
