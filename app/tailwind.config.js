@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -5,15 +7,16 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: '640px',
-      md: '768px',
-      max_md: { max: '767px' },
-      lg: '1024px',
-      xl: '1536px'
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1366px",
+      "2xl": "1536px"
     },
     fontFamily: {
-      heading: ["Noto Sans KR", '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
-      body: ["Lato", '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
+      heading: ["Noto Sans KR", ...defaultTheme.fontFamily.sans],
+      body: ["Lato", ...defaultTheme.fontFamily.sans],
+      mono: ["Fira Code", "Ubuntu Mono", ...defaultTheme.fontFamily.mono],
     },
     zIndex: {
       1: '1',
@@ -32,7 +35,14 @@ module.exports = {
       'md': '6px',
       'full': '50%',
     },
-    extend: {},
+    extend: {
+      height: {
+        viewport: '100vh',
+      },
+      width: {
+        viewport: '100vw',
+      },
+    },
     plugins: [],
   }
 }

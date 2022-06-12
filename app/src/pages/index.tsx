@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeviantart } from "@fortawesome/free-brands-svg-icons";
-import Container from "../components/Container";
+import BaseHead from "@/components/base/BaseHead";
 
 export default function Home() {
   return (
-    <Container title="Home" description="Stats for latest drawings">
+    <>
+      <BaseHead title="Home" description="Stats for latest drawings" />
       <div>
         <h2>Browse the art lol</h2>
         <Link href="deviantart.com" passHref>
@@ -14,6 +15,6 @@ export default function Home() {
           </a>
         </Link>
       </div>
-    </Container>
-  );
+    </>
+  )
 }

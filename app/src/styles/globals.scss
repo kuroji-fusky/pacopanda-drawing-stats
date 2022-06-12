@@ -2,5 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'base';
-@import 'mixins';
+@use 'partials';
+
+@layer base {
+  html,
+  body {
+    @apply font-body;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @apply font-heading font-bold;
+    }
+  }
+}
