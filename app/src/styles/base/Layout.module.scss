@@ -5,3 +5,6 @@
   @apply my-0 mx-auto max-w-screen-xl px-4;
 }
 
+#grid-container {
+  @apply grid grid-cols-2;
+}

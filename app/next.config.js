@@ -14,3 +14,5 @@ const nextConfig = {
     removeConsole: true,
   }
 }
+
+module.exports = nextConfig
