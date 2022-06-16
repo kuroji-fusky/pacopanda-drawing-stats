@@ -1,7 +1,7 @@
 <h1 align="center">Panda Paco Drawing Stats</h1>
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
-[![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
+[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
 
 This is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
