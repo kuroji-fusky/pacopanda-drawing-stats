@@ -90,12 +90,14 @@ kinds of drawing data from his.
 
 - Node.js v16 or higher (LTS recommended)
 - Python 3.9 or higher
-- WSL and/or Git Bash (for Windows users required to execute Bash scripts)
+- WSL/Git Bash (for Windows users required to execute Bash scripts)
 
 ### Running the dev server
 
 - Install both Node and Python environments by executing `sh scripts/setup.sh`.
 - Run both servers by `yarn dev` or `npm run dev`.
+  - Run them seperately by running `yarn dev:next` for the Next.js app or
+    `yarn dev:server` for the FastAPI back-end.
 
 ## Generating data locally
 
