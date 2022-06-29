@@ -13,43 +13,56 @@ stream = AnsiToWin32(sys.stderr).stream
 parser = argparse.ArgumentParser(description="Scrape drawing stats from FA")
 parser.add_argument('-p', '--pages', type=int, metavar="<pages>",
                     help="Specify the number of pages to scrape")
-parser.add_argument('-v', '--verbose', action="store_true",
-                    help="Log verbose output")
+parser.add_argument('-nv', '--no-verbose', action="store_true",
+                    help="Keep the output quiet and c l e a n")
 args = parser.parse_args()
-
-if args.pages:
-    total_pages = args.pages
-    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
-
-else:
-    total_pages = 5
-    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Defaulting to 5 pages. {Style.RESET_ALL}")
 
 user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'AppleWebKit/537.36 (KHTML, like Gecko)'
                              'Chrome/45.0.2454.101 Safari/537.36'),
               'referer': 'https://furaffinity.net/'}
 
-paco_db = {}
+if args.pages:
+    total_pages = args.pages
+    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
 
+else:
+    total_pages = 0
+    print(
+      f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Recursively finding all pages... {Style.RESET_ALL}")
+    
+    find_art = requests.get(
+        f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+    parse_art = BeautifulSoup(find_art.text, 'html.parser')
+    parse_art = parse_art.find('button', {'type': 'submit'}).get_text("Next")
+    
+    while parse_art:
+        total_pages += 1
+        find_art = requests.get(
+            f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+        parse_art = BeautifulSoup(find_art.text, 'html.parser')
+        parse_art = parse_art.find(
+            'form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
+        # The code above throws an error when this element is not found (the last page)
+        # If this error was thrown, break the loop and we'll have the number of total_pages collected!
+        if parse_art is None:
+            break
+
+        parse_art = parse_art.find('button', {'type': 'submit'}).get_text("Next")
+        print(f"Found page {total_pages}\r")
+
+    print(f"{total_pages} pages found!")
+
+paco_db = {}
 
 def save_json():
     with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
         json.dump(paco_db, paco_db_append, ensure_ascii=False)
 
-# ! This doesn't work, need to figure out a way to replace invisible Unicode
-# ! characters
-# def sanitize_json():
-#   with open("paco-fa-database.json", 'r', encoding="utf-8") as paco_db_load:
-#     paco_db = json.load(paco_db_load)
-#     for key, value in paco_db.items():
-#       paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
-#     save_json()
-
 """
 Get 48 artworks through a for loop in each pages
 """
-for page in range(1, total_pages + 1):
+for page in range(0, total_pages):
     paco_db.update({page: []})
     find_art = requests.get(
         f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=None)
@@ -112,32 +125,31 @@ for page in range(1, total_pages + 1):
                 "tags": list(tags_array),
             })
 
-            if args.verbose:
-                print('\n===========\n')
-                print(f"Appended \"{art_title}\"!")
+        if args.no_verbose:
+            print(f"{page+1}/{total_pages} page(s) | Appended \"{art_title}\"!")
 
-                if find_art_id_secs > 20:
-                    print(
-                        f"{Fore.RED}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
-                    print(
-                        f"{Fore.RED}{Style.BRIGHT}⚠️ WARNING: If it's taking longer than 20 seconds to send a HTTP request {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] then it would've been most likely due to slow or unstable connection. {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] If this happens, it'll retry from the beginning due to {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] a connection timeout. {Style.RESET_ALL}")
-                elif find_art_id_secs > 10:
-                    print(
-                        f"{Fore.YELLOW}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
-                else:
-                    print(
-                        f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+        else:
+            print('\n===========\n')
+            print(f"Currently on page(s) {page+1} of {total_pages}")
+            print(f"Appended \"{art_title}\"")
 
-                print('')
+            if find_art_id_secs > 20:
                 print(
-                    f"Date: {art_date}\nLink: {art_image}\nTags: {tags_array}")
-
+                    f"{Fore.RED}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+                print(
+                    f"{Fore.RED}{Style.BRIGHT}⚠️ WARNING: If it's taking longer than 20 seconds to send a HTTP request {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] then it would've been most likely due to slow or unstable connection. {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] If this happens, it'll retry from the beginning due to {Style.RESET_ALL}\n{Fore.RED}{Style.BRIGHT}[⚠️] a connection timeout. {Style.RESET_ALL}")
+            elif find_art_id_secs > 10:
+                print(
+                    f"{Fore.YELLOW}{Style.BRIGHT}⚠️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
             else:
-                print(f"Appended \"{art_title}\"!")
+                print(
+                    f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_art_id_secs} sec(s) to complete.{Style.RESET_ALL}")
 
-            save_json()
+            print(
+                f"\nDate: {art_date}\nLink: {art_image}\nTags: {tags_array}")
+            
+        save_json()
 
-# ! This doesn't work, need to figure out a way to replace invisible Unicode
-# ! characters
-# sanitize_json()
-print(f"\n{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} DONE! {Back.RESET}\n")
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} ============= {Back.RESET}")
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} ============= {Back.RESET}")

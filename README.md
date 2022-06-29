@@ -105,8 +105,7 @@ From the `server/fa-scraper.py` file, there are two parameters:
 
 - `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
 contains 48 items. If this parameter is not set, it will scrape the first 5 pages.
-- `-v`, `--verbose`: Log a bunch of stuff to the console, i.e. date, ID, tags,
-image link, and the amount of time to send a request.
+- `-nv`, `--no-verbose`: Keep the logs as minimal as possible
 
 ## Related projects
 
