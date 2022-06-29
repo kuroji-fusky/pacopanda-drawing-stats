@@ -46,8 +46,9 @@ def save_json():
 #       paco_db[key] = re.sub(r'[^\x00-\x7F]+', '', value)
 #     save_json()
 
-
-# Get 48 artworks through a for loop in each pages
+"""
+Get 48 artworks through a for loop in each pages
+"""
 for page in range(1, total_pages + 1):
     paco_db.update({page: []})
     find_art = requests.get(
