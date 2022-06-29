@@ -1,7 +1,7 @@
-<h1 align="center">Panda Paco Drawing Stats</h1>
+<h1 align="center">Paco Panda Drawing Stats</h1>
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
-[![issues - pandapaco-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pandapaco-drawing-stats/issues)
+[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
 
 This is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
@@ -90,12 +90,14 @@ kinds of drawing data from his.
 
 - Node.js v16 or higher (LTS recommended)
 - Python 3.9 or higher
-- WSL and/or Git Bash (for Windows users required to execute Bash scripts)
+- WSL/Git Bash (for Windows users required to execute Bash scripts)
 
 ### Running the dev server
 
 - Install both Node and Python environments by executing `sh scripts/setup.sh`.
 - Run both servers by `yarn dev` or `npm run dev`.
+  - Run them seperately by running `yarn dev:next` for the Next.js app or
+    `yarn dev:server` for the FastAPI back-end.
 
 ## Generating data locally
 
