@@ -1,5 +1,6 @@
 from colorama import *
 from bs4 import BeautifulSoup
+import concurrent.futures
 import argparse
 import json
 import sys
@@ -10,6 +11,7 @@ import requests
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
+# Arg parse stuff
 parser = argparse.ArgumentParser(description="Scrape drawing stats from FA")
 parser.add_argument('-p', '--pages', type=int, metavar="<pages>",
                     help="Specify the number of pages to scrape")
@@ -22,38 +24,40 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'Chrome/45.0.2454.101 Safari/537.36'),
               'referer': 'https://furaffinity.net/'}
 
+# The scraper stuff OoOoOoOOO
+total_pages = 0
+find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+paco_db = {}
+
 if args.pages:
     total_pages = args.pages
     print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
 
 else:
-    total_pages = 0
     print(
       f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Recursively finding all pages... {Style.RESET_ALL}")
-    
-    find_art = requests.get(
-        f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
-    parse_art = BeautifulSoup(find_art.text, 'html.parser')
-    parse_art = parse_art.find('button', {'type': 'submit'}).get_text("Next")
-    
-    while parse_art:
-        total_pages += 1
-        find_art = requests.get(
-            f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+        
+    def collect_pages(total_pages):
         parse_art = BeautifulSoup(find_art.text, 'html.parser')
-        parse_art = parse_art.find(
-            'form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
-        # The code above throws an error when this element is not found (the last page)
-        # If this error was thrown, break the loop and we'll have the number of total_pages collected!
-        if parse_art is None:
-            break
-
         parse_art = parse_art.find('button', {'type': 'submit'}).get_text("Next")
-        print(f"Found page {total_pages}\r")
+        
+        while parse_art:
+            total_pages += 1
+            parse_art = BeautifulSoup(find_art.text, 'html.parser')
+            parse_art = parse_art.find(
+                'form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
+            # The code above throws an error when this element is not found (the last page)
+            # If this error was thrown, break the loop and we'll have the number of total_pages collected!
+            if parse_art is None:
+                break
 
-    print(f"{total_pages} pages found!")
+            parse_art = parse_art.find('button', {'type': 'submit'}).get_text("Next")
+            print(f"Found page {total_pages}\r")
 
-paco_db = {}
+        print(f"{total_pages} pages found!")
+        
+    collect_pages(total_pages)
+
 
 def save_json():
     with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
@@ -64,8 +68,6 @@ Get 48 artworks through a for loop in each pages
 """
 for page in range(0, total_pages):
     paco_db.update({page: []})
-    find_art = requests.get(
-        f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=None)
     parse_art = BeautifulSoup(find_art.text, 'html.parser')
     parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
@@ -150,6 +152,4 @@ for page in range(0, total_pages):
             
         save_json()
 
-print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} ============= {Back.RESET}")
 print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
-print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} ============= {Back.RESET}")
