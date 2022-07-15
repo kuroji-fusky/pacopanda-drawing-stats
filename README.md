@@ -5,7 +5,7 @@
 
 This is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
-TypeScript and Python.
+TypeScript, Python, and Go.
 
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, go [here!][notebook]
@@ -29,7 +29,7 @@ data, go [here!][notebook]
 ## Technology stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,py,fastapi,redis">
+  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,go,py,fastapi,redis">
 </p>
 
 I use Python to gather a bunch of data, while FastAPI for the back-end, and
