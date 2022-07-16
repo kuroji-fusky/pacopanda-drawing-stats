@@ -65,7 +65,6 @@ def save_json():
 Get 48 artworks through a for loop in each pages
 """
 for page in range(0, total_pages):
-    paco_page_db = []
     parse_art = BeautifulSoup(find_page.text, 'html.parser')
     parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
@@ -117,7 +116,7 @@ for page in range(0, total_pages):
                 'div', {'class': 'submission-description user-submitted-links'}).get_text().strip()
 
             # Attach to a JSON file
-            paco_page_db.append({
+            paco_db.append({
                 'name': art_title,
                 "description": art_desc,
                 'date': art_date,
@@ -147,8 +146,6 @@ for page in range(0, total_pages):
 
             print(
                 f"\nDate: {art_date}\nLink: {art_image}\nTags: {tags_array}")
-    
-    paco_db.append(paco_page_db)
 
 print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished!{Style.RESET_ALL}")
 print("\nSaving JSON file...")
