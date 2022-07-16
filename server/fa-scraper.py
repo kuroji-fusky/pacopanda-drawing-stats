@@ -25,7 +25,7 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
               'referer': 'https://furaffinity.net/'}
 
 # The scraper stuff
-paco_db = {}
+paco_db = []
 total_pages = 0
 find_page = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
 
@@ -59,13 +59,13 @@ else:
 
 def save_json():
     with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
-        json.dump(paco_db, paco_db_append, ensure_ascii=False)
+        json.dump({"database":paco_db}, paco_db_append, ensure_ascii=False)
 
 """
 Get 48 artworks through a for loop in each pages
 """
 for page in range(0, total_pages):
-    paco_db.update({page: []})
+    paco_page_db = []
     parse_art = BeautifulSoup(find_page.text, 'html.parser')
     parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
@@ -117,14 +117,14 @@ for page in range(0, total_pages):
                 'div', {'class': 'submission-description user-submitted-links'}).get_text().strip()
 
             # Attach to a JSON file
-            paco_db[page].append({
+            paco_page_db.append({
                 'name': art_title,
                 "description": art_desc,
                 'date': art_date,
                 'link': art_image,
                 "tags": list(tags_array),
             })
-
+        
         if args.no_verbose:
             print(f"{page+1}/{total_pages} page(s) | Appended \"{art_title}\"!")
 
@@ -147,7 +147,12 @@ for page in range(0, total_pages):
 
             print(
                 f"\nDate: {art_date}\nLink: {art_image}\nTags: {tags_array}")
-            
-        save_json()
+    
+    paco_db.append(paco_page_db)
+
+print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished!{Style.RESET_ALL}")
+print("\nSaving JSON file...")
+print(paco_db)
+save_json()
 
 print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
