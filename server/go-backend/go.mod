@@ -1,4 +1,4 @@
-module pacopanda-backend
+module pacopanda-drawing-api
 
 go 1.18
 

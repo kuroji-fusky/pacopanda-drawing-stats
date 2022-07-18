@@ -1,5 +1,7 @@
 <h1 align="center">Paco Panda Drawing Stats</h1>
 
+![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
+
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
 
@@ -10,21 +12,7 @@ TypeScript, Python, and Go.
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, go [here!][notebook]
 
-![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
 
-## Table of contents
-
-- [Technology stack](#technology-stack)
-- [Project structure](#project-structure)
-- [About this project](#about-this-project)
-  - [Why did you create this project?](#why-did-you-create-this-project)
-  - [Isn't this taking this too far?](#isnt-this-taking-it-too-far)
-- Installation
-  - [Prerequisites](#prerequisites)
-  - [Running the dev server](#running-the-dev-server)
-  - [Gathering data locally](#generating-data-locally)
-- [Related projects](#related-projects)
-- [License](#license)
 
 ## Technology stack
 

@@ -3,6 +3,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import Link from "next/link"
 import styles from "@/styles/base/Footer.module.scss"
 import { LinkGroup } from "./Header"
+import { FooterLinkMenu } from "@/models/Menus"
 
 export default function Footer() {
   return (
@@ -11,24 +12,11 @@ export default function Footer() {
         <div>
           <h2>Navigation</h2>
           <ul>
-            <li>
-              <LinkGroup name="Browse" route="browse" />
-            </li>
-            <li>
-              <LinkGroup
-                name="Paco Stats API (yes you heard me)"
-                route="stats-api"
-              />
-            </li>
-            <li>
-              <LinkGroup name="About this project" route="about" />
-            </li>
-            <li>
-              <LinkGroup
-                name="How I gather project"
-                route="about#how-i-gather-data"
-              />
-            </li>
+            {FooterLinkMenu.map((item, index) => (
+              <li key={index}>
+                <LinkGroup name={item.name} route={`/${item.route}`} />
+              </li>
+            ))}
           </ul>
         </div>
         <div>
@@ -49,7 +37,7 @@ export default function Footer() {
           <span className="flex gap-1">
             Written in Next.js and FastAPI.
             <Link
-              href="https://github.com/skepfusky/pandapaco-drawing-stats"
+              href="https://github.com/skepfusky/pacopanda-drawing-stats"
               passHref
             >
               <a>
