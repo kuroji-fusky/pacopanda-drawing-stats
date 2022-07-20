@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func api() {
 	router := gin.Default()
 	router.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{

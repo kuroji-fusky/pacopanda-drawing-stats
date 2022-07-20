@@ -1,5 +1,11 @@
 {
   "css.validate": false,
   "scss.lint.unknownAtRules": "ignore",
-  "scss.validate": false
+  "scss.validate": false,
+  "[go]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImport": false
+    }
+  }
 }
