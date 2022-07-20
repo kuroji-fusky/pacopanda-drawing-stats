@@ -27,8 +27,7 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
 # The scraper stuff
 paco_db = []
 total_pages = 0
-find_page = requests.get(
-    f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
 
 if args.pages:
     total_pages = args.pages
@@ -38,15 +37,14 @@ else:
     print(
         f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Recursively finding all pages... {Style.RESET_ALL}")
 
-    parse_pages = BeautifulSoup(find_page.text, 'html.parser')
+    parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
     parse_pages = parse_pages.find(
         'button', {'type': 'submit'}).get_text("Next")
 
     while parse_pages:
         total_pages += 1
-        find_page = requests.get(
-            f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
-        parse_pages = BeautifulSoup(find_page.text, 'html.parser')
+        page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+        parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
         parse_pages = parse_pages.find(
             'form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
         """
@@ -72,21 +70,21 @@ def save_json():
 """
 Get 48 artworks through a for loop in each pages
 """
-for page in range(0, total_pages):
-    parse_art = BeautifulSoup(find_page.text, 'html.parser')
+for page in range(1, total_pages):
+    find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=None)
+    parse_art = BeautifulSoup(find_art.text, 'html.parser')
     parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
     for art_id in parse_art:
         if 'id' in art_id.attrs:
             art_id_concat = re.sub('sid-', '', art_id['id'])
-            find_page = requests.get(
-                f"https://furaffinity.net/view/{art_id_concat}/", headers=user_agent, timeout=None)
-            find_page_id_secs = find_page.elapsed.total_seconds()
-            parse_art_id = BeautifulSoup(find_page.text, 'html.parser')
+
+            page_requests_too = requests.get(f"https://furaffinity.net/view/{art_id_concat}/?", headers=user_agent, timeout=None)
+            find_page_id_secs = page_requests.elapsed.total_seconds()
+            parse_art_id = BeautifulSoup(page_requests_too.text, 'html.parser')
 
             # Get title
-            find_title = parse_art_id.find(
-                'div', {'class': 'submission-title'})
+            find_title = parse_art_id.find('div', {'class': 'submission-title'})
             art_title = find_title.find('p').get_text()
 
             # Get image
@@ -133,10 +131,10 @@ for page in range(0, total_pages):
             })
 
         if args.no_verbose:
-            print(f"{page+1}/{total_pages} page(s) | Appended \"{art_title}\"!")
+            print(f"{page}/{total_pages} page(s) | Appended \"{art_title}\"!")
 
         else:
-            print(f"\nCurrently on page(s) {page+1} of {total_pages}")
+            print(f"\nCurrently on page(s) {page} of {total_pages}")
             print(f"Appended \"{art_title}\"")
 
             if find_page_id_secs > 20:
@@ -149,9 +147,7 @@ for page in range(0, total_pages):
                 print(
                     f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_page_id_secs} sec(s) to complete.{Style.RESET_ALL}")
 
-print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished!{Style.RESET_ALL}")
-print("\nSaving JSON file...")
-# print(paco_db)
-save_json()
+    print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished on page {page} {Style.RESET_ALL}")
+    save_json()
 
 print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
