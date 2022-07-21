@@ -3,7 +3,7 @@
 ![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
-[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pandapaco-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
+[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pacopanda-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
 
 This is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
@@ -11,8 +11,6 @@ TypeScript, Python, and Go.
 
 For more in-depth and thorough explanation on how I gather, render, and manage
 data, go [here!][notebook]
-
-
 
 ## Technology stack
 
