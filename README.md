@@ -4,6 +4,8 @@
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pacopanda-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
+![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
+![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
 This is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
@@ -25,8 +27,8 @@ And Next.js for the website as a whole. Previously written in Vue.js.
 ## Project structure
 
 - `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
-- `script` - Bash scripts for bulk linting and for deployment
-- `server` - Python FastAPI back-end
+- `script` - Bash scripts for setting up, bulk linting and for deployment
+- `server` - Python and Go back-end
 
 ## About this project
 
