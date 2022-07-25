@@ -124,13 +124,13 @@ for page in range(1, total_pages):
                 "tags": list(tags_array),
             })
 
-        percentage = round((page / (total_pages - 1) * 100), 2)
+        percentage = round((page / total_pages * 100), 2)
 
         if args.no_verbose:
-            print(f"{page}/{total_pages - 1} page(s) ({percentage}%) | Appended \"{art_title}\"")
+            print(f"{page}/{total_pages} page(s) ({percentage}%) | Appended \"{art_title}\"")
 
         else:
-            print(f"\nCurrently on page(s) {page} of {total_pages -1} ({percentage}%)")
+            print(f"\nCurrently on page(s) {page} of {total_pages} ({percentage}%)")
             print(f"Appended \"{art_title}\"")
 
             if find_page_id_secs > 20:
@@ -146,5 +146,5 @@ for page in range(1, total_pages):
     print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished on page {page} {Style.RESET_ALL}")
     save_json()
 
-print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! {total_pages - 1} pages, {total_pages*48} "
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! {total_pages} pages, {total_pages*48} "
       f"items appended to JSON! === {Back.RESET}")
