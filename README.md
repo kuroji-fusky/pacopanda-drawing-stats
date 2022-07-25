@@ -20,7 +20,7 @@ Go currently on the works for faster data scraping with Gin and Colly.
 
 ## Project structure
 
-- `.vscode` and `.idea` - IDE configs
+- `.vscode` and `.idea` - IDE configs for VS Code and IntelliJ
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
 - `script` - Bash scripts for setting up, bulk linting and for deployment
 - `server` - Python and Go back-end

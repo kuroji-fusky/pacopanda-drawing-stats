@@ -1,6 +1,5 @@
 from colorama import *
 from bs4 import BeautifulSoup
-import concurrent.futures
 import argparse
 import json
 import sys
@@ -13,10 +12,8 @@ stream = AnsiToWin32(sys.stderr).stream
 
 # Arg parse stuff for passing args on terminal
 parser = argparse.ArgumentParser(description="Scrape drawing stats from FA")
-parser.add_argument('-p', '--pages', type=int, metavar="<pages>",
-                    help="Specify the number of pages to scrape")
-parser.add_argument('-nv', '--no-verbose', action="store_true",
-                    help="Keep the output minimal")
+parser.add_argument('-p', '--pages', type=int, metavar="<pages>", help="Specify the number of pages to scrape")
+parser.add_argument('-nv', '--no-verbose', action="store_true", help="Keep the output minimal")
 args = parser.parse_args()
 
 user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
@@ -24,32 +21,37 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'Chrome/45.0.2454.101 Safari/537.36'),
               'referer': 'https://furaffinity.net/'}
 
-# The scraper stuff
-paco_db = []
+"""
+NOTE: The `total_pages` variable is used to keep track of the number of pages that are going to be scraped.
+But it's important to know that it can be really confusing to have the *actual* number of pages
+scraped.
+
+The only workaround is it had to be increased by 1 due to a for loop range, but decremented by 1 on print
+statements. Because passing `-p 1` will terminate the script immediately.
+"""
 total_pages = 0
-page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+paco_db = []
+page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
 
 if args.pages:
-    total_pages = args.pages
-    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages} {Style.RESET_ALL}")
+    total_pages = args.pages + 1
+    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages-1} {Style.RESET_ALL}")
 
 else:
     print(
-        f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} No value for pages specified. Recursively finding all pages... {Style.RESET_ALL}")
+        f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} --pages flag was not used, finding all pages available {Style.RESET_ALL}")
 
     parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
-    parse_pages = parse_pages.find(
-        'button', {'type': 'submit'}).get_text("Next")
+    parse_pages = parse_pages.find('button', {'type': 'submit'}).get_text("Next")
 
     while parse_pages:
         total_pages += 1
-        page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=None)
+        page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
         parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
-        parse_pages = parse_pages.find(
-            'form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
+        parse_pages = parse_pages.find('form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
         """
         The code above throws an error when the "Next" button is not found (the last page)
-        If this error was thrown, break the loop and we'll have the number of total_pages collected!
+        If this error was thrown, break the loop and we'll have the number of `total_pages` collected!
         """
         if parse_pages is None:
             break
@@ -57,31 +59,28 @@ else:
         parse_pages = parse_pages.find(
             'button', {'type': 'submit'}).get_text("Next")
 
-        print(f"Found page {total_pages}\r")
+        print(f"\rFound page {total_pages} - took {round(page_requests.elapsed.total_seconds(), 3)}s")
 
     print(f"{total_pages} pages found!")
-
 
 def save_json():
     with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
         json.dump({"database": paco_db}, paco_db_append, ensure_ascii=False)
 
-
 """
 Get 48 artworks through a for loop in each pages
 """
 for page in range(1, total_pages):
-    find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=None)
+    find_art = requests.get(f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=30)
     parse_art = BeautifulSoup(find_art.text, 'html.parser')
     parse_art = parse_art.find_all('figure', {'id': re.compile("sid-*")})
 
     for art_id in parse_art:
         if 'id' in art_id.attrs:
             art_id_concat = re.sub('sid-', '', art_id['id'])
-
-            page_requests_too = requests.get(f"https://furaffinity.net/view/{art_id_concat}/?", headers=user_agent, timeout=None)
-            find_page_id_secs = page_requests.elapsed.total_seconds()
-            parse_art_id = BeautifulSoup(page_requests_too.text, 'html.parser')
+            page_requests_art = requests.get(f"https://furaffinity.net/view/{art_id_concat}/?", headers=user_agent, timeout=30)
+            find_page_id_secs = page_requests_art.elapsed.total_seconds()
+            parse_art_id = BeautifulSoup(page_requests_art.text, 'html.parser')
 
             # Get title
             find_title = parse_art_id.find('div', {'class': 'submission-title'})
@@ -92,21 +91,16 @@ for page in range(1, total_pages):
                 'div', {'class': 'aligncenter submission-area'})
 
             if detect_img.find('img'):
-                art_image = parse_art_id.find(
-                    'img', {'id': 'submissionImg'})['src']
-                art_image = f'https:{art_image}'
+                art_image_get = parse_art_id.find('img', {'id': 'submissionImg'})['src']
+                art_image = f'https:{art_image_get}'
 
             # If no image is detected (i.e. video or flash content); then return null
             else:
                 art_image = 'Null, item requested is anything other than an image.'
 
             # Get date
-            art_date = parse_art_id.find(
-                'span', {'class': 'popup_date'})['title']
-            # print(art_date)
-
-            # TODO: filter only date using regex
-            # TODO: art_date = parse_art_id.find('span', {'title': re.compile(r" ([0-9]?[0-9]:[0-9]?[0-9]) ([AP]?M)")})
+            art_date_get = parse_art_id.find('span', {'class': 'popup_date'})['title']
+            art_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
 
             # Get tags
             tags_array = set()
@@ -117,7 +111,7 @@ for page in range(1, total_pages):
                     'a', {'href': re.compile('/search/*')}).get_text()
                 tags_array.add(art_tag)
 
-            # Find description
+            # Get description
             art_desc = parse_art_id.find(
                 'div', {'class': 'submission-description user-submitted-links'}).get_text().strip()
 
@@ -125,16 +119,18 @@ for page in range(1, total_pages):
             paco_db.append({
                 'name': art_title,
                 "description": art_desc,
-                'date': art_date,
+                "date": str(art_date),
                 'link': art_image,
                 "tags": list(tags_array),
             })
 
+        percentage = round((page / (total_pages - 1) * 100), 2)
+
         if args.no_verbose:
-            print(f"{page}/{total_pages} page(s) | Appended \"{art_title}\"!")
+            print(f"{page}/{total_pages - 1} page(s) ({percentage}%) | Appended \"{art_title}\"")
 
         else:
-            print(f"\nCurrently on page(s) {page} of {total_pages}")
+            print(f"\nCurrently on page(s) {page} of {total_pages -1} ({percentage}%)")
             print(f"Appended \"{art_title}\"")
 
             if find_page_id_secs > 20:
@@ -150,4 +146,5 @@ for page in range(1, total_pages):
     print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished on page {page} {Style.RESET_ALL}")
     save_json()
 
-print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! {total_pages - 1} pages, {total_pages*48} "
+      f"items appended to JSON! === {Back.RESET}")
