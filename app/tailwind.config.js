@@ -22,12 +22,6 @@ module.exports = {
       1: '1',
       2: '2',
       3: '3',
-      4: '4',
-      5: '5',
-      6: '6',
-      7: '7',
-      8: '8',
-      9: '9',
       'mosttop': '9999',
     },
     borderRadius: {
@@ -35,14 +29,7 @@ module.exports = {
       'md': '6px',
       'full': '50%',
     },
-    extend: {
-      height: {
-        viewport: '100vh',
-      },
-      width: {
-        viewport: '100vw',
-      },
-    },
+    extend: {},
     plugins: [],
   }
 }

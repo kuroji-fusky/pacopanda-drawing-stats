@@ -1,9 +1,8 @@
 .stats-grid {
   @apply grid grid-cols-2 gap-3;
   grid-template-areas:
-  "stats-current stats-current"
-  "stats-1 stats-2"
-  "stats-prev stats-prev"
-  "stats-overall stats-overall"
-  ;
+    "stats-current stats-current"
+    "stats-1 stats-2"
+    "stats-prev stats-prev"
+    "stats-overall stats-overall";
 }

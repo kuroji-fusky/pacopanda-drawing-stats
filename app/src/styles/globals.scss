@@ -1,5 +1,3 @@
-@use "partials";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,9 +8,7 @@
     @apply font-body;
   }
 
-  $font-sizes: (1 '3xl', 2 '2xl', 3 'xl', 4 'lg', 5 'base', 6 'sm');
-
-  @each $heading, $sizes in $font-sizes {
+  @each $heading, $sizes in [ 1 '3xl', 2 '2xl', 3 'xl', 4 'lg', 5 'base', 6 'sm'] {
     h#{$heading} {
       @apply font-extrabold text-#{$sizes};
     }

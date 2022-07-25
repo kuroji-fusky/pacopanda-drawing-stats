@@ -14,14 +14,11 @@
   "roni": {
     "name": "roni",
     "species": "dog",
-    "hybrid": false,
     "breed": "border collie"
   },
   "yaps": {
     "name": "yaps",
-    "species": "fox",
-    "hybrid": false,
-    "breed": null
+    "species": "fox"
   },
   "majira": {
     "name": "Majira",
@@ -37,12 +34,10 @@
   "t.j": {
     "name": "T.J.",
     "species": "fox-wolf-husky hybrid",
-    "hybrid": true,
-    "breed": null
+    "hybrid": true
   },
   "cosmic": {
     "name": "Cosmic Wuffy",
-    "species": "wolf",
-    "hybrid": false
+    "species": "wolf"
   }
 }
