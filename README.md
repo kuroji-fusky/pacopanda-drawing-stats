@@ -7,26 +7,21 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-This is an open source data visualization project that collects all 1.8K+
+__Paco Panda Drawing Stats__ is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
 TypeScript, Python, and Go.
 
-For more in-depth and thorough explanation on how I gather, render, and manage
-data, go [here!][notebook]
+This project currently uses Next.js with Sass and Tailwind CSS, it previously
+uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries available
+(not because it's popular).
 
-## Technology stack
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,tailwind,sass,go,py,fastapi,redis">
-</p>
-
-I use Python to gather a bunch of data, while FastAPI for the back-end, and
-special thanks to [@thatITfox][it] for initially setting up the backend with Flask!
-And Next.js for the website as a whole. Previously written in Vue.js.
+The backend consists of both Python for scraping data with FastAPI and BS4, with
+Go currently on the works for faster data scraping with Gin and Colly.
 
 ## Project structure
 
-- `app` - The website, written in Next.js + TypeScript, Sass, and TailwindCSS
+- `.vscode` and `.idea` - IDE configs
+- `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
 - `script` - Bash scripts for setting up, bulk linting and for deployment
 - `server` - Python and Go back-end
 
@@ -54,7 +49,7 @@ as well since all the data gathered will be hardcoded to the site.
 
 It's really not my intention to impress him in general, I'm just a huge fan of his
 artwork and his unique and adorable art style that I'd want to see how many characters
-he's drawn since mid-2000s but he'd for sure find it interesting as it's more of
+he's drawn since early to mid 2000s but he'd for sure find it interesting as it's more of
 a fun project to a new hobby of mine, learning not only JavaScript, but also learning
 a bit of back-end and basic data management in the process of other projects I do.
 
@@ -65,16 +60,19 @@ artists and run it through this process, but I'm kinda lacking backend knowledge
 
 ### Isn't this taking it too far?
 
-Well, as someone who admires his art, yes - to some extent. Well, sure - it may feel
+Well, as someone who admires his art, yes... to some extent. Well, sure - it may feel
 like I watch him on every step, but trust me, I only use them for analytical and
-informational purposes; parsing drawing data on his Twitter profile would be difficult.
+informational purposes; parsing drawing data on his Twitter profile would be difficult
+and will require more work.
 
 To be honest, it's more of a serious, yet passion project of mine to show various
 kinds of drawing data from his.
 
-## Installation
+## Installation and Setup
 
 ### Prerequisites
+
+> Go is optional as it's still being worked on!
 
 - Node.js v16 or higher (LTS recommended)
 - Python 3.9 or higher
@@ -89,11 +87,13 @@ kinds of drawing data from his.
 
 ## Generating data locally
 
-From the `server/fa-scraper.py` file, there are two parameters:
+From the `server/python-backend/fa-scraper.py` file, there are two parameters you can pass:
 
 - `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
-contains 48 items. If this parameter is not set, it will scan through all the pages.
-- `-nv`, `--no-verbose`: Keep the logs as minimal and c l e a n as possible.
+contains 48 items. If this parameter isn't set, it will scan through all the
+pages available.
+- `-nv`, `--no-verbose`: Keep the logs as minimal and c l e a n as possible, making
+the requests go by faster.
 
 ## Related projects
 
@@ -104,4 +104,3 @@ contains 48 items. If this parameter is not set, it will scan through all the pa
 Source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox
-[notebook]: https://github.com/skepfusky/pandapaco-drawing-stats/blob/main/data/paco-drawing-data.ipynb

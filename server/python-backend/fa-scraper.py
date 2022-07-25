@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser(description="Scrape drawing stats from FA")
 parser.add_argument('-p', '--pages', type=int, metavar="<pages>",
                     help="Specify the number of pages to scrape")
 parser.add_argument('-nv', '--no-verbose', action="store_true",
-                    help="Keep the output quiet and c l e a n")
+                    help="Keep the output minimal")
 args = parser.parse_args()
 
 user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
