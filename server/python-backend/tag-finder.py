@@ -8,7 +8,7 @@ import json
 from random import randint
 
 parser = argparse.ArgumentParser(description="Parses any tags from the generated JSON") 
-parser.add_argument("-t", "--tag", type=str, metavar="<string>", help="Find a specific tags")
+parser.add_argument("-t", "--tag", type=str, metavar="<value>", help="Find a specific tags")
 
 args = parser.parse_args()
 
@@ -21,14 +21,13 @@ with open("paco-fa-database.json", "r", encoding="utf-8") as f:
             tags.append(j)
           
     total_count = len(tags)
+    results = tags.count(args.tag)
       
     if args.tag:
-        results = tags.count(args.tag)
-        
         if results == 0:
             print(f"No results found for tag '{args.tag}'")
         else:
-            print(f"'{args.tag}' returned {results} hits ({results/total_count*100:.5f}% of {total_count})")
+            print(f"'{args.tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
     else:
         random_tag = tags[randint(1, total_count)]
         results = tags.count(random_tag)

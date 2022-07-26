@@ -7,6 +7,8 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
+> 🆕 Updates to this project can be seen [here!](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
+
 __Paco Panda Drawing Stats__ is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
 TypeScript, Python, and Go.
@@ -18,18 +20,16 @@ uses Vue 3 and had to be rewritten entirely in React because of the wide range o
 The backend consists of both Python for scraping data with FastAPI and BS4, and
 Go currently on the works for faster data scraping with Gin and Colly.
 
-Updates to this project can be seen [here!](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
-
 ## Project structure
 
-- `.vscode` and `.idea` - IDE configs for VS Code and IntelliJ IDEA
+- `.idea` and `.vscode` - IDE configs for VS Code and IntelliJ IDEA
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
 - `script` - Bash scripts for setting up, bulk linting and for deployment
 - `server` - Python and Go back-end
 
 ## About this project
 
-This project began in October 31, 2021, and the possible inspiration from this
+This project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine site)
 and it'd be interesting to see in all of his drawings to see said data and it's various
 datasets.
@@ -94,8 +94,21 @@ From the `server/python-backend/fa-scraper.py` file, there are two parameters yo
 - `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
 contains 48 items. If this parameter isn't set, it will scan through all the
 pages available.
-- `-nv`, `--no-verbose`: Keep the logs as minimal and c l e a n as possible, making
+- `-nv`, `--no-verbose`: Keep the logs as minimal and clean as possible, making
 the requests go by faster.
+
+## Test scripts
+
+### Searching tags
+
+From the `tag-finder.py` file, the only parameter supported is `-t <string>` or `--tag <string>` 
+to find a specific tag from the scraped data, if otherwise not passed, it will find a
+random tag instead.
+
+- Running `python tag-finder.py --tag fox` will return
+  - `'fox' returned 397 hits (1.28139% of 30982)`
+- If no --tag flag is passed, it will return a random tag instead
+  - `'anthro' returned 690 hits (2.22710% of 30982)`
 
 ## Related projects
 
