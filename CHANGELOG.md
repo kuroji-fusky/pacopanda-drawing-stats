@@ -1,46 +1,69 @@
 # Changelog
 
-## 06-12-2022
+## 2022
+
+### July 26
+
+- Added Cypress for Unit and E2E (end-to-end) testing, making sure the app
+is bug-free!
+- Finally regex'd the date in the scraper script!
+
+### July 16
+
+- Working on Gin web server and Colly scraper in the Go programming language
+for even faster performance.
+- Moved the new project to this repo and kept all the previous commits from
+April from the [initial archived repository](https://github.com/skepfusky/pandapaco-drawing-stats-old)
+maintaining the previous commits and branches.
+
+### June 29
+
+- Added the ability to find all the pages available from the scraper script.
+
+### June 12
 
 - Removed `data` folder, including the Jupyter Notebook file (it's bad trust
   me)
 - Added CC-BY-SA 4.0 license
 
-## 06-01-2022
+### June 01
 
 - Changing backend infrastructure from Flask to FastAPI!
 
-## 04-17-2022
+### April 17
 
 - Removed all past commits via rebase
 
-## 04-09-2022
+### April 09
 
 - Restarted the whole project with Next.js + TypeScript
 
-## 04-07-2022
+### April 07
 
 - Moved all old Vue 3 files to the [`vue-3-legacy`](https://github.com/skepfusky/pandapaco-drawing-stats/tree/vue3-legacy) branch.
 
-## 01-02-2022
+### Jan 01
 
 - Went back from Vue 3 CLI.
 
-## 12-29-2021
+## 2021
+
+### Dec 29
 
 - Added a `paco-drawing-data.ipynb` file in an attempt to explain the dataset
   I've gathered manually, it was pain lol - at this time, I didn't have any
   automation tools to make gathering data less laborious lol
 
-## 12-23-2021
+### Dec 23
 
-- Tried Vue 3 + Vite. I've had issues with settings images prop from a component.
-  There wasn't a clear way to do this when building for production.
+- Tried Vue 3 + Vite. I've had issues with setting the images prop from
+a component. There really wasn't a clear way to do this when building
+for production.
 
-## 12-04-2021
+### Dec 04
 
-- Redo project generated via Vue 3 CLI!
+- Rewrite project generated via Vue 3 CLI!
 
-## 10-31-2021
+### Oct 31
 
 - Initiated project with plain HTML. Imported libraries such as D3.js and Chart.js.

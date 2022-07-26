@@ -15,12 +15,14 @@ This project currently uses Next.js with Sass and Tailwind CSS, it previously
 uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries available
 (not because it's popular).
 
-The backend consists of both Python for scraping data with FastAPI and BS4, with
+The backend consists of both Python for scraping data with FastAPI and BS4, and
 Go currently on the works for faster data scraping with Gin and Colly.
+
+Updates to this project can be seen [here!](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
 
 ## Project structure
 
-- `.vscode` and `.idea` - IDE configs for VS Code and IntelliJ
+- `.vscode` and `.idea` - IDE configs for VS Code and IntelliJ IDEA
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
 - `script` - Bash scripts for setting up, bulk linting and for deployment
 - `server` - Python and Go back-end
@@ -68,7 +70,7 @@ and will require more work.
 To be honest, it's more of a serious, yet passion project of mine to show various
 kinds of drawing data from his.
 
-## Installation and Setup
+## Installation and setup
 
 ### Prerequisites
 
@@ -83,7 +85,7 @@ kinds of drawing data from his.
 - Install both Node and Python environments by executing `sh scripts/setup.sh`.
 - Run both servers by `yarn dev` or `npm run dev`.
   - Run them seperately by running `yarn dev:next` for the Next.js app or
-    `yarn dev:server` for the FastAPI back-end.
+    `yarn dev:fastapi` for the FastAPI back-end.
 
 ## Generating data locally
 

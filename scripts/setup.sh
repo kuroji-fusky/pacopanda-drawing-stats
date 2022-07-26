@@ -4,8 +4,8 @@ cd ..
 
 yarn install
 
-yarn --cwd ./app install
+concurrently -k nextjs,python \
+  "yarn --cwd ./app install" \
+  "cd ./server/python-backend && pip install -r requirements.txt"
 
-cd server
-
-pip install -r requirements.txt
+echo "Done"
