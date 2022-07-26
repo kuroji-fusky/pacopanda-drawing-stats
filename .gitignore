@@ -35,13 +35,9 @@ yarn-error.log*
 /worker-*.js
 /worker-*.js.map
 
-# Ignore *.lock files
-package-lock.json*
-yarn.lock*
-
 # Local databases and Python stuff
 paco-fa-database.json
 
 # Python environment
-server/__pycache__
+__pycache__*
 venv

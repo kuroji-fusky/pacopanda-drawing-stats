@@ -12,11 +12,10 @@ import uvicorn
 import json
 
 parser = argparse.ArgumentParser(description="Paco Drawing Stats FastAPI Back-end")
-parser.add_argument('-b', '--prod', action="store_true", help="Run the build/production app")
+parser.add_argument('--production', action="store_true", help="Run the build/production app")
 args = parser.parse_args()
 
 app = FastAPI()
-
 
 class CharacterModel(BaseModel):
     name: str
@@ -24,19 +23,16 @@ class CharacterModel(BaseModel):
     hybrid: bool
     breed: str
 
-
 @app.get("/")
 async def main():
     return {"message": "test"}
-
 
 @app.get("/characters/")
 async def characters():
     return {"message": "test"}
 
-
 if __name__ == "__main__":
-    if args.prod:
+    if args.production:
         print("Running production build")
         uvicorn.run("api:app")
 

@@ -1,14 +1,18 @@
 {
-  "name": "pandapaco-drawing-stats",
-  "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
-  "description": "Gathers data and visualizes drawing data from a furry artist and illustrator pandapaco",
   "private": true,
+  "name": "pacopanda-drawing-stats",
+  "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
+  "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
+  "license": "MIT",
   "scripts": {
+    "dev": "concurrently -k -n NextJS,FastAPI \"npm run dev:next\" \"npm run dev:fastapi\"",
+    "build": "concurrently -k -n NextJS,FastAPI \"npm run build:next\" \"npm run build:fastapi\"",
+    "run": "concurrently -k -n NextJS,FastAPI \"npm run run:next\" \"npm run build:fastapi\"",
     "dev:next": "npm --prefix ./app run dev",
-    "build": "npm --prefix ./app run build"
-  },
-  "repository": {
-    "url": "https://github.com/skepfusky/pandapaco-drawing-stats.git"
+    "build:next": "npm --prefix ./app run build",
+    "run:build": "npm --prefix .app run start",
+    "dev:fastapi": "cd ./server/python-backend && python api.py",
+    "build:fastapi": "cd ./server/python-backend && python api.py --production"
   },
   "keywords": [
     "furry",
@@ -18,7 +22,6 @@
     "data",
     "analytics"
   ],
-  "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.1.0"
   }
