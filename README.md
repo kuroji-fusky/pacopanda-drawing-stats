@@ -11,21 +11,20 @@
 
 __Paco Panda Drawing Stats__ is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
-TypeScript, Python, and Go.
+TypeScript and Python.
 
 This project currently uses Next.js with Sass and Tailwind CSS, it previously
 uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries available
 (not because it's popular).
 
-The backend consists of both Python for scraping data with FastAPI and BS4, and
-Go currently on the works for faster data scraping with Gin and Colly.
+The backend consists Python for scraping data with FastAPI and BS4.
 
 ## Project structure
 
 - `.idea` and `.vscode` - IDE configs for VS Code and IntelliJ IDEA
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
 - `script` - Bash scripts for setting up, bulk linting and for deployment
-- `server` - Python and Go back-end
+- `server` - FastAPI backend
 
 ## About this project
 
@@ -73,8 +72,6 @@ kinds of drawing data from his.
 ## Installation and setup
 
 ### Prerequisites
-
-> Go is optional as it's still being worked on!
 
 - Node.js v16 or higher (LTS recommended)
 - Python 3.9 or higher

@@ -2,6 +2,11 @@
 
 ## 2022
 
+### July 27
+
+- Decommission Go backend, Python is good and fast enough - Go might be
+an overkill
+
 ### July 26
 
 - Added Cypress for Unit and E2E (end-to-end) testing, making sure the app
