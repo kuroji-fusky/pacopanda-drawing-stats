@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "prettier:check": "prettier --check './src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "chart.js": "^3.7.1",
