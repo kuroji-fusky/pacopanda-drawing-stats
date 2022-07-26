@@ -3,15 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   images: {
-    domains: ['https://d.furaffinity.net'],
+    domains: ["https://d.furaffinity.net"]
   },
   i18n: {
-    locales: ['en-us', 'es'],
-    defaultLocale: 'en-us',
+    locales: ["en-us", "es"],
+    defaultLocale: "en-us",
     localeDetection: false
   },
   compiler: {
-    removeConsole: true,
+    removeConsole: true
   }
 }
 

@@ -1,13 +1,12 @@
 {
-  "name": "pandapaco-drawing-stats-next",
+  "name": "pacopanda-stats-next",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "cypress": "cypress open",
-    "prettier:check": "prettier --check './src/**/*.{js,jsx,ts,tsx}'"
+    "lint": "next lint && prettier --write .",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "chart.js": "^3.7.1",

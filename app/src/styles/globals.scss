@@ -8,7 +8,9 @@
     @apply font-body;
   }
 
-  @each $heading, $sizes in [ 1 '3xl', 2 '2xl', 3 'xl', 4 'lg', 5 'base', 6 'sm'] {
+  @each $heading, $sizes in [ 1 "3xl", 2 "2xl", 3 "xl", 4 "lg", 5 "base",
+    6 "sm" ]
+  {
     h#{$heading} {
       @apply font-extrabold text-#{$sizes};
     }

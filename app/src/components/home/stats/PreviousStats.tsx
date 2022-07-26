@@ -9,14 +9,26 @@ interface HighlightStatsProps {
 export default function PreviousStats() {
   return (
     <>
-      <HighlightStats year={new Date().getFullYear() - 1} style={{ gridArea: "stats-1" }} />
-      <HighlightStats year={new Date().getFullYear() - 2} style={{ gridArea: "stats-2" }} />
-      <HighlightStats style={{ gridArea: "stats-prev"}}>
-        <div>Line chart for all the previous years for no. of artworks, characters, and species drawn</div>
+      <HighlightStats
+        year={new Date().getFullYear() - 1}
+        style={{ gridArea: "stats-1" }}
+      />
+      <HighlightStats
+        year={new Date().getFullYear() - 2}
+        style={{ gridArea: "stats-2" }}
+      />
+      <HighlightStats style={{ gridArea: "stats-prev" }}>
+        <div>
+          Line chart for all the previous years for no. of artworks, characters,
+          and species drawn
+        </div>
         <div>Seperate line chart for all the digital or traditional</div>
       </HighlightStats>
       <OverallStats>
-        <div>A bar chart of activity of artworks he uploaded on a per-week basis and an average</div>
+        <div>
+          A bar chart of activity of artworks he uploaded on a per-week basis
+          and an average
+        </div>
         <div>Most character and species drawn</div>
         <div>Drawings with most tags used</div>
       </OverallStats>
@@ -33,9 +45,12 @@ export function HighlightStats({ year, children, style }: HighlightStatsProps) {
   )
 }
 
-export function OverallStats({ children }: {children: React.ReactNode}) {
-  return(
-    <div className={`${layoutStyles["bg-stats-content"]}`} style={{ gridArea: "stats-overall" }}>
+export function OverallStats({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className={`${layoutStyles["bg-stats-content"]}`}
+      style={{ gridArea: "stats-overall" }}
+    >
       <h2>Overall Stats</h2>
       {children}
     </div>
