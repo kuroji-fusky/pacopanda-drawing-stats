@@ -14,7 +14,7 @@ module.exports = {
       "2xl": "1536px"
     },
     fontFamily: {
-      heading: ["Noto Sans KR", ...defaultTheme.fontFamily.sans],
+      heading: ["Noto Sans", ...defaultTheme.fontFamily.sans],
       body: ["Lato", ...defaultTheme.fontFamily.sans],
       mono: ["Fira Code", "Ubuntu Mono", ...defaultTheme.fontFamily.mono],
     },
