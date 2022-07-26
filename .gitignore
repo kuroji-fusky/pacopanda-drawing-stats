@@ -36,7 +36,7 @@ yarn-error.log*
 /worker-*.js.map
 
 # Local databases and Python stuff
-paco-fa-database.json
+paco-fa-database*
 
 # Python environment
 __pycache__*

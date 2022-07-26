@@ -1,9 +1,8 @@
 """
 Paco Drawing Stats FastAPI Back-end
-Written by Kerby Keith Aquino <skepfoosky15@gmail.com>
-MIT License
-"""
 
+Licensed under MIT License
+"""
 from fastapi import FastAPI, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel

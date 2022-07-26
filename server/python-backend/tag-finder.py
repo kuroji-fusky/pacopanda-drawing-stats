@@ -1,7 +1,8 @@
 """
-A script that finds the number of tags present from the entire JSON file.
+Tag Finder - a script that finds the number of tags present from the entire JSON file
+generated from the FurAffinity Scraper.
 
-Written just as a test script to see if the JSON file is working.
+Licensed under MIT License
 """
 import argparse
 import json
@@ -12,23 +13,27 @@ parser.add_argument("-t", "--tag", type=str, metavar="<value>", help="Find a spe
 
 args = parser.parse_args()
 
-with open("paco-fa-database.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-    tags = []
-        
-    for i in data["database"]:
-        for j in i["tags"]:
-            tags.append(j)
-          
-    total_count = len(tags)
-    results = tags.count(args.tag)
-      
-    if args.tag:
-        if results == 0:
-            print(f"No results found for tag '{args.tag}'")
+try:
+    with open("paco-fa-database.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+        tags = []
+
+        for i in data["database"]:
+            for j in i["tags"]:
+                tags.append(j)
+
+        total_count = len(tags)
+        results = tags.count(args.tag)
+
+        if args.tag:
+            if results == 0:
+                print(f"No results found for tag '{args.tag}'")
+            else:
+                print(f"'{args.tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
         else:
-            print(f"'{args.tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
-    else:
-        random_tag = tags[randint(1, total_count)]
-        results = tags.count(random_tag)
-        print(f"'{random_tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
+            random_tag = tags[randint(1, total_count)]
+            results = tags.count(random_tag)
+            print(f"'{random_tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
+except FileNotFoundError:
+    print("File not found: could it possibly be moved, deleted, or renamed?")
+    exit(1)

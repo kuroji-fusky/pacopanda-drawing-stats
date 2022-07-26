@@ -1,3 +1,8 @@
+"""
+Paco Panda FurAffinity Scraper
+
+Licensed under MIT License
+"""
 from colorama import *
 from bs4 import BeautifulSoup
 import argparse
@@ -22,12 +27,13 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
               'referer': 'https://furaffinity.net/'}
 
 """
-NOTE: The `total_pages` variable is used to keep track of the number of pages that are going to be scraped.
-But it's important to know that it can be really confusing to have the *actual* number of pages
-scraped.
+NOTE: The `total_pages` variable is used to keep track of the number of 
+pages that are going to be scraped. But it's important to know that it
+can be really confusing to have the *actual* number of pages scraped.
 
-The only workaround is it had to be increased by 1 due to a for loop range, but decremented by 1 on print
-statements. Because passing `-p 1` will terminate the script immediately.
+Because passing `-p 1` will terminate the script immediately, and the only
+workaround is it had to be increased by one due to a for loop range, but
+decremented by one on print statements. 
 """
 total_pages = 0
 paco_db = []
@@ -35,7 +41,7 @@ page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_
 
 if args.pages:
     total_pages = args.pages + 1
-    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages-1} {Style.RESET_ALL}")
+    print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages - 1} {Style.RESET_ALL}")
 
 else:
     print(
@@ -48,7 +54,7 @@ else:
         total_pages += 1
         page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
         parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
-        parse_pages = parse_pages.find('form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages+1}/'})
+        parse_pages = parse_pages.find('form', {'method': 'get', 'action': f'/gallery/pacopanda/{total_pages + 1}/'})
         """
         The code above throws an error when the "Next" button is not found (the last page)
         If this error was thrown, break the loop and we'll have the number of `total_pages` collected!
@@ -79,7 +85,7 @@ for page in range(1, total_pages):
         if 'id' in art_id.attrs:
             art_id_concat = re.sub('sid-', '', art_id['id'])
             page_requests_art = requests.get(f"https://furaffinity.net/view/{art_id_concat}/?", headers=user_agent, timeout=30)
-            find_page_id_secs = page_requests_art.elapsed.total_seconds()
+            find_art_secs = page_requests_art.elapsed.total_seconds()
             parse_art_id = BeautifulSoup(page_requests_art.text, 'html.parser')
 
             # Get title
@@ -87,8 +93,7 @@ for page in range(1, total_pages):
             art_title = find_title.find('p').get_text()
 
             # Get image
-            detect_img = parse_art_id.find(
-                'div', {'class': 'aligncenter submission-area'})
+            detect_img = parse_art_id.find('div', {'class': 'aligncenter submission-area'})
 
             if detect_img.find('img'):
                 art_image_get = parse_art_id.find('img', {'id': 'submissionImg'})['src']
@@ -98,7 +103,7 @@ for page in range(1, total_pages):
             else:
                 art_image = 'Null, item requested is anything other than an image.'
 
-            # Get date
+            # Get date and remove the timestamp via regex
             art_date_get = parse_art_id.find('span', {'class': 'popup_date'})['title']
             art_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
 
@@ -124,26 +129,23 @@ for page in range(1, total_pages):
                 "tags": list(tags_array),
             })
 
-        percentage = round((page / total_pages * 100), 2)
+        percentage = f"{(page / total_pages * 100):.2f}%"
 
         if args.no_verbose:
-            print(f"{page}/{total_pages} page(s) ({percentage}%) | Appended \"{art_title}\"")
+            print(f"{page}/{total_pages} page(s) ({percentage}) | Found \"{art_title}\"")
 
         else:
-            print(f"\nCurrently on page(s) {page} of {total_pages} ({percentage}%)")
-            print(f"Appended \"{art_title}\"")
+            print(f"\nCurrently on page(s) {page} of {total_pages} ({percentage})")
+            print(f"Added \"{art_title}\"")
 
-            if find_page_id_secs > 20:
-                print(
-                    f"{Fore.RED}{Style.BRIGHT}⚠️ Took {find_page_id_secs} sec(s) to complete.{Style.RESET_ALL}")
-            elif find_page_id_secs > 10:
-                print(
-                    f"{Fore.YELLOW}{Style.BRIGHT}⚠️ Took {find_page_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+            if find_art_secs > 10:
+                print(f"{Fore.RED}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}")
+            elif find_art_secs > 5:
+                print(f"{Fore.YELLOW}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}")
             else:
-                print(
-                    f"{Fore.GREEN}{Style.BRIGHT}✔️ Took {find_page_id_secs} sec(s) to complete.{Style.RESET_ALL}")
+                print(f"{Fore.GREEN}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}")
 
-    print(f"\n{Fore.GREEN}{Style.BRIGHT}✔️ Finished on page {page} {Style.RESET_ALL}")
+    print(f"\n{Fore.GREEN}{Style.BRIGHT}Finished on page {page}{Style.RESET_ALL}")
     save_json()
 
 print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! {total_pages} pages, {total_pages*48} "
