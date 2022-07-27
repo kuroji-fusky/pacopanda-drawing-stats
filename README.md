@@ -86,11 +86,11 @@ kinds of drawing data from his.
 
 ## Generating data locally
 
+From the `server/fa-scraper.py` file, there are two parameters you can pass:
+
 > ⚠️ Remember that you should __always__ run the script in the `server`
 > directory! That way, the `api.py` can read the JSON file - as opposed to
 > running it directly from VS Code.
-
-From the `server/python-backend/fa-scraper.py` file, there are two parameters you can pass:
 
 - `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
 contains 48 items. If this parameter isn't set, it will scan through all the
