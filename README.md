@@ -86,6 +86,10 @@ kinds of drawing data from his.
 
 ## Generating data locally
 
+> ⚠️ Remember that you should __always__ run the script in the `server`
+> directory! That way, the `api.py` can read the JSON file - as opposed to
+> running it directly from VS Code.
+
 From the `server/python-backend/fa-scraper.py` file, there are two parameters you can pass:
 
 - `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
@@ -104,7 +108,7 @@ random tag instead.
 
 - Running `python tag-finder.py --tag fox` will return
   - `'fox' returned 397 hits (1.28139% of 30982)`
-- If no --tag flag is passed, it will return a random tag instead
+- If no `--tag` flag is passed, it will return a random tag instead
   - `'anthro' returned 690 hits (2.22710% of 30982)`
 
 ## Related projects

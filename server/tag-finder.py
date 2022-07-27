@@ -18,9 +18,9 @@ try:
         data = json.load(f)
         tags = []
 
-        for i in data["database"]:
-            for j in i["tags"]:
-                tags.append(j)
+        for artworks in data["database"]:
+            for tags_array in artworks["tags"]:
+                tags.append(tags_array)
 
         total_count = len(tags)
         results = tags.count(args.tag)

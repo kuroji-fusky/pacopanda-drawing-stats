@@ -39,6 +39,10 @@ total_pages = 0
 paco_db = []
 page_requests = requests.get(f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
 
+def save_json():
+    with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
+        json.dump({"database": paco_db}, paco_db_append, ensure_ascii=False)
+
 if args.pages:
     total_pages = args.pages + 1
     print(f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Assigned pages - {total_pages - 1} {Style.RESET_ALL}")
@@ -69,10 +73,6 @@ else:
 
     print(f"{total_pages} pages found!")
 
-def save_json():
-    with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
-        json.dump({"database": paco_db}, paco_db_append, ensure_ascii=False)
-
 """
 Get 48 artworks through a for loop in each pages
 """
@@ -89,14 +89,14 @@ for page in range(1, total_pages):
             parse_art_id = BeautifulSoup(page_requests_art.text, 'html.parser')
 
             # Get title
-            find_title = parse_art_id.find('div', {'class': 'submission-title'})
+            find_title = parse_art_id.find('div', class_='submission-title')
             art_title = find_title.find('p').get_text()
 
             # Get image
-            detect_img = parse_art_id.find('div', {'class': 'aligncenter submission-area'})
+            detect_img = parse_art_id.find('div', class_='aligncenter submission-area')
 
             if detect_img.find('img'):
-                art_image_get = parse_art_id.find('img', {'id': 'submissionImg'})['src']
+                art_image_get = parse_art_id.find('img', id='submissionImg')['src']
                 art_image = f'https:{art_image_get}'
 
             # If no image is detected (i.e. video or flash content); then return null
@@ -104,12 +104,12 @@ for page in range(1, total_pages):
                 art_image = 'Null, item requested is anything other than an image.'
 
             # Get date and remove the timestamp via regex
-            art_date_get = parse_art_id.find('span', {'class': 'popup_date'})['title']
+            art_date_get = parse_art_id.find('span', class_='popup_date')['title']
             art_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
 
             # Get tags
             tags_array = set()
-            art_tags = parse_art_id.find_all('span', {'class', 'tags'})
+            art_tags = parse_art_id.find_all('span', class_='tags')
 
             for tags in art_tags:
                 art_tag = tags.find(
@@ -118,7 +118,7 @@ for page in range(1, total_pages):
 
             # Get description
             art_desc = parse_art_id.find(
-                'div', {'class': 'submission-description user-submitted-links'}).get_text().strip()
+                'div', class_='submission-description user-submitted-links').get_text().strip()
 
             # Attach to a JSON file
             paco_db.append({
@@ -148,5 +148,4 @@ for page in range(1, total_pages):
     print(f"\n{Fore.GREEN}{Style.BRIGHT}Finished on page {page}{Style.RESET_ALL}")
     save_json()
 
-print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! {total_pages} pages, {total_pages*48} "
-      f"items appended to JSON! === {Back.RESET}")
+print(f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}")
