@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-- package-ecosystem: "composer"
+- package-ecosystem: "npm"
   directory: '/'
   schedule:
     interval: weekly
@@ -14,7 +14,7 @@ updates:
     prefix-development: chore
     include: scope
 
-- package-ecosystem: "composer"
+- package-ecosystem: "npm"
   directory: '/app'
   schedule:
     interval: weekly
