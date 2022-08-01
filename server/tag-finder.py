@@ -7,7 +7,6 @@ Licensed under MIT License
 import argparse
 import json
 from random import randint
-from concurrent.futures import ThreadPoolExecutor
 
 parser = argparse.ArgumentParser(
     description="Parses any tags from the generated JSON")
@@ -43,10 +42,6 @@ def main():
     except FileNotFoundError:
         print("File not found: could it possibly be moved, deleted, or renamed?")
         exit(1)
-
-with ThreadPoolExecutor(max_workers=50) as f:
-    f.map(main, range(10000))
-    f.shutdown(wait=True)
 
 if __name__ == "__main__":
     main()
