@@ -1,13 +1,23 @@
 """
 Paco Panda FurAffinity Scraper
 
+NOTE: The `total_pages` variable is used to keep track of the number of
+pages that are going to be scraped. But it's important to know that it
+can be really confusing to have the *actual* number of pages scraped.
+
+Because passing `-p 1` will terminate the script immediately, and the only
+workaround is it had to be increased by one due to a for loop range, but
+decremented by one on print statements.
+
 Licensed under MIT License
 """
 from colorama import *
 from bs4 import BeautifulSoup
+from concurrent.futures import ThreadPoolExecutor
 import argparse
 import json
 import sys
+import queue
 import re
 import requests
 import time
@@ -32,36 +42,25 @@ user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'Chrome/45.0.2454.101 Safari/537.36'),
               'referer': 'https://furaffinity.net/'}
 
-"""
-NOTE: The `total_pages` variable is used to keep track of the number of
-pages that are going to be scraped. But it's important to know that it
-can be really confusing to have the *actual* number of pages scraped.
-
-Because passing `-p 1` will terminate the script immediately, and the only
-workaround is it had to be increased by one due to a for loop range, but
-decremented by one on print statements.
-"""
-
 paco_db = []
 total_pages = 0
-page_requests = requests.get(
-    f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
 
-def save_json():
-    with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
-        json.dump({"database": paco_db}, paco_db_append, ensure_ascii=False)
+s = requests.Session()
+
+page_requests = s.get(
+    f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
 
 
 def find_pages():
-    global total_pages
     global page_requests
-    
+    global total_pages
+
     parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
     parse_pages = parse_pages.find(
         'button', {'type': 'submit'}).get_text("Next")
     while parse_pages:
         total_pages += 1
-        page_requests = requests.get(
+        page_requests = s.get(
             f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?", headers=user_agent, timeout=30)
         parse_pages = BeautifulSoup(page_requests.text, 'html.parser')
         parse_pages = parse_pages.find(
@@ -78,11 +77,15 @@ def find_pages():
             f"\rFound page {total_pages} - took {round(page_requests.elapsed.total_seconds(), 3)}s")
     print(f"{total_pages} pages found!")
 
+def save_json():
+    with open("paco-fa-database.json", 'w', encoding="utf-8") as paco_db_append:
+        json.dump({"database": paco_db}, paco_db_append, ensure_ascii=False)
+
 def main():
     global paco_db
     global total_pages
     global page_requests
-    
+
     try:
         if args.pages:
             total_pages = args.pages + 1
@@ -93,12 +96,12 @@ def main():
             print(
                 f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} --pages flag was not used, finding all pages available {Style.RESET_ALL}")
             find_pages()
-            
+
         """
         Get 48 artworks through a for loop in each pages
         """
         for page in range(1, total_pages):
-            find_art = requests.get(
+            find_art = s.get(
                 f"https://furaffinity.net/gallery/pacopanda/{page}/?", headers=user_agent, timeout=30)
             parse_art = BeautifulSoup(find_art.text, 'html.parser')
             parse_art = parse_art.find_all(
@@ -107,7 +110,7 @@ def main():
             for art_id in parse_art:
                 if 'id' in art_id.attrs:
                     art_id_concat = re.sub('sid-', '', art_id['id'])
-                    page_requests_art = requests.get(
+                    page_requests_art = s.get(
                         f"https://furaffinity.net/view/{art_id_concat}/?", headers=user_agent, timeout=30)
                     find_art_secs = page_requests_art.elapsed.total_seconds()
                     parse_art_id = BeautifulSoup(
@@ -195,6 +198,10 @@ def main():
         exec_stop = time.perf_counter()
         print(
             f"Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.")
+
+
+with ThreadPoolExecutor(max_workers=50) as p:
+    p.map(main, range(total_pages))
 
 if __name__ == "__main__":
     main()
