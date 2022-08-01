@@ -88,7 +88,8 @@ kinds of drawing data from his.
 
 From the `server/fa-scraper.py` file, there are two parameters you can pass:
 
-> ⚠️ Remember that you should __always__ run the script in the `server`
+> **Warning**
+> Remember that you should __always__ run the script in the `server`
 > directory! That way, the `api.py` can read the JSON file - as opposed to
 > running it directly from VS Code.
 
