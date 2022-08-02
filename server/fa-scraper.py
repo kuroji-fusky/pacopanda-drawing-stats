@@ -59,7 +59,7 @@ s = requests.Session()
 page_requests = s.get(
     f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?",
     headers=user_agent,
-    timeout=30,
+    timeout=10,
 )
 
 
@@ -87,13 +87,12 @@ def find_pages():
         If this error was thrown, break the loop and we'll have the number of `total_pages` collected!
         """
         if parse_pages is None:
+            print(f"{total_pages} pages found!")
             break
+          
         parse_pages = parse_pages.find(
             "button", {"type": "submit"}).get_text("Next")
-        print(
-            f"\rFound page {total_pages} - took {round(page_requests.elapsed.total_seconds(), 3)}s"
-        )
-    print(f"{total_pages} pages found!")
+        print(f"Found page {total_pages}\r", end="", flush=True)
 
 
 def save_json():
@@ -205,47 +204,35 @@ def main():
                     )
 
                 if args.pages:
-                    percentage = f"{(page / (total_pages - 1) * 100):.2f}%"
+                    total_pages_log = total_pages - 1
                 else:
-                    percentage = f"{(page / total_pages * 100):.2f}%"
-                  
+                    total_pages_log = total_pages
+                    
+                percentage = f"{(page / total_pages_log * 100):.2f}%"
                 exec_stop = time.perf_counter()
 
                 if args.no_verbose:
-                    if args.pages:
-                        print(
-                            f'{page}/{total_pages - 1} page(s) ({percentage}) | Found "{art_title}"'
-                        )
-                    else:
-                        print(
-                            f'{page}/{total_pages} page(s) ({percentage}) | Found "{art_title}"'
-                        )
+                    print(
+                        f'{page}/{total_pages_log} page(s) ({percentage}) | Found "{art_title}"'
+                    )
+        
                 else:
-                    if args.pages:
-                        print(
-                          f"\nCurrently on page(s) {page} of {total_pages - 1} ({percentage})"
-                        )
-                    else:
-                        print(
-                            f"\nCurrently on page(s) {page} of {total_pages} ({percentage})"
-                        )
-                      
-                    print(f'Added "{art_title}"')
-                    print(f"{exec_stop - exec_start:.1f}s")
-
                     if find_art_secs > 10:
-                        status = Fore.RED + Style.BRIGHT
+                      status = Fore.RED + Style.BRIGHT
                     elif find_art_secs > 5:
-                        status = Fore.YELLOW + Style.BRIGHT
+                      status = Fore.YELLOW + Style.BRIGHT
                     else:
-                        status = Fore.GREEN + Style.BRIGHT
+                      status = Fore.GREEN + Style.BRIGHT
                       
                     print(
-                        f"{status}Took {find_art_secs:.2f}s{Style.RESET_ALL}"
+                        f"\nOn page: {page} of {total_pages_log} ({percentage})\n"
+                        f"Added \"{art_title}\"\n"
+                        f"{status} {exec_stop - exec_start:.1f}s | "
+                        f"Took {find_art_secs:.2f}s{Style.RESET_ALL}",
                     )
-                  
+
             print(
-                f"\n{Fore.GREEN}{Style.BRIGHT}Finished on page {page}{Style.RESET_ALL}"
+                f"\n{Fore.GREEN}{Style.BRIGHT} === Finished on page {page} === {Style.RESET_ALL}"
             )
             save_json()
 
@@ -258,11 +245,11 @@ def main():
     except KeyboardInterrupt:
         exec_stop = time.perf_counter()
         print(
-            f"Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.")
+            f"\n{Fore.LIGHTRED_EX}Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.{Fore.RESET}")
 
 
 with ThreadPoolExecutor(max_workers=55) as p:
-  p.map(main, range(150))
+    p.map(main, range(150))
 
 if __name__ == "__main__":
-  main()
+    main()
