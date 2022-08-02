@@ -234,18 +234,16 @@ def main():
                     print(f"{exec_stop - exec_start:.1f}s")
 
                     if find_art_secs > 10:
-                        print(
-                            f"{Fore.RED}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}"
-                        )
+                        status = Fore.RED + Style.BRIGHT
                     elif find_art_secs > 5:
-                        print(
-                            f"{Fore.YELLOW}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}"
-                        )
+                        status = Fore.YELLOW + Style.BRIGHT
                     else:
-                        print(
-                            f"{Fore.GREEN}{Style.BRIGHT}Took {find_art_secs}s{Style.RESET_ALL}"
-                        )
-
+                        status = Fore.GREEN + Style.BRIGHT
+                      
+                    print(
+                        f"{status}Took {find_art_secs:.2f}s{Style.RESET_ALL}"
+                    )
+                  
             print(
                 f"\n{Fore.GREEN}{Style.BRIGHT}Finished on page {page}{Style.RESET_ALL}"
             )
@@ -263,8 +261,8 @@ def main():
             f"Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.")
 
 
-with ThreadPoolExecutor(max_workers=50) as p:
-    p.map(main, range(150))
+with ThreadPoolExecutor(max_workers=55) as p:
+  p.map(main, range(150))
 
 if __name__ == "__main__":
-    main()
+  main()
