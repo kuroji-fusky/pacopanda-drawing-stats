@@ -29,7 +29,7 @@ function nodeInstall() {
     fi
 
   else
-    echo "Invalid input lmao"
+    echo "Invalid input"
   fi
 }
 
