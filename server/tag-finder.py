@@ -39,6 +39,7 @@ def main():
                 results = tags.count(random_tag)
                 print(
                     f"'{random_tag}' returned {results} hits ({results / total_count * 100:.5f}% of {total_count})")
+
     except FileNotFoundError:
         print("File not found: could it possibly be moved, deleted, or renamed?")
         exit(1)

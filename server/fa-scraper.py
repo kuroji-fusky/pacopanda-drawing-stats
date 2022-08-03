@@ -43,7 +43,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 user_agent = {
-    "user-agent": (
+    "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
         "AppleWebKit/537.36 (KHTML, like Gecko)"
         "Chrome/45.0.2454.101 Safari/537.36"
@@ -87,13 +87,14 @@ def find_pages():
         If this error was thrown, break the loop and we'll have the number of `total_pages` collected!
         """
         if parse_pages is None:
-            print(f"{total_pages} pages found!")
+            print(f"Found last page - {total_pages}")
             break
           
         parse_pages = parse_pages.find(
             "button", {"type": "submit"}).get_text("Next")
         print(f"Found page {total_pages}\r", end="", flush=True)
 
+    print(f"{total_pages} pages found!")
 
 def save_json():
     with open("paco-fa-database.json", "w", encoding="utf-8") as paco_db_append:
@@ -166,13 +167,15 @@ def main():
                             "Null, item requested is anything other than an image."
                         )
 
-                    # Get date and remove the timestamp via regex
+                    # Get date and remove the timestamp and get year via regex
                     art_date_get = parse_art_id.find("span", class_="popup_date")[
                         "title"
                     ]
-                    art_date = re.sub(
-                        " (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
+                    
+                    art_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
 
+                    art_year = re.search("(20\d\d)", str(art_date_get)).group(1)
+                    
                     # Get tags
                     tags_array = set()
                     art_tags = parse_art_id.find_all("span", class_="tags")
@@ -198,6 +201,7 @@ def main():
                             "name": art_title,
                             "description": art_desc,
                             "date": str(art_date),
+                            "year": str(art_year),
                             "link": art_image,
                             "tags": list(tags_array),
                         }
@@ -217,12 +221,12 @@ def main():
                     )
         
                 else:
-                    if find_art_secs > 10:
-                      status = Fore.RED + Style.BRIGHT
-                    elif find_art_secs > 5:
-                      status = Fore.YELLOW + Style.BRIGHT
+                    if find_art_secs > 3:
+                        status = Fore.RED + Style.BRIGHT
+                    elif find_art_secs > 1:
+                        status = Fore.YELLOW + Style.BRIGHT
                     else:
-                      status = Fore.GREEN + Style.BRIGHT
+                        status = Fore.GREEN + Style.BRIGHT
                       
                     print(
                         f"\nOn page: {page} of {total_pages_log} ({percentage})\n"
@@ -237,7 +241,7 @@ def main():
             save_json()
 
         print(
-            f"{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}"
+            f"\n{Fore.LIGHTWHITE_EX}{Back.GREEN}{Style.BRIGHT} === DONE! === {Back.RESET}"
         )
         exec_stop = time.perf_counter()
         print(f"Script took {exec_stop - exec_start:.2f}(s) to run.")
@@ -245,11 +249,12 @@ def main():
     except KeyboardInterrupt:
         exec_stop = time.perf_counter()
         print(
-            f"\n{Fore.LIGHTRED_EX}Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.{Fore.RESET}")
+            f"\n{Fore.LIGHTRED_EX}Stopped by user! - script took {exec_stop - exec_start:.2f}(s) to run.{Fore.RESET}"
+        )
 
 
 with ThreadPoolExecutor(max_workers=55) as p:
-    p.map(main, range(150))
+    p.map(main, range(155))
 
 if __name__ == "__main__":
     main()
