@@ -7,23 +7,25 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-> 🆕 Updates to this project can be seen [here!](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
+> 🆕 [Changelog](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
 
 __Paco Panda Drawing Stats__ is an open source data visualization project that collects all 1.8K+
 drawings from a furry artist and illustrator *pandapaco*, written in
 TypeScript and Python.
 
 This project currently uses Next.js with Sass and Tailwind CSS, it previously
-uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries available
-(not because it's popular).
+uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries
+available and its widespead support.
 
-The backend consists Python for scraping data with FastAPI and BS4.
+The backend consists Python for scraping data with FastAPI.
+
+It iss deployed on Vercel and DigitalOcean respectively.
 
 ## Project structure
 
 - `.idea` and `.vscode` - IDE configs for VS Code and IntelliJ IDEA
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
-- `script` - Bash scripts for setting up, bulk linting and for deployment
+- `script` - PowerShell and Bash scripts for setting up, bulk linting and for deployment
 - `server` - FastAPI backend
 
 ## About this project
@@ -41,7 +43,7 @@ This project collects the following:
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
 - The source where I got the data from (either from FurAffinity or from DeviantArt)
 
-I have to manually source it through FurAffinity and DeviantArt for his draft
+Previously, I have to manually source it through FurAffinity and DeviantArt for his draft
 drawings (including his *Art & Biro* comics). Unfortunately, drawings from
 Twitter won't be counted in order to ease the load on my end and the dataset
 as well since all the data gathered will be hardcoded to the site.
@@ -115,6 +117,7 @@ random tag instead.
 ## Related projects
 
 - [Art & Biro Comic Recreated](https://github.com/skepfusky/art-and-biro-comic-remastered)
+- [Searchpets!](https://github.com/openfurs/searchpets)
 
 ## License
 
