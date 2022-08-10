@@ -1,21 +1,14 @@
-If (Get-Command "node" -errorAction SlientlyContinue) {
-  Write-Output "Node.js is installed"
-} else {
-  Write-Output "Node.js is not installed"
+function Check-Command($cmd) {
+  If (![bool](Get-Command -Name $cmd -ErrorAction SilentlyContinue)) {
+    return Write-Host  "Not Installed or missing: $cmd" -ForegroundColor Red
+  } else {
+
+  return Write-Host "Installed: $cmd" -ForegroundColor Green
+  }
 }
 
-If (Get-Command "python" -errorAction SilentlyContinue
--Or Get-Command "python3" -errorAction SilentlyContinue
--Or Get-Command "py" -errorAction SilentlyContinue) {
-  Write-Output "Python is installed"
-} else {
-  Write-Output "Python is not installed"
+$env = @("node", "npm", "python", "python3", "pip", "pip3", "py")
+
+foreach ($e in $env) {
+  Check-Command -cmd $e
 }
-
-Set-Location ..
-
-npm install
-
-concurrently "npm --prefix ./app install" "cd server && pip install -r requirements.txt"
-
-Write-Output "Setup complete"
