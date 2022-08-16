@@ -17,6 +17,7 @@ import sys
 import re
 import requests
 import time
+import variables
 from colorama import Style, Fore, Back, init, AnsiToWin32
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
@@ -42,23 +43,14 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-user_agent = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-        "AppleWebKit/537.36 (KHTML, like Gecko)"
-        "Chrome/45.0.2454.101 Safari/537.36"
-    ),
-    "referer": "https://furaffinity.net/",
-}
-
 paco_db = []
 total_pages = 0
 
-s = requests.Session()
+reqs = requests.Session()
 
-page_requests = s.get(
+page_requests = reqs.get(
     f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?",
-    headers=user_agent,
+    headers=variables.user_agent,
     timeout=10,
 )
 
@@ -72,9 +64,9 @@ def find_pages():
         "button", {"type": "submit"}).get_text("Next")
     while parse_pages:
         total_pages += 1
-        page_requests = s.get(
+        page_requests = reqs.get(
             f"https://furaffinity.net/gallery/pacopanda/{total_pages}/?",
-            headers=user_agent,
+            headers=variables.user_agent,
             timeout=30,
         )
         parse_pages = BeautifulSoup(page_requests.text, "html.parser")
@@ -89,12 +81,13 @@ def find_pages():
         if parse_pages is None:
             print(f"Found last page - {total_pages}")
             break
-          
+
         parse_pages = parse_pages.find(
             "button", {"type": "submit"}).get_text("Next")
         print(f"Found page {total_pages}\r", end="", flush=True)
 
     print(f"{total_pages} pages found!")
+
 
 def save_json():
     with open("paco-fa-database.json", "w", encoding="utf-8") as paco_db_append:
@@ -124,21 +117,21 @@ def main():
         Get 48 artworks through a for loop in each pages
         """
         for page in range(1, total_pages):
-            find_art = s.get(
+            find_art = reqs.get(
                 f"https://furaffinity.net/gallery/pacopanda/{page}/?",
-                headers=user_agent,
+                headers=variables.user_agent,
                 timeout=30,
             )
             parse_art = BeautifulSoup(find_art.text, "html.parser")
             parse_art = parse_art.find_all(
-                "figure", {"id": re.compile("sid-*")})
+                "figure", id=re.compile("sid-*"))
 
             for art_id in parse_art:
                 if "id" in art_id.attrs:
                     art_id_concat = re.sub("sid-", "", art_id["id"])
-                    page_requests_art = s.get(
+                    page_requests_art = reqs.get(
                         f"https://furaffinity.net/view/{art_id_concat}/?",
-                        headers=user_agent,
+                        headers=variables.user_agent,
                         timeout=30,
                     )
                     find_art_secs = page_requests_art.elapsed.total_seconds()
@@ -171,11 +164,13 @@ def main():
                     art_date_get = parse_art_id.find("span", class_="popup_date")[
                         "title"
                     ]
-                    
-                    art_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
 
-                    art_year = re.search("(20\d\d)", str(art_date_get)).group(1)
-                    
+                    art_date = re.sub(
+                        " (\d?\d:\d?\d) ([AP]?M)", "", str(art_date_get))
+
+                    art_year = re.search(
+                        "(20\d\d)", str(art_date_get)).group(1)
+
                     # Get tags
                     tags_array = set()
                     art_tags = parse_art_id.find_all("span", class_="tags")
@@ -211,7 +206,7 @@ def main():
                     total_pages_log = total_pages - 1
                 else:
                     total_pages_log = total_pages
-                    
+
                 percentage = f"{(page / total_pages_log * 100):.2f}%"
                 exec_stop = time.perf_counter()
 
@@ -219,7 +214,7 @@ def main():
                     print(
                         f'{page}/{total_pages_log} page(s) ({percentage}) | Found "{art_title}"'
                     )
-        
+
                 else:
                     if find_art_secs > 3:
                         status = Fore.RED + Style.BRIGHT
@@ -227,7 +222,7 @@ def main():
                         status = Fore.YELLOW + Style.BRIGHT
                     else:
                         status = Fore.GREEN + Style.BRIGHT
-                      
+
                     print(
                         f"\nOn page: {page} of {total_pages_log} ({percentage})\n"
                         f"Added \"{art_title}\"\n"
