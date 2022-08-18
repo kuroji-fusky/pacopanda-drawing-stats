@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "pacopanda-drawing-stats",
+  "name": "pacopanda-drawing-stats-root",
   "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",

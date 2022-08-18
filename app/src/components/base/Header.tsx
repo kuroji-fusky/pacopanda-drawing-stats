@@ -18,12 +18,6 @@ export default function Header() {
   )
 }
 
-interface ILinkGroupProps {
-  route: string
-  name: string
-  children?: any
-}
-
 export function LinkGroup({ route, name, children }: ILinkGroupProps) {
   const router = useRouter()
 

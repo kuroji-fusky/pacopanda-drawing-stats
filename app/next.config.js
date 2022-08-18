@@ -14,9 +14,6 @@ const nextConfig = {
     defaultLocale: "en-us",
     localeDetection: false
   },
-  compiler: {
-    removeConsole: true
-  }
 }
 
 module.exports = nextConfig
