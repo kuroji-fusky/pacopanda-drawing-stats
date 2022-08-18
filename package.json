@@ -11,8 +11,8 @@
     "dev:next": "npm --prefix ./app run dev",
     "build:next": "npm --prefix ./app run build",
     "run:build": "npm --prefix .app run start",
-    "dev:fastapi": "cd ./server/python-backend && python api.py",
-    "build:fastapi": "cd ./server/python-backend && python api.py --production"
+    "dev:fastapi": "cd ./server && python api.py",
+    "build:fastapi": "cd ./server && python api.py --production"
   },
   "keywords": [
     "furry",
