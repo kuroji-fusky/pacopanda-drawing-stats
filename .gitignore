@@ -45,3 +45,5 @@ venv
 # Ignore yarn and npm lock files
 yarn.lock
 package-lock.json
+
+updater.json
