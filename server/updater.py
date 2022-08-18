@@ -9,7 +9,6 @@ from datetime import datetime
 import requests
 import re
 import json
-import time
 import subprocess
 
 user_agent = {
@@ -18,13 +17,35 @@ user_agent = {
         "AppleWebKit/537.36 (KHTML, like Gecko)"
         "Chrome/45.0.2454.101 Safari/537.36"
     ),
-    "referer": "https://furaffinity.net/",
+    "referer": "https://furaffinity.net/"
 }
 
 rs = requests.Session()
 
+time_log = str(datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"))
+
+
+def append_data(can_append: bool):
+    if can_append is False:
+        return {
+            "message": f"No data provided: either the latest artwork already exists or has been skipped.",
+            "time_log": time_log,
+            "data": {}
+        }
+
+    return {
+        "message": f"Got latest artwork - {art_title}",
+        "time_log": time_log,
+        "data": art_data
+    }
+
 
 def main():
+    global art_title
+    global art_data
+
+    print("Grabbing the latest and greatest")
+
     url = rs.get("https://furaffinity.net/gallery/pacopanda/",
                  headers=user_agent, timeout=5)
     soup_parse = BeautifulSoup(url.text, "html.parser")
@@ -53,33 +74,31 @@ def main():
         "year": art_year,
     }
 
-    with open("updater.json", "r+", encoding="utf-8") as f:
-        data = json.load(f)["updater"]
+    try:
+        with open("updater.json", "r+", encoding="utf-8") as f:
+            drawing_data = json.load(f)["updater"]
 
-    for i in range(len(data)):
-        if re.sub("(Got latest artwork - )", "", data[i]["message"]) == art_data["title"]:
-            print(f'"{art_title}" already exists, skipping...')
-            data.append({
-                "message": f"Skipped {art_title}",
-                "time_log": str(datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")),
-                "data": {}
-            })
+        for i in range(len(drawing_data)):
+            if re.sub("(Got latest artwork - )", "", drawing_data[i]["message"]) == art_data["title"]:
+                print("Artwork already exists - skipping")
+                drawing_data.append(append_data(False))
+                with open("updater.json", "w", encoding="utf-8") as f:
+                    json.dump({"updater": drawing_data}, f,
+                              ensure_ascii=False, indent=2)
+                return
 
+            print(f"{art_title} added!")
+            drawing_data.append(append_data(True))
             with open("updater.json", "w", encoding="utf-8") as f:
-                json.dump({"updater": data}, f, ensure_ascii=False, indent=2)
+                json.dump({"updater": drawing_data}, f,
+                          ensure_ascii=False, indent=2)
+            return
 
-        else:
-            print(f'Found "{art_title}"!')
-            data.append({
-                "message": f"Got latest artwork - {art_title}",
-                "time_log": str(datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")),
-                "data": art_data
-            })
-
-            with open("updater.json", "w", encoding="utf-8") as f:
-                json.dump({"updater": data}, f, ensure_ascii=False, indent=2)
-
-    print(datetime.now().strftime("%m-%d-%Y"))
+    except FileNotFoundError:
+        print("File doesn't exist! Creating one...")
+        with open("updater.json", "w", encoding="utf-8") as f:
+            json.dump({"updater": [append_data(True)]},
+                      f, ensure_ascii=False, indent=2)
 
 
 with ThreadPoolExecutor(max_workers=55) as executor:

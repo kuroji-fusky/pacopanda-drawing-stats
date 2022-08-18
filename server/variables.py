@@ -1,4 +1,4 @@
-def user_agent(ref="https://furaffinity.net/"):
+def user_agent(ref: str = "https://furaffinity.net/"):
     global user_agent
     user_agent = {
         "User-Agent": (
@@ -6,5 +6,5 @@ def user_agent(ref="https://furaffinity.net/"):
             "AppleWebKit/537.36 (KHTML, like Gecko)"
             "Chrome/45.0.2454.101 Safari/537.36"
         ),
-        "referer": ref,
+        "referer": ref
     }
