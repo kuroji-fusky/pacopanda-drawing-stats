@@ -23,9 +23,11 @@ It iss deployed on Vercel and DigitalOcean respectively.
 
 ## Project structure
 
+- `.github` - For GitHub automation stuff for updating npm packages, update drawing
+data, etc.
 - `.idea` and `.vscode` - IDE configs for VS Code and IntelliJ IDEA
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
-- `script` - PowerShell and Bash scripts for setting up, bulk linting and for deployment
+- `script` - Bash scripts for setting up, bulk linting and for deployment
 - `server` - FastAPI backend
 
 ## About this project
