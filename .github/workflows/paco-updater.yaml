@@ -2,15 +2,17 @@ name: "Panda Paco Drawing Daily Updater"
 
 on:
   push:
+    branches: [ "updater" ]
   schedule:
     - cron: "0 0 * * *"
+    branches: [ "updater" ]
 
 jobs:
   build:
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "checkout repo"
+      - name: "Checkout repo"
         uses: actions/checkout@v2
       - name: "setup python"
         uses: actions/setup-python@v4.2.0
@@ -18,7 +20,7 @@ jobs:
           python-version: "3.9"
       - name: "update packages"
         run: |
-          cd server; pip install -r requirements.txt;
+          pip install bs4 requests
       - name: "execute script"
         run: |
-          python server/updater.py
+          python updater.py
