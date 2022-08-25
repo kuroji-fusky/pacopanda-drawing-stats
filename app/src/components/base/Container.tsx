@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 
-export default function BaseHead({ title, description }: IBaseHeadProps) {
+export default function BaseHead({ title, description, children }: IBaseHeadProps) {
   const router = useRouter()
   const SITE_TITLE = "Paco Drawing Stats"
   const TITLE_ROOT = `${title} | ${SITE_TITLE}`

@@ -5,7 +5,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
-import Layout from "@/components/layouts/Default"
+import Layout from "@/components/base/Layout"
 
 config.autoAddCss = false
 library.add(fas)
@@ -16,18 +16,9 @@ export default function PandaPacoStatsApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {/* prettier-ignore */}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com/"
-          crossOrigin=""
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com/"
-          crossOrigin=""
-        />
       </Head>
       <Layout>
         <Component {...pageProps} />

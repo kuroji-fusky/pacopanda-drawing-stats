@@ -3,13 +3,15 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext
+  DocumentContext,
+  DocumentInitialProps
 } from "next/document"
 
 export default class PandaPacoDrawingStats extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  // prettier-ignore
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return initialProps
   }
 
   render() {
