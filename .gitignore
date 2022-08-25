@@ -43,7 +43,8 @@ __pycache__*
 venv
 
 # Ignore yarn and npm lock files
-yarn.lock
-package-lock.json
+yarn.lock*
+package-lock.json*
+pnpm-lock.yaml*
 
 updater.json
