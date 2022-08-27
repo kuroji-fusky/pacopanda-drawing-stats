@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { library, config } from "@fortawesome/fontawesome-svg-core"
+import { MDXProvider } from "@mdx-js/react"
 import { fas } from "@fortawesome/free-solid-svg-icons"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -21,7 +22,9 @@ export default function PandaPacoStatsApp({ Component, pageProps }: AppProps) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </Head>
       <Layout>
-        <Component {...pageProps} />
+        <MDXProvider>
+          <Component {...pageProps} />
+        </MDXProvider>
       </Layout>
     </>
   )

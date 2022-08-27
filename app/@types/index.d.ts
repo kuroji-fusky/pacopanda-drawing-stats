@@ -14,6 +14,7 @@ declare interface ILayoutProps {
 declare interface IBaseHeadProps extends ILayoutProps {
   title: string
   description: string
+  wrap?: boolean
 }
 
 declare interface ILinkGroupProps extends ILayoutProps {

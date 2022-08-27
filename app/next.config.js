@@ -1,19 +1,37 @@
 // @ts-check
 
 /**
- *  @type {import('next').NextConfig} 
+ *  @type {import('next').NextConfig}
  **/
-const nextConfig = {
-  reactStrictMode: true,
-  compress: true,
-  images: {
-    domains: ["https://d.furaffinity.net"]
-  },
-  i18n: {
-    locales: ["en-us", "es"],
-    defaultLocale: "en-us",
-    localeDetection: false
-  },
-}
+module.exports = async (phase) => {
+  const plugins = require("next-compose-plugins")
+  const withMDX = require("@next/mdx")({
+    extension: /\mdx?$/,
+    options: {
+      providerImportSource: "@mdx-js/react"
+    }
+  })
 
-module.exports = nextConfig
+  const nextConfig = {
+    reactStrictMode: true,
+    swcMinify: true,
+    compress: true,
+    images: {
+      domains: ["https://d.furaffinity.net"],
+      formats: ["image/webp"]
+    },
+    i18n: {
+      locales: ["en-us", "es"],
+      defaultLocale: "en-us",
+      localeDetection: false
+    },
+  }
+
+  const defaultConfig = {}
+
+  return plugins(
+    [
+      withMDX({ pageExtensions: ["ts", "tsx", "md", "mdx"] })
+    ], nextConfig
+  )(phase, { defaultConfig })
+}

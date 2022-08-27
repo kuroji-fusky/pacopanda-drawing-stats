@@ -2,7 +2,7 @@ import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import Link from "next/link"
 import styles from "@/styles/base/Footer.module.scss"
-import { LinkGroup } from "./Header"
+import LinkGroup from "./LinkGroup"
 import { FooterLinkMenu } from "@/models/Menus"
 
 export default function Footer() {

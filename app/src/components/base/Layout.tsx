@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react"
-import Header from "./Header"
+import Navbar from "./Navbar"
 import Footer from "./Footer"
 
 export default function Layout({ children }: ILayoutProps) {
@@ -24,9 +24,15 @@ export default function Layout({ children }: ILayoutProps) {
 
   return (
     <OptionsContext.Provider value={{ theme, setTheme, expand, setExpand }}>
-      <Header />
+      {/* <Navbar /> */}
       {children}
-      <Footer />
+      {/* <Footer /> */}
+      <footer className="text-center py-9">
+        <p>
+          Project licensed under MIT. Media content licensed under CC-BY-SA 4.0.
+        </p>{" "}
+        <p>Copyright &copy; 2014-{new Date().getFullYear()} skepfusky</p>{" "}
+      </footer>
     </OptionsContext.Provider>
   )
 }
