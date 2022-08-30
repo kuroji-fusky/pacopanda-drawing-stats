@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import Link from "next/link"
 
 export default function Layout({ children }: ILayoutProps) {
   const [theme, setTheme] = useState<Themes>("default")
@@ -31,6 +32,11 @@ export default function Layout({ children }: ILayoutProps) {
         <p>
           Project licensed under MIT. Media content licensed under CC-BY-SA 4.0.
         </p>{" "}
+        <p>
+          <Link href="https://github.com/skepfusky/pacopanda-drawing-stats" passHref>
+            <a className="hover:underline text-green-700">Source code</a>
+          </Link>
+        </p>
         <p>Copyright &copy; 2014-{new Date().getFullYear()} skepfusky</p>{" "}
       </footer>
     </OptionsContext.Provider>

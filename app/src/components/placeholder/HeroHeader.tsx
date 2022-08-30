@@ -1,7 +1,7 @@
 export default function HeroHeader() {
   return (
     <>
-      HeroHeader component
+      HeroHeader component yes
     </>
   )
 };
