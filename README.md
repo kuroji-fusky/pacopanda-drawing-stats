@@ -103,24 +103,6 @@ pages available.
 - `-nv`, `--no-verbose`: Keep the logs as minimal and clean as possible, making
 the requests go by faster.
 
-## Test scripts
-
-### Searching tags
-
-From the `tag-finder.py` file, the only parameter supported is `-t <string>` or `--tag <string>` 
-to find a specific tag from the scraped data, if otherwise not passed, it will find a
-random tag instead.
-
-- Running `python tag-finder.py --tag fox` will return
-  - `'fox' returned 397 hits (1.28139% of 30982)`
-- If no `--tag` flag is passed, it will return a random tag instead
-  - `'anthro' returned 690 hits (2.22710% of 30982)`
-
-## Related projects
-
-- [Art & Biro Comic Recreated](https://github.com/skepfusky/art-and-biro-comic-remastered)
-- [Searchpets!](https://github.com/openfurs/searchpets)
-
 ## License
 
 Source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
