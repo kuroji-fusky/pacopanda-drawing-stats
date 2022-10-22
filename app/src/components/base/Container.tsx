@@ -1,41 +1,40 @@
-import Head from "next/head"
-import { useRouter } from "next/router"
-import styles from "@/styles/base/Layout.module.scss"
+import Head from "next/head";
+import { LayoutProps } from "./Layout";
 
-export default function BaseHead({
-  title,
-  description,
-  children,
-  wrap
-}: IBaseHeadProps) {
-  const router = useRouter()
-  const SITE_TITLE = "Paco Drawing Stats"
-  let TITLE_ROOT = `${title} | ${SITE_TITLE}`
-  const url = `https://pacopanda-drawing-stats.skepfusky.xyz${router.pathname}`
+interface ContainerProps extends LayoutProps {
+  title: string;
+  description: string;
+  img: string;
+}
 
-  if (router.pathname === "/") TITLE_ROOT = SITE_TITLE
+export function Container(props: Partial<ContainerProps>) {
+  const defaults = {
+    title: "Boilerplate app",
+    description: "Boilerplate app",
+  };
 
   return (
     <>
       <Head>
-        <meta name="title" content={TITLE_ROOT} />
-        <meta name="description" content={description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={TITLE_ROOT} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={url} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={TITLE_ROOT} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:url" content={url} />
-        <link rel="canonical" href={url} />
-        <title>{TITLE_ROOT}</title>
+        <title>{props.title ?? defaults.title}</title>
+        <meta
+          name="description"
+          content={props.description ?? defaults.description}
+        />
+
+        <meta property="og:title" content={props.title ?? defaults.title} />
+        <meta
+          property="og:description"
+          content={props.description ?? defaults.description}
+        />
+
+        <meta name="twitter:title" content={props.title ?? defaults.title} />
+        <meta
+          name="twitter:description"
+          content={props.description ?? defaults.description}
+        />
       </Head>
-      {wrap ? (
-        <main id={styles.wrap}>{children}</main>
-      ) : (
-        <main>{children}</main>
-      )}
+      <main>{props.children}</main>
     </>
-  )
+  );
 }

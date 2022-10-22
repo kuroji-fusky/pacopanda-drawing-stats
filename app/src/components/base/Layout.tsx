@@ -1,44 +1,16 @@
-import { createContext, useState, useEffect } from "react"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
-import Link from "next/link"
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
-export default function Layout({ children }: ILayoutProps) {
-  const [theme, setTheme] = useState<Themes>("default")
-  const [expand, setExpand] = useState(false)
+export interface LayoutProps {
+  children: React.ReactNode;
+}
 
-  const OptionsContext = createContext<OptionsCtxTypes>({
-    expand: false,
-    theme: "default",
-    setExpand: () => {},
-    setTheme: () => {}
-  })
-
-  if (typeof window !== "undefined") {
-    const themeOverrideHandler = (theme: Themes) => {
-      localStorage.setItem("theme", theme)
-      document.body.setAttribute("theme-override", theme)
-    }
-
-    themeOverrideHandler("default")
-  }
-
+export function Layout(props: LayoutProps) {
   return (
-    <OptionsContext.Provider value={{ theme, setTheme, expand, setExpand }}>
-      {/* <Navbar /> */}
-      {children}
-      {/* <Footer /> */}
-      <footer className="text-center py-9">
-        <p>
-          Project licensed under MIT. Media content licensed under CC-BY-SA 4.0.
-        </p>{" "}
-        <p>
-          <Link href="https://github.com/skepfusky/pacopanda-drawing-stats" passHref>
-            <a className="hover:underline text-green-700">Source code</a>
-          </Link>
-        </p>
-        <p>Copyright &copy; 2014-{new Date().getFullYear()} skepfusky</p>{" "}
-      </footer>
-    </OptionsContext.Provider>
-  )
+    <>
+      <Navbar />
+      {props.children}
+      <Footer />
+    </>
+  );
 }

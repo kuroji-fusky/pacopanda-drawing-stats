@@ -2,6 +2,11 @@
 
 ## 2022
 
+### October 22
+
+- Rewrote both Python and Node codebases, retired FastAPI backend
+- Added Dockerfile for testing
+
 ### July 27
 
 - Decommission Go backend, Python is good and fast enough - Go might be
