@@ -1,3 +1,6 @@
+#Ignore JetBrains crap
+.idea
+
 # Ignore next.js apps
 node_modules
 .next
@@ -28,25 +31,13 @@ yarn-error.log*
 *.tsbuildinfo
 
 # PWA files
-/sw.js
-/sw.js.map
-/workbox-*.js
-/workbox-*.js.map
-/worker-*.js
-/worker-*.js.map
-
-# Local databases and Python stuff
-paco-fa-database*
-
-# Python environment
-__pycache__*
-venv
-
-updater.json
-
 **/sw.js
 **/sw.js.map
 **/workbox-*.js
 **/workbox-*.js.map
 **/worker-*.js
 **/worker-*.js.map
+
+# Python environment
+__pycache__*
+venv
