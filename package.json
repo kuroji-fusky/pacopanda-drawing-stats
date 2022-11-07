@@ -5,14 +5,10 @@
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently -k -n NextJS,FastAPI \"npm run dev:next\" \"npm run dev:fastapi\"",
-    "build": "concurrently -k -n NextJS,FastAPI \"npm run build:next\" \"npm run build:fastapi\"",
-    "run": "concurrently -k -n NextJS,FastAPI \"npm run run:next\" \"npm run build:fastapi\"",
-    "dev:next": "npm --prefix ./app run dev",
-    "build:next": "npm --prefix ./app run build",
-    "run:build": "npm --prefix .app run start",
-    "dev:fastapi": "cd ./server && python api.py",
-    "build:fastapi": "cd ./server && python api.py --production"
+    "dev": "npm --prefix ./app run dev",
+    "build": "npm --prefix ./app run build",
+    "start": "npm --prefix .app run start",
+    "cypress:open": "npx --prefix .app cypress open"
   },
   "keywords": [
     "furry",
