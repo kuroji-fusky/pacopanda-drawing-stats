@@ -23,6 +23,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+next-env.d.ts
 
 # vercel
 .vercel
@@ -41,3 +42,4 @@ yarn-error.log*
 # Python environment
 __pycache__*
 venv
+redis_config.json

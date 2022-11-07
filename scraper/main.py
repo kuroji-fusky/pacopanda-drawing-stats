@@ -29,7 +29,6 @@ total_pages: int = 0
 
 
 def get_available_pages():
-  global total_pages  # This is generally a bad idea, but screw it lol
   current_page: int = 0
 
   pages_req = req(f"{gallery_url}/{current_page}/?")
@@ -48,7 +47,8 @@ def get_available_pages():
 
     pages_pagination = pages_soup.find("button", class_="button standard").get_text("Next")
     print(f"Found page {current_page}")
-
+    
+  global total_pages  # This is generally a bad idea, but screw it lol
   total_pages = current_page
   success_msg(f"{current_page} pages found")
 
