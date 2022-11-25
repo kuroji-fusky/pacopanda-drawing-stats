@@ -7,20 +7,25 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-__Paco Panda Drawing Stats__ is an open source data visualization project that collects
-drawings from a furry artist and illustrator Paco Panda. Made for simply out of curiousity -
-including its own REST and GraphQL APIs, and standalone libraries for JavaScript and Python.
+**Paco Panda Drawing Stats** is an open source data visualization project that collects
+drawings from a furry artist and illustrator Paco Panda. 
 
-This project currently uses Next.js with Sass and Tailwind CSS, it previously
-uses Vue 3 and had to be rewritten entirely in React.
+Made for simply out of curiousity - including its own REST and GraphQL APIs, and
+standalone libraries for JavaScript and Python.
 
 ## Project structure
 
+This project is a monorepo; so it has nested directories to isolate Python and JS 
+codebases separately.
+
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
-data, etc.
-- `.vscode` - IDE configs
-- `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
-- `scraper` - Web scrapers to sniff data from FurAffinity
+  data, etc.
+- `packages`
+  - `app` - The website
+  - `lib` - The Redis database and other configuration
+- `python`
+  - `gql` - The FastAPI GraphQL API
+  - `scraper` - A web scraper to gather new date
 
 ## About this project
 
@@ -38,7 +43,7 @@ This project collects the following:
 - The source where I got the data from (either from FurAffinity or from DeviantArt)
 
 Previously, I have to manually source it through FurAffinity and DeviantArt for his draft
-drawings (including his *Art & Biro* comics). Unfortunately, drawings from
+drawings (including his _Art & Biro_ comics). Unfortunately, drawings from
 Twitter won't be counted in order to ease the load on my end and the dataset
 as well since all the data gathered will be hardcoded to the site.
 
@@ -53,7 +58,7 @@ a bit of back-end and basic data management in the process of other projects I d
 Initially, I wanted to show realtime data from Google Sheets and render data via
 a chart library from a website and I'd thought I'll take one of my favorite
 artists and run it through this process, but I'm kinda lacking backend knowledge
- and I needed a help with [@thatITfox][it] for setting up a Flask web server.
+and I needed a help with [@thatITfox][it] for setting up a Flask web server.
 
 ### Isn't this taking it too far?
 

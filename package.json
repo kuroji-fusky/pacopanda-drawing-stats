@@ -1,25 +1,10 @@
 {
   "private": true,
-  "name": "pacopanda-drawing-stats-root",
+  "name": "pacopanda-monorepo",
   "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",
-  "scripts": {
-    "dev": "npm --prefix ./app run dev",
-    "build": "npm --prefix ./app run build",
-    "start": "npm --prefix .app run start",
-    "cypress:open": "npx --prefix .app cypress open"
-  },
-  "keywords": [
-    "furry",
-    "stats",
-    "statistics",
-    "drawing",
-    "data",
-    "analytics"
-  ],
-  "devDependencies": {
-    "concurrently": "^7.3.0",
-    "framer-motion": "^7.6.6"
-  }
+  "workspaces": [
+    "packages/*"
+  ]
 }

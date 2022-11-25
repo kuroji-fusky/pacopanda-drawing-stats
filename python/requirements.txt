@@ -1,0 +1,10 @@
+# Scraper stuff
+bs4
+requests
+colorama
+redis
+
+# GraphQL
+strawberry
+fastapi
+uvicorn

@@ -10,5 +10,9 @@ def success_msg(msg: str):
     print(f"{f_green}{msg}{clear}")
 
 
+def warn_msg(msg: str):
+    print(f"{f_yellow}{msg}{clear}")
+
+
 def error_msg(msg: str):
     print(f"{f_red}{msg}{clear}")

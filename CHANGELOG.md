@@ -2,6 +2,13 @@
 
 ## 2022
 
+### November 26
+
+- Restructured project structure as a _true_ monorepo via Yarn workspaces
+  - Decoupled both Node and Python with `packages` and `python` directories
+    respectively
+- Readded FastAPI w/ GraphQL using ~~Majira~~ Strawberry
+
 ### October 22
 
 - Rewrote both Python and Node codebases, retired FastAPI backend
@@ -10,21 +17,21 @@
 ### July 27
 
 - Decommission Go backend, Python is good and fast enough - Go might be
-an overkill
+  an overkill
 
 ### July 26
 
 - Added Cypress for Unit and E2E (end-to-end) testing, making sure the app
-is bug-free!
+  is bug-free!
 - Finally regex'd the date in the scraper script!
 
 ### July 16
 
 - Working on Gin web server and Colly scraper in the Go programming language
-for even faster performance.
+  for even faster performance.
 - Moved the new project to this repo and kept all the previous commits from
-April from the [initial archived repository](https://github.com/skepfusky/pandapaco-drawing-stats-old)
-maintaining the previous commits and branches.
+  April from the [initial archived repository](https://github.com/skepfusky/pandapaco-drawing-stats-old)
+  maintaining the previous commits and branches.
 
 ### June 29
 
@@ -50,7 +57,7 @@ maintaining the previous commits and branches.
 
 ### April 07
 
-- Moved all old Vue 3 files to the [`vue-3-legacy`](https://github.com/skepfusky/pandapaco-drawing-stats/tree/vue3-legacy) branch.
+- Moved all old Vue 3 files to the `vue-3-legacy` branch.
 
 ### Jan 01
 
@@ -67,8 +74,8 @@ maintaining the previous commits and branches.
 ### Dec 23
 
 - Tried Vue 3 + Vite. I've had issues with setting the images prop from
-a component. There really wasn't a clear way to do this when building
-for production.
+  a component. There really wasn't a clear way to do this when building
+  for production.
 
 ### Dec 04
 
