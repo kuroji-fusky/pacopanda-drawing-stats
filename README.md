@@ -1,34 +1,26 @@
-<h1 align="center">Paco Panda Drawing Stats</h1>
+![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
 
-![Repo banner](https://user-images.githubusercontent.com/94678583/172738303-a8bd2b6c-4f8f-49e1-ade1-ce7225d636b4.png)
+<h1 align="center">Paco Panda Drawing Stats</h1>
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pacopanda-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-> 🆕 [Changelog](https://github.com/skepfusky/pacopanda-drawing-stats/blob/main/CHANGELOG.md)
-
-__Paco Panda Drawing Stats__ is an open source data visualization project that collects all 1.8K+
-drawings from a furry artist and illustrator *pandapaco*, written in
-TypeScript and Python.
+__Paco Panda Drawing Stats__ is an open source data visualization project that collects
+drawings from a furry artist and illustrator Paco Panda. Made for simply out of curiousity -
+including its own REST and GraphQL APIs, and standalone libraries for JavaScript and Python.
 
 This project currently uses Next.js with Sass and Tailwind CSS, it previously
-uses Vue 3 and had to be rewritten entirely in React because of the wide range of libraries
-available and its widespead support.
-
-The backend consists Python for scraping data with FastAPI.
-
-It iss deployed on Vercel and DigitalOcean respectively.
+uses Vue 3 and had to be rewritten entirely in React.
 
 ## Project structure
 
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
 data, etc.
-- `.idea` and `.vscode` - IDE configs for VS Code and IntelliJ IDEA
+- `.vscode` - IDE configs
 - `app` - The website, written in Next.js + TypeScript, Sass, and Tailwind CSS
-- `script` - Bash scripts for setting up, bulk linting and for deployment
-- `server` - FastAPI backend
+- `scraper` - Web scrapers to sniff data from FurAffinity
 
 ## About this project
 
@@ -70,7 +62,7 @@ like I watch him on every step, but trust me, I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be difficult
 and will require more work.
 
-To be honest, it's more of a serious, yet passion project of mine to show various
+To be honest, it's more of a serious, yet passion side-project of mine to show various
 kinds of drawing data from his.
 
 ## Installation and setup
@@ -83,28 +75,10 @@ kinds of drawing data from his.
 
 ### Running the dev server
 
-- Install both Node and Python environments by executing `sh scripts/setup.sh`.
-- Run both servers by `yarn dev` or `npm run dev`.
-  - Run them seperately by running `yarn dev:next` for the Next.js app or
-    `yarn dev:fastapi` for the FastAPI back-end.
-
-## Generating data locally
-
-From the `server/fa-scraper.py` file, there are two parameters you can pass:
-
-> **Warning**
-> Remember that you should __always__ run the script in the `server`
-> directory! That way, the `api.py` can read the JSON file - as opposed to
-> running it directly from VS Code.
-
-- `-p <number>`, `--pages <number>`: Specify what pages to scrape, each page
-contains 48 items. If this parameter isn't set, it will scan through all the
-pages available.
-- `-nv`, `--no-verbose`: Keep the logs as minimal and clean as possible, making
-the requests go by faster.
+TBA
 
 ## License
 
-Source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
+Its source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox
