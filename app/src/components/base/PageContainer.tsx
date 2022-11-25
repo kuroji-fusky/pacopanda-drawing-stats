@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { LayoutProps } from "./Layout";
 
-interface ContainerProps extends LayoutProps {
+interface PageContainerProps extends LayoutProps {
   title: string;
   description: string;
   img: string;
 }
 
-export function Container(props: Partial<ContainerProps>) {
+export function PageContainer(props: Partial<PageContainerProps>) {
   const defaults = {
     title: "Boilerplate app",
     description: "Boilerplate app",

@@ -19,6 +19,7 @@
     "analytics"
   ],
   "devDependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "framer-motion": "^7.6.6"
   }
 }

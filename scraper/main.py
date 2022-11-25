@@ -42,7 +42,7 @@ def get_available_pages():
     next_page_url = pages_soup.find("form", {"action": f"/gallery/pacopanda/{current_page + 1}/"})
 
     if next_page_url is None:
-      print(f"Find last page - {current_page}")
+      print(f"Find page {current_page}")
       break
 
     pages_pagination = pages_soup.find("button", class_="button standard").get_text("Next")
@@ -96,7 +96,6 @@ def artwork_item(art_id: str, data_crapper: list = None):
 
   print(
     f"Title: {type(artwork_title)} | {artwork_title} \n",
-    f"Desc : {type(artwork_description)} | [omitted] \n",
     f"Date : {type(artwork_date)} | {artwork_date} \n",
     f"Tags : {type(artwork_tags)} | {artwork_tags} \n",
     f"Link : {type(artwork_img)} | {artwork_img} \n",
