@@ -8,6 +8,7 @@
   - Decoupled both Node and Python with `packages` and `python` directories
     respectively
 - Readded FastAPI w/ GraphQL using ~~Majira~~ Strawberry
+- Add pre-commit git hooks with Husky
 
 ### October 22
 
