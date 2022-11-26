@@ -10,13 +10,14 @@
 **Paco Panda Drawing Stats** is an open source data visualization project that collects
 drawings from a furry artist and illustrator Paco Panda. 
 
-Made for simply out of curiousity - including its own REST and GraphQL APIs, and
-standalone libraries for JavaScript and Python.
+Made for simply out of curiousity - it has standalone libraries for JavaScript
+and Python including its own REST and GraphQL APIs.
 
 ## Project structure
 
-This project is a monorepo; so it has nested directories to isolate Python and JS 
-codebases separately.
+> **Note**
+> This project is a **monorepo**; so it has nested directories to isolate Python and
+> Node.js codebases separately.
 
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
   data, etc.
@@ -75,7 +76,7 @@ kinds of drawing data from his.
 ### Prerequisites
 
 - Node.js v16 or higher (LTS recommended)
-- Python 3.9 or higher
+- Python 3.10 or higher
 - WSL/Git Bash (for Windows users required to execute Bash scripts)
 
 ### Running the dev server
