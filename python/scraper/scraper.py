@@ -86,14 +86,14 @@ def artwork_item(art_id: str):
     artwork_tag = tag.find("a", {"href": re.compile("/search/*")}).get_text()
     artwork_tags.add(artwork_tag)
 
-  print({
+  return {
     "title": artwork_title,
     "img_link": artwork_img,
     "date": artwork_date,
     "year": artwork_year,
     "description": artwork_description,
     "tags": artwork_tags,
-  })
+  }
 
 
 def main():
@@ -108,7 +108,7 @@ def main():
     for item in art_pages_items:
       if "id" in item.attrs:
         url_concat = re.sub("sid-", "", item["id"])
-        artwork_item(url_concat)
+        print(artwork_item(url_concat))
 
 
 if __name__ == "__main__":
