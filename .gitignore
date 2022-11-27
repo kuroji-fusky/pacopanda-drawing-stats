@@ -37,6 +37,7 @@ next-env.d.ts
 **/worker-*.js.map
 
 # Python environment
+.idea
 __pycache__*
 venv
 redis_config.json

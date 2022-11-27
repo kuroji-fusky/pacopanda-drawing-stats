@@ -21,47 +21,39 @@ gallery_url = f"{base_url}/gallery/pacopanda"
 rs = requests.Session()
 
 
-def req(url: str):
-  return rs.get(url, headers=user_agent, timeout=None)
+def req_soup(url: str):
+    req = rs.get(url, headers=user_agent, timeout=None)
+    return BeautifulSoup(req.text, "html.parser")
 
 
-total_pages: int = 0
-
-
+# TODO: Memoize current pages to prevent multiple requests
 def get_available_pages():
   current_page: int = 0
 
-  pages_req = req(f"{gallery_url}/{current_page}/?")
-  pages_soup = BeautifulSoup(pages_req.text, "html.parser")
+  pages_soup = req_soup(f"{gallery_url}/{current_page}/?")
   pages_pagination = pages_soup.find("button", class_="button standard")
 
   while pages_pagination:
     current_page += 1
-    pages_req = req(f"{gallery_url}/{current_page}/?")
-    pages_soup = BeautifulSoup(pages_req.text, "html.parser")
+    pages_soup = req_soup(f"{gallery_url}/{current_page}/?")
     next_page_url = pages_soup.find("form", {"action": f"/gallery/pacopanda/{current_page + 1}/"})
 
     if next_page_url is None:
-      print(f"Find page {current_page}")
+      print(f"Found page {current_page}")
       break
 
     pages_pagination = pages_soup.find("button", class_="button standard").get_text("Next")
     print(f"Found page {current_page}")
     
-  global total_pages  # This is generally a bad idea, but screw it lol
-  total_pages = current_page
   success_msg(f"{current_page} pages found")
+  return current_page
 
 
 paco_db: list = []
 
 
-def artwork_item(art_id: str, data_crapper: list = None):
-  if data_crapper is None:
-    data_crapper = []
-
-  artwork_req = req(f"{base_url}/view/{art_id}")
-  artwork_soup = BeautifulSoup(artwork_req.text, "html.parser")
+def artwork_item(art_id: str):
+  artwork_soup = req_soup(f"{base_url}/view/{art_id}")
 
   # Title
   title_getter = artwork_soup.find(class_="submission-title")
@@ -94,24 +86,22 @@ def artwork_item(art_id: str, data_crapper: list = None):
     artwork_tag = tag.find("a", {"href": re.compile("/search/*")}).get_text()
     artwork_tags.add(artwork_tag)
 
-  print(
-    f"Title: {type(artwork_title)} | {artwork_title} \n",
-    f"Date : {type(artwork_date)} | {artwork_date} \n",
-    f"Tags : {type(artwork_tags)} | {artwork_tags} \n",
-    f"Link : {type(artwork_img)} | {artwork_img} \n",
-    f"Year : {type(artwork_year)} | {artwork_year} \n",
-  )
-
-  # data_crapper.append(data_crapper)
+  print({
+    "title": artwork_title,
+    "img_link": artwork_img,
+    "date": artwork_date,
+    "year": artwork_year,
+    "description": artwork_description,
+    "tags": artwork_tags,
+  })
 
 
 def main():
-  get_available_pages()
+  total_pages = get_available_pages()
 
   """Get 48 artworks through a for loop"""
   for page in range(1, total_pages):
-    art_pages_req = req(f"{gallery_url}/{page}/?")
-    art_pages_soup = BeautifulSoup(art_pages_req.text, "html.parser")
+    art_pages_soup = req_soup(f"{gallery_url}/{page}/?")
 
     art_pages_items = art_pages_soup.find_all("figure", id=re.compile("sid-*"))
 

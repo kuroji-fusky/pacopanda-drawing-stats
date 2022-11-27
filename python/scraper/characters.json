@@ -1,0 +1,32 @@
+{
+  "characters": [
+    {
+      "name": "Paco",
+      "species": "Panda"
+    },
+    {
+      "name": "Roni",
+      "species": "Dog"
+    },
+    {
+      "name": "Biro",
+      "species": "Fox"
+    },
+    {
+      "name": "Art",
+      "species": "Raccoon"
+    },
+    {
+      "name": "Ringo",
+      "species": "Raccoon"
+    },
+    {
+      "name": "Yaps",
+      "species": "Fox"
+    },
+    {
+      "name": "Rocky",
+      "species": "Wolf"
+    }
+  ]
+}
