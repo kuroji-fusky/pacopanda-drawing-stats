@@ -8,9 +8,13 @@
     "packages/*"
   ],
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "husky": "^8.0.0"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "yarn workspaces run dev",
+    "build": "yarn workspaces run build",
+    "start": "yarn workspaces run start"
   }
 }
