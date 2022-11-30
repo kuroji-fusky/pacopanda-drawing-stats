@@ -7,11 +7,11 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-**Paco Panda Drawing Stats** is an open source data visualization project that collects
-drawings from a furry artist and illustrator Paco Panda. 
+**Paco Panda Drawing Stats** is a data visualization project that collects
+drawings from a furry artist and illustrator Paco Panda.
 
-Made for simply out of curiousity - it has standalone libraries for JavaScript
-and Python including its own REST and GraphQL APIs.
+Made simply out of curiousity - it has standalone libraries for both
+JavaScript and Python including its own REST and GraphQL APIs.
 
 ## Project structure
 
@@ -22,8 +22,7 @@ and Python including its own REST and GraphQL APIs.
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
   data, etc.
 - `packages`
-  - `app` - The website
-  - `lib` - The Redis database and other configuration
+  - `app` - The website written in Next.js w/ TypeScript + Tailwind CSS
 - `python`
   - `gql` - The FastAPI GraphQL API
   - `scraper` - A web scraper to gather new date
