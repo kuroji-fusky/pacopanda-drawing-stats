@@ -8,7 +8,6 @@
     "packages/*"
   ],
   "devDependencies": {
-    "concurrently": "^7.6.0",
     "husky": "^8.0.0"
   },
   "scripts": {

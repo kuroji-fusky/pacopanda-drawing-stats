@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/utils/*": ["utils/*"],
       "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"],
+      "@/types/*": ["types/*"]
     },
-    "baseUrl": "./src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
