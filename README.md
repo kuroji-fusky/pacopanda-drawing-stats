@@ -21,8 +21,8 @@ JavaScript and Python including its own REST and GraphQL APIs.
 
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
   data, etc.
-- `packages`
-  - `app` - The website written in Next.js w/ TypeScript + Tailwind CSS
+- `apps`
+  - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
 - `python`
   - `gql` - The FastAPI GraphQL API
   - `scraper` - A web scraper to gather new date
