@@ -5,15 +5,15 @@
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "apps/*"
   ],
   "devDependencies": {
     "husky": "^8.0.0"
   },
   "scripts": {
     "prepare": "husky install",
-    "dev": "yarn workspaces run dev",
-    "build": "yarn workspaces run build",
-    "start": "yarn workspaces run start"
+    "dev": "yarn workspace @pacopanda-drawing-stats/app dev",
+    "build": "yarn workspace @pacopanda-drawing-stats/app build",
+    "start": "yarn workspace @pacopanda-drawing-stats/app start"
   }
 }
