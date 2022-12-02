@@ -40,4 +40,8 @@ next-env.d.ts
 .idea
 __pycache__*
 venv
+
 redis_config.json
+data*.json
+
+*.ipynb
