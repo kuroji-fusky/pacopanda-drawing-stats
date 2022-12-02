@@ -1,4 +1,6 @@
 import json
+from typing import Any
+
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -22,8 +24,8 @@ rs = requests.Session()
 
 
 def req_soup(url: str):
-    req = rs.get(url, headers=user_agent, timeout=None)
-    return BeautifulSoup(req.text, "html.parser")
+  req = rs.get(url, headers=user_agent, timeout=None)
+  return BeautifulSoup(req.text, "html.parser")
 
 
 # TODO: Memoize current pages to prevent multiple requests
@@ -44,7 +46,7 @@ def get_available_pages():
 
     pages_pagination = pages_soup.find("button", class_="button standard").get_text("Next")
     print(f"Found page {current_page}")
-    
+
   success_msg(f"{current_page} pages found")
   return current_page
 
@@ -66,8 +68,8 @@ def artwork_item(art_id: str):
   # Date - remote the timestamp and retrieve year via regexp
   date_getter: str = artwork_soup.find("span", class_="popup_date")["title"]
 
-  artwork_date = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", date_getter)
-  artwork_year = re.search("(20\d\d)", date_getter).group(1)
+  artwork_date: str = re.sub(" (\d?\d:\d?\d) ([AP]?M)", "", date_getter)
+  artwork_year: str = re.search("(20\d\d)", date_getter).group(1)
 
   # Image
   img_getter = artwork_soup.find(class_="submission-area")
@@ -92,8 +94,13 @@ def artwork_item(art_id: str):
     "date": artwork_date,
     "year": artwork_year,
     "description": artwork_description,
-    "tags": artwork_tags,
+    "tags": list(artwork_tags),
   }
+
+
+def save_json(output: dict[Any]):
+  with open("data.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=True, indent=2)
 
 
 def main():
@@ -102,15 +109,22 @@ def main():
   """Get 48 artworks through a for loop"""
   for page in range(1, total_pages):
     art_pages_soup = req_soup(f"{gallery_url}/{page}/?")
-
     art_pages_items = art_pages_soup.find_all("figure", id=re.compile("sid-*"))
 
     for item in art_pages_items:
       if "id" in item.attrs:
         url_concat = re.sub("sid-", "", item["id"])
-        print(artwork_item(url_concat))
+        artwork = artwork_item(url_concat)
+
+        print(f"Appended {artwork['title']}")
+        paco_db.append(artwork)
+
+    success_msg(f"Saved page {page} to JSON!")
+    save_json({"artwork_data": paco_db})
 
 
 if __name__ == "__main__":
   with ThreadPoolExecutor(max_workers=65) as e:
-    e.map(main(), range(165))
+    e.map(main(), range(165))  # NOQA
+  
+  success_msg("Finished!")
