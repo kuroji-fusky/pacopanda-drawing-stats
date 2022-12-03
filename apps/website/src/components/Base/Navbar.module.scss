@@ -1,0 +1,33 @@
+.root-wrapper {
+  @apply py-4;
+}
+
+.container {
+  @apply px-5 xl:px-10 flex justify-between items-center;
+}
+
+.logo {
+  &-wrapper {
+    @apply flex flex-col gap-y-0.5;
+  }
+
+  :is(&-title, &-kuroji-wordmark) {
+    @apply font-bold;
+  }
+
+  &-title {
+    @apply text-2xl;
+  }
+
+  &-subtitle {
+    @apply text-sm;
+  }
+
+  &-kuroji-wordmark {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-violet-500;
+  }
+}
+
+.nav-row {
+  @apply flex;
+}
