@@ -10,13 +10,14 @@
 **Paco Panda Drawing Stats** is a data visualization project that collects
 drawings from a furry artist and illustrator Paco Panda.
 
-Made simply out of curiousity - it has standalone libraries for both
-JavaScript and Python including its own REST and GraphQL APIs.
+Made simply out of curiousity - it also has standalone libraries for both
+JavaScript and Python including its own REST and GraphQL APIs, and utilizes Redis
+as the main and in-memory database for its speed and persistency.
 
 ## Project structure
 
 > **Note**
-> This project is a **monorepo**; so it has nested directories to isolate Python and
+> This project is a **monorepo**; it has nested directories to isolate Python and
 > Node.js codebases separately.
 
 - `.github` - For GitHub automation stuff for updating npm packages, update drawing
@@ -24,8 +25,42 @@ JavaScript and Python including its own REST and GraphQL APIs.
 - `apps`
   - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
 - `python`
-  - `gql` - The FastAPI GraphQL API
-  - `scraper` - A web scraper to gather new date
+  - `gql` - The GraphQL API
+  - `scraper` - A web scraper to gather new data
+
+## Setup and Installation
+
+### Prerequisites
+
+- Node.js v16 or higher (LTS recommended)
+- Yarn Package Manager
+- Python 3.10 or higher
+- WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
+
+### Installation (Node)
+
+- Install Node dependencies with `yarn install` or just simply `yarn`, that's it!
+
+### Installation (Python)
+
+- Go to the `python` directory and set up a virtual environment
+
+```bash
+# Setup venv
+python -m venv env
+
+# FOR WINDOWS
+./env/Scripts/activate
+
+# FOR LINUX
+source env/bin/activate
+```
+
+- Then install its dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ## About this project
 
@@ -69,18 +104,6 @@ and will require more work.
 
 To be honest, it's more of a serious, yet passion side-project of mine to show various
 kinds of drawing data from his.
-
-## Installation and setup
-
-### Prerequisites
-
-- Node.js v16 or higher (LTS recommended)
-- Python 3.10 or higher
-- WSL/Git Bash (for Windows users required to execute Bash scripts)
-
-### Running the dev server
-
-TBA
 
 ## License
 

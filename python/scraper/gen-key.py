@@ -33,12 +33,12 @@ port: str = args.port
 
 
 def redis_parser():
-    redis_url_base = "redis://"
+    url_base = "redis://"
 
     if password is None:
-        return f"{redis_url_base}{username}@{host}:{port}"
+        return f"{url_base}{username}@{host}:{port}"
 
-    return f"{redis_url_base}{username}:{password}@{host}:{port}"
+    return f"{url_base}{username}:{password}@{host}:{port}"
 
 
 redis_config_json = {

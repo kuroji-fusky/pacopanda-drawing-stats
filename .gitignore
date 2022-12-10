@@ -39,7 +39,11 @@ next-env.d.ts
 # Python environment
 .idea
 __pycache__*
-venv
+
+python/**/Include
+python/**/Lib
+python/**/Scripts
+python/**/pyvenv.cfg
 
 redis_config.json
 data*.json
