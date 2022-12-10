@@ -1,3 +1,4 @@
+import Link from "next/link"
 import styles from "./Navbar.module.scss"
 
 export default function Navbar() {
@@ -5,7 +6,7 @@ export default function Navbar() {
     <>
       <div className={styles["root-wrapper"]}>
         <header className={styles["container"]}>
-          <div className={styles["logo-wrapper"]}>
+          <Link href="/" className={styles["logo-wrapper"]}>
             <strong className={styles["logo-title"]}>Paco Drawing Stats</strong>
             <div className={styles["logo-subtitle"]}>
               <span>by&nbsp;</span>
@@ -13,8 +14,12 @@ export default function Navbar() {
                 Kuroji Fusky
               </span>
             </div>
-          </div>
-          <nav className={styles["nav-row"]}>Item 2</nav>
+          </Link>
+          <nav className={styles["nav-row"]}>
+            <Link href="/browse">Browse</Link>
+            <Link href="/docs/api">API</Link>
+            <Link href="/about">About</Link>
+          </nav>
         </header>
       </div>
     </>
