@@ -2,6 +2,10 @@
 
 ## 2022
 
+### December 15
+- Reroute VS Code intellsense from root directory
+- Organize UI component types
+
 ### November 26
 
 - Restructured project structure as a _true_ monorepo via Yarn workspaces

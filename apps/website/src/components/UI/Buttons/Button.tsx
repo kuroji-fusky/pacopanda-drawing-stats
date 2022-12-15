@@ -1,9 +1,9 @@
-import { ButtonTypes } from "../types"
+import { ButtonProps } from "../types"
 
-export function Button(props: ButtonTypes) {
+export function Button(props: ButtonProps) {
   return (
     <button
-      aria-label={props.a11yTitle}
+      aria-label={props.tooltip}
       className={props.className}
       onClick={props.onClick}
     >

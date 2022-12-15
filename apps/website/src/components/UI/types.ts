@@ -1,24 +1,28 @@
-type States = "warning" | "error" | "info"
+type UIStates = "error" | "warning" | "info"
 
-interface UI {
+export interface ClickableUI<T = HTMLElement> {
   children?: React.ReactNode
   className?: string
   style?: string
   disabled?: boolean
-  a11yTitle?: string
+  tooltip?: string
+  onHover?: React.MouseEventHandler<T>
+  onClick?: React.MouseEventHandler<T>
+  onTap?: React.TouchEventHandler<T>
 }
 
-export interface ButtonTypes extends UI {
-  onClick?: () => void
+export interface ButtonProps extends ClickableUI<HTMLButtonElement> {
   rounded?: boolean
 }
 
-export interface LinkTypes extends Pick<UI, "children" | "disabled"> {
+export interface LinkProps extends Pick<ClickableUI, "children"> {
   href?: string
   newTab?: boolean
 }
 
-export interface Cards extends Pick<UI, "children"> {
+type OmitForCardProps = Pick<ClickableUI<undefined>, "children" | "tooltip">
+
+export interface CardProps extends OmitForCardProps {
   heading?: string
-  state: States
+  state: UIStates
 }

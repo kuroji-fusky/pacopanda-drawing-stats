@@ -1,11 +1,12 @@
 {
   "private": true,
-  "name": "pacopanda-monorepo",
+  "name": "pacopanda-root",
   "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "devDependencies": {
     "husky": "^8.0.0"

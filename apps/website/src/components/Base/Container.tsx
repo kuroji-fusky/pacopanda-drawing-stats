@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { LayoutProps } from "./Layout"
+import styles from "./Container.module.scss"
 
 interface ContainerProps extends LayoutProps {
   t: string
@@ -16,6 +17,8 @@ export default function Container(props: ContainerProps) {
   const titleParser = `${props.t} | ${SITE_TITLE}`
   const parseUrl = `https://pandapaco-drawing-stats.kurofusky.xyz${router.asPath}`
 
+  const wrapContents = props.wrap ? styles["wrap-contents"] : undefined
+
   return (
     <>
       <Head>
@@ -29,7 +32,7 @@ export default function Container(props: ContainerProps) {
         <meta property="og:url" content={parseUrl} />
         <link rel="canonical" href={parseUrl} />
       </Head>
-      <main>{props.children}</main>
+      <main className={wrapContents}>{props.children}</main>
     </>
   )
 }
