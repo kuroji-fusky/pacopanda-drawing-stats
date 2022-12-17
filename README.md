@@ -7,8 +7,9 @@
 ![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
 
-**Paco Panda Drawing Stats** is a data visualization project that collects
-drawings from a furry artist and illustrator Paco Panda.
+**Paco Panda Drawing Stats** is a data analysis and data visualization project
+that collects and parses drawing data from a furry artist and illustrator
+Paco Panda.
 
 Made simply out of curiousity - it also has standalone libraries for both
 JavaScript and Python including its own REST and GraphQL APIs, and utilizes Redis

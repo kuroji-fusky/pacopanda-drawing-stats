@@ -1,0 +1,12 @@
+.idea
+__pycache__*
+
+python/**/Include
+python/**/Lib
+python/**/Scripts
+python/**/pyvenv.cfg
+
+redis_config.json
+data*.json
+
+*.ipynb

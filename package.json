@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "pacopanda-root",
+  "name": "pacopanda-drawing-stats",
   "author": "Kerby Keith Aquino <skepfoosky15@gmail.com>",
   "description": "An open source data visualization project that collects drawings from a furry artist and illustrator Paco Panda",
   "license": "MIT",
@@ -9,15 +9,16 @@
     "packages/*"
   ],
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "husky": "^8.0.0"
   },
   "scripts": {
     "prepare": "husky install",
-    "postinstall": "cd apps/char-mgmt && yarn postinstall",
+    "postinstall": "yarn workspace @pds/char-mgmt postinstall",
     "dev:web": "yarn workspace @pds/app dev",
+    "dev:char": "yarn workspace @pds/char-mgmt dev",
     "build:web": "yarn workspace @pds/app build",
     "start:web": "yarn workspace @pds/app start",
-    "dev:char": "yarn workspace @pds/char-mgmt dev",
     "build:char": "yarn workspace @pds/char-mgmt build"
   }
 }
