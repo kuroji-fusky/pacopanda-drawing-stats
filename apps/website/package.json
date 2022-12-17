@@ -1,5 +1,5 @@
 {
-  "name": "@pacopanda-drawing-stats/app",
+  "name": "@pds/app",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -2,6 +2,9 @@
 
 ## 2022
 
+### December 17
+- Initialized Nextron app for manually managing drawn characters via Redis
+
 ### December 15
 - Reroute VS Code intellsense from root directory
 - Organize UI component types

@@ -13,8 +13,11 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "dev": "yarn workspace @pacopanda-drawing-stats/app dev",
-    "build": "yarn workspace @pacopanda-drawing-stats/app build",
-    "start": "yarn workspace @pacopanda-drawing-stats/app start"
+    "postinstall": "cd apps/char-mgmt && yarn postinstall",
+    "dev:web": "yarn workspace @pds/app dev",
+    "build:web": "yarn workspace @pds/app build",
+    "start:web": "yarn workspace @pds/app start",
+    "dev:char": "yarn workspace @pds/char-mgmt dev",
+    "build:char": "yarn workspace @pds/char-mgmt build"
   }
 }

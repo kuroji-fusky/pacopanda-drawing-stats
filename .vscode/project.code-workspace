@@ -3,6 +3,10 @@
     {
       "path": "apps/website",
       "name": "../apps/website"
+    },
+    {
+      "path": "apps/char-mgmt",
+      "name": "../apps/char-mgmt"
     }
   ],
   "settings": {}

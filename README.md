@@ -24,6 +24,7 @@ as the main and in-memory database for its speed and persistency.
   data, etc.
 - `apps`
   - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
+  - `char-mgmt` - A [Nextron][nextron] app to manage drawn characters via Redis connection
 - `python`
   - `gql` - The GraphQL API
   - `scraper` - A web scraper to gather new data
@@ -33,13 +34,13 @@ as the main and in-memory database for its speed and persistency.
 ### Prerequisites
 
 - Node.js v16 or higher (LTS recommended)
-- Yarn Package Manager
-- Python 3.10 or higher
+- Yarn Package Manager (npm works fine, but yarn is strongly recommended!)
+- Python 3.9 or higher
 - WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
 
 ### Installation (Node)
 
-- Install Node dependencies with `yarn install` or just simply `yarn`, that's it!
+- Install Node dependencies with `yarn install` or just simply `yarn` and that's it!
 
 ### Installation (Python)
 
@@ -92,8 +93,11 @@ a bit of back-end and basic data management in the process of other projects I d
 
 Initially, I wanted to show realtime data from Google Sheets and render data via
 a chart library from a website and I'd thought I'll take one of my favorite
-artists and run it through this process, but I'm kinda lacking backend knowledge
-and I needed a help with [@thatITfox][it] for setting up a Flask web server.
+artists and run it through this process.
+
+In the early stages of this project - I'm kinda lacking backend knowledge
+and I needed a help with [@thatITfox][it] for setting up a Flask web server, and
+now currently working with Redis stuff!
 
 ### Isn't this taking it too far?
 
@@ -105,8 +109,14 @@ and will require more work.
 To be honest, it's more of a serious, yet passion side-project of mine to show various
 kinds of drawing data from his.
 
+### Are the images/drawings stored in the database?
+
+No. Most image requests are coming from FurAffinity since it uses CloudFlare
+under the hood to cache media types and overall site protection.
+
 ## License
 
 Its source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox
+[nextron]: https://github.com/saltyshiomix/nextron
