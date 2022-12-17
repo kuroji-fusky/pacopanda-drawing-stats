@@ -49,3 +49,5 @@ redis_config.json
 data*.json
 
 *.ipynb
+
+venv
