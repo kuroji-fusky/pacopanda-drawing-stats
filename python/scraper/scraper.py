@@ -6,7 +6,11 @@ import re
 from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
-from utils import success_msg
+from utils import success_msg, connect_redis
+
+from redis.commands.search.field import TagField
+from redis.commands.search.field import TextField
+from redis.commands.search.indexDefinition import IndexDefinition
 
 """Global variables"""
 base_url: str = "https://www.furaffinity.net"
@@ -51,9 +55,6 @@ def get_available_pages():
   return current_page
 
 
-paco_db: list = []
-
-
 def artwork_item(art_id: str):
   artwork_soup = req_soup(f"{base_url}/view/{art_id}")
 
@@ -89,12 +90,15 @@ def artwork_item(art_id: str):
     artwork_tags.add(artwork_tag)
 
   return {
-    "title": artwork_title,
-    "img_link": artwork_img,
-    "date": artwork_date,
-    "year": artwork_year,
-    "description": artwork_description,
-    "tags": list(artwork_tags),
+    "keyname":f"artwork_data:{artwork_title.replace(':', '-')}",
+    "comic":{
+      "title": artwork_title,
+      "img": artwork_img,
+      "date": artwork_date,
+      "year": artwork_year,
+      "description": artwork_description,
+      "tags": ",".join(artwork_tags),
+    }
   }
 
 
@@ -104,6 +108,19 @@ def save_json(output: dict[Any]):
 
 
 def main():
+  RedisDB = connect_redis("./redis_config.json")
+  schema = (
+    TextField("title"),
+    TextField("img"),
+    TextField("date"),
+    TextField("year"),
+    TextField("description"),
+    TagField("tags")
+  )
+  index_def = IndexDefinition(prefix=["artwork_data"],
+                              score=0.5,
+                              score_field="doc_score")
+  RedisDB.ft("artwork_data").create_index(schema, index_def)
   total_pages = get_available_pages()
 
   """Get 48 artworks through a for loop"""
@@ -116,11 +133,11 @@ def main():
         url_concat = re.sub("sid-", "", item["id"])
         artwork = artwork_item(url_concat)
 
-        print(f"Appended {artwork['title']}")
-        paco_db.append(artwork)
+        print(f"Appended {artwork['comic']['title']}")
+        # print(artwork)
+        RedisDB.hset(artwork["keyname"], mapping=artwork["comic"])
 
-    success_msg(f"Saved page {page} to JSON!")
-    save_json({"artwork_data": paco_db})
+    success_msg(f"Saved page {page} to DB")
 
 
 if __name__ == "__main__":
