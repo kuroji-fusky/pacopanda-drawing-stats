@@ -26,6 +26,10 @@ as the main and in-memory database for its speed and persistency.
 - `apps`
   - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
   - `char-mgmt` - A [Nextron][nextron] app to manage drawn characters via Redis connection
+- `packages`
+  - `biro-ui-react` - A special home-grown UI library
+  - `config` - Shared Tailwind CSS, PostCSS, and ESLint configs
+  - `tsconfig` - Shared TypeScript configs
 - `python`
   - `gql` - The GraphQL API
   - `scraper` - A web scraper to gather new data

@@ -19,7 +19,8 @@
   "dependencies": {
     "electron-builder": "^23.3.3",
     "electron-serve": "^1.1.0",
-    "electron-store": "^8.1.0"
+    "electron-store": "^8.1.0",
+    "next-transpile-modules": "^9.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",

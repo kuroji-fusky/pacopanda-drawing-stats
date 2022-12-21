@@ -1,19 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme")
+const biroConfig = require("config/tailwind.config");
 
 module.exports = {
   content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx}",
+    "../../packages/biro-ui-react/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
-	],
-  theme: {
-    extend: {
-      fontFamily: {
-        "inter": ["Inter", ...defaultTheme.fontFamily.sans],
-        "open-sans": ["Open Sans", ...defaultTheme.fontFamily.sans],
-        "jetbrains-mono": ["JetBrains Mono", ...defaultTheme.fontFamily.mono]
-      }
-    },
-  },
-  plugins: [],
+  ],
+  ...biroConfig
 }
