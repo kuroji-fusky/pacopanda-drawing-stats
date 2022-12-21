@@ -1,5 +1,5 @@
-import Container from "@/components/Base/Container"
-import { NoticeCard } from "@/components/UI"
+import Container from "@components/Base/Container"
+import { NoticeCard } from "@components/UI"
 
 export default function ApiDocs() {
   return (

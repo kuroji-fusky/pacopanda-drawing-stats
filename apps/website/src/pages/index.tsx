@@ -1,4 +1,4 @@
-import Container from "@/components/Base"
+import Container from "@components/Base"
 
 export default function Home() {
   return (
