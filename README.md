@@ -1,6 +1,6 @@
-![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
-
 <h1 align="center">Paco Panda Drawing Stats</h1>
+
+![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pacopanda-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
@@ -64,7 +64,13 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
+## API
+
+TBA
+
 ## About this project
+
+![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
 
 This project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine site)
