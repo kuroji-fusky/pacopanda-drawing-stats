@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "inter": ["Inter", ...defaultTheme.fontFamily.sans],
-        "open-sans": ["Open Sans", ...defaultTheme.fontFamily.sans],
-        "jetbrains-mono": ["JetBrains Mono", ...defaultTheme.fontFamily.mono]
+        "inter": ["var(--font-inter", "Inter", ...defaultTheme.fontFamily.sans],
+        "open-sans": ["var(--font-open-sans", "Open Sans", ...defaultTheme.fontFamily.sans],
+        "jetbrains-mono": ["var(--font-jetbrains)", "JetBrains Mono", ...defaultTheme.fontFamily.mono]
       }
     },
   },

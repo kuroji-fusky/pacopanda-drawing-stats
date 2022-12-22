@@ -8,8 +8,9 @@ export default function Footer() {
         <div className={styles["disclaimer-lower-third"]}>
           <p>
             <strong>Paco Drawing Stats</strong> is a data viz and an open-source
-            project created by Kuroji Fusky. I do not own or claim any of the
-            third-party content to this site whatsoever.
+            project created by Kuroji Fusky. it collects and parses drawing data from a
+            furry artist and illustrator Paco Panda. I do not own or claim any of
+            the third-party content to this site whatsoever.
           </p>
           <p>
             <strong>NOTE:</strong> Prior to 2019, he has stopped licensing his
@@ -17,13 +18,15 @@ export default function Footer() {
             presented on this website is primarily for analytical purposes.
           </p>
           <p>
-            {`© ${new Date().getFullYear()} Kuroji Fusky - source code licensed under `}
+            {`© ${new Date().getFullYear()} Kuroji Fusky - project source code licensed under `}
             <Link
               href="https://opensource.org/licenses/MIT"
               target="_blank"
               rel="noopenner noreferrer"
               className="underline"
-            ></Link>
+            >
+              MIT
+            </Link>
           </p>
         </div>
         <div>source code and other links</div>

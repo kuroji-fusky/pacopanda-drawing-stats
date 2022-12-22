@@ -34,7 +34,7 @@ export default function Navbar() {
             <Button tooltip="Search icon" className={styles["nav-item-search"]}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
-            <NavItem link="">{!mobile ? "Browse Data" : "Browse"}</NavItem>
+            <NavItem link="/browse">{!mobile ? "Browse Data" : "Browse"}</NavItem>
             <NavItem link="/docs/api">
               {!mobile ? "API Docs" : "API"}
               <WIPBadge />
