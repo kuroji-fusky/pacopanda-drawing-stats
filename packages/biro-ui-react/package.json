@@ -7,7 +7,7 @@
   "devDependencies": {
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
-    "eslint": "8.28.0",
+    "eslint": "8.31.0",
     "react": "18.2.0",
     "tsconfig": "*",
     "typescript": "4.9.3"
