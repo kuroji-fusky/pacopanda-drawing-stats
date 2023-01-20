@@ -11,9 +11,9 @@
 that collects and parses drawing data from a furry artist and illustrator
 Paco Panda.
 
-Made simply out of curiousity - it also has standalone libraries for both
-JavaScript and Python including its own REST and GraphQL APIs, and utilizes Redis
-as the main and in-memory database for its speed and persistency.
+Initially made simply out of curiousity - it has expanded to provide its standalone
+libraries for both JavaScript and Python including its own REST and GraphQL APIs,
+and utilizes Redis as the main and in-memory database for its speed and persistency.
 
 ## Project structure
 
@@ -38,16 +38,17 @@ as the main and in-memory database for its speed and persistency.
 
 ### Prerequisites
 
-- Node.js v16 or higher (LTS recommended)
-- Yarn Package Manager (npm works fine, but yarn is strongly recommended!)
+- Node.js 16, 18, or higher (LTS recommended)
+- Yarn Package Manager
 - Python 3.9 or higher
 - WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
 
-### Installation (Node)
+### Installation
+#### Node.js
 
 - Install Node dependencies with `yarn install` or just simply `yarn` and that's it!
 
-### Installation (Python)
+#### Python
 
 - Go to the `python` directory and set up a virtual environment
 
@@ -70,7 +71,7 @@ pip install -r requirements.txt
 
 ## API
 
-TBA
+> TBA
 
 ## About this project
 
@@ -117,12 +118,12 @@ like I watch him on every step, but trust me, I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be difficult
 and will require more work.
 
-To be honest, it's more of a serious, yet passion side-project of mine to show various
+It's more of a serious, yet passion side-project of mine to show various
 kinds of drawing data from his.
 
 ### Are the images/drawings stored in the database?
 
-No. Most image requests are coming from FurAffinity since it uses CloudFlare
+No. Most image requests are coming from FurAffinity since it uses Cloudflare
 under the hood to cache media types and overall site protection.
 
 ## License
