@@ -40,8 +40,7 @@ def connect_redis(filepath: str):
             password=cfg_password,
             decode_responses=True
         )
-    # i'm gonna go take a tea break, brb kuro :3
-    # k lol
+   
     except FileNotFoundError:
         print("file not found")
     return RedisDB
