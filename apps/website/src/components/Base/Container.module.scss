@@ -1,5 +1,0 @@
-@use "@styles/mixins" as *;
-
-.wrap-contents {
-  @include limit-screen;
-}

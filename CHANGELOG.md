@@ -1,5 +1,24 @@
 # Changelog
 
+## 2023
+
+## January 22
+
+- Axed over ~200 commits and restart project entirely in JavaScript
+  - Reason: Handling Node and Python environments can be a hassle and
+  require a lot of tooling and resources on each individual
+  environments.
+  
+  - The only solution is to use one environment for overall
+  maintainability and for sharable code using the monorepo approach. 
+
+  - For previous Python codebase, it has been replaced from beautifulsoup
+  with Puppeteer library.
+
+  - For the frontend, it was written with Vue CLI on December 4, 2021,
+  with the long-awaited Nuxt 3 Stable release, the website will be
+  rewritten back to Vue. 
+
 ## 2022
 
 ### December 17
