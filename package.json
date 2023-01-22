@@ -1,0 +1,19 @@
+{
+  "name": "pandapaco-drawing-stats",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "api",
+    "app",
+    "packages/*",
+    "puppeteer"
+  ],
+  "scripts": {
+    "postinstall": "cd ./app && nuxt prepare",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "husky": "^8.0.0"
+  }
+}
