@@ -12,62 +12,35 @@ that collects and parses drawing data from a furry artist and illustrator
 Paco Panda.
 
 Initially made simply out of curiousity - it has expanded to provide its standalone
-libraries for both JavaScript and Python including its own REST and GraphQL APIs,
-and utilizes Redis as the main and in-memory database for its speed and persistency.
+JavaScript library including its own REST and GraphQL APIs, and utilizes Redis as
+the main and in-memory database for its speed and persistency.
 
 ## Project structure
 
-> **Note**
-> This project is a **monorepo**; it has nested directories to isolate Python and
-> Node.js codebases separately.
+This project is a **monorepo**, it uses Yarn workspace to install all
+dependencies in each subdirectory.
 
-- `.github` - For GitHub automation stuff for updating npm packages, update drawing
-  data, etc.
+- `.github` - For CI/CD stuff
 - `apps`
   - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
-  - `char-mgmt` - A [Nextron][nextron] app to manage drawn characters via Redis connection
+  - `api` - A Fastify REST API
+  - `graphql` - A Fastify GraphQL API
 - `packages`
-  - `biro-ui-react` - A special home-grown UI library
-  - `config` - Shared Tailwind CSS, PostCSS, and ESLint configs
-  - `tsconfig` - Shared TypeScript configs
-- `python`
-  - `gql` - The GraphQL API
-  - `scraper` - A web scraper to gather new data
+  - `eslint` - Shared ESLint config
+  - `tsconfig` - Shared TypeScript config
+- `puppeteer` - For scraping data, previously used Python with BeautifulSoup
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- Node.js 16, 18, or higher (LTS recommended)
+- Node 16, 18, or higher (LTS recommended)
 - Yarn Package Manager
-- Python 3.9 or higher
 - WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
 
 ### Installation
-#### Node.js
 
 - Install Node dependencies with `yarn install` or just simply `yarn` and that's it!
-
-#### Python
-
-- Go to the `python` directory and set up a virtual environment
-
-```bash
-# Setup venv
-python -m venv env
-
-# FOR WINDOWS
-./env/Scripts/activate
-
-# FOR LINUX
-source env/bin/activate
-```
-
-- Then install its dependencies
-
-```bash
-pip install -r requirements.txt
-```
 
 ## API
 
