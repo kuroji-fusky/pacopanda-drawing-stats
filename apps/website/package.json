@@ -8,6 +8,12 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },
+  "workspaces": {
+    "nohoist": [
+      "@fontsource/inter",
+      "@fontsource/open-sans"
+    ]
+  },
   "devDependencies": {
     "@fontsource/inter": "^4.5.15",
     "@fontsource/open-sans": "^4.5.14",
