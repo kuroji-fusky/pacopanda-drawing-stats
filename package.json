@@ -3,13 +3,12 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "api",
-    "app",
+    "app/*",
     "packages/*",
     "puppeteer"
   ],
   "scripts": {
-    "postinstall": "cd ./app && nuxt prepare",
+    "postinstall": "cd ./app/website && nuxt prepare",
     "prepare": "husky install"
   },
   "devDependencies": {
