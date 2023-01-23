@@ -7,7 +7,7 @@ interface SearchHistoryStore {
 		artwork?: string
 		date: string
 	}> &
-		never[]
+	never[]
 }
 
 export const useSearchHistoryStore = defineStore("history", () => {

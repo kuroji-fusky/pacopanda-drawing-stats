@@ -3,12 +3,13 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "app/*",
+    "apps/*",
     "packages/shared",
     "puppeteer"
   ],
   "scripts": {
-    "postinstall": "cd ./app/website && nuxt prepare",
+    "dev:website": "yarn workspace @pds/website dev",
+    "postinstall": "cd ./apps/website && nuxt prepare",
     "prepare": "husky install"
   },
   "devDependencies": {
