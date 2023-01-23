@@ -2,7 +2,7 @@
 
 ## 2023
 
-## January 22
+### January 22
 
 - Axed over ~200 commits and restart project entirely in JavaScript
   - Reason: Handling Node and Python environments can be a hassle and
@@ -15,8 +15,8 @@
   - For previous Python codebase, it has been replaced from beautifulsoup
   with Puppeteer library.
 
-  - For the frontend, it was written with Vue CLI on December 4, 2021,
-  with the long-awaited Nuxt 3 Stable release, the website will be
+  - For the frontend, it was previously written with Vue CLI on December
+  4, 2021, with the long-awaited Nuxt 3 Stable release, the website will be
   rewritten back to Vue. 
 
 ## 2022
@@ -86,28 +86,28 @@
 
 - Moved all old Vue 3 files to the `vue-3-legacy` branch.
 
-### Jan 01
+### January 01
 
 - Went back from Vue 3 CLI.
 
 ## 2021
 
-### Dec 29
+### December 29
 
 - Added a `paco-drawing-data.ipynb` file in an attempt to explain the dataset
   I've gathered manually, it was pain lol - at this time, I didn't have any
   automation tools to make gathering data less laborious lol
 
-### Dec 23
+### December 23
 
 - Tried Vue 3 + Vite. I've had issues with setting the images prop from
   a component. There really wasn't a clear way to do this when building
   for production.
 
-### Dec 04
+### December 04
 
 - Rewrite project generated via Vue 3 CLI!
 
-### Oct 31
+### October 31
 
 - Initiated project with plain HTML. Imported libraries such as D3.js and Chart.js.
