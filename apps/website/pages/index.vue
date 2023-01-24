@@ -1,7 +1,7 @@
 <template>
-	<page-container title="Home">
+	<PageContainer title="Home">
 		<div class="text-2xl">good content yes</div>
-	</page-container>
+	</PageContainer>
 </template>
 
 <script setup lang="ts"></script>

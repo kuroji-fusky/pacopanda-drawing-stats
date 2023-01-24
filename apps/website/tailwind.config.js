@@ -19,7 +19,7 @@ module.exports = {
 		extend: {}
 	},
 	plugins: [
-		basePlugin(({ addBase, theme }) => {
+		basePlugin(({ addBase, addComponents, theme }) => {
 			addBase({
 				html: {
 					"scrollBehavior": "smooth",
@@ -30,6 +30,15 @@ module.exports = {
 				},
 				body: {
 					fontFamily: theme("fontFamily.open-sans")
+				}
+			}),
+			addComponents({
+				".link-underline": {
+					"text-decoration": "underline",
+					"color": theme("colors.green.500"),
+					"&:hover": {
+						color: theme("colors.green.700")
+					}
 				}
 			})
 		}),

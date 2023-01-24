@@ -1,26 +1,21 @@
 <template>
 	<header>
 		<div id="wrapper">
-			<div>
-				<nuxt-link to="/" class="wordmark-heading">Paco Drawing Stats</nuxt-link>
-				<span class="block wordmark-subheading">
-					by
-					<nuxt-link class="wordmark-subheading" to="https://kurofusky.xyz">
-						Kuroji Fusky
-					</nuxt-link>
-				</span>
-			</div>
+			<navbar-logo />
 			<nav>
-				<ul class="flex justify-between text-lg gap-x-3">
-					<li v-for="item in navItems" :key="item.text" :class="{ 'relative': item.dropdown }">
-						<nuxt-link :to="item.link" class="block px-4 py-3.5">
+				<ul class="nav-list-container">
+					<li
+						v-for="item in navItems"
+						:key="item.text"
+						:class="{ 'has-dropdown': item.dropdown }"
+					>
+						<nuxt-link :to="item.link" class="nav-list-item">
 							{{ item.text }}
 						</nuxt-link>
-						<div v-if="item.dropdown" class="absolute p-4 -translate-x-5 bg-gray-400 rounded-md w-fit top-14">
-							<ul class="grid gap-y-1">
+						<div v-if="item.dropdown" class="dropdown-list-wrapper">
+							<ul class="dropdown-render-list">
 								<li v-for="nested in item.dropdown">
-									<nuxt-link :to="nested.link"
-										class="block w-[11.5rem] px-3.5 py-2 border rounded-md">
+									<nuxt-link :to="nested.link" class="dropdown-item">
 										{{ nested.text }}
 									</nuxt-link>
 								</li>
@@ -41,16 +36,18 @@ const navItems = [
 		dropdown: [
 			{ link: "/browse/characters", text: "Characters" },
 			{ link: "/browse/species", text: "Species" },
-			{ link: "/browse/chronology", text: "Chronology" },
-			{ link: "/about/how-i-gather-data", text: "How I gather data" }
+			{ link: "/browse/chronology", text: "Chronology" }
 		]
 	},
+	{ link: "/api", text: "API" },
 	{
-		link: "/statistics",
-		text: "Statistics"
-	},
-	{ link: "/api", text: "API Docs" },
-	{ link: "/about", text: "About" }
+		link: "/about",
+		text: "About",
+		dropdown: [
+			{ link: "/about#faq", text: "FAQs" },
+			{ link: "/about/how-i-gather-data", text: "How I gather data" }
+		]
+	}
 ]
 </script>
 
@@ -59,17 +56,41 @@ const navItems = [
 	@apply px-12 py-6 flex justify-between items-center;
 }
 
-.wordmark {
-	&-heading {
-		@apply text-3xl font-inter font-bold;
-	}
+.nav-list-container {
+	@apply flex justify-between gap-x-0.5 text-[1.015rem];
+}
 
-	&-subheading {
-		@apply text-sm;
+.nav-list-item {
+	@apply block px-4 py-[0.5rem] rounded-md border border-white;
+
+	@apply hover:bg-green-100;
+
+	&.router-link-active {
+		@apply bg-green-200 border-green-500 text-green-800;
 	}
 }
 
-a.wordmark-subheading {
-	@apply text-violet-600 font-semibold;
+.has-dropdown {
+	@apply relative;
+
+	&:hover > .dropdown-list-wrapper {
+		@apply opacity-100 top-10 pointer-events-auto;
+	}
+}
+
+.has-dropdown:last-child .dropdown-list-wrapper {
+	@apply right-0 translate-x-3;
+}
+
+.dropdown-list-wrapper {
+	@apply absolute pt-3 -translate-x-3 w-fit top-[2.75rem] opacity-0 pointer-events-none transition-all duration-300;
+}
+
+.dropdown-render-list {
+	@apply grid gap-y-0.5 bg-slate-100 shadow-lg rounded-md py-4;
+}
+
+.dropdown-item {
+	@apply block w-[11.5rem] mx-3 px-3 py-1.5 border rounded-lg hover:text-green-600 hover:bg-green-200 hover:bg-opacity-30 border-transparent hover:border-green-400 transition-colors duration-100;
 }
 </style>
