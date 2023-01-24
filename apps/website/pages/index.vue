@@ -1,6 +1,6 @@
 <template>
 	<page-container title="Home">
-		<div class="text-2xl">Test test</div>
+		<div class="text-2xl">good content yes</div>
 	</page-container>
 </template>
 
