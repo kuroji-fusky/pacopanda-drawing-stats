@@ -4,7 +4,7 @@
             <article>
                 <p>
                     <strong>DISCLAIMER:</strong>
-                    This is an passion open source project created by an individual; I do not own nor claim any of the
+                    This is an passion project created by an individual; I do not own nor claim any of the
                     third-party
                     content from this site - neither it is stored from the database whatsoever. Before 2019, he stopped
                     licensing his work under Creative Commons on DeviantArt. Most of
