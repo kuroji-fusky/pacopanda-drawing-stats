@@ -3,9 +3,9 @@
 ![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-336600)
-[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/skepfusky/pacopanda-drawing-stats)](https://github.com/skepfusky/pacopanda-drawing-stats/issues)
-![](https://img.shields.io/github/last-commit/skepfusky/pacopanda-drawing-stats)
-![](https://img.shields.io/github/contributors/skepfusky/pacopanda-drawing-stats)
+[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/kuroji-fusky/pacopanda-drawing-stats)](https://github.com/kuroji-fusky/pacopanda-drawing-stats/issues)
+![](https://img.shields.io/github/last-commit/kuroji-fusky/pacopanda-drawing-stats)
+![](https://img.shields.io/github/contributors/kuroji-fusky/pacopanda-drawing-stats)
 
 **Paco Panda Drawing Stats** is a data analysis and data visualization project
 that collects and parses drawing data from a furry artist and illustrator
@@ -22,7 +22,7 @@ dependencies in each subdirectory.
 
 - `.github` - For CI/CD stuff
 - `apps`
-  - `website` - The website written in Next.js w/ TypeScript + Tailwind CSS
+  - `website` - The website written in Nuxt 3 + Tailwind CSS
   - `api` - A Fastify REST API
   - `graphql` - A Fastify GraphQL API
 - `packages`
@@ -34,23 +34,28 @@ dependencies in each subdirectory.
 
 ### Prerequisites
 
-- Node 16, 18, or higher (LTS recommended)
+- Node.js versions 16 or higher (LTS recommended)
 - Yarn Package Manager
 - WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
 
 ### Installation
 
-- Install Node dependencies with `yarn install` or just simply `yarn` and that's it!
+- Install dependencies with `yarn install` or just simply `yarn` and that's it!
 
 ## API
 
-> TBA
+![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
+
+> Section WIP
+
+### Planned Endpoints
+
+- `/character{/character}{query}`
+- `/artworks{/year}{/title}{query}`
 
 ## About this project
 
-![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
-
-This project began on October 31, 2021, and the possible inspiration from this
+The project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine site)
 and it'd be interesting to see in all of his drawings to see said data and it's various
 datasets.
@@ -104,4 +109,3 @@ under the hood to cache media types and overall site protection.
 Its source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox
-[nextron]: https://github.com/saltyshiomix/nextron
