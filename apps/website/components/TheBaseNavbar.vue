@@ -1,7 +1,7 @@
 <template>
 	<header>
 		<div id="wrapper">
-			<navbar-logo />
+			<NavbarLogo />
 			<nav>
 				<ul class="nav-list-container">
 					<li
@@ -9,16 +9,24 @@
 						:key="item.text"
 						:class="{ 'has-dropdown': item.dropdown }"
 					>
-						<nuxt-link :to="item.link" class="nav-list-item">
+						<NuxtLink
+							v-if="item.link !== '#'"
+							:to="item.link"
+							class="nav-list-item"
+						>
 							{{ item.text }}
 							<IconChevronDown v-if="item.dropdown" />
-						</nuxt-link>
+						</NuxtLink>
+						<button v-else class="nav-list-item">
+							{{ item.text }}
+							<IconChevronDown v-if="item.dropdown" />
+						</button>
 						<div v-if="item.dropdown" class="nav-dropdown-list">
 							<ul class="dropdown-render-list">
 								<li v-for="nested in item.dropdown">
-									<nuxt-link :to="nested.link" class="dropdown-item">
+									<NuxtLink :to="nested.link" class="dropdown-item">
 										{{ nested.text }}
-									</nuxt-link>
+									</NuxtLink>
 								</li>
 							</ul>
 						</div>
@@ -45,7 +53,7 @@ const navItems = [
 	},
 	{ link: "/api", text: "API" },
 	{
-		link: "/about",
+		link: "#",
 		text: "About",
 		dropdown: [
 			{ link: "/about#faq", text: "FAQs" },
@@ -72,6 +80,10 @@ const navItems = [
 	&.router-link-active {
 		@apply bg-green-200 border-green-500 text-green-800;
 	}
+}
+
+button.nav-list-item {
+	@apply cursor-default;
 }
 
 .has-dropdown {

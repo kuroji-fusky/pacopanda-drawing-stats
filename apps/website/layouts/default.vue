@@ -1,5 +1,5 @@
 <template>
 	<TheBaseNavbar />
 	<slot />
-	<TheBaseFooter />
+	<LazyTheBaseFooter />
 </template>

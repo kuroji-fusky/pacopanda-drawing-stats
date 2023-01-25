@@ -6,11 +6,11 @@
 					role="listbox"
 					class="flex flex-col flex-shrink-0 w-4/12 pr-5 gap-y-4"
 				>
-					<footer-link href="/about/how-i-gather-data">
+					<FooterLink href="/about/how-i-gather-data">
 						<IconAsterisk font-size="20" class="w-5 text-black" />
 						<span>How I gather and parse data</span>
-					</footer-link>
-					<footer-link href="/api">
+					</FooterLink>
+					<FooterLink href="/api">
 						<IconCode font-size="20" class="w-5 text-black" />
 						<span
 							>Paco Stats API
@@ -19,19 +19,19 @@
 								>WIP</span
 							></span
 						>
-					</footer-link>
+					</FooterLink>
 					<hr class="border border-stone-300" />
-					<footer-link
+					<FooterLink
 						external
 						href="https://github.com/kuroji-fusky/pacopanda-drawing-stats"
 					>
 						<IconGithub font-size="20" class="w-5 text-black" />
 						<span>View source code on GitHub</span>
-					</footer-link>
-					<footer-link external href="https://kurofusky.xyz/portfolio">
+					</FooterLink>
+					<FooterLink external href="https://kurofusky.xyz/portfolio">
 						<IconGrip font-size="20" class="w-5 text-black" />
 						<span>More passion projects by Kuroji</span>
-					</footer-link>
+					</FooterLink>
 				</div>
 				<article class="flex flex-col gap-y-2.5 w-full pl-5 ">
 					<h2 class="text-xl font-bold uppercase font-inter">Disclaimer</h2>
@@ -47,14 +47,14 @@
 					</p>
 				</article>
 			</div>
-			<div class="grid py-6 text-center bg-green-200 place-items-center">
+			<div class="grid py-6 text-center bg-green-100 place-items-center">
 				<span>
 					Copyright &copy; 2021-{{ year }}
 					Kuroji Fusky; source code licensed under
-					<nuxt-link
+					<NuxtLink
 						class="link-underline"
 						to="https://opensource.org/licenses/MIT"
-						>MIT</nuxt-link
+						>MIT</NuxtLink
 					>
 				</span>
 			</div>
@@ -73,7 +73,7 @@ import {
 const year = new Date().getFullYear()
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #wrapper {
 	@apply bg-green-50;
 }

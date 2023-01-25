@@ -1,5 +1,11 @@
 {
-    "characters_list": {},
+    "characters_list": [
+        {
+            "name": "Kuroji",
+            "species": "Fusky",
+            "hybrid": false
+        }
+    ],
     "artwork_list": {},
     "characters_info": {}
 }
