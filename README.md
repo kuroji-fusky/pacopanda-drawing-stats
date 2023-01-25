@@ -27,8 +27,8 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 - `packages`
   - `eslint` - Shared ESLint config
   - `tsconfig` - Shared TypeScript config
+- `scripts` - Scripts for reinstalling packages
 - `puppeteer` - For scraping data, previously used Python with BeautifulSoup
-- `utils` - Scripts for reinstalling packages
 
 ## Setup and Installation
 
