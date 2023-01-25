@@ -8,7 +8,7 @@
     "puppeteer"
   ],
   "scripts": {
-    "cleanup": "node ./utils/cleanBloat.js && yarn",
+    "cleanup": "node ./scripts/cleanBloat.js && yarn",
     "dev:web": "yarn workspace @pds/website dev",
     "postinstall": "cd ./apps/website && nuxt prepare",
     "prepare": "husky install"
