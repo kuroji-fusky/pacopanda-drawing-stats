@@ -1,7 +1,8 @@
 <template>
 	<PageContainer title="Home">
 		<LandingHero />
-		<LandingSynopsis />
+		<LandingIntro />
+		<LandingServices />
 	</PageContainer>
 </template>
 

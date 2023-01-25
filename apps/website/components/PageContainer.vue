@@ -1,5 +1,5 @@
 <template>
-	<main>
+	<main :data-wrap-contents="props.contentWrap">
 		<slot />
 	</main>
 </template>
