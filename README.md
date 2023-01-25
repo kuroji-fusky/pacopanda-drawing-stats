@@ -39,7 +39,19 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 
 ### Installation
 
-- Install dependencies with `yarn install` or just simply `yarn` and that's it!
+- Install dependencies with Yarn
+
+```bash
+$ yarn
+# or
+$ yarn install
+```
+
+- When working on the actual website - open a local dev server by running
+
+```bash
+$ yarn dev:web
+```
 
 ## API
 

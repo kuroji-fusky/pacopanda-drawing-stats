@@ -8,7 +8,7 @@
     "puppeteer"
   ],
   "scripts": {
-    "dev:website": "yarn workspace @pds/website dev",
+    "dev:web": "yarn workspace @pds/website dev",
     "postinstall": "cd ./apps/website && nuxt prepare",
     "prepare": "husky install"
   },
