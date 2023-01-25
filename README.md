@@ -17,14 +17,13 @@ the main and in-memory database for its speed and persistency.
 
 ## Project structure
 
-This project is a **monorepo**, it uses Yarn workspace to install all
-dependencies in each subdirectory.
+This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it uses Yarn workspace to install and manage dependencies in each subdirectory.
 
-- `.github` - For CI/CD stuff
+- `.github` - CI Workflow stuff such as (type-checking, linting, etc.)
 - `apps`
-  - `website` - The website written in Nuxt 3 + Tailwind CSS
   - `api` - A Fastify REST API
   - `graphql` - A Fastify GraphQL API
+  - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
   - `eslint` - Shared ESLint config
   - `tsconfig` - Shared TypeScript config
