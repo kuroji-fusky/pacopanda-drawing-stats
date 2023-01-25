@@ -2,19 +2,23 @@
   "name": "pandapaco-drawing-stats",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/shared",
     "puppeteer"
   ],
   "scripts": {
+    "cleanup": "ts-node --esm ./scripts/cleanup.ts",
     "dev:web": "yarn workspace @pds/website dev",
     "postinstall": "cd ./apps/website && nuxt prepare",
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "concurrently": "^7.6.0",
     "husky": "^8.0.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "ts-node": "^10.9.1"
   }
 }
