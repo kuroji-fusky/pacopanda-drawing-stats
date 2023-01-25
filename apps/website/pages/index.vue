@@ -1,6 +1,6 @@
 <template>
 	<PageContainer title="Home">
-		<div class="text-2xl">good content yes</div>
+		<LandingHero />
 	</PageContainer>
 </template>
 

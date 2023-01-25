@@ -86,23 +86,23 @@ as well since all the data gathered will be hardcoded to the site.
 
 ### Why did you create this project?
 
-It's really not my intention to impress him in general, I'm just a huge fan of his
+Believe it or not, it's not my intention to impress him in general. I'm just a huge fan of his
 artwork and his unique and adorable art style that I'd want to see how many characters
-he's drawn since early to mid 2000s but he'd for sure find it interesting as it's more of
-a fun project to a new hobby of mine, learning not only JavaScript, but also learning
+he's drawn since the early to mid-2000s but he'd for sure find it interesting as it's more of
+a fun project to a new hobby of mine, learning not only JavaScript but also learning
 a bit of back-end and basic data management in the process of other projects I do.
 
 Initially, I wanted to show realtime data from Google Sheets and render data via
 a chart library from a website and I'd thought I'll take one of my favorite
 artists and run it through this process.
 
-In the early stages of this project - I'm kinda lacking backend knowledge
-and I needed a help with [@thatITfox][it] for setting up a Flask web server, and
+In the early stages of this project - I have limited backend knowledge and I
+needed a help with [@thatITfox][it] for setting up a Flask web server, and
 now currently working with Redis stuff!
 
 ### Isn't this taking it too far?
 
-Well, as someone who admires his art, yes... to some extent. Well, sure - it may feel
+As someone who admires his art, yes... to some extent. Well, sure - it may feel
 like I watch him on every step, but trust me, I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be difficult
 and will require more work.
@@ -112,8 +112,8 @@ kinds of drawing data from his.
 
 ### Are the images/drawings stored in the database?
 
-No. Most image requests are coming from FurAffinity since it uses Cloudflare
-under the hood to cache media types and overall site protection.
+No, most image requests are coming from FurAffinity since they use Cloudflare as their CDN
+under the hood to cache media types.
 
 ## License
 

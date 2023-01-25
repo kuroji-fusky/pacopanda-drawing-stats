@@ -11,8 +11,9 @@
 					>
 						<nuxt-link :to="item.link" class="nav-list-item">
 							{{ item.text }}
+							<IconChevronDown v-if="item.dropdown" />
 						</nuxt-link>
-						<div v-if="item.dropdown" class="dropdown-list-wrapper">
+						<div v-if="item.dropdown" class="nav-dropdown-list">
 							<ul class="dropdown-render-list">
 								<li v-for="nested in item.dropdown">
 									<nuxt-link :to="nested.link" class="dropdown-item">
@@ -29,14 +30,17 @@
 </template>
 
 <script setup lang="ts">
+import { IconChevronDown } from "@iconify-prerendered/vue-fa6-solid"
+
 const navItems = [
 	{
 		link: "/browse",
 		text: "Browse data",
 		dropdown: [
-			{ link: "/browse/characters", text: "Characters" },
-			{ link: "/browse/species", text: "Species" },
-			{ link: "/browse/chronology", text: "Chronology" }
+			{ link: "/browse/characters", text: "By characters" },
+			{ link: "/browse/species", text: "By species" },
+			{ link: "/browse/chronology", text: "By chronology" },
+			{ link: "/browse/tags", text: "By tags" }
 		]
 	},
 	{ link: "/api", text: "API" },
@@ -57,11 +61,11 @@ const navItems = [
 }
 
 .nav-list-container {
-	@apply flex justify-between gap-x-0.5 text-[1.015rem];
+	@apply flex justify-between gap-x-2 text-[1.015rem];
 }
 
 .nav-list-item {
-	@apply block px-4 py-[0.5rem] rounded-md border border-white;
+	@apply flex gap-x-3 items-center px-4 py-[0.5rem] rounded-md border border-white;
 
 	@apply hover:bg-green-100;
 
@@ -73,16 +77,16 @@ const navItems = [
 .has-dropdown {
 	@apply relative;
 
-	&:hover > .dropdown-list-wrapper {
+	&:hover > .nav-dropdown-list {
 		@apply opacity-100 top-10 pointer-events-auto;
 	}
 }
 
-.has-dropdown:last-child .dropdown-list-wrapper {
+.has-dropdown:last-child .nav-dropdown-list {
 	@apply right-0 translate-x-3;
 }
 
-.dropdown-list-wrapper {
+.nav-dropdown-list {
 	@apply absolute pt-3 -translate-x-3 w-fit top-[2.75rem] opacity-0 pointer-events-none transition-all duration-300;
 }
 
