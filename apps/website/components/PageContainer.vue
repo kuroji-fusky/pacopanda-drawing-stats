@@ -1,5 +1,5 @@
 <template>
-	<main :data-wrap-contents="props.contentWrap">
+	<main>
 		<slot />
 	</main>
 </template>
@@ -12,7 +12,6 @@ const URL_PATH = `httos://pds.kurofusky.xyz${router.fullPath}`
 const props = defineProps<{
 	title: string
 	description?: string
-	contentWrap?: boolean
 }>()
 
 const SITE_TITLE = `${props.title} | Paco Drawing Stats`

@@ -29,7 +29,8 @@ module.exports = {
 					}
 				},
 				body: {
-					fontFamily: theme("fontFamily.open-sans")
+					fontFamily: theme("fontFamily.open-sans"),
+					fontWeight: 500
 				}
 			}),
 			addComponents({

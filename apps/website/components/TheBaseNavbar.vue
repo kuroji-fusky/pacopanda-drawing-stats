@@ -48,7 +48,9 @@ const navItems = [
 			{ link: "/browse/characters", text: "By characters" },
 			{ link: "/browse/species", text: "By species" },
 			{ link: "/browse/chronology", text: "By chronology" },
-			{ link: "/browse/tags", text: "By tags" }
+			{ link: "/browse/tags", text: "By tags" },
+			{ subheading: "Others" },
+			{ link: "/case-study", text: "Case Study" },
 		]
 	},
 	{ link: "/api", text: "API" },
@@ -56,7 +58,7 @@ const navItems = [
 		link: "#",
 		text: "About",
 		dropdown: [
-			{ link: "/about#faq", text: "FAQs" },
+			{ link: "/about/faq", text: "FAQs" },
 			{ link: "/about/how-i-gather-data", text: "How I gather data" }
 		]
 	}

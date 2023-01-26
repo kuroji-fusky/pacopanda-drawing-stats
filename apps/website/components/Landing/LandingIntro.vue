@@ -20,7 +20,7 @@
 
 <style lang="scss">
 .brief-background-section {
-	@apply px-12 mx-auto max-w-screen-2xl grid gap-9;
+	@apply grid gap-9;
 	grid-template-columns: 2fr 1.15fr;
 }
 .article-prose {
@@ -29,7 +29,7 @@
 	}
 
 	p {
-		@apply text-xl mb-4 leading-8;
+		@apply text-lg mb-4 leading-8;
 	}
 }
 </style>
