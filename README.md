@@ -42,16 +42,14 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 
 - Install dependencies with Yarn
 
-```bash
-$ yarn
-# or
-$ yarn install
+```sh
+yarn install
 ```
 
 - When working on the actual website - open a local dev server by running
 
-```bash
-$ yarn dev:web
+```sh
+yarn dev:web
 ```
 
 ## API
