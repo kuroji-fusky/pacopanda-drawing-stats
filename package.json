@@ -11,6 +11,8 @@
   "scripts": {
     "cleanup": "node ./scripts/cleanBloat.js && yarn",
     "dev:web": "yarn workspace @pds/website dev",
+    "build:web": "yarn workspace @pds/website build",
+    "preview:web": "yarn workspace @pds/website preview",
     "postinstall": "cd ./apps/website && nuxt prepare",
     "prepare": "husky install"
   },

@@ -52,6 +52,13 @@ yarn install
 yarn dev:web
 ```
 
+- Build and preview the website
+
+```sh
+yarn build:web
+yarn preview:web
+```
+
 ## API
 
 ![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
