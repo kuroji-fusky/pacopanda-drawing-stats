@@ -1,4 +1,5 @@
-const fs = require("fs");
+import fs from "fs"
+
 const dirs = [".", "./apps/website", "./apps/api", "./puppeteer"]
 
 dirs.forEach((dir) => {

@@ -2,6 +2,7 @@
   "name": "pandapaco-drawing-stats",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/shared",
