@@ -511,6 +511,16 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.4.tgz#9b7760cdc77678bdbc5b582fae2cf3de449df048"
   integrity sha512-0kLAjs+xN5OjhTt/aUA6t48SfENSCKgGPfExADYTOo/UCn0ivxos9/anUVeSfg+L+2O9xkFxvJXIJfG+Q4sYSg==
 
+"@fontsource/inter@^4.5.15":
+  version "4.5.15"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.15.tgz#eed1873d68755d3b52d6fcfcfa3493118430a512"
+  integrity sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==
+
+"@fontsource/open-sans@^4.5.14":
+  version "4.5.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.14.tgz#b3e1665c0b3fdfc1f030ded2843749e3cf3a5900"
+  integrity sha512-mBXIIETBlW8q/ocuUN0hyGow2iuf75hQEHQt8R/RJ/HcphVbLg8KB7pHYGbFGDqs75W+SWvTC7JkVeAjT65BuQ==
+
 "@iconify-prerendered/vue-fa6-brands@^0.18.1662097805":
   version "0.18.1662097805"
   resolved "https://registry.yarnpkg.com/@iconify-prerendered/vue-fa6-brands/-/vue-fa6-brands-0.18.1662097805.tgz#f0604ec9cd73cbce9ac6ab571e076f09ecae4aee"
