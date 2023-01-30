@@ -1,24 +1,25 @@
 {
-  "name": "pandapaco-drawing-stats",
-  "license": "MIT",
-  "private": true,
-  "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/shared",
-    "puppeteer"
-  ],
-  "scripts": {
-    "cleanup": "node ./scripts/cleanBloat.js && yarn",
-    "dev:web": "yarn workspace @pds/website dev",
-    "build:web": "yarn workspace @pds/website build",
-    "preview:web": "yarn workspace @pds/website preview",
-    "postinstall": "cd ./apps/website && nuxt prepare",
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "concurrently": "^7.6.0",
-    "husky": "^8.0.0",
-    "prettier": "^2.8.3"
-  }
+    "name": "pandapaco-drawing-stats",
+    "license": "MIT",
+    "private": true,
+    "type": "module",
+    "workspaces": [
+        "apps/*",
+        "packages/shared",
+        "puppeteer"
+    ],
+    "scripts": {
+        "cleanup": "node ./scripts/cleanBloat.js && yarn",
+        "dev:web": "yarn workspace @pds/website dev",
+        "build:web": "yarn workspace @pds/website build",
+        "preview:web": "yarn workspace @pds/website preview",
+        "puppeteer": "yarn workspace @pds/puppeteer start",
+        "postinstall": "cd ./apps/website && nuxt prepare",
+        "prepare": "husky install"
+    },
+    "devDependencies": {
+        "concurrently": "^7.6.0",
+        "husky": "^8.0.0",
+        "prettier": "^2.8.3"
+    }
 }

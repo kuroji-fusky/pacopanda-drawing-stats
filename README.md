@@ -25,9 +25,11 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
   - `graphql` - A Fastify GraphQL API
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
-  - `eslint` - Shared ESLint config
-  - `tsconfig` - Shared TypeScript config
-- `scripts` - Scripts for reinstalling packages
+  - `shared`
+    - `types` - Shared TypeScript declarations
+    - `eslint` - Shared ESLint config
+    - `tsconfig` - Shared TypeScript config
+- `scripts` - Script(s) for reinstalling packages
 - `puppeteer` - For scraping data, previously used Python with BeautifulSoup
 
 ## Setup and Installation
@@ -40,24 +42,20 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 
 ### Installation
 
-- Install dependencies with Yarn
+Install dependencies with Yarn
 
 ```sh
 yarn install
 ```
 
-- When working on the actual website - open a local dev server by running
+### Scripts
 
-```sh
-yarn dev:web
-```
-
-- Build and preview the website
-
-```sh
-yarn build:web
-yarn preview:web
-```
+| Command       | Descrption                      | Directory      |
+| ------------- | ------------------------------- | -------------- |
+| `dev:web`     | Open a website local dev server | `apps/website` |
+| `build:web`   | Build the website               | `apps/website` |
+| `preview:web` | Preview the website             | `apps/website` |
+| `puppeteer`   | Execute the Puppeteer script    | `puppeteer`    |
 
 ## API
 
