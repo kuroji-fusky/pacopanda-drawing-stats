@@ -6,7 +6,7 @@
     "workspaces": [
         "apps/*",
         "packages/shared",
-        "puppeteer"
+        "scripts/puppeteer"
     ],
     "scripts": {
         "cleanup": "node ./scripts/cleanBloat.js && yarn",

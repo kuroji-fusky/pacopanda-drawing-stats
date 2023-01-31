@@ -1,6 +1,6 @@
 import fs from "fs"
 
-const nodeDirs = [".", "./apps/website", "./apps/api", "./puppeteer"]
+const nodeDirs = [".", "./apps/website", "./apps/api", "./scripts/puppeteer"]
 
 nodeDirs.forEach((dir) => {
 	const prependNode = `${dir}/node_modules`
