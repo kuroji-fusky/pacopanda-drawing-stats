@@ -1,9 +1,9 @@
 {
-  "compilerOptions": {
-    "module": "ES2022",
-    "moduleResolution": "nodenext",
-    "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": true
-  }
+	"compilerOptions": {
+		"module": "ES2022",
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"strict": true,
+		"noImplicitAny": true
+	}
 }

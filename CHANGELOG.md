@@ -5,26 +5,28 @@
 ### January 22
 
 - Axed over ~200 commits and restart project entirely in JavaScript
-  - Reason: Handling Node and Python environments can be a hassle and
-  require a lot of tooling and resources on each individual
-  environments.
-  
-  - The only solution is to use one environment for overall
-  maintainability and for sharable code using the monorepo approach. 
 
-  - For previous Python codebase, it has been replaced from beautifulsoup
-  with Puppeteer library.
+  - Reason: Handling Node and Python environments can be a hassle and require a
+    lot of tooling and resources on each individual environments.
 
-  - For the frontend, it was previously written with Vue CLI on December
-  4, 2021, with the long-awaited Nuxt 3 Stable release, the website will be
-  rewritten back to Vue. 
+  - The only solution is to use one environment for overall maintainability and
+    for sharable code using the monorepo approach.
+
+  - For previous Python codebase, it has been replaced from beautifulsoup with
+    Puppeteer library.
+
+  - For the frontend, it was previously written with Vue CLI on December 4,
+    2021, with the long-awaited Nuxt 3 Stable release, the website will be
+    rewritten back to Vue.
 
 ## 2022
 
 ### December 17
+
 - Initialized Nextron app for manually managing drawn characters via Redis
 
 ### December 15
+
 - Reroute VS Code intellsense from root directory
 - Organize UI component types
 
@@ -43,21 +45,22 @@
 
 ### July 27
 
-- Decommission Go backend, Python is good and fast enough - Go might be
-  an overkill
+- Decommission Go backend, Python is good and fast enough - Go might be an
+  overkill
 
 ### July 26
 
-- Added Cypress for Unit and E2E (end-to-end) testing, making sure the app
-  is bug-free!
+- Added Cypress for Unit and E2E (end-to-end) testing, making sure the app is
+  bug-free!
 - Finally regex'd the date in the scraper script!
 
 ### July 16
 
-- Working on Gin web server and Colly scraper in the Go programming language
-  for even faster performance.
+- Working on Gin web server and Colly scraper in the Go programming language for
+  even faster performance.
 - Moved the new project to this repo and kept all the previous commits from
-  April from the [initial archived repository](https://github.com/skepfusky/pandapaco-drawing-stats-old)
+  April from the
+  [initial archived repository](https://github.com/skepfusky/pandapaco-drawing-stats-old)
   maintaining the previous commits and branches.
 
 ### June 29
@@ -66,8 +69,7 @@
 
 ### June 12
 
-- Removed `data` folder, including the Jupyter Notebook file (it's bad trust
-  me)
+- Removed `data` folder, including the Jupyter Notebook file (it's bad trust me)
 - Added CC-BY-SA 4.0 license
 
 ### June 01
@@ -100,9 +102,9 @@
 
 ### December 23
 
-- Tried Vue 3 + Vite. I've had issues with setting the images prop from
-  a component. There really wasn't a clear way to do this when building
-  for production.
+- Tried Vue 3 + Vite. I've had issues with setting the images prop from a
+  component. There really wasn't a clear way to do this when building for
+  production.
 
 ### December 04
 
@@ -110,4 +112,5 @@
 
 ### October 31
 
-- Initiated project with plain HTML. Imported libraries such as D3.js and Chart.js.
+- Initiated project with plain HTML. Imported libraries such as D3.js and
+  Chart.js.

@@ -9,40 +9,40 @@ module.exports = {
 		"./pages/**/*.vue",
 		"./plugins/**/*.{js,ts}",
 		"./nuxt.config.{js,ts}",
-		"./app.vue"
+		"./app.vue",
 	],
 	theme: {
 		fontFamily: {
-			"inter": ["Inter", ...defaultTheme.fontFamily.sans],
-			"open-sans": ["Open Sans", ...defaultTheme.fontFamily.sans]
+			inter: ["Inter", ...defaultTheme.fontFamily.sans],
+			"open-sans": ["Open Sans", ...defaultTheme.fontFamily.sans],
 		},
-		extend: {}
+		extend: {},
 	},
 	plugins: [
 		basePlugin(({ addBase, addComponents, theme }) => {
 			addBase({
 				html: {
-					"scrollBehavior": "smooth",
-					"overflowX": "hidden",
+					scrollBehavior: "smooth",
+					overflowX: "hidden",
 					"@media (prefers-reduced-motion)": {
-						scrollBehavior: "auto"
-					}
+						scrollBehavior: "auto",
+					},
 				},
 				body: {
 					fontFamily: theme("fontFamily.open-sans"),
-					fontWeight: 500
-				}
+					fontWeight: 500,
+				},
 			}),
-			addComponents({
-				".link-underline": {
-					"text-decoration": "underline",
-					"color": theme("colors.green.500"),
-					"&:hover": {
-						color: theme("colors.green.700")
-					}
-				}
-			})
+				addComponents({
+					".link-underline": {
+						"text-decoration": "underline",
+						color: theme("colors.green.500"),
+						"&:hover": {
+							color: theme("colors.green.700"),
+						},
+					},
+				})
 		}),
-		require("@tailwindcss/typography")
-	]
+		require("@tailwindcss/typography"),
+	],
 }

@@ -29,8 +29,8 @@ useHead({
 		{ property: "og:description", content: props.description },
 		{ property: "og:type", content: "website" },
 		{ property: "og:url", content: URL_PATH },
-		{ property: "og:site_name", content: "Paco Drawing Stats" }
+		{ property: "og:site_name", content: "Paco Drawing Stats" },
 	],
-	link: [{ rel: "canonical", href: URL_PATH }]
+	link: [{ rel: "canonical", href: URL_PATH }],
 })
 </script>

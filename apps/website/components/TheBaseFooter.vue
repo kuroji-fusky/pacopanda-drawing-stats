@@ -27,16 +27,21 @@
 					>
 						<IconGithub font-size="20" class="w-5 text-black" />
 						<span>View source code on GitHub</span>
-						<IconArrowUpRightFromSquare font-size="12" class="relative right-1 top-1.5" />
+						<IconArrowUpRightFromSquare
+							font-size="12"
+							class="relative right-1 top-1.5"
+						/>
 					</FooterLink>
 					<FooterLink external href="https://kurofusky.xyz/portfolio">
 						<IconGrip font-size="20" class="w-5 text-black" />
 						<span>More passion projects by Kuroji</span>
-						<IconArrowUpRightFromSquare font-size="12" class="relative right-1 top-1.5" />
+						<IconArrowUpRightFromSquare
+							font-size="12"
+							class="relative right-1 top-1.5"
+						/>
 					</FooterLink>
-					
 				</div>
-				<article class="flex flex-col gap-y-2.5 w-full pl-5 ">
+				<article class="flex flex-col gap-y-2.5 w-full pl-5">
 					<h2 class="text-xl font-bold uppercase font-inter">Disclaimer</h2>
 					<p>
 						This is an ambitious passion project created by an individual; I do
@@ -71,7 +76,7 @@ import {
 	IconGrip,
 	IconAsterisk,
 	IconCode,
-	IconArrowUpRightFromSquare
+	IconArrowUpRightFromSquare,
 } from "@iconify-prerendered/vue-fa6-solid"
 
 const year = new Date().getFullYear()

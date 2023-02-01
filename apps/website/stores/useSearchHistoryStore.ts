@@ -7,13 +7,13 @@ interface SearchHistoryStore {
 		artwork?: string
 		date: string
 	}> &
-	never[]
+		never[]
 }
 
 export const useSearchHistoryStore = defineStore("history", () => {
 	state: (): SearchHistoryStore => {
 		return {
-			items: []
+			items: [],
 		}
 	}
 })

@@ -1,6 +1,9 @@
 <template>
 	<div class="shelf-container">
-		<div class="shelf-heading" :aria-label="`Shelf container for ${props.heading}`">
+		<div
+			class="shelf-heading"
+			:aria-label="`Shelf container for ${props.heading}`"
+		>
 			<h2>{{ props.heading }}</h2>
 			<NuxtLink to="#" role="button">See more</NuxtLink>
 		</div>

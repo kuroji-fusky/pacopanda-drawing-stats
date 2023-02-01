@@ -51,7 +51,7 @@ const navItems = [
 			{ link: "/browse/tags", text: "By tags" },
 			{ subheading: "Others" },
 			{ link: "/case-study", text: "Case Study" },
-		]
+		],
 	},
 	{ link: "/api", text: "API" },
 	{
@@ -59,9 +59,9 @@ const navItems = [
 		text: "About",
 		dropdown: [
 			{ link: "/about/faq", text: "FAQs" },
-			{ link: "/about/how-i-gather-data", text: "How I gather data" }
-		]
-	}
+			{ link: "/about/how-i-gather-data", text: "How I gather data" },
+		],
+	},
 ]
 </script>
 

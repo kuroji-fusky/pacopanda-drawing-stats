@@ -5,7 +5,7 @@ const args = [
 	"--disable-background-networking",
 	"--disable-background-timer-throttling",
 	"--no-first-run",
-	"--no-sandbox"
+	"--no-sandbox",
 ]
 
 const BASE_URL = "https://www.furaffinity.net/gallery/pacopanda/"
@@ -13,7 +13,7 @@ let TOTAL_PAGES = 1
 
 ;(async () => {
 	const browser = await puppeteer.launch({
-		args: args
+		args: args,
 	})
 
 	const page = await browser.newPage()

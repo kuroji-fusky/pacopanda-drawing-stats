@@ -8,16 +8,17 @@
 ![](https://img.shields.io/github/contributors/kuroji-fusky/pacopanda-drawing-stats)
 
 **Paco Panda Drawing Stats** is a data analysis and data visualization project
-that collects and parses drawing data from a furry artist and illustrator
-Paco Panda.
+that collects and parses drawing data from a furry artist and illustrator Paco
+Panda.
 
-Initially made simply out of curiousity - it has expanded to provide its standalone
-JavaScript library including its own REST and GraphQL APIs, and utilizes Redis as
-the main and in-memory database for its speed and persistency.
+Initially made simply out of curiousity - it has expanded to provide its
+standalone JavaScript library including its own REST and GraphQL APIs, and
+utilizes Redis as the main and in-memory database for its speed and persistency.
 
 ## Project structure
 
-This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it uses Yarn workspace to install and manage dependencies in each subdirectory.
+This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
+uses Yarn workspace to install and manage dependencies in each subdirectory.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
 - `apps`
@@ -30,7 +31,8 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
     - `eslint` - Shared ESLint config
     - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
-  - `puppeteer` - For scraping data using Puppeteer, previously used Python with BeautifulSoup
+  - `puppeteer` - For scraping data using Puppeteer, previously used Python with
+    BeautifulSoup
 
 ## Setup and Installation
 
@@ -71,9 +73,9 @@ yarn install
 ## About this project
 
 The project began on October 31, 2021, and the possible inspiration from this
-project is through McBroken (basically a McDonald's broken ice cream machine site)
-and it'd be interesting to see in all of his drawings to see said data and it's various
-datasets.
+project is through McBroken (basically a McDonald's broken ice cream machine
+site) and it'd be interesting to see in all of his drawings to see said data and
+it's various datasets.
 
 This project collects the following:
 
@@ -81,46 +83,49 @@ This project collects the following:
 - Number of character(s) species and names
 - Media type (either drawn digital or traditional)
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
-- The source where I got the data from (either from FurAffinity or from DeviantArt)
+- The source where I got the data from (either from FurAffinity or from
+  DeviantArt)
 
-Previously, I have to manually source it through FurAffinity and DeviantArt for his draft
-drawings (including his _Art & Biro_ comics). Unfortunately, drawings from
-Twitter won't be counted in order to ease the load on my end and the dataset
-as well since all the data gathered will be hardcoded to the site.
+Previously, I have to manually source it through FurAffinity and DeviantArt for
+his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings
+from Twitter won't be counted in order to ease the load on my end and the
+dataset as well since all the data gathered will be hardcoded to the site.
 
 ### Why did you create this project?
 
-Believe it or not, it's not my intention to impress him in general. I'm just a huge fan of his
-artwork and his unique and adorable art style that I'd want to see how many characters
-he's drawn since the early to mid-2000s but he'd for sure find it interesting as it's more of
-a fun project to a new hobby of mine, learning not only JavaScript but also learning
-a bit of back-end and basic data management in the process of other projects I do.
+Believe it or not, it's not my intention to impress him in general. I'm just a
+huge fan of his artwork and his unique and adorable art style that I'd want to
+see how many characters he's drawn since the early to mid-2000s but he'd for
+sure find it interesting as it's more of a fun project to a new hobby of mine,
+learning not only JavaScript but also learning a bit of back-end and basic data
+management in the process of other projects I do.
 
 Initially, I wanted to show realtime data from Google Sheets and render data via
 a chart library from a website and I'd thought I'll take one of my favorite
 artists and run it through this process.
 
 In the early stages of this project - I have limited backend knowledge and I
-needed a help with [@thatITfox][it] for setting up a Flask web server, and
-now currently working with Redis stuff!
+needed a help with [@thatITfox][it] for setting up a Flask web server, and now
+currently working with Redis stuff!
 
 ### Isn't this taking it too far?
 
 As someone who admires his art, yes... to some extent. Well, sure - it may feel
 like I watch him on every step, but trust me, I only use them for analytical and
-informational purposes; parsing drawing data on his Twitter profile would be difficult
-and will require more work.
+informational purposes; parsing drawing data on his Twitter profile would be
+difficult and will require more work.
 
-It's more of a serious, yet passion side-project of mine to show various
-kinds of drawing data from his.
+It's more of a serious, yet passion side-project of mine to show various kinds
+of drawing data from his.
 
 ### Are the images/drawings stored in the database?
 
-No, most image requests are coming from FurAffinity since they use Cloudflare as their CDN
-under the hood to cache media types.
+No, most image requests are coming from FurAffinity since they use Cloudflare as
+their CDN under the hood to cache media types.
 
 ## License
 
-Its source code licensed under MIT; Other third-party content licensed under CC-BY-SA 4.0
+Its source code licensed under MIT; Other third-party content licensed under
+CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox

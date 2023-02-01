@@ -6,24 +6,22 @@ export default defineNuxtConfig({
 		[
 			"@pinia/nuxt",
 			{
-				autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
-			}
-		]
+				autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
+			},
+		],
 	],
-	css: [
-		"~/assets/css/main.scss"
-	],
+	css: ["~/assets/css/main.scss"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
-			autoprefixer: {}
-		}
+			autoprefixer: {},
+		},
 	},
 	webpack: {
-		optimizeCSS: true
+		optimizeCSS: true,
 	},
 	typescript: {
 		strict: true,
-		shim: false
-	}
+		shim: false,
+	},
 })
