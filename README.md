@@ -52,12 +52,12 @@ yarn install
 
 ### Scripts
 
-| Command       | Descrption                      | Directory      |
-| ------------- | ------------------------------- | -------------- |
-| `dev:web`     | Open a website local dev server | `apps/website` |
-| `build:web`   | Build the website               | `apps/website` |
-| `preview:web` | Preview the website             | `apps/website` |
-| `puppeteer`   | Execute the Puppeteer script    | `puppeteer`    |
+| Command       | Descrption                      | Directory           |
+| ------------- | ------------------------------- | ------------------- |
+| `dev:web`     | Open a website local dev server | `apps/website`      |
+| `build:web`   | Build the website               | `apps/website`      |
+| `preview:web` | Preview the website             | `apps/website`      |
+| `puppeteer`   | Execute the Puppeteer script    | `scripts/puppeteer` |
 
 ## API
 
