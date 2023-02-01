@@ -1,8 +1,10 @@
 {
   "semi": false,
   "tabWidth": 2,
-  "quoteProps": "consistent",
+  "quoteProps": "as-needed",
   "singleQuote": false,
   "arrowParens": "always",
-  "trailingComma": "none"
+  "printWidth": 80,
+  "vueIndentScriptAndStyle": false,
+  "proseWrap": "always"
 }
