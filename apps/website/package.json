@@ -2,17 +2,12 @@
 	"name": "@pds/website",
 	"private": true,
 	"version": "0.0.0",
+	"license": "GPL-3.0",
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview"
-	},
-	"workspaces": {
-		"nohoist": [
-			"@iconify-prerendered/vue-fa6-brands",
-			"@iconify-prerendered/vue-fa6-solid"
-		]
 	},
 	"devDependencies": {
 		"@fontsource/inter": "^4.5.15",

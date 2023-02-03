@@ -1,14 +1,16 @@
-import express, { Express, Request, Response } from "express"
-import dotenv from "dotenv"
-dotenv.config()
+import fastify from "fastify";
 
-const app: Express = express()
-const port = 5000
+const server = fastify()
 
-app.get("/", (req: Request, res: Response) => {
-	res.send("Simple af Express + TypeScript Server")
+server.get("/ping", async (request, reply) => {
+  return "pong\n"
 })
 
-app.listen(port, () => {
-	console.log(`Server is running at https://localhost:${port}`)
+server.listen({ port: 5000 }, (err, address) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+
+  console.log(`[i] Server listening at ${address}!`)
 })

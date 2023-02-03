@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "strict": true,
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "noImplicitAny": true
   },
   "exclude": [

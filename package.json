@@ -1,6 +1,6 @@
 {
 	"name": "pandapaco-drawing-stats",
-	"license": "MIT",
+	"license": "GPL-3.0",
 	"private": true,
 	"type": "module",
 	"workspaces": [

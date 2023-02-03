@@ -18,7 +18,7 @@ utilizes Redis as the main and in-memory database for its speed and persistency.
 ## Project structure
 
 This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
-uses Yarn workspace to install and manage dependencies in each subdirectory.
+uses Yarn workspaces to install and manage dependencies in each subdirectory.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
 - `apps`
@@ -26,10 +26,8 @@ uses Yarn workspace to install and manage dependencies in each subdirectory.
   - `graphql` - A Fastify GraphQL API
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
-  - `shared`
-    - `types` - Shared TypeScript declarations
-    - `eslint` - Shared ESLint config
-    - `tsconfig` - Shared TypeScript config
+  - `types` - Shared TypeScript declarations
+  - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
   - `puppeteer` - For scraping data using Puppeteer, previously used Python with
     BeautifulSoup
