@@ -14,18 +14,16 @@ const props = defineProps<{
 	description?: string
 }>()
 
-const SITE_TITLE = `${props.title} | Paco Drawing Stats`
-
 useHead({
-	title: SITE_TITLE,
+	title: props.title,
 	meta: [
 		{ name: "description", content: props.description },
-		{ name: "twitter:title", content: SITE_TITLE },
+		{ name: "twitter:title", content: props.title },
 		{ name: "twitter:description", content: props.description },
 		{ name: "twitter:url", content: URL_PATH },
 		{ name: "twitter:card", content: "summary_large_card" },
 		{ name: "twitter:creator", content: "@kurojifusky" },
-		{ property: "og:title", content: SITE_TITLE },
+		{ property: "og:title", content: props.title },
 		{ property: "og:description", content: props.description },
 		{ property: "og:type", content: "website" },
 		{ property: "og:url", content: URL_PATH },
