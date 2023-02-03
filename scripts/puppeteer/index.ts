@@ -13,7 +13,7 @@ let TOTAL_PAGES = 1
 
 ;(async () => {
 	const browser = await puppeteer.launch({
-		args: args,
+		args,
 	})
 
 	const page = await browser.newPage()
@@ -24,7 +24,7 @@ let TOTAL_PAGES = 1
 		TOTAL_PAGES = 1
 
 		// prettier-ignore
-		const query = `.submission-list form[action="/gallery/pacopanda/${TOTAL_PAGES+1}/"]`
+		const query = `.submission-list form[action="/gallery/pacopanda/${TOTAL_PAGES + 1}/"]`
 		return document.querySelector(query)
 	})
 

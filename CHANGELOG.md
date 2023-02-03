@@ -2,6 +2,10 @@
 
 ## 2023
 
+### February 3
+
+- Change license from MIT to GPL-3.0
+
 ### January 22
 
 - Axed over ~200 commits and restart project entirely in JavaScript
