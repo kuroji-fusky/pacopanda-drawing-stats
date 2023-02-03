@@ -1,38 +1,37 @@
 type CombinedArray<T> = T | T[]
 
-export type ExplicitSpecies = Capitalize<
+export type ExplicitCommonSpecies = Capitalize<
 	| "pup"
 	| "cat"
 	| "dog"
 	| "fox"
 	| "raccoon"
 	| "wolf"
-	| "otter"
-	| "ferret"
 	| "hyena"
 	| "coyote"
+	| "bat"
+	| "weasel"
+	| "otter"
+	| "ferret"
 	| "bear"
 	| "panda"
 	| "mouse"
 	| "lion"
 	| "tiger"
-	| "Snow Leopard"
 	| "rabbit"
->
+  > & "Snow Leopard"
 
-type Species = CombinedArray<ExplicitSpecies> & CombinedArray<string>
+type Species = CombinedArray<ExplicitCommonSpecies> & CombinedArray<string>
+type ArrayAppendSlug<T> = (T & { slug: string })[]
 
 export interface Character {
 	name: string
 	fullName: string
 	species: Species
 	hybrid?: boolean
-	appearances: {
+	appearances?: {
 		count: number
-		artworks: Array<{
-			title: string
-			slug: string
-		}>
+		artworks: ArrayAppendSlug<{ title: string }>
 	}
 }
 
@@ -41,15 +40,15 @@ export interface Artwork {
 	description?: string
 	publishDate: string
 	year: number
-	characters: Array<{
+	characters: ArrayAppendSlug<{
 		name: string
 		species: Species
-		slug: string
 	}>
 	sources: {
 		deviantArt: string
 		furAffinity: string
 		weasyl: string
+	} & Partial<{
 		[key: string]: string
-	}
+	}>
 }

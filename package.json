@@ -5,7 +5,7 @@
 	"type": "module",
 	"workspaces": [
 		"apps/*",
-		"packages/shared",
+		"packages/*",
 		"scripts/puppeteer"
 	],
 	"scripts": {

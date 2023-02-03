@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const app: Express = express()
-const port = process.env.PORT
+const port = 5000
 
 app.get("/", (req: Request, res: Response) => {
 	res.send("Simple af Express + TypeScript Server")
