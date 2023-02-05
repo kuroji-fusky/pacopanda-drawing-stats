@@ -3,7 +3,7 @@
 	"name": "@pds/express",
 	"version": "0.0.0",
 	"main": "index.ts",
-	"license": "GPL-3.0",
+	"license": "GPL-2.0",
 	"scripts": {
 		"dev": "concurrently \"yarn tsc:watch\" \"nodemon -q server.ts\"",
 		"tsc:watch": "npx tsc --watch --noEmit --preserveWatchOutput",

@@ -2,7 +2,7 @@
 
 ![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
 
-![MIT License](https://img.shields.io/badge/license-MIT-336600)
+![license - pacopanda-drawing-stats](https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?color=336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/kuroji-fusky/pacopanda-drawing-stats)](https://github.com/kuroji-fusky/pacopanda-drawing-stats/issues)
 ![](https://img.shields.io/github/last-commit/kuroji-fusky/pacopanda-drawing-stats)
 ![](https://img.shields.io/github/contributors/kuroji-fusky/pacopanda-drawing-stats)
@@ -123,7 +123,7 @@ their CDN under the hood to cache media types.
 
 ## License
 
-Its source code licensed under MIT; Other third-party content licensed under
+Its source code licensed under GPL-2.0; Other third-party content licensed under
 CC-BY-SA 4.0
 
 [it]: https://github.com/thatITfox

@@ -2,9 +2,9 @@
 
 ## 2023
 
-### February 3
+### February 5
 
-- Change license from MIT to GPL-3.0
+- Change license from MIT to GPL-3.0 to finally GPL-2.0
 
 ### January 22
 
