@@ -19,6 +19,10 @@
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
 	},
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">= 8.0.0"
+  },
 	"devDependencies": {
 		"concurrently": "^7.6.0",
 		"husky": "^8.0.0",
