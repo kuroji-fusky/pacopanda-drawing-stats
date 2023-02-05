@@ -21,11 +21,9 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces to install and manage dependencies in each subdirectory.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
-- `apps`
-  - `api` - A Fastify REST API
-  - `graphql` - A Fastify GraphQL API
-  - `website` - The website written in Nuxt 3 + Tailwind CSS
-- `packages`
+- `api` - API for both REST and GraphQL
+- `website` - The website written in Nuxt 3 + Tailwind CSS
+- `shared`
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
