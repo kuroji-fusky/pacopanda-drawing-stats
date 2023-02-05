@@ -123,7 +123,6 @@ their CDN under the hood to cache media types.
 
 ## License
 
-Its source code licensed under GPL-2.0; Other third-party content licensed under
-CC-BY-SA 4.0
+GPL-2.0
 
 [it]: https://github.com/thatITfox
