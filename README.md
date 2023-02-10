@@ -19,6 +19,8 @@ utilizes Redis as the main and in-memory database for its speed and persistency.
 
 This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces to install and manage dependencies in each subdirectory.
+This entire project uses the ES Module syntax, some files utilize the `.cjs` for
+Tailwind and PostCSS configs.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
 - `apps`
@@ -26,6 +28,7 @@ uses Yarn workspaces to install and manage dependencies in each subdirectory.
   - `api` - API for both REST and GraphQL
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `shared`
+  - `config` - Other configs like Tailwind and others
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
@@ -38,7 +41,7 @@ uses Yarn workspaces to install and manage dependencies in each subdirectory.
 
 - Node.js versions 16 or higher (LTS recommended)
 - Yarn Package Manager
-- WSL/Git Bash (for Windows users required to execute  Shell scripts)
+- WSL/Git Bash (for Windows users required to execute Shell scripts)
 
 ### Installation
 
