@@ -1,8 +1,5 @@
 {
-	"extends": "tsconfig/base.json",
-	"compilerOptions": {
-		"lib": ["ES2020", "DOM"]
-	},
+	"extends": "tsconfig/dom.json",
 	"ts-node": {
 		"esm": true
 	}
