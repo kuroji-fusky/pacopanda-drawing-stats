@@ -21,8 +21,10 @@ This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces to install and manage dependencies in each subdirectory.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
-- `api` - API for both REST and GraphQL
-- `website` - The website written in Nuxt 3 + Tailwind CSS
+- `apps`
+  - `admin` - A Tauri admin app for managing stuff (Rust required)
+  - `api` - API for both REST and GraphQL
+  - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `shared`
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
@@ -36,14 +38,21 @@ uses Yarn workspaces to install and manage dependencies in each subdirectory.
 
 - Node.js versions 16 or higher (LTS recommended)
 - Yarn Package Manager
-- WSL/Git Bash (for Windows users required to execute Bash Shell scripts)
+- WSL/Git Bash (for Windows users required to execute  Shell scripts)
 
 ### Installation
 
 Install dependencies with Yarn
 
-```sh
+```console
 yarn install
+```
+
+Clone the .env files
+
+```console
+cp apps/website/.env.example apps/website/.env
+cp apps/admin/.env.example apps/admin/.env
 ```
 
 ### Scripts
