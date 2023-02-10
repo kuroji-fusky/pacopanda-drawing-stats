@@ -2,6 +2,11 @@
 
 ## 2023
 
+### February 10
+
+- Add Tauri admin app for managing characters via UI
+  - P.S. I lied about the project being entirely JavaScript, you'll need Rust now lol
+
 ### February 5
 
 - Change license from MIT to GPL-3.0 to finally GPL-2.0

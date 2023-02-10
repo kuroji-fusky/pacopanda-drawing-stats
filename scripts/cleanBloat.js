@@ -1,8 +1,9 @@
 import fs from "fs"
 
 const nodeDirs = [
-  "./apps/website",
   "./apps/api",
+  "./apps/website",
+  "./apps/admin",
   "./scripts/puppeteer",
   "."
 ]

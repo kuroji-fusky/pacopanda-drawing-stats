@@ -4,8 +4,7 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
-		"api",
-		"website",
+		"apps/*",
 		"shared/*",
 		"scripts/puppeteer"
 	],
@@ -15,7 +14,7 @@
 		"build:web": "yarn workspace @pds/website build",
 		"preview:web": "yarn workspace @pds/website preview",
 		"puppeteer": "yarn workspace @pds/puppeteer start",
-		"postinstall": "cd website && nuxt prepare",
+		"postinstall": "cd apps/website && nuxt prepare",
 		"prepare": "husky install",
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
