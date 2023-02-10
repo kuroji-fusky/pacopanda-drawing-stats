@@ -1,3 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ErrorMsg from './components/ErrorMsg.vue';
 
-<template>stripped boilerplate, put something here you lazy doofus</template>
+</script>
+
+<template>
+  <ErrorMsg />
+</template>
