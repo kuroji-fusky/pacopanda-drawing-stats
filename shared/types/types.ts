@@ -19,7 +19,7 @@ export type ExplicitCommonSpecies = Capitalize<
 	| "lion"
 	| "tiger"
 	| "rabbit"
-  > & "Snow Leopard"
+  > | "Snow Leopard"
 
 type Species = CombinedArray<ExplicitCommonSpecies> & CombinedArray<string>
 type ArrayAppendSlug<T> = (T & { slug: string })[]
