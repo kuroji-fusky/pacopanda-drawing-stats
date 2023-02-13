@@ -11,16 +11,17 @@
 that collects and parses drawing data from a furry artist and illustrator Paco
 Panda.
 
-Initially made simply out of curiousity - it has expanded to provide its
-standalone JavaScript library including its own REST and GraphQL APIs, and
-utilizes Redis as the main and in-memory database for its speed and persistency.
+Initially made simply out of curiousity - it has expanded to provide its own
+REST and GraphQL APIs, and utilizes Redis as the main and in-memory database for
+its speed and persistency.
 
 ## Project structure
 
 This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
-uses Yarn workspaces to install and manage dependencies in each subdirectory.
-This entire project uses the ES Module syntax, some files utilize the `.cjs` for
-Tailwind and PostCSS configs.
+uses Yarn workspaces and Turborepo to install and manage dependencies in each
+subdirectory and remotely cache builds on the cloud. The entire project uses the
+ES Module syntax, with some files utilize the `.cjs` for Tailwind and PostCSS
+configs.
 
 - `.github` - CI Workflow stuff such as type-checking, linting, etc.
 - `apps`
@@ -32,16 +33,17 @@ Tailwind and PostCSS configs.
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
-  - `puppeteer` - For scraping data using Puppeteer, previously used Python with
-    BeautifulSoup
+  - `scraper` - For scraping public data using Puppeteer and Cheerio, previously
+    used Python with BeautifulSoup
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- Node.js versions 16 or higher (LTS recommended)
+- Node.js versions 18 or higher (LTS recommended)
+- Rust (for running and compiling admin app; `cargo 1.65.0` or higher)
 - Yarn Package Manager
-- WSL/Git Bash (for Windows users required to execute Shell scripts)
+- [Optional] WSL/Git Bash (for Windows users required to execute Shell scripts)
 
 ### Installation
 
@@ -60,12 +62,12 @@ cp apps/admin/.env.example apps/admin/.env
 
 ### Scripts
 
-| Command       | Descrption                      | Directory           |
-| ------------- | ------------------------------- | ------------------- |
-| `dev:web`     | Open a website local dev server | `apps/website`      |
-| `build:web`   | Build the website               | `apps/website`      |
-| `preview:web` | Preview the website             | `apps/website`      |
-| `puppeteer`   | Execute the Puppeteer script    | `scripts/puppeteer` |
+| Command       | Descrption                      | Directory         |
+| ------------- | ------------------------------- | ----------------- |
+| `dev:web`     | Open a website local dev server | `apps/website`    |
+| `build:web`   | Build the website               | `apps/website`    |
+| `preview:web` | Preview the website             | `apps/website`    |
+| `puppeteer`   | Execute the Puppeteer script    | `scripts/scraper` |
 
 ## API
 
@@ -75,8 +77,9 @@ cp apps/admin/.env.example apps/admin/.env
 
 ### Planned Endpoints
 
-- `/character{/character}{query}`
-- `/artworks{/year}{/title}{query}`
+- `/character/:character?={query}`
+- `/characters/?={query}`
+- `/artwork/:year/:title?={query}`
 
 ## About this project
 
@@ -91,8 +94,8 @@ This project collects the following:
 - Number of character(s) species and names
 - Media type (either drawn digital or traditional)
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
-- The source where I got the data from (either from FurAffinity or from
-  DeviantArt)
+- The source where I got the data from (i.e. FurAffinity, DeviantArt, InkBunny,
+  Weasyl, etc.)
 
 Previously, I have to manually source it through FurAffinity and DeviantArt for
 his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings

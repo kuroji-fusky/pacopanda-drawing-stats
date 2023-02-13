@@ -2,6 +2,12 @@
 
 ## 2023
 
+### February 13
+
+- Bump Node version from ^16 to ^18
+- Add Turborepo for remote caching
+- Add Cheerio library for web scraping with static sites like FurAffinity
+
 ### February 10
 
 - Add Tauri admin app for managing characters via UI
