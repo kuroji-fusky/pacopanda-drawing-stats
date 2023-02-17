@@ -2,6 +2,12 @@
 
 ## 2023
 
+### February 17
+
+- Ditched Tauri app for a simple Vue Vite app
+  - With auto import functionality with `unplugin-*`
+  - I changed my mind (again) and sticking to a strictly JS codebase only
+
 ### February 13
 
 - Bump Node version from ^16 to ^18

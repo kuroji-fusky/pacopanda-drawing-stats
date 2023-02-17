@@ -23,13 +23,14 @@ subdirectory and remotely cache builds on the cloud. The entire project uses the
 ES Module syntax, with some files utilize the `.cjs` for Tailwind and PostCSS
 configs.
 
-- `.github` - CI Workflow stuff such as type-checking, linting, etc.
+- `.github` - CI/CD Workflow stuff
+- `.husky` - For pre-commit hooks for lint-staging
 - `apps`
-  - `admin` - A Tauri admin app for managing stuff (Rust required)
+  - `admin-vite` - A web admin app in Vite and Vue 3
   - `api` - API for both REST and GraphQL
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `shared`
-  - `config` - Other configs like Tailwind and others
+  - `config` - Other configs like Tailwind and others like styles
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
 - `scripts` - Script(s) for reinstalling packages
@@ -41,7 +42,6 @@ configs.
 ### Prerequisites
 
 - Node.js versions 18 or higher (LTS recommended)
-- Rust (for running and compiling admin app; `cargo 1.65.0` or higher)
 - Yarn Package Manager
 - [Optional] WSL/Git Bash (for Windows users required to execute Shell scripts)
 
