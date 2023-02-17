@@ -8,6 +8,11 @@
 		"shared/*",
 		"scripts/puppeteer"
 	],
+	"lint-staged": {
+		"*.{json,md}": "yarn prettier:write",
+		"apps/**": "yarn prettier:write",
+		"shared/**": "yarn prettier:write"
+	},
 	"scripts": {
 		"cleanup": "node ./scripts/cleanBloat.js && yarn",
 		"dev:web": "yarn workspace @pds/website dev",
@@ -25,14 +30,15 @@
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
 	},
-	"engines": {
-		"node": ">18.0.0",
-		"npm": ">= 8.0.0"
-	},
 	"devDependencies": {
 		"concurrently": "^7.6.0",
 		"husky": "^8.0.0",
+		"lint-staged": "^13.1.2",
 		"prettier": "^2.8.3",
 		"turbo": "^1.7.4"
+	},
+	"engines": {
+		"node": ">18.0.0",
+		"npm": ">= 8.0.0"
 	}
 }
