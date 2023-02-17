@@ -27,7 +27,7 @@
 		"@tailwindcss/typography": "^0.5.9",
 		"@vueuse/core": "^9.11.1",
 		"autoprefixer": "^10.4.13",
-		"config": "*",
+		"@pds/config": "*",
 		"gsap": "^3.11.4",
 		"nuxt": "^3.0.0",
 		"pinia": "^2.0.29",
