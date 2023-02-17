@@ -1,6 +1,3 @@
-# Ignore Tauri admin app directory
-apps/admin
-
 # Ignore other files and directories that won't be necessarily needed
 .vscode
 .husky

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const basePlugin = require("tailwindcss/plugin")
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
@@ -9,7 +10,31 @@ module.exports = {
 			"jetbrains-mono": ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
 		},
 	},
-  plugins: [
-    require("@tailwindcss/typography")
-  ]
+	plugins: [
+		basePlugin(({ addBase, addComponents, theme }) => {
+			addBase({
+				html: {
+					scrollBehavior: "smooth",
+					overflowX: "hidden",
+					"@media (prefers-reduced-motion)": {
+						scrollBehavior: "auto",
+					},
+				},
+				body: {
+					fontFamily: theme("fontFamily.open-sans"),
+					fontWeight: 500,
+				},
+			}),
+				addComponents({
+					".link-underline": {
+						"text-decoration": "underline",
+						color: theme("colors.green.500"),
+						"&:hover": {
+							color: theme("colors.green.700"),
+						},
+					},
+				})
+		}),
+		require("@tailwindcss/typography"),
+	],
 }
