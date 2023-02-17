@@ -1,15 +1,15 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "strict": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "nodenext",
-    "esModuleInterop": true,
-    "noUnusedParameters": false,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"strict": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"noUnusedParameters": false,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": true,
 		"skipLibCheck": true
-  },
-  "exclude": ["node_modules"]
+	},
+	"exclude": ["node_modules"]
 }

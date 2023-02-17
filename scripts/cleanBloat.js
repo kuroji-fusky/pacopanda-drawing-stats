@@ -1,11 +1,11 @@
 import fs from "fs"
 
 const nodeDirs = [
-  "./apps/api",
-  "./apps/website",
-  "./apps/admin",
-  "./scripts/puppeteer",
-  "."
+	"./apps/api",
+	"./apps/website",
+	"./apps/admin",
+	"./scripts/puppeteer",
+	".",
 ]
 
 nodeDirs.forEach((dir) => {
