@@ -7,6 +7,7 @@
 - Ditched Tauri app for a simple Vue Vite app
   - With auto import functionality with `unplugin-*`
   - I changed my mind (again) and sticking to a strictly JS codebase only
+- Downgrade Node version to ^16
 
 ### February 13
 
