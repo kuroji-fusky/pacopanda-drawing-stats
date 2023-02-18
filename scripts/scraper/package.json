@@ -8,16 +8,12 @@
 		"start": "ts-node index.ts"
 	},
 	"dependencies": {
-		"@pds/tsconfig": "workspace:*",
 		"@types/node": "^18.11.18",
 		"cheerio": "^1.0.0-rc.12",
 		"puppeteer": "^19.5.2",
 		"redis": "^4.5.1",
 		"ts-node": "^10.9.1",
-<<<<<<< HEAD
 		"tsconfig": "*",
-=======
->>>>>>> ac36948b229c1d8efe2b014c22dd8f1f4fab20e9
 		"typescript": "^4.9.4"
 	}
 }
