@@ -1,5 +1,5 @@
 {
-	"extends": "tsconfig/dom.json",
+	"extends": "@pds/tsconfig/dom.json",
 	"ts-node": {
 		"esm": true
 	}
