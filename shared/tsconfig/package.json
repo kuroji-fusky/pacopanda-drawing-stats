@@ -1,9 +1,9 @@
 {
-	"name": "tsconfig",
+	"name": "@pds/tsconfig",
 	"version": "0.0.0",
-	"license": "GPL-2.0",
 	"private": true,
-	"publishConfig": {
-		"access": "public"
-	}
+	"files": [
+		"base.json",
+		"dom.json"
+	]
 }

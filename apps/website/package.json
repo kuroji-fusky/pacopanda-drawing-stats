@@ -12,7 +12,8 @@
 	"workspaces": {
 		"nohoist": [
 			"@iconify-prerendered/vue-fa6-brands",
-			"@iconify-prerendered/vue-fa6-solid"
+			"@iconify-prerendered/vue-fa6-solid",
+			"@pds/config"
 		]
 	},
 	"devDependencies": {
@@ -23,11 +24,11 @@
 		"@intlify/unplugin-vue-i18n": "^0.8.1",
 		"@nuxt/content": "^2.3.0",
 		"@nuxtjs/color-mode": "^3.2.0",
+		"@pds/config": "*",
 		"@pinia/nuxt": "^0.4.6",
 		"@tailwindcss/typography": "^0.5.9",
 		"@vueuse/core": "^9.11.1",
 		"autoprefixer": "^10.4.13",
-		"pds-custom-config": "*",
 		"gsap": "^3.11.4",
 		"nuxt": "^3.0.0",
 		"pinia": "^2.0.29",
