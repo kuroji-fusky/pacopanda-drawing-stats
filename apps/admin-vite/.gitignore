@@ -25,3 +25,4 @@ dist-ssr
 
 # Ignore auto-import type declarations
 *.d.ts
+!vite-env.d.ts
