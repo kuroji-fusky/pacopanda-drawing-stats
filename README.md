@@ -31,7 +31,7 @@ configs.
   - `config` - Other configs like Tailwind and others like styles
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
-	- `ui` - Shared `.vue` components
+  - `ui` - Shared `.vue` components
 - `scripts`
   - `scraper` - For scraping public data using Puppeteer and Cheerio, previously
     used Python with BeautifulSoup
