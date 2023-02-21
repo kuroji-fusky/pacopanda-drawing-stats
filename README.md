@@ -1,6 +1,4 @@
-<h1 align="center">Paco Panda Drawing Stats</h1>
-
-![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
+![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/220274497-18b6a944-a759-469e-a10e-1d9b1ec6a95b.png)
 
 ![license - pacopanda-drawing-stats](https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?color=336600)
 [![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/kuroji-fusky/pacopanda-drawing-stats)](https://github.com/kuroji-fusky/pacopanda-drawing-stats/issues)
@@ -33,7 +31,8 @@ configs.
   - `config` - Other configs like Tailwind and others like styles
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
-- `scripts` - Script(s) for reinstalling packages
+	- `ui` - Shared `.vue` components
+- `scripts`
   - `scraper` - For scraping public data using Puppeteer and Cheerio, previously
     used Python with BeautifulSoup
 
@@ -41,7 +40,7 @@ configs.
 
 ### Prerequisites
 
-- Node.js versions 18 or higher (LTS recommended)
+- Node.js versions 16 or higher (LTS recommended)
 - Yarn Package Manager
 - [Optional] WSL/Git Bash (for Windows users required to execute Shell scripts)
 
@@ -57,7 +56,7 @@ Clone the .env files
 
 ```console
 cp apps/website/.env.example apps/website/.env
-cp apps/admin/.env.example apps/admin/.env
+cp apps/admin-vite/.env.example apps/admin/.env
 ```
 
 ### Scripts
@@ -82,6 +81,8 @@ cp apps/admin/.env.example apps/admin/.env
 - `/artwork/:year/:title?={query}`
 
 ## About this project
+
+![](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
 
 The project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine
@@ -122,7 +123,7 @@ currently working with Redis stuff!
 ### Isn't this taking it too far?
 
 As someone who admires his art, yes... to some extent. Well, sure - it may feel
-like I watch him on every step, but trust me, I only use them for analytical and
+like I watch him on every step, but I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be
 difficult and will require more work.
 
@@ -136,6 +137,6 @@ their CDN under the hood to cache media types.
 
 ## License
 
-GPL-2.0
+Source code licensed under GPL-2.0
 
 [it]: https://github.com/thatITfox
