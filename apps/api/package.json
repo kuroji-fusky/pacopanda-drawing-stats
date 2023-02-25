@@ -7,7 +7,6 @@
 	"scripts": {
 		"dev": "concurrently \"yarn tsc:watch\" \"nodemon -q server.ts\"",
 		"tsc:watch": "npx tsc --watch --noEmit --preserveWatchOutput",
-		"build": "tsc",
 		"start": "node dist/server.js"
 	},
 	"dependencies": {
