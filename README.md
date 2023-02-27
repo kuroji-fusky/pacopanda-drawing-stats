@@ -15,11 +15,13 @@ its speed and persistency.
 
 ## Project structure
 
+The entire codebase is written entirely in TypeScript and utilizes the ES Module
+syntax, with some files utilize the `.cjs` file type for Prettier, Tailwind, and
+PostCSS configs.
+
 This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces and Turborepo to install and manage dependencies in each
-subdirectory and remotely cache builds on the cloud. The entire project uses the
-ES Module syntax, with some files utilize the `.cjs` for Tailwind and PostCSS
-configs.
+subdirectory and remotely cache builds on the cloud via Turborepo.
 
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
@@ -46,13 +48,13 @@ configs.
 
 ### Installation
 
-Install dependencies with Yarn
+Install dependencies with Yarn:
 
 ```console
 yarn install
 ```
 
-Clone the .env files
+Clone the `.env` files:
 
 ```console
 cp apps/website/.env.example apps/website/.env
@@ -61,18 +63,55 @@ cp apps/admin-vite/.env.example apps/admin/.env
 
 ### Scripts
 
-| Command       | Descrption                      | Directory         |
-| ------------- | ------------------------------- | ----------------- |
-| `dev:web`     | Open a website local dev server | `apps/website`    |
-| `build:web`   | Build the website               | `apps/website`    |
-| `preview:web` | Preview the website             | `apps/website`    |
-| `puppeteer`   | Execute the Puppeteer script    | `scripts/scraper` |
+> Any changes to the files when running the `build` command will run the builds
+> usually, then get remotely cached via Turborepo.
+
+#### Running in bulk
+
+Run both the website and admin dashboard, opening ports 3000 and 5173 w/o
+needing to rely the `concurrently` library:
+
+```console
+yarn dev
+```
+
+Build both the website and admin dashboard:
+
+```console
+yarn dev
+```
+
+#### Running separately
+
+Run the website only, this will open port 3000 on `localhost`:
+
+```console
+yarn dev:web
+```
+
+Run the admin dashboard only, this will open port 5173 on `localhost`:
+
+```console
+yarn dev:admin
+```
+
+Build the website only:
+
+```console
+yarn build:web
+```
+
+Build the admin dashboard:
+
+```console
+yarn build:admin
+```
 
 ## API
 
 ![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
 
-> Section WIP
+> **Note** Section WIP
 
 ### Planned Endpoints
 
@@ -105,18 +144,15 @@ dataset as well since all the data gathered will be hardcoded to the site.
 
 ### Why did you create this project?
 
-Believe it or not, it's not my intention to impress him in general. I'm just a
-huge fan of his artwork and his unique and adorable art style that I'd want to
-see how many characters he's drawn since the early to mid-2000s but he'd for
-sure find it interesting as it's more of a fun project to a new hobby of mine,
-learning not only JavaScript but also learning a bit of back-end and basic data
-management in the process of other projects I do.
+Believe it or not, it's not my intention to impress him in general.
 
-Initially, I wanted to show realtime data from Google Sheets and render data via
-a chart library from a website and I'd thought I'll take one of my favorite
-artists and run it through this process.
+I'm just a huge fan of his artwork and his unique and adorable art style that
+I'd want to see how many characters he's drawn since the early to mid-2000s but
+he'd for sure find it interesting as it's more of a fun project to a new hobby
+of mine, learning not only JavaScript but also learning a bit of back-end and
+basic data management in the process of other projects I do.
 
-In the early stages of this project - I have limited backend knowledge and I
+During the early stages of this project - I have limited backend knowledge and I
 needed a help with [@thatITfox][it] for setting up a Flask web server, and now
 currently working with Redis stuff!
 
@@ -127,8 +163,8 @@ like I watch him on every step, but I only use them for analytical and
 informational purposes; parsing drawing data on his Twitter profile would be
 difficult and will require more work.
 
-It's more of a serious, yet passion side-project of mine to show various kinds
-of drawing data from his.
+It's more of a serious yet passion side-project of mine to show various kinds of
+drawing data from his.
 
 ### Are the images/drawings stored in the database?
 
