@@ -17,6 +17,9 @@ export default defineNuxtConfig({
 	plugins: [{ src: "~/plugins/vercel.ts", mode: "client" }],
 	app: {
 		head: {
+			htmlAttrs: {
+				lang: "en",
+			},
 			script: [
 				{
 					// prettier-ignore

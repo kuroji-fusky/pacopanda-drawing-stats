@@ -22,7 +22,7 @@ ES Module syntax, with some files utilize the `.cjs` for Tailwind and PostCSS
 configs.
 
 - `.github` - CI/CD Workflow stuff
-- `.husky` - For pre-commit hooks for lint-staging
+- `.husky` - Pre-commit hooks for lint-staging
 - `apps`
   - `admin-vite` - A web admin app in Vite and Vue 3
   - `api` - API for both REST and GraphQL

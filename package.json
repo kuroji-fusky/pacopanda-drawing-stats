@@ -1,44 +1,43 @@
 {
-	"name": "pandapaco-drawing-stats",
-	"license": "GPL-2.0",
-	"private": true,
-	"type": "module",
-	"workspaces": [
-		"apps/*",
-		"shared/*",
-		"scripts/puppeteer"
-	],
-	"lint-staged": {
-		"*.{json,md}": "yarn prettier:write",
-		"apps/**": "yarn prettier:write",
-		"shared/**": "yarn prettier:write"
-	},
-	"scripts": {
-		"cleanup": "node ./scripts/cleanBloat.js && yarn",
-		"dev:web": "yarn workspace @pds/website dev",
-		"build:web": "yarn workspace @pds/website build",
-		"preview:web": "yarn workspace @pds/website preview",
-		"dev:admin": "yarn workspace @pds/admin-vite dev",
-		"build:admin": "yarn workspace @pds/admin-vite build",
-		"preview:admin": "yarn workspace @pds/admin-vite preview",
-		"dev": "concurrently -k \"yarn:dev:*\"",
-		"build": "concurrently \"yarn:build:*\"",
-		"preview": "concurrently -k \"yarn:preview:*\"",
-		"puppeteer": "yarn workspace @pds/puppeteer start",
-		"postinstall": "cd apps/website && nuxt prepare",
-		"prepare": "husky install",
-		"prettier:check": "prettier --check .",
-		"prettier:write": "prettier --write ."
-	},
-	"devDependencies": {
-		"concurrently": "^7.6.0",
-		"husky": "^8.0.0",
-		"lint-staged": "^13.1.2",
-		"prettier": "^2.8.3",
-		"turbo": "latest"
-	},
-	"engines": {
-		"node": ">16.0.0",
-		"npm": ">= 8.0.0"
-	}
+  "name": "pandapaco-drawing-stats",
+  "license": "GPL-2.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "shared/*",
+    "scripts/puppeteer"
+  ],
+  "lint-staged": {
+    "apps/**": "yarn prettier:write",
+    "shared/**": "yarn prettier:write"
+  },
+  "scripts": {
+    "cleanup": "node ./scripts/cleanBloat.js && yarn",
+    "dev:web": "yarn workspace @pds/website dev",
+    "build:web": "yarn workspace @pds/website build",
+    "preview:web": "yarn workspace @pds/website preview",
+    "dev:admin": "yarn workspace @pds/admin-vite dev",
+    "build:admin": "yarn workspace @pds/admin-vite build",
+    "preview:admin": "yarn workspace @pds/admin-vite preview",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "preview": "concurrently -k \"yarn:preview:*\"",
+    "puppeteer": "yarn workspace @pds/puppeteer start",
+    "postinstall": "cd apps/website && nuxt prepare",
+    "prepare": "husky install",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.3",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">16.0.0",
+    "npm": ">= 8.0.0"
+  }
 }

@@ -58,12 +58,12 @@
 			<div class="grid py-6 text-center bg-green-100 place-items-center">
 				<span>
 					Copyright &copy; 2021-{{ year }}
-					Kuroji Fusky; source code licensed under
+					Kuroji Fusky; its entire source code licensed under
 					<NuxtLink
 						class="link-underline"
-						to="https://opensource.org/licenses/MIT"
-						>MIT</NuxtLink
-					>
+						to="https://opensource.org/license/gpl-2-0/"
+						>GPL-2.0</NuxtLink
+					>.
 				</span>
 			</div>
 		</div>
