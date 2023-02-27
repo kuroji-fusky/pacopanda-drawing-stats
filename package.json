@@ -6,11 +6,12 @@
   "workspaces": [
     "apps/*",
     "shared/*",
-    "scripts/puppeteer"
+    "scripts/*"
   ],
   "lint-staged": {
     "apps/**": "yarn prettier:write",
-    "shared/**": "yarn prettier:write"
+    "shared/**": "yarn prettier:write",
+    "scripts/**": "yarn prettier:write"
   },
   "scripts": {
     "cleanup": "node ./scripts/cleanBloat.js && yarn",
