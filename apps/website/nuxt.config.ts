@@ -20,6 +20,7 @@ export default defineNuxtConfig({
 			htmlAttrs: {
 				lang: "en",
 			},
+			link: [{ rel: "shortcut icon", href: "/favicon.ico" }],
 			script: [
 				{
 					// prettier-ignore
