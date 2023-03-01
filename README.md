@@ -58,7 +58,7 @@ Clone the `.env` files:
 
 ```console
 cp apps/website/.env.example apps/website/.env
-cp apps/admin-vite/.env.example apps/admin/.env
+cp apps/admin-vite/.env.example apps/admin-vite/.env
 ```
 
 ### Scripts

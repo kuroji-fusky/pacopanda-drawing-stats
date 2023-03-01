@@ -1,15 +1,15 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".vercel/output/**"]
-    },
-    "deploy": {
-      "dependsOn": ["build"]
-    },
-    "dev": {
-      "cache": false
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".vercel/output/**"]
+		},
+		"deploy": {
+			"dependsOn": ["build"]
+		},
+		"dev": {
+			"cache": false
+		}
+	}
 }
