@@ -15,7 +15,7 @@ its speed and persistency.
 
 ## Project structure
 
-The entire codebase is written entirely in TypeScript and utilizes the ES Module
+This codebase is written in TypeScript and Python; it utilizes the ES Module
 syntax, with some files utilize the `.cjs` file type for Prettier, Tailwind, and
 PostCSS configs.
 
@@ -29,32 +29,40 @@ subdirectory and remotely cache builds on the cloud via Turborepo.
   - `admin-vite` - A web admin app in Vite and Vue 3
   - `api` - API for both REST and GraphQL
   - `website` - The website written in Nuxt 3 + Tailwind CSS
+- `python` - For scraping and parsing public drawing data using Python with
+  BeautifulSoup
 - `shared`
   - `config` - Other configs like Tailwind and others like styles
   - `types` - Shared TypeScript declarations
   - `tsconfig` - Shared TypeScript config
   - `ui` - Shared `.vue` components
-- `scripts`
-  - `scraper` - For scraping public data using Puppeteer and Cheerio, previously
-    used Python with BeautifulSoup
+- `scripts` - scripts for cleaning up node stuff
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- Node.js versions 16 or higher (LTS recommended)
+- Node.js 16 or higher (LTS recommended)
+- Python 3.10 or higher
 - Yarn Package Manager
-- [Optional] WSL/Git Bash (for Windows users required to execute Shell scripts)
+- (Optional) WSL/Git Bash (for Windows users required to execute Shell scripts)
 
 ### Installation
 
-Install dependencies with Yarn:
+Install Node dependencies with Yarn:
 
 ```console
 yarn install
 ```
 
-Clone the `.env` files:
+Install Python packages:
+
+```console
+cd python
+pip install -r requirements.txt
+```
+
+Then, clone the `.env` files:
 
 ```console
 cp apps/website/.env.example apps/website/.env

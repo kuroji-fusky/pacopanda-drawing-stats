@@ -2,6 +2,13 @@
 
 ## 2023
 
+### March 14
+
+- Re-add Python codebase for scraping and parse drawing data
+  - I've had second thoughts about this being only an JS-only codebase and just
+    realized that Python might be a best use cases for stuff like this
+  - Added the "soup" easter egg in `utils.py` because why not
+
 ### February 17
 
 - Ditched Tauri app for a simple Vue Vite app
