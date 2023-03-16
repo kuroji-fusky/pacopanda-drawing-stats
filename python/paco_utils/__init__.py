@@ -4,13 +4,14 @@ Panda Paco Utils
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
 import json
+from os import path
 from typing import Any
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 from paco_utils.constants import BASE_FA, BASE_WS, BASE_IB, rs
-from paco_utils.logger import warn, info, success
+from paco_utils.logger import warn, success, note
 
 
 def get_ua(url: str) -> dict[str, str]:
@@ -23,7 +24,8 @@ def get_ua(url: str) -> dict[str, str]:
 
 	ua_rnd = ua.random
 
-	info(f"UserAgent: Using {ua_rnd}")
+	note(f"UserAgent: Using {ua_rnd}")
+	note(f"Referer used: {url}")
 
 	return {
 		"User-Agent": ua_rnd,
@@ -31,7 +33,7 @@ def get_ua(url: str) -> dict[str, str]:
 	}
 
 
-def gimme_soop(url: str, user_agent: dict[str, str] | None = None):
+def soup_req(url: str, user_agent: dict[str, str] | None = None):
 	"""
 	An abstraction that accepts URL and returns HTML via BeautifulSoup
 	
@@ -45,29 +47,43 @@ def gimme_soop(url: str, user_agent: dict[str, str] | None = None):
 	return BeautifulSoup(req.text, "html.parser")
 
 
-def update_json(file_name: str, data: Any):
-	# TODO place this in the SubmissionParser class for another layer of abstraction
-	f_name = "UpdateJSON:"
+def update_json(file_name: str, data: Any, root_name: str | None = None, time_series: bool | None = False):
+	if root_name is None:
+		root_name = "logs"
 
-	try:
+	debug_name = "JSON I/O:"
+	file_exists: bool = path.isfile(file_name)
+
+	if file_exists:
 		with open(file_name, "r+") as f:
 			try:
 				previous_data = json.load(f)
 
-				f.seek(0)
-				json.dump({'fa': [data, *previous_data['fa']]}, f, indent=2)
-				f.truncate()
+				if time_series:
+					f.seek(0)
+					json.dump({root_name: [data, *previous_data[root_name]]}, f, indent=2)
+					f.truncate()
+				else:
+					json.dump({root_name: data}, f, indent=2)
 
 			except json.decoder.JSONDecodeError:
 				warn(
-					f"{f_name} JSONDecodeError exception was thrown; which the file is most likely empty, populating data...")
-				json.dump({'fa': [data]}, f, indent=2)
+					f"{debug_name} JSONDecodeError exception was thrown; which the file is invalid JSON or most"
+					f"likely empty, populating data...")
 
-			success(f"{f_name} File updated!")
+				if time_series:
+					json.dump({root_name: [data]}, f, indent=2)
+				else:
+					json.dump({root_name: data}, f, indent=2)
 
-	except FileNotFoundError:
-		warn(f"{f_name} File doesn't exist, creating file with populated data...")
+			success(f"{debug_name} File updated!")
+
+	else:
+		warn(f"{debug_name} File doesn't exist, creating file with populated data...")
 		with open(file_name, "w") as f:
-			json.dump({'fa': [data]}, f, indent=2)
+			if time_series:
+				json.dump({root_name: [data]}, f, indent=2)
+			else:
+				json.dump({root_name: data}, f, indent=2)
 
-		success(f"{f_name} File created!")
+			success(f'{debug_name} File "{file_name}" created!')

@@ -1,4 +1,4 @@
-from paco_utils import BASE_FA, gimme_soop, update_json
+from paco_utils import BASE_FA, soup_req, update_json
 from paco_utils.constants import current_date
 from paco_utils.logger import info
 from paco_utils.parsers import SubmissionParser
@@ -7,7 +7,7 @@ from paco_utils.parsers import SubmissionParser
 def main():
 	info("Updating data from FA")
 
-	gallery_page = gimme_soop(f"{BASE_FA}/gallery/pacopanda")
+	gallery_page = soup_req(f"{BASE_FA}/gallery/pacopanda")
 	first_artwork = gallery_page.select_one('figure')
 
 	first_artwork_link = first_artwork.find("a")['href']
@@ -26,7 +26,7 @@ def main():
 	}
 
 	info(f'Retrieved "{data["title"]}"')
-	update_json("fa-art-tl.json", data)
+	update_json("fa-art-tl.json", data, time_series=True)
 
 
 if __name__ == "__main__":

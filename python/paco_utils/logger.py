@@ -9,7 +9,11 @@ from colorama import Back, Fore, Style
 just_fix_windows_console()
 
 W_FG, B_FG, FLUSH = Fore.LIGHTWHITE_EX, Fore.LIGHTBLACK_EX, Style.RESET_ALL
-WARN_BG, INFO_BG, ERROR_BG, SUCCESS_BG = Back.LIGHTYELLOW_EX, Back.CYAN, Back.RED, Back.GREEN
+WARN_BG = Back.LIGHTYELLOW_EX
+INFO_BG = Back.CYAN
+NOTE_BG = Back.BLUE
+ERROR_BG = Back.RED
+SUCCESS_BG = Back.GREEN
 
 
 def error(msg):
@@ -22,6 +26,10 @@ def warn(msg):
 
 def info(msg):
 	print(f"{INFO_BG}{W_FG} INFO {FLUSH} {msg}")
+
+
+def note(msg):
+	print(f"{NOTE_BG}{W_FG} NOTE {FLUSH} {msg}")
 
 
 def success(msg):
