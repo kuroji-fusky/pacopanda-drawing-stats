@@ -181,6 +181,6 @@ their CDN under the hood to cache media types.
 
 ## License
 
-Source code licensed under GPL-2.0
+MIT
 
 [it]: https://github.com/thatITfox

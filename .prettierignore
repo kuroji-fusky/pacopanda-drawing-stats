@@ -1,11 +1,12 @@
-node_modules*
+node_modules
 .output
 .vercel
 .nuxt
+
 dist
+python
 
 favicon.ico
 
 *.env*
 *.txt
-python

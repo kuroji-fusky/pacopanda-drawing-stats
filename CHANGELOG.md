@@ -2,6 +2,9 @@
 
 ## 2023
 
+### March 16
+- Change codebase license back to MIT
+
 ### March 14
 
 - Re-add Python codebase for scraping and parse drawing data
