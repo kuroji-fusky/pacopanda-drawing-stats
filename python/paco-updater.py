@@ -1,27 +1,32 @@
-from utils import SubmissionParser, give_me_soup
-
-FA_BASE = "https://www.furaffinity.net"
-BASE_URL = f"{FA_BASE}/gallery/pacopanda"
-
-UA = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-        "AppleWebKit/537.36 (KHTML, like Gecko)"
-        "Chrome/45.0.2454.101 Safari/537.36"
-    ),
-    "referer": BASE_URL
-}
+from paco_utils import BASE_FA, give_me_soup, update_json
+from paco_utils.constants import current_date
+from paco_utils.logger import info
+from paco_utils.parsers import SubmissionParser
 
 
 def main():
-    gallery_page = give_me_soup(BASE_URL)
-    first_artwork = gallery_page.select_one('figure')
+	info("Updating data from FA")
 
-    first_artwork_link = first_artwork.find("a")['href']
-    first_artwork_link = f"{FA_BASE}{first_artwork_link}"
+	gallery_page = give_me_soup(f"{BASE_FA}/gallery/pacopanda")
+	first_artwork = gallery_page.select_one('figure')
 
-    SubmissionParser(first_artwork_link).tags()
+	first_artwork_link = first_artwork.find("a")['href']
+	first_artwork_link = f"{BASE_FA}{first_artwork_link}"
+
+	artwork = SubmissionParser(first_artwork_link)
+
+	data = {
+		"retrieved": current_date,
+		"title": artwork.title(),
+		"description": artwork.description(),
+		"img": artwork.img(),
+		"link": first_artwork_link,
+		"date": artwork.date(),
+	}
+
+	info(f'Retrieved "{data["title"]}"')
+	update_json("fa-art-tl.json", data)
 
 
 if __name__ == "__main__":
-    main()
+	main()
