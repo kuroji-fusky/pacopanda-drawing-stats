@@ -11,4 +11,4 @@ BASE_WS = "https://www.weasyl.com"
 BASE_IB = "https://inkbunny.net"
 
 rs = requests.Session()
-current_date = datetime.now().isoformat()
+current_date = datetime.now()

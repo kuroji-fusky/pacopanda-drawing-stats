@@ -4,6 +4,7 @@ Panda Paco Utils
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
 import json
+from typing import Any
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -30,9 +31,9 @@ def get_ua(url: str) -> dict[str, str]:
 	}
 
 
-def give_me_soup(url: str, user_agent: dict[str, str] = None):
+def gimme_soop(url: str, user_agent: dict[str, str] | None = None):
 	"""
-	An abstraction that converts URL to HTML via BeautifulSoup
+	An abstraction that accepts URL and returns HTML via BeautifulSoup
 	
 	:param url: Required
 	:param user_agent: Optional, used along with the `get_ua()` function
@@ -44,7 +45,7 @@ def give_me_soup(url: str, user_agent: dict[str, str] = None):
 	return BeautifulSoup(req.text, "html.parser")
 
 
-def update_json(file_name: str, data: any):
+def update_json(file_name: str, data: Any):
 	# TODO place this in the SubmissionParser class for another layer of abstraction
 	f_name = "UpdateJSON:"
 

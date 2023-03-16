@@ -5,18 +5,16 @@ Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
 from datetime import datetime
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
-from paco_utils import give_me_soup, get_ua
+from paco_utils import gimme_soop, get_ua
 from paco_utils.constants import BASE_FA, BASE_WS, BASE_IB
 
 url_error = 'Invalid URL, expected URLs from either FurAffinity, Weasyl, and InkBunny only!'
-iter_attr_error = 'Expected attributes: whatever'
-subm_attr_error = 'Expected attributes: whatever'
 
 
 class IterateGallery:
-	def __init__(self, url: str, bypass_cache: bool = None):
+	def __init__(self, url: str, bypass_cache: bool | None = None):
 		"""Iterate over gallery pages
 
 		:param url: Requires a gallery page for it to iterate over with
@@ -41,7 +39,7 @@ class IterateGallery:
 			raise ValueError(url_error)
 
 		if self.__is_furaffinity:
-			self.__iter_page = give_me_soup(self.__url, get_ua(BASE_FA))
+			self.__iter_page = gimme_soop(self.__url, get_ua(BASE_FA))
 
 			mutate_url: str = "no"
 
@@ -49,13 +47,20 @@ class IterateGallery:
 			next_btn_available = next_btn.find('button') is not None
 
 		if self.__is_weasyl:
-			self.__iter_page = give_me_soup(self.__url, get_ua(BASE_WS))
+			self.__iter_page = gimme_soop(self.__url, get_ua(BASE_WS))
 
 		if self.__is_inkbunny:
-			self.__iter_page = give_me_soup(self.__url, get_ua(BASE_IB))
+			self.__iter_page = gimme_soop(self.__url, get_ua(BASE_IB))
 
 
 class SubmissionParser:
+	title: str | None
+	description: str | None
+	img: str | None
+	tags: list[str] | None
+	date: datetime | None
+	date_difference: str | None
+
 	def __init__(self, url: str):
 		"""Parses artworks' information from FurAffinity, Weasyl, and InkBunny
 
@@ -73,16 +78,16 @@ class SubmissionParser:
 			raise ValueError(url_error)
 
 		if self.__is_furaffinity:
-			self.__art_page = give_me_soup(self.__url, get_ua(BASE_FA))
+			self.__art_page = gimme_soop(self.__url, get_ua(BASE_FA))
 
 		if self.__is_weasyl:
-			self.__art_page = give_me_soup(self.__url, get_ua(BASE_WS))
+			self.__art_page = gimme_soop(self.__url, get_ua(BASE_WS))
 
 		if self.__is_inkbunny:
-			self.__art_page = give_me_soup(self.__url, get_ua(BASE_IB))
+			self.__art_page = gimme_soop(self.__url, get_ua(BASE_IB))
 
-		self.__fa_contents = self.__art_page.select_one(".submission-content section")
-		self.__date: datetime | None = None
+		self.__fa_contents: Tag | None = self.__art_page.select_one(".submission-content section")
+		self.__date: datetime | str | None = None
 
 		# We pass dates here, so we can calculate the difference here for the updater
 		if self.__is_furaffinity:
@@ -96,68 +101,67 @@ class SubmissionParser:
 			pass
 
 	def __getattr__(self, item):
-		pass
+		# Oh god my 'if' nesting game hella mad lol
+		if item == "title":
+			if self.__is_furaffinity:
+				fa_title = self.__fa_contents.find(class_="submission-title").text.strip()
+				return fa_title
 
-	def title(self):
-		if self.__is_furaffinity:
-			fa_title = self.__fa_contents.find(class_="submission-title").text.strip()
-			return fa_title
+			if self.__is_weasyl:
+				return
 
-		if self.__is_weasyl:
-			return
+			if self.__is_inkbunny:
+				return
 
-		if self.__is_inkbunny:
-			return
+		if item == "img":
+			if self.__is_furaffinity:
+				fa_img = self.__art_page.select_one("img#submissionImg")
+				fa_img = f"https:{fa_img['data-fullview-src']}"
+				return fa_img
 
-	def img(self):
-		if self.__is_furaffinity:
-			fa_img = self.__art_page.select_one("img#submissionImg")
-			fa_img = f"https:{fa_img['data-fullview-src']}"
-			return fa_img
+			if self.__is_weasyl:
+				return
 
-		if self.__is_weasyl:
-			return
+			if self.__is_inkbunny:
+				return
 
-		if self.__is_inkbunny:
-			return
+		if item == "description":
+			if self.__is_furaffinity:
+				fa_desc = self.__fa_contents.select_one(".submission-description")
+				fa_desc = fa_desc.text.strip()
+				return fa_desc
 
-	def description(self):
-		if self.__is_furaffinity:
-			fa_desc = self.__fa_contents.select_one(".submission-description")
-			fa_desc = fa_desc.text.strip()
-			return fa_desc
+			if self.__is_weasyl:
+				return
 
-		if self.__is_weasyl:
-			return
+			if self.__is_inkbunny:
+				return
 
-		if self.__is_inkbunny:
-			return
+		if item == "tags":
+			tags_list: list[str] = []
 
-	def tags(self):
-		tags_list: list[str] = []
+			if self.__is_furaffinity:
+				tags_iterable = self.__art_page.select("section.tags-row span.tags")
+				for tag in tags_iterable:
+					tags_list.append(tag.text)
 
-		if self.__is_furaffinity:
-			tags_iterable = self.__art_page.select("section.tags-row span.tags")
-			for tag in tags_iterable:
-				tags_list.append(tag.text)
+				return tags_list
 
-			return tags_list
+			if self.__is_weasyl:
+				return
 
-		if self.__is_weasyl:
-			return
+			if self.__is_inkbunny:
+				return
 
-		if self.__is_inkbunny:
-			return
+		if item == "date":
+			return self.__date
 
-	def date(self):
-		return self.__date.isoformat()
+		if item == "date_difference":
+			if self.__is_furaffinity:
+				return
 
-	def date_difference(self):
-		if self.__is_furaffinity:
-			return
+			if self.__is_weasyl:
+				return
 
-		if self.__is_weasyl:
-			return
-
-		if self.__is_inkbunny:
-			return
+			if self.__is_inkbunny:
+				return

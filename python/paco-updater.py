@@ -1,4 +1,4 @@
-from paco_utils import BASE_FA, give_me_soup, update_json
+from paco_utils import BASE_FA, gimme_soop, update_json
 from paco_utils.constants import current_date
 from paco_utils.logger import info
 from paco_utils.parsers import SubmissionParser
@@ -7,7 +7,7 @@ from paco_utils.parsers import SubmissionParser
 def main():
 	info("Updating data from FA")
 
-	gallery_page = give_me_soup(f"{BASE_FA}/gallery/pacopanda")
+	gallery_page = gimme_soop(f"{BASE_FA}/gallery/pacopanda")
 	first_artwork = gallery_page.select_one('figure')
 
 	first_artwork_link = first_artwork.find("a")['href']
@@ -16,12 +16,13 @@ def main():
 	artwork = SubmissionParser(first_artwork_link)
 
 	data = {
-		"retrieved": current_date,
-		"title": artwork.title(),
-		"description": artwork.description(),
-		"img": artwork.img(),
+		"title": artwork.title,
+		"description": artwork.description,
+		"img": artwork.img,
 		"link": first_artwork_link,
-		"date": artwork.date(),
+		"date": artwork.date.isoformat(),
+		"tags": artwork.tags,
+		"retrieved": current_date.isoformat(),
 	}
 
 	info(f'Retrieved "{data["title"]}"')
