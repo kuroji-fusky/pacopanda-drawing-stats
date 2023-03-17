@@ -1,4 +1,4 @@
-from paco_utils import BASE_FA
+from paco_utils.constants import BASE_FA
 from paco_utils.parsers import IterateGallery
 
 

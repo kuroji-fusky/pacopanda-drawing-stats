@@ -9,9 +9,9 @@
 that collects and parses drawing data from a furry artist and illustrator Paco
 Panda.
 
-Initially made simply out of curiousity - it has expanded to provide its own
+Initially made simply out of curiosity - it has expanded to provide its own
 REST and GraphQL APIs, and utilizes Redis as the main and in-memory database for
-its speed and persistency.
+its speed and persistence.
 
 ## Project structure
 
@@ -26,30 +26,40 @@ subdirectory and remotely cache builds on the cloud via Turborepo.
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
-  - `admin-vite` - A web admin app in Vite and Vue 3
-  - `api` - API for both REST and GraphQL
-  - `website` - The website written in Nuxt 3 + Tailwind CSS
+	- `admin-vite` - A web admin app in Vite and Vue 3
+	- `api` - API for both REST and GraphQL
+	- `website` - The website written in Nuxt 3 + Tailwind CSS
 - `python` - For scraping and parsing public drawing data using Python with
-  BeautifulSoup
+	BeautifulSoup
 - `shared`
-  - `config` - Other configs like Tailwind and others like styles
-  - `types` - Shared TypeScript declarations
-  - `tsconfig` - Shared TypeScript config
-  - `ui` - Shared `.vue` components
+	- `config` - Other configs like Tailwind and others like styles
+	- `types` - Shared TypeScript declarations
+	- `tsconfig` - Shared TypeScript config
+	- `ui` - Shared `.vue` components
 - `scripts` - scripts for cleaning up node stuff
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- Node.js 16 or higher (LTS recommended)
-- Python 3.10 or higher
-- Yarn Package Manager
-- (Optional) WSL/Git Bash (for Windows users required to execute Shell scripts)
+- **Required**
+  - Node.js 16 or higher (LTS recommended)
+  - Python 3.10 or higher
+  - Yarn Package Manager
+- **Optional**
+  - WSL/Git Bash
+  - GNU Make
 
 ### Installation
 
-Install Node dependencies with Yarn:
+If you have the `make` tool installed on your system, run the command to install all libraries
+from Node and Python:
+
+```console
+make setup
+```
+
+For manual installation, first: Node dependencies with Yarn:
 
 ```console
 yarn install
@@ -58,7 +68,6 @@ yarn install
 Install Python packages:
 
 ```console
-cd python
 pip install -r requirements.txt
 ```
 
@@ -77,7 +86,7 @@ cp apps/admin-vite/.env.example apps/admin-vite/.env
 #### Running in bulk
 
 Run both the website and admin dashboard, opening ports 3000 and 5173 w/o
-needing to rely the `concurrently` library:
+needing to rely on the `concurrently` library:
 
 ```console
 yarn dev
@@ -86,7 +95,7 @@ yarn dev
 Build both the website and admin dashboard:
 
 ```console
-yarn dev
+yarn build
 ```
 
 #### Running separately
@@ -133,8 +142,8 @@ yarn build:admin
 
 The project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine
-site) and it'd be interesting to see in all of his drawings to see said data and
-it's various datasets.
+site) and it'd be interesting to see in all of his drawings to see said data, and
+its various datasets.
 
 This project collects the following:
 
@@ -143,7 +152,7 @@ This project collects the following:
 - Media type (either drawn digital or traditional)
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
 - The source where I got the data from (i.e. FurAffinity, DeviantArt, InkBunny,
-  Weasyl, etc.)
+	Weasyl, etc.)
 
 Previously, I have to manually source it through FurAffinity and DeviantArt for
 his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings
@@ -155,7 +164,7 @@ dataset as well since all the data gathered will be hardcoded to the site.
 Believe it or not, it's not my intention to impress him in general.
 
 I'm just a huge fan of his artwork and his unique and adorable art style that
-I'd want to see how many characters he's drawn since the early to mid-2000s but
+I'd want to see how many characters he's drawn since the early to mid-2000s, but
 he'd for sure find it interesting as it's more of a fun project to a new hobby
 of mine, learning not only JavaScript but also learning a bit of back-end and
 basic data management in the process of other projects I do.

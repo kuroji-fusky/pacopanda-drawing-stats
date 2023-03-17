@@ -1,4 +1,4 @@
-from paco_utils import BASE_FA, soup_req, update_json
+from paco_utils.base import BASE_FA, soup_req, update_json
 from paco_utils.constants import current_date
 from paco_utils.logger import info
 from paco_utils.parsers import SubmissionParser
