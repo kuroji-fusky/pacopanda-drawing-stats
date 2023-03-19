@@ -1,11 +1,13 @@
 from paco_utils.base import BASE_FA, soup_req, update_json
 from paco_utils.constants import current_date
-from paco_utils.logger import info
+from paco_utils.logger import ColorLogger
 from paco_utils.parsers import SubmissionParser
 
 
+l = ColorLogger(prefix="Updater")
+
 def main():
-	info("Updating data from FA")
+	l.info("Updating data from FA")
 
 	gallery_page = soup_req(f"{BASE_FA}/gallery/pacopanda")
 	first_artwork = gallery_page.select_one('figure')
@@ -13,7 +15,7 @@ def main():
 	first_artwork_link = first_artwork.find("a")['href']
 	first_artwork_link = f"{BASE_FA}{first_artwork_link}"
 
-	artwork = SubmissionParser(first_artwork_link)
+	artwork = SubmissionParser(url=first_artwork_link)
 
 	data = {
 		"title": artwork.title,
@@ -25,7 +27,7 @@ def main():
 		"retrieved": current_date.isoformat(),
 	}
 
-	info(f'Retrieved "{data["title"]}"')
+	l.info(f'Retrieved "{data["title"]}"')
 	update_json("fa-art-tl.json", data, time_series=True)
 
 

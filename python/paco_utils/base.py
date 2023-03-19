@@ -1,17 +1,37 @@
 """
-Panda Paco Utils
+P2DS - Base Utilities
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
 import json
+from datetime import datetime
 from os import path
 from typing import Any
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-from paco_utils.constants import BASE_FA, BASE_WS, BASE_IB, rs
-from paco_utils.logger import warn, success, note
+from paco_utils.constants import BASE_FA, rs, current_date
+from paco_utils.logger import ColorLogger
+
+ua_logger = ColorLogger(prefix="UserAgent")
+json_logger = ColorLogger(prefix="JSON I/O")
+
+
+def time_difference(date_input: datetime) -> str:
+	delta = (current_date - date_input)
+
+	def fill_zeros(n: int) -> str:
+		if n < 10:
+			return f"0{n}"
+
+		return str(n)
+
+	seconds = fill_zeros(delta.seconds % 60)
+	minutes = fill_zeros(delta.seconds // 60 % 60)
+	hours = fill_zeros(delta.seconds // 3600)
+
+	return f"{hours}h {minutes}m {seconds}s"
 
 
 def get_ua(url: str) -> dict[str, str]:
@@ -20,12 +40,14 @@ def get_ua(url: str) -> dict[str, str]:
 
 	:param url: Requires as 'referer' header
 	"""
-	ua = UserAgent(browsers=['chrome', 'firefox', 'edge', 'safari'])
+	if type(url) is not str:
+		raise TypeError(f"Expected type 'str'; but got type {type(url)}")
 
+	ua = UserAgent(browsers=['chrome', 'firefox', 'edge', 'safari'])
 	ua_rnd = ua.random
 
-	note(f"UserAgent: Using {ua_rnd}")
-	note(f"Referer used: {url}")
+	ua_logger.note(f"Using {ua_rnd}")
+	ua_logger.note(f"Referer used: {url}")
 
 	return {
 		"User-Agent": ua_rnd,
@@ -47,11 +69,11 @@ def soup_req(url: str, user_agent: dict[str, str] | None = None):
 	return BeautifulSoup(req.text, "html.parser")
 
 
-def update_json(file_name: str, data: Any, root_name: str | None = None, time_series: bool = False):
+def update_json(file_name: str, data: Any, root_name: str | None = None, time_series: bool = False,
+				overwrite: bool = False):
 	if root_name is None:
 		root_name = "logs"
 
-	debug_name = "JSON I/O:"
 	file_exists: bool = path.isfile(file_name)
 
 	if file_exists:
@@ -67,24 +89,24 @@ def update_json(file_name: str, data: Any, root_name: str | None = None, time_se
 					json.dump({root_name: data}, f, indent=2)
 
 			except json.decoder.JSONDecodeError:
-				decode_err_msg = f"{debug_name} JSONDecodeError exception was thrown; which the file is invalid" \
+				decode_err_msg = f"JSONDecodeError exception was thrown; which the file is invalid" \
 								 f"JSON or most likely empty, populating data..."
 
-				warn(decode_err_msg)
+				json_logger.warn(decode_err_msg)
 
 				if time_series:
 					json.dump({root_name: [data]}, f, indent=2)
 				else:
 					json.dump({root_name: data}, f, indent=2)
 
-			success(f"{debug_name} File updated!")
+			json_logger.success(f"File updated!")
 
 	else:
-		warn(f"{debug_name} File doesn't exist, creating file with populated data...")
+		json_logger.warn(f"File doesn't exist, creating file with populated data...")
 		with open(file_name, "w") as f:
 			if time_series:
 				json.dump({root_name: [data]}, f, indent=2)
 			else:
 				json.dump({root_name: data}, f, indent=2)
 
-			success(f'{debug_name} File "{file_name}" created!')
+			json_logger.success(f'File "{file_name}" created!')

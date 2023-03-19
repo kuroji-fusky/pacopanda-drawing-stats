@@ -9,9 +9,9 @@
 that collects and parses drawing data from a furry artist and illustrator Paco
 Panda.
 
-Initially made simply out of curiosity - it has expanded to provide its own
-REST and GraphQL APIs, and utilizes Redis as the main and in-memory database for
-its speed and persistence.
+Initially made simply out of curiosity - it has expanded to provide its own REST
+and GraphQL APIs, and utilizes Redis as the main and in-memory database for its
+speed and persistence.
 
 ## Project structure
 
@@ -26,16 +26,16 @@ subdirectory and remotely cache builds on the cloud via Turborepo.
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
-	- `admin-vite` - A web admin app in Vite and Vue 3
-	- `api` - API for both REST and GraphQL
-	- `website` - The website written in Nuxt 3 + Tailwind CSS
+  - `admin-vite` - A web admin app in Vite and Vue 3
+  - `api` - API for both REST and GraphQL
+  - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `python` - For scraping and parsing public drawing data using Python with
-	BeautifulSoup
+  BeautifulSoup
 - `shared`
-	- `config` - Other configs like Tailwind and others like styles
-	- `types` - Shared TypeScript declarations
-	- `tsconfig` - Shared TypeScript config
-	- `ui` - Shared `.vue` components
+  - `config` - Other configs like Tailwind and others like styles
+  - `types` - Shared TypeScript declarations
+  - `tsconfig` - Shared TypeScript config
+  - `ui` - Shared `.vue` components
 - `scripts` - scripts for cleaning up node stuff
 
 ## Setup and Installation
@@ -52,8 +52,8 @@ subdirectory and remotely cache builds on the cloud via Turborepo.
 
 ### Installation
 
-If you have the `make` tool installed on your system, run the command to install all libraries
-from Node and Python:
+If you have the `make` tool installed on your system, run the command to install
+all libraries from Node and Python:
 
 ```console
 make setup
@@ -142,8 +142,8 @@ yarn build:admin
 
 The project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine
-site) and it'd be interesting to see in all of his drawings to see said data, and
-its various datasets.
+site) and it'd be interesting to see in all of his drawings to see said data,
+and its various datasets.
 
 This project collects the following:
 
@@ -152,7 +152,7 @@ This project collects the following:
 - Media type (either drawn digital or traditional)
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
 - The source where I got the data from (i.e. FurAffinity, DeviantArt, InkBunny,
-	Weasyl, etc.)
+  Weasyl, etc.)
 
 Previously, I have to manually source it through FurAffinity and DeviantArt for
 his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings

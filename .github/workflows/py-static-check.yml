@@ -1,0 +1,15 @@
+name: Python Static Typing Analysis
+version: 2
+
+on:
+  push:
+    paths:
+      - python/**
+  pull_request:
+    paths:
+      - python/**
+
+jobs:
+  python-type-check:
+    name: Type-check
+    runs-on: ubuntu-latest

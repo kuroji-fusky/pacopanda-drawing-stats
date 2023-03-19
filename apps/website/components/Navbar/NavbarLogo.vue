@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<nuxt-link to="/" class="wordmark-heading">Paco Drawing Stats</nuxt-link>
+		<NuxtLink to="/" class="wordmark-heading">Paco Drawing Stats</NuxtLink>
 		<span class="block wordmark-subheading">
 			by
-			<nuxt-link class="wordmark-subheading" to="https://kurofusky.xyz">
+			<NuxtLink class="wordmark-subheading" to="https://kurofusky.xyz">
 				Kuroji Fusky
-			</nuxt-link>
+			</NuxtLink>
 		</span>
 	</div>
 </template>

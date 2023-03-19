@@ -3,6 +3,7 @@
 ## 2023
 
 ### March 16
+
 - Change codebase license back to MIT
 
 ### March 14
