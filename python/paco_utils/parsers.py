@@ -20,6 +20,7 @@ cache_filename = "paco-cache.json"
 
 logger = ColorLogger(prefix="Parsers")
 
+
 class PacoBase:
 	"""Base class for checking URLs"""
 	page_metadata: dict[str, int] = {'pages': 1, 'artworks': 0}
@@ -48,7 +49,7 @@ class PacoBase:
 		"""
 		if not path.isfile(cache_filename):
 			logger.warn("No cached file found")
-			
+
 			# TODO rewrite json logic for prepending empty data
 			# with open(cache_filename, "a", encoding='utf-8') as nf:
 			# 	pre_populate = {
@@ -140,23 +141,25 @@ class IterateGallery(PacoBase):
 				return
 
 			if self.is_ws:
+				prev_query: str = ''
+
 				logger.info(f"{iter_prefix_msg} Weasyl")
 
 				gallery_page = soup_req(url, get_ua(BASE_WS))
+
 				next_btn_selector = "a.button:last-child"
 				gallery_items_selector = 'li.item'
-				
-				prev_query: str = ''
+
+				if prev_query is None:
+					...
 				
 				p, aw = self.page_metadata.get('pages'), self.page_metadata.get('artworks')
-	
+
 				ws_next_link = gallery_page.select_one(next_btn_selector)
-				
-				print(ws_next_link['href'])
-				
-	
-				# while True:
-					
+
+				# TODO filter the query after '?'
+				prev_query = ws_next_link['href']
+
 				return
 
 			if self.is_ib:
@@ -280,7 +283,6 @@ class SubmissionParser(PacoBase):
 
 		pass
 
-	# noinspection SpellCheckingInspection
 	def find_medium(self):
 		data = self._json_data
 

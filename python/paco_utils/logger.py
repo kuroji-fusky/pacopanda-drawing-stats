@@ -1,5 +1,5 @@
 """
-PDS Logger Utility
+P2DS - Logger Utility
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """

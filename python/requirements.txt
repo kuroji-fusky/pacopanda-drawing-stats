@@ -2,3 +2,4 @@ requests
 bs4
 fake-useragent
 colorama==0.4.6
+redis
