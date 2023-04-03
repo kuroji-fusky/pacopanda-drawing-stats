@@ -1,5 +1,0 @@
-venv
-__pycache__
-
-# Ignore any 'tl.json' files used for updaters sent to Redis
-*tl.json

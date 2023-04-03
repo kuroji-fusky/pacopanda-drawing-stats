@@ -14,7 +14,7 @@
 		"scripts/**": "yarn prettier:write"
 	},
 	"scripts": {
-		"cleanup": "node ./scripts/cleanBloat.js && yarn",
+		"cleanup": "node ./clean.js && yarn",
 		"dev:web": "turbo dev --filter=website",
 		"build:web": "turbo build --filter=website",
 		"dev:admin": "turbo dev --filter=admin-vite",
