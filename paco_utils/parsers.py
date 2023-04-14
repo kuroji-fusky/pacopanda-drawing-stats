@@ -7,9 +7,9 @@ Copyright 2022-2023 Kerby Keith Aquino; MIT license
 import json
 from datetime import datetime
 from os import path
-from typing import Optional
+from typing import Optional, Union, Any
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Tag, ResultSet
 
 from paco_utils.base import soup_req, get_ua, update_json, time_difference
 from paco_utils.constants import BASE_FA, BASE_WS, BASE_IB, current_date
@@ -105,8 +105,8 @@ class IterateGallery(PacoBase):
 				next_btn_selector = ".submission-list:first-child .inline:nth-child(3)"
 				gallery_items_selector = 'figure'
 
-				# Paw-n intended
-				p, aw = self.page_metadata.get('pages'), self.page_metadata.get('artworks')
+				p: Optional[int] = self.page_metadata.get('pages')
+				aw: Optional[int] = self.page_metadata.get('artworks')
 
 				# FurAffinity and InkBunny uses index-based URL pagination, however but Weasyl doesn't,
 				# as it uses query-based pagination
@@ -152,7 +152,7 @@ class IterateGallery(PacoBase):
 
 				if prev_query is None:
 					...
-				
+
 				p, aw = self.page_metadata.get('pages'), self.page_metadata.get('artworks')
 
 				ws_next_link = gallery_page.select_one(next_btn_selector)
@@ -191,7 +191,7 @@ class SubmissionParser(PacoBase):
 			if self.is_ib:
 				self._art_page = soup_req(url, get_ua(BASE_IB))
 
-			self._fa_contents: Tag | None = self._art_page.select_one(".submission-content section")
+			self._fa_contents: Tag = self._art_page.select_one(".submission-content section")
 			self._date: datetime | str | None = None
 
 			# We pass dates here, so we can calculate the difference here for the updater
@@ -250,7 +250,7 @@ class SubmissionParser(PacoBase):
 		tags_list: list[str] = []
 
 		if self.is_fa:
-			tags_iterable = self._art_page.select("section.tags-row span.tags")
+			tags_iterable: Union[ResultSet[Tag], Any] = self._art_page.select("section.tags-row span.tags")
 			for tag in tags_iterable:
 				tags_list.append(tag.text)
 
