@@ -41,67 +41,30 @@ class ColorLogger:
 		self._prefixed_blk = f"{self._prefix}:{FLUSH}"
 		self._prefixed_min = f"{self._prefix}:"
 
-	def error(self, args):
+	def _logger(self, color_blk: str, color_min: str, fore_color: str, args):
 		if not self._minimal and not self._prefix:
-			print(f"{self._err_blk} {args}")
+			return print(f"{color_blk} {args}")
 
 		if not self._minimal and self._prefix:
-			print(f"{self._err_blk} {ERROR_FG}{self._prefixed_blk} {args}")
+			return print(f"{color_blk} {fore_color}{self._prefixed_blk} {args}")
 
 		if self._minimal and not self._prefix:
-			print(f"{self._err_min}: {args}{FLUSH}")
+			return print(f"{color_min}: {args}{FLUSH}")
 
 		if self._minimal and self._prefix:
-			print(f"{self._err_min} from {self._prefixed_min} {args}{FLUSH}")
+			return print(f"{color_min} from {self._prefixed_min} {args}{FLUSH}")
+
+	def error(self, args):
+		self._logger(color_blk=self._err_blk, color_min=self._err_min, fore_color=ERROR_FG, args=args)
 
 	def warn(self, args):
-		if not self._minimal and not self._prefix:
-			print(f"{self._warn_blk} {args}")
-
-		if not self._minimal and self._prefix:
-			print(f"{self._warn_blk} {WARN_FG}{self._prefixed_blk} {args}")
-
-		if self._minimal and not self._prefix:
-			print(f"{self._warn_min}: {args}{FLUSH}")
-
-		if self._minimal and self._prefix:
-			print(f"{self._warn_min} from {self._prefixed_min} {args}{FLUSH}")
+		self._logger(color_blk=self._warn_blk, color_min=self._warn_min, fore_color=WARN_FG, args=args)
 
 	def info(self, args):
-		if not self._minimal and not self._prefix:
-			print(f"{self._info_blk} {args}")
-
-		if not self._minimal and self._prefix:
-			print(f"{self._info_blk} {INFO_FG}{self._prefixed_blk} {args}")
-
-		if self._minimal and not self._prefix:
-			print(f"{self._info_min}: {args}{FLUSH}")
-
-		if self._minimal and self._prefix:
-			print(f"{self._info_min} from {self._prefixed_min} {args}{FLUSH}")
+		self._logger(color_blk=self._info_blk, color_min=self._info_min, fore_color=INFO_FG, args=args)
 
 	def note(self, args):
-		if not self._minimal and not self._prefix:
-			print(f"{self._note_blk} {args}")
-
-		if not self._minimal and self._prefix:
-			print(f"{self._note_blk} {NOTE_FG}{self._prefixed_blk} {args}")
-
-		if self._minimal and not self._prefix:
-			print(f"{self._note_min}: {args}{FLUSH}")
-
-		if self._minimal and self._prefix:
-			print(f"{self._note_min} from {self._prefixed_min} {args}{FLUSH}")
+		self._logger(color_blk=self._note_blk, color_min=self._note_min, fore_color=NOTE_FG, args=args)
 
 	def success(self, args):
-		if not self._minimal and not self._prefix:
-			print(f"{self._success_blk} {args}")
-
-		if not self._minimal and self._prefix:
-			print(f"{self._success_blk} {SUCCESS_FG}{self._prefixed_blk} {args}")
-
-		if self._minimal and not self._prefix:
-			print(f"{self._success_min}: {args}{FLUSH}")
-
-		if self._minimal and self._prefix:
-			print(f"{self._success_min} from {self._prefixed_min} {args}{FLUSH}")
+		self._logger(color_blk=self._success_blk, color_min=self._success_min, fore_color=Fore.LIGHTGREEN_EX, args=args)
