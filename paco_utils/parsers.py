@@ -4,88 +4,20 @@ The brain of the operations
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
-import json
 from datetime import datetime
-from os import path
+
 from typing import Optional, Union, Any
 
 from bs4 import BeautifulSoup, Tag, ResultSet
 
-from paco_utils.base import soup_req, get_ua, update_json, time_difference
-from paco_utils.constants import BASE_FA, BASE_WS, BASE_IB, current_date
-from paco_utils.exceptions import OperationConflictError, SpecificURLError
+from paco_utils.base import PacoClubhouse, cache_filename
+from paco_utils.constants import current_date
 from paco_utils.logger import ColorLogger
 
-cache_filename = "paco-cache.json"
-
-logger = ColorLogger(prefix="Parsers")
+logger = ColorLogger(prefix="Parser")
 
 
-class PacoBase:
-	"""Base class for checking URLs"""
-	page_metadata: dict[str, int] = {'pages': 1, 'artworks': 0}
-
-	def __init__(self, url: str, json_fn: Optional[str] = None):
-		if url and json_fn:
-			raise OperationConflictError(
-				"Both URL and JSON params are used - this will cause operation conflicts that will lead"
-				" to confusion! Please pass either `url` or `json_fn` params only.")
-
-		if url:
-			self.is_fa: bool = url.startswith(BASE_FA)
-			self.is_ws: bool = url.startswith(BASE_WS)
-			self.is_ib: bool = url.startswith(BASE_IB)
-
-			if not self.is_fa and not self.is_ws and not self.is_ib:
-				raise SpecificURLError(
-					'Invalid URL. Expected URLs from either FurAffinity, Weasyl, and InkBunny only!')
-
-		if json_fn:
-			logger.info("JSON param is passed, URL checks have been skipped.")
-
-	def check_cache(self):
-		"""
-		Checks for any cached results usually in JSON format.
-		"""
-		if not path.isfile(cache_filename):
-			logger.warn("No cached file found")
-
-			# TODO rewrite json logic for prepending empty data
-			# with open(cache_filename, "a", encoding='utf-8') as nf:
-			# 	pre_populate = {
-			# 		'last_checked': current_date.isoformat(),
-			# 		'furaffinity': {},
-			# 		'weasyl': {},
-			# 		'inkbunny': {}
-			# 	}
-			# 
-			# 	json.dump(pre_populate, nf)
-			return
-
-		with open(cache_filename, "r", encoding='utf-8') as f:
-			logger.success("Cache file found. Cached data has been applied.")
-
-			cached_logs = json.load(f).get('logs')
-			self.page_metadata.update(pages=cached_logs.get('pages'), artworks=cached_logs.get('artworks'))
-
-			cached_date = datetime.strptime(cached_logs.get('last_checked'), "%Y-%m-%dT%H:%M:%S.%f")
-
-			is_week_passed = (current_date - cached_date).days == 7
-
-			cache_time_computed = time_difference(cached_date)
-			logger.info(f"Time since cached results: {cache_time_computed}\n")
-
-			if not is_week_passed:
-				logger.info("A week hasn't passed yet. If it does, it will update the cache.")
-
-			# Return if a week as passed and overwrite and update the cache data 
-			if is_week_passed:
-				return
-
-		return
-
-
-class IterateGallery(PacoBase):
+class IterateGallery(PacoClubhouse):
 	def __init__(self, url: str, json_fn: Optional[str] = None, bypass_cache: Optional[bool] = False):
 		"""Iterate over gallery pages
 
@@ -113,7 +45,7 @@ class IterateGallery(PacoBase):
 
 				# Loop through every page available via pagination
 				while True:
-					gallery_page = soup_req(f"{url}{p}/")
+					gallery_page = self.soup_req(f"{url}{p}/")
 					next_btn = gallery_page.select(next_btn_selector)[0]
 					next_btn = next_btn.find('button')
 
@@ -136,7 +68,7 @@ class IterateGallery(PacoBase):
 							"fa": {**self.page_metadata}
 						}
 
-						update_json(cache_filename, save_to_cache, time_series=False)
+						self.update_json(cache_filename, save_to_cache, time_series=False)
 						break
 				return
 
@@ -145,7 +77,7 @@ class IterateGallery(PacoBase):
 
 				logger.info(f"{iter_prefix_msg} Weasyl")
 
-				gallery_page = soup_req(url, get_ua(BASE_WS))
+				gallery_page = self.soup_req(url, self.get_ua(self.b_weasyl))
 
 				next_btn_selector = "a.button:last-child"
 				gallery_items_selector = 'li.item'
@@ -165,11 +97,11 @@ class IterateGallery(PacoBase):
 			if self.is_ib:
 				logger.info(f"{iter_prefix_msg} InkBunny")
 
-				gallery_page = soup_req(url, get_ua(BASE_IB))
+				gallery_page = self.soup_req(url, self.get_ua(self.b_inkbunny))
 				return
 
 
-class SubmissionParser(PacoBase):
+class SubmissionParser(PacoClubhouse):
 	def __init__(self, url: str, json_fn: Optional[str] = None):
 		"""Parses artworks' information from FurAffinity, Weasyl, and InkBunny
 
@@ -183,13 +115,13 @@ class SubmissionParser(PacoBase):
 		# TODO Skip these conditions if json method is called
 		if url:
 			if self.is_fa:
-				self._art_page = soup_req(url, get_ua(BASE_FA))
+				self._art_page = self.soup_req(url, self.get_ua(self.b_furaffinity))
 
 			if self.is_ws:
-				self._art_page = soup_req(url, get_ua(BASE_WS))
+				self._art_page = self.soup_req(url, self.get_ua(self.b_weasyl))
 
 			if self.is_ib:
-				self._art_page = soup_req(url, get_ua(BASE_IB))
+				self._art_page = self.soup_req(url, self.get_ua(self.b_inkbunny))
 
 			self._fa_contents: Tag = self._art_page.select_one(".submission-content section")
 			self._date: datetime | str | None = None
@@ -286,7 +218,7 @@ class SubmissionParser(PacoBase):
 	def find_medium(self):
 		data = self._json_data
 
-		medium_type = ("Digital", "Traditional")
+		medium_type = ["Digital", "Traditional"]
 		# noinspection SpellCheckingInspection
 		programs = ["Procreate", "Photoshop", "Medibang"]
 

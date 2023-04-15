@@ -1,18 +1,17 @@
 """
-P2DS - Constants
+Constants
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
-import requests
 from datetime import datetime
 
-rs = requests.Session()
 current_date = datetime.now()
 
-# Base URLs
-BASE_FA = "https://www.furaffinity.net"
-BASE_WS = "https://www.weasyl.com"
-BASE_IB = "https://inkbunny.net"
+base_url: dict[str, str] = {
+	"furaffinity": "https://www.furaffinity.net",
+	"weasyl": "https://www.weasyl.com",
+	"inkbunny": "https://inkbunny.net"
+}
 
 # Ignored Tags
 # noinspection SpellCheckingInspection
