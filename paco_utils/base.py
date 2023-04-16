@@ -32,7 +32,7 @@ class PacoClubhouse:
 	b_furaffinity: Optional[str] = base_url.get("furaffinity")
 	b_weasyl: Optional[str] = base_url.get("weasyl")
 	b_inkbunny: Optional[str] = base_url.get("inkbunny")
-	
+
 	def __init__(self, url: Optional[str] = None, json_fn: Optional[str] = None):
 		if url and json_fn:
 			raise OperationConflictError(
@@ -51,46 +51,9 @@ class PacoClubhouse:
 		if json_fn:
 			logger.info("JSON param is passed, URL checks have been skipped.")
 
-	@staticmethod
-	def time_difference(date_input: datetime) -> str:
-		delta = (current_date - date_input)
-
-		def fill_zeros(n: int) -> str:
-			if n < 10:
-				return f"0{n}"
-
-			return str(n)
-
-		seconds = fill_zeros(delta.seconds % 60)
-		minutes = fill_zeros(delta.seconds // 60 % 60)
-		hours = fill_zeros(delta.seconds // 3600)
-
-		return f"{hours}h {minutes}m {seconds}s"
-
-	@staticmethod
-	def get_ua(url: Optional[str]) -> dict[str, str]:
-		"""
-		Returns a random user agent
-	
-		:param url: Requires as 'referer' header
-		"""
-		if type(url) is not str:
-			raise TypeError(f"Expected type 'str'; but got type {type(url)}")
-
-		ua = UserAgent(browsers=['chrome', 'firefox', 'edge', 'safari'])
-		ua_rnd = ua.random
-
-		ua_logger.note(f"Using {ua_rnd}")
-		ua_logger.note(f"Referer used: {url}")
-
-		return {
-			"User-Agent": ua_rnd,
-			"referer": url
-		}
-
 	def soup_req(self, url: str, user_agent: dict[str, str] | None = None):
 		"""
-		An abstraction that accepts URL and returns HTML via BeautifulSoup
+		An abstraction that accepts URL and returns HTML output via BeautifulSoup
 	
 		:param url: Required
 		:param user_agent: Optional, used along with the `get_ua()` function
@@ -143,7 +106,28 @@ class PacoClubhouse:
 		return
 
 	@staticmethod
-	def update_json(file_name: str, data: Any, root_name: str | None = None, time_series: bool = False,
+	def get_ua(url: Optional[str]) -> dict[str, str]:
+		"""
+		Returns a random user agent
+
+		:param url: Requires as 'referer' header
+		"""
+		if type(url) is not str:
+			raise TypeError(f"Expected type 'str'; but got type {type(url)}")
+
+		ua = UserAgent(browsers=['chrome', 'firefox', 'edge', 'safari'])
+		ua_rnd = ua.random
+
+		ua_logger.note(f"Using {ua_rnd}")
+		ua_logger.note(f"Referer used: {url}")
+
+		return {
+			"User-Agent": ua_rnd,
+			"referer": url
+		}
+
+	@staticmethod
+	def update_json(file_name: str, data: Any, root_name: Optional[str] = None, time_series: bool = False,
 					overwrite: bool = False):
 		if root_name is None:
 			root_name = "logs"
@@ -184,3 +168,19 @@ class PacoClubhouse:
 					json.dump({root_name: data}, f, indent=2)
 
 				json_logger.success(f'File "{file_name}" created!')
+
+	@staticmethod
+	def time_difference(date_input: datetime) -> str:
+		delta = (current_date - date_input)
+
+		def fill_zeros(n: int) -> str:
+			if n < 10:
+				return f"0{n}"
+
+			return str(n)
+
+		seconds = fill_zeros(delta.seconds % 60)
+		minutes = fill_zeros(delta.seconds // 60 % 60)
+		hours = fill_zeros(delta.seconds // 3600)
+
+		return f"{hours}h {minutes}m {seconds}s"
