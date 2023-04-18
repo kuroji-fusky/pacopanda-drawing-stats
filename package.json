@@ -1,27 +1,22 @@
 {
 	"name": "pandapaco-drawing-stats",
-	"license": "GPL-2.0",
+	"license": "MIT",
 	"private": true,
 	"type": "module",
 	"workspaces": [
 		"apps/*",
-		"shared/*",
-		"scripts/*"
+		"packages/*"
 	],
 	"lint-staged": {
 		"apps/**": "yarn prettier:write",
-		"shared/**": "yarn prettier:write",
-		"scripts/**": "yarn prettier:write"
+		"packages/**": "yarn prettier:write"
 	},
 	"scripts": {
-		"cleanup": "node ./clean.js && yarn",
+		"cleanup": "node clean.js && yarn",
 		"dev:web": "turbo dev --filter=website",
 		"build:web": "turbo build --filter=website",
-		"dev:admin": "turbo dev --filter=admin-vite",
-		"build:admin": "turbo build --filter=admin-vite",
 		"dev": "turbo dev",
 		"build": "turbo build",
-		"puppeteer": "yarn workspace @pds/puppeteer start",
 		"postinstall": "cd apps/website && nuxt prepare",
 		"prepare": "husky install",
 		"prettier:check": "prettier --check .",

@@ -2,11 +2,15 @@ node_modules
 .output
 .vercel
 .nuxt
+.mypy_cache
+venv
+
+.gitignore
 
 dist
-python
 
 favicon.ico
 
 *.env*
 *.txt
+*.py

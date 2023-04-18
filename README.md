@@ -15,49 +15,36 @@ speed and persistence.
 
 ## Project structure
 
-This codebase is written in TypeScript and Python; it utilizes the ES Module
-syntax, with some files utilize the `.cjs` file type for Prettier, Tailwind, and
-PostCSS configs.
-
 This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces and Turborepo to install and manage dependencies in each
 subdirectory and remotely cache builds on the cloud via Turborepo.
 
+Written in TypeScript and Python - it utilizes the ES Module syntax, with some
+files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
+
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
-  - `admin-vite` - A web admin app in Vite and Vue 3
   - `api` - API for both REST and GraphQL
   - `website` - The website written in Nuxt 3 + Tailwind CSS
-- `python` - For scraping and parsing public drawing data using Python with
-  BeautifulSoup
-- `shared`
-  - `config` - Other configs like Tailwind and others like styles
-  - `types` - Shared TypeScript declarations
+- `packages`
   - `tsconfig` - Shared TypeScript config
-  - `ui` - Shared `.vue` components
-- `scripts` - scripts for cleaning up node stuff
+  - `types` - Shared TypeScript declarations
+- `parinton` - Local scraper and parser library for manipulating public drawing
+  data with Python
 
 ## Setup and Installation
 
 ### Prerequisites
 
 - **Required**
-  - Node.js 16 or higher (LTS recommended)
+  - Node.js 18 or higher (LTS recommended)
   - Python 3.10 or higher
   - Yarn Package Manager
 - **Optional**
   - WSL/Git Bash
-  - GNU Make
 
 ### Installation
-
-If you have the `make` tool installed on your system, run the command to install
-all libraries from Node and Python:
-
-```console
-make setup
-```
 
 For manual installation, first: Node dependencies with Yarn:
 
@@ -83,45 +70,14 @@ cp apps/admin-vite/.env.example apps/admin-vite/.env
 > Any changes to the files when running the `build` command will run the builds
 > usually, then get remotely cached via Turborepo.
 
-#### Running in bulk
-
-Run both the website and admin dashboard, opening ports 3000 and 5173 w/o
-needing to rely on the `concurrently` library:
-
-```console
-yarn dev
-```
-
-Build both the website and admin dashboard:
-
-```console
-yarn build
-```
-
-#### Running separately
-
-Run the website only, this will open port 3000 on `localhost`:
-
 ```console
 yarn dev:web
-```
-
-Run the admin dashboard only, this will open port 5173 on `localhost`:
-
-```console
-yarn dev:admin
 ```
 
 Build the website only:
 
 ```console
 yarn build:web
-```
-
-Build the admin dashboard:
-
-```console
-yarn build:admin
 ```
 
 ## API

@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.11.2
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -30,4 +30,4 @@ jobs:
           mypy --install-types
 
       - name: Type-check scripts
-        run: mypy .   
+        run: mypy .

@@ -1,14 +1,14 @@
+# General stuff
 node_modules
 *.log*
 .turbo
-
-# python stuff
-*.idea
-venv
-__pycache__
 
 # Ignore any 'tl.json' files used for updaters sent to Redis
 *tl.json
 *.ipynb
 
+# python stuff
+*.idea
+venv
+__pycache__
 *test.py

@@ -2,6 +2,15 @@
 
 ## 2023
 
+### April 18
+
+- Removed admin dashboard; will use Python for efficency
+- Renamed package from `paco_utils` to `parinton`
+
+### April 3
+
+- Add Paco Utils Python package
+
 ### March 16
 
 - Change codebase license back to MIT
