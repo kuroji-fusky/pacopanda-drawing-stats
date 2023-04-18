@@ -1,15 +1,15 @@
 """
-P2DS - Paco Scraper
+Paco Scraper Script
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
 import argparse
 import time
 
-from paco_utils.base import PacoClubhouse
-from paco_utils.constants import current_date
-from paco_utils.logger import ColorLogger
-from paco_utils.parsers import IterateGallery, SubmissionParser
+from parinton.base import Parinton
+from parinton.constants import current_date
+from parinton.logger import ColorLogger
+from parinton.parsers import IterateGallery, SubmissionParser
 
 arg_desc = "Scrapes and parses Paco art from FurAffinity, Weasyl, and InkBunny"
 
@@ -33,16 +33,17 @@ args = parser.parse_args()
 
 def main():
 	logger = ColorLogger(prefix="Updater")
-	base = PacoClubhouse()
+	base = Parinton()
 
 	fa_url = base.b_furaffinity
 	ws_url = base.b_weasyl
 	ib_url = base.b_inkbunny
 
 	if args.update:
+		logger.note("Logger set")
 		logger.info("Updating data from FA")
-
 		gallery_page = base.soup_req(f"{fa_url}/gallery/pacopanda")
+
 		first_artwork = gallery_page.select_one('figure')
 
 		first_artwork_link = first_artwork.find("a")['href']

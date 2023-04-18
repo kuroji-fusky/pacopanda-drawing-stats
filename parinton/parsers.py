@@ -1,5 +1,5 @@
 """
-P2DS - Web Scraper and Data Parsers
+Parinton -- Web Scraper and Data Parsers
 The brain of the operations
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
@@ -10,14 +10,14 @@ from typing import Optional, Union, Any
 
 from bs4 import BeautifulSoup, Tag, ResultSet
 
-from paco_utils.base import PacoClubhouse, cache_filename
-from paco_utils.constants import current_date
-from paco_utils.logger import ColorLogger
+from parinton.base import Parinton, cache_filename
+from parinton.constants import current_date
+from parinton.logger import ColorLogger
 
 logger = ColorLogger(prefix="Parser")
 
 
-class IterateGallery(PacoClubhouse):
+class IterateGallery(Parinton):
 	def __init__(self, url: str, json_fn: Optional[str] = None, bypass_cache: Optional[bool] = False):
 		"""Iterate over gallery pages
 
@@ -100,8 +100,20 @@ class IterateGallery(PacoClubhouse):
 				gallery_page = self.soup_req(url, self.get_ua(self.b_inkbunny))
 				return
 
+	def _furaffinity(self):
+		pass
+	
+	def _weasyl(self):
+		pass
+	
+	def _inkbunny(self):
+		pass
 
-class SubmissionParser(PacoClubhouse):
+	def _index_pagination(self):
+		pass
+
+
+class SubmissionParser(Parinton):
 	def __init__(self, url: str, json_fn: Optional[str] = None):
 		"""Parses artworks' information from FurAffinity, Weasyl, and InkBunny
 

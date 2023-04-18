@@ -1,5 +1,5 @@
 """
-P2DS - Base Utilities
+Parinton -- Base Utilities
 
 Copyright 2022-2023 Kerby Keith Aquino; MIT license
 """
@@ -12,9 +12,9 @@ import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-from paco_utils.constants import current_date, base_url
-from paco_utils.exceptions import OperationConflictError, SpecificURLError
-from paco_utils.logger import ColorLogger
+import parinton.exceptions
+from parinton.constants import current_date, base_url
+from parinton.logger import ColorLogger
 
 logger = ColorLogger()
 ua_logger = ColorLogger(prefix="UserAgent")
@@ -25,7 +25,7 @@ cache_filename = "paco-cache.json"
 rs = requests.Session()
 
 
-class PacoClubhouse:
+class Parinton:
 	"""Base class for checking URLs"""
 	page_metadata: dict[str, int] = {'pages': 1, 'artworks': 0}
 
@@ -35,7 +35,7 @@ class PacoClubhouse:
 
 	def __init__(self, url: Optional[str] = None, json_fn: Optional[str] = None):
 		if url and json_fn:
-			raise OperationConflictError(
+			raise parinton.exceptions.OperationConflictError(
 				"Both URL and JSON params are used - this will cause operation conflicts that will lead"
 				" to confusion! Please pass either `url` or `json_fn` params only.")
 
@@ -45,7 +45,7 @@ class PacoClubhouse:
 			self.is_ib: bool = url.startswith(self.b_inkbunny)
 
 			if not self.is_fa and not self.is_ws and not self.is_ib:
-				raise SpecificURLError(
+				raise parinton.exceptions.SpecificURLError(
 					'Invalid URL. Expected URLs from either FurAffinity, Weasyl, and InkBunny only!')
 
 		if json_fn:
@@ -53,16 +53,22 @@ class PacoClubhouse:
 
 	def soup_req(self, url: str, user_agent: dict[str, str] | None = None):
 		"""
-		An abstraction that accepts URL and returns HTML output via BeautifulSoup
+		An abstraction that accepts URL and returns HTML output via BeautifulSoup,
+		will throw an exception if user has no internet connection
 	
 		:param url: Required
-		:param user_agent: Optional, used along with the `get_ua()` function
+		:param user_agent: Optional, used along with the `get_ua()` method
 		"""
-		if user_agent is None:
-			user_agent = self.get_ua(base_url.get("furaffinity"))
+		try:
+			if user_agent is None:
+				user_agent = self.get_ua(base_url.get("furaffinity"))
 
-		req = rs.get(url, headers=user_agent, timeout=None)
-		return BeautifulSoup(req.text, "html.parser")
+			req = rs.get(url, headers=user_agent, timeout=None)
+			return BeautifulSoup(req.text, "html.parser")
+		
+		except requests.exceptions.ConnectionError:
+			requests.exceptions.ConnectionError(
+				"Failed to make a request; you probably have unstable or no internet connection, please try again.")
 
 	def check_cache(self):
 		"""
@@ -173,14 +179,8 @@ class PacoClubhouse:
 	def time_difference(date_input: datetime) -> str:
 		delta = (current_date - date_input)
 
-		def fill_zeros(n: int) -> str:
-			if n < 10:
-				return f"0{n}"
-
-			return str(n)
-
-		seconds = fill_zeros(delta.seconds % 60)
-		minutes = fill_zeros(delta.seconds // 60 % 60)
-		hours = fill_zeros(delta.seconds // 3600)
+		seconds = (delta.seconds % 60).zfill(2)
+		minutes = (delta.seconds // 60 % 60).zfill(2)
+		hours = (delta.seconds // 3600).zfill(2)
 
 		return f"{hours}h {minutes}m {seconds}s"
