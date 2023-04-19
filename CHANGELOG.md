@@ -2,6 +2,10 @@
 
 ## 2023
 
+## April 19
+
+- Utilize Poetry package manager
+
 ### April 18
 
 - Removed admin dashboard; will use Python for efficency
