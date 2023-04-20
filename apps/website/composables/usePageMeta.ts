@@ -1,7 +1,7 @@
 import { UseSeoMetaInput } from "@unhead/vue"
 
 interface PageMetaProps {
-	title: string
+	title?: string
 	description?: string
 }
 

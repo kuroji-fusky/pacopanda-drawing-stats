@@ -8,9 +8,11 @@ useHead({
 </script>
 
 <template>
-	<NuxtLayout>
+	<div id="__paco">
+		<TheBaseNavbar />
 		<NuxtPage />
-	</NuxtLayout>
+		<TheBaseFooter />
+	</div>
 </template>
 
 <style lang="scss"></style>

@@ -5,6 +5,12 @@ node_modules
 .nuxt
 dist
 
+apps/admin/*.d.ts
+
+*.md
+!README.md
+!CHANGELOG.md
+
 # Files
 .gitignore
 favicon.ico

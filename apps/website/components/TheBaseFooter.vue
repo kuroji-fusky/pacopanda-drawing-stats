@@ -1,17 +1,28 @@
+<script setup lang="ts">
+import { IconGithub } from "@iconify-prerendered/vue-fa6-brands"
+import {
+	IconGrip,
+	IconAsterisk,
+	IconCode,
+	IconArrowUpRightFromSquare,
+} from "@iconify-prerendered/vue-fa6-solid"
+
+const year = new Date().getFullYear()
+const COPYRIGHT = `Copyright © 2021-${year} by Kuroji Fusky; its entire source code licensed under`
+</script>
+
 <template>
 	<footer>
 		<div id="wrapper">
 			<div class="link-wrapper">
 				<div
-					role="listbox"
+					role="list"
 					class="flex flex-col flex-shrink-0 w-4/12 pr-5 gap-y-4"
 				>
-					<FooterLink href="/about/how-i-gather-data">
-						<IconAsterisk font-size="20" class="w-5 text-black" />
+					<FooterLink href="/about/how-i-gather-data" :icon="IconAsterisk">
 						<span>How I gather and parse data</span>
 					</FooterLink>
-					<FooterLink href="/api-docs">
-						<IconCode font-size="20" class="w-5 text-black" />
+					<FooterLink href="/api-docs" :icon="IconCode">
 						<span
 							>Paco Stats API
 							<span
@@ -24,21 +35,18 @@
 					<FooterLink
 						external
 						href="https://github.com/kuroji-fusky/pacopanda-drawing-stats"
+						:icon="IconGithub"
 					>
-						<IconGithub font-size="20" class="w-5 text-black" />
 						<span>View source code on GitHub</span>
-						<IconArrowUpRightFromSquare
-							font-size="12"
-							class="relative right-1 top-1.5"
-						/>
+						<IconArrowUpRightFromSquare size="12" />
 					</FooterLink>
-					<FooterLink external href="https://kurofusky.xyz/portfolio">
-						<IconGrip font-size="20" class="w-5 text-black" />
+					<FooterLink
+						external
+						href="https://kurofusky.xyz/portfolio"
+						:icon="IconGrip"
+					>
 						<span>More passion projects by Kuroji</span>
-						<IconArrowUpRightFromSquare
-							font-size="12"
-							class="relative right-1 top-1.5"
-						/>
+						<IconArrowUpRightFromSquare size="12" />
 					</FooterLink>
 				</div>
 				<article class="flex flex-col gap-y-2.5 w-full pl-5">
@@ -57,30 +65,17 @@
 			</div>
 			<div class="grid py-6 text-center bg-green-100 place-items-center">
 				<span>
-					Copyright &copy; 2021-{{ year }}
-					Kuroji Fusky; its entire source code licensed under
+					{{ COPYRIGHT }}
 					<NuxtLink
 						class="link-underline"
 						to="https://opensource.org/license/gpl-2-0/"
 						>GPL-2.0</NuxtLink
-					>.
+					>
 				</span>
 			</div>
 		</div>
 	</footer>
 </template>
-
-<script setup lang="ts">
-import { IconGithub } from "@iconify-prerendered/vue-fa6-brands"
-import {
-	IconGrip,
-	IconAsterisk,
-	IconCode,
-	IconArrowUpRightFromSquare,
-} from "@iconify-prerendered/vue-fa6-solid"
-
-const year = new Date().getFullYear()
-</script>
 
 <style lang="scss" scoped>
 #wrapper {

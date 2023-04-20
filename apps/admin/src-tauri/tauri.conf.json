@@ -2,12 +2,12 @@
 	"build": {
 		"beforeDevCommand": "yarn dev",
 		"beforeBuildCommand": "yarn build",
-		"devPath": "http://localhost:4000",
+		"devPath": "http://localhost:6969",
 		"distDir": "../dist",
 		"withGlobalTauri": false
 	},
 	"package": {
-		"productName": "admin",
+		"productName": "Paco Admin Dashboard",
 		"version": "0.0.0"
 	},
 	"tauri": {
@@ -21,7 +21,7 @@
 		"bundle": {
 			"active": true,
 			"category": "DeveloperTool",
-			"copyright": "",
+			"copyright": "2023 Kerby Keith Aquino",
 			"deb": {
 				"depends": []
 			},
@@ -62,8 +62,8 @@
 				"fullscreen": false,
 				"height": 600,
 				"resizable": true,
-				"title": "admin",
-				"width": 800
+				"title": "Paco Admin Dashboard",
+				"width": 1280
 			}
 		]
 	}

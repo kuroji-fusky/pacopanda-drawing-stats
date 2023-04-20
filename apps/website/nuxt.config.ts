@@ -1,7 +1,3 @@
-import { resolve, dirname } from "node:path"
-import { fileURLToPath } from "url"
-import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite"
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -51,5 +47,10 @@ export default defineNuxtConfig({
 	},
 	webpack: {
 		optimizeCSS: true,
+	},
+
+	// @nuxt/content
+	content: {
+		documentDriven: true,
 	},
 })
