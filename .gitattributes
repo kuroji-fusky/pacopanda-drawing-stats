@@ -1,1 +1,3 @@
 *.js linguist-detectable=TypeScript
+*.cjs linguist-detectable=TypeScript
+*.mjs linguist-detectable=TypeScript
