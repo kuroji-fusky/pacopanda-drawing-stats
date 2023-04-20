@@ -52,13 +52,4 @@ export default defineNuxtConfig({
 	webpack: {
 		optimizeCSS: true,
 	},
-	vite: {
-		plugins: [
-			VueI18nVitePlugin({
-				include: [
-					resolve(dirname(fileURLToPath(import.meta.url)), "./locales/*.json"),
-				],
-			}),
-		],
-	},
 })

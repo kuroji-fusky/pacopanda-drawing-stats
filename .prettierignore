@@ -1,16 +1,23 @@
+# Directories
 node_modules
 .output
 .vercel
 .nuxt
-.mypy_cache
-venv
-
-.gitignore
-
 dist
 
+# Files
+.gitignore
 favicon.ico
-
 *.env*
 *.txt
+*.lock
+*.toml
+*.rs
+
+# Tauri stuff
+target
+
+# Python stuff
+.mypy_cache
+venv
 *.py

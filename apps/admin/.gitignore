@@ -1,0 +1,14 @@
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.d.ts
+!vite-env.d.ts

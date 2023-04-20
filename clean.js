@@ -2,7 +2,7 @@ import fs from "fs"
 
 const options = { recursive: true, force: true }
 
-const nodeDirs = ["./app", "."]
+const nodeDirs = ["./apps/website", "./apps/admin", "."]
 
 nodeDirs.forEach((dir) => {
 	const prependNode = `${dir}/node_modules`

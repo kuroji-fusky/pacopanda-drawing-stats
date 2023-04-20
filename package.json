@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
-		"app",
+		"apps/**",
 		"packages/*"
 	],
 	"lint-staged": {
@@ -13,10 +13,12 @@
 	},
 	"scripts": {
 		"cleanup": "node clean.js && yarn",
-		"dev": "turbo dev",
-		"build": "turbo build",
-		"postinstall": "cd app && nuxt prepare",
+		"postinstall": "cd apps/website && nuxt prepare",
 		"prepare": "husky install",
+		"dev": "turbo dev --filter=website",
+		"build": "turbo build --filter=website",
+    "tauri:dev": "yarn workspace @pds/admin tauri dev",
+    "tauri:build": "yarn workspace @pds/admin tauri build",
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
 	},

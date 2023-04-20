@@ -25,10 +25,9 @@ files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
-  - `api` - API for both REST and GraphQL
+  - `admin` - A desktop dashboard app written in Tauri
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
-  - `tsconfig` - Shared TypeScript config
   - `types` - Shared TypeScript declarations
 - `parinton` - Local scraper and parser library for manipulating public drawing
   data with Python
@@ -42,11 +41,13 @@ files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
   - Python 3.10 or higher
   - Yarn Package Manager
 - **Optional**
+  - Rust (rustc 1.6.x or higher)
+  - VS 2017 Pre-requisites
   - WSL/Git Bash
 
 ### Installation
 
-For manual installation, first: Node dependencies with Yarn:
+Install Node dependencies with Yarn:
 
 ```console
 yarn install
@@ -62,7 +63,7 @@ Then, clone the `.env` files:
 
 ```console
 cp apps/website/.env.example apps/website/.env
-cp apps/admin-vite/.env.example apps/admin-vite/.env
+cp apps/admin/.env.example apps/admin/.env
 ```
 
 ### Scripts
@@ -71,13 +72,19 @@ cp apps/admin-vite/.env.example apps/admin-vite/.env
 > usually, then get remotely cached via Turborepo.
 
 ```console
-yarn dev:web
+yarn dev
 ```
 
 Build the website only:
 
 ```console
-yarn build:web
+yarn build
+```
+
+Running the admin dashboard:
+
+```console
+yarn tauri:dev
 ```
 
 ## API
