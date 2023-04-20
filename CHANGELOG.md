@@ -2,6 +2,10 @@
 
 ## 2023
 
+## April 20
+
+- Remove Fastify API in replacement for FastAPI
+
 ## April 19
 
 - Utilize Poetry package manager

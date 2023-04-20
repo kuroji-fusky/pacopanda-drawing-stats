@@ -2,7 +2,7 @@ import fs from "fs"
 
 const options = { recursive: true, force: true }
 
-const nodeDirs = ["./apps/api", "./apps/website", "."]
+const nodeDirs = ["./app", "."]
 
 nodeDirs.forEach((dir) => {
 	const prependNode = `${dir}/node_modules`
@@ -11,7 +11,7 @@ nodeDirs.forEach((dir) => {
 	fs.rmSync(prependNode, options)
 })
 
-const websiteDir = nodeDirs[1]
+const websiteDir = nodeDirs[0]
 const websiteTemps = [`${websiteDir}/.turbo`, `${websiteDir}/.output`]
 
 websiteTemps.forEach((dir) => {

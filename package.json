@@ -4,20 +4,18 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
-		"apps/*",
+		"app",
 		"packages/*"
 	],
 	"lint-staged": {
-		"apps/**": "yarn prettier:write",
+		"app": "yarn prettier:write",
 		"packages/**": "yarn prettier:write"
 	},
 	"scripts": {
 		"cleanup": "node clean.js && yarn",
-		"dev:web": "turbo dev --filter=website",
-		"build:web": "turbo build --filter=website",
 		"dev": "turbo dev",
 		"build": "turbo build",
-		"postinstall": "cd apps/website && nuxt prepare",
+		"postinstall": "cd app && nuxt prepare",
 		"prepare": "husky install",
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
