@@ -2,6 +2,7 @@
 node_modules
 *.log*
 .turbo
+.env
 
 # Ignore any 'tl.json' files used for updaters sent to Redis
 *tl.json

@@ -1,5 +1,1 @@
 * text=auto
-
-*.js linguist-language=TypeScript
-*.mjs linguist-language=TypeScript
-*.cjs linguist-language=TypeScript
