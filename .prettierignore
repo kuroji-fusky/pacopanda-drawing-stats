@@ -27,3 +27,4 @@ target
 .mypy_cache
 venv
 *.py
+python/*.json

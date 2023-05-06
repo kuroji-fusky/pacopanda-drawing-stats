@@ -29,8 +29,9 @@ files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
   - `types` - Shared TypeScript declarations
-- `parinton` - Local scraper and parser library for manipulating public drawing
-  data with Python
+- `python`
+  - `parinton` - Local scraper and parser library for manipulating public
+    drawing data with Python
 
 ## Setup and Installation
 
@@ -53,38 +54,11 @@ Install Node dependencies with Yarn:
 yarn install
 ```
 
-Install Python packages:
-
-```console
-pip install -r requirements.txt
-```
-
 Then, clone the `.env` files:
 
 ```console
 cp apps/website/.env.example apps/website/.env
 cp apps/admin/.env.example apps/admin/.env
-```
-
-### Scripts
-
-> Any changes to the files when running the `build` command will run the builds
-> usually, then get remotely cached via Turborepo.
-
-```console
-yarn dev
-```
-
-Build the website only:
-
-```console
-yarn build
-```
-
-Running the admin dashboard:
-
-```console
-yarn tauri:dev
 ```
 
 ## API
