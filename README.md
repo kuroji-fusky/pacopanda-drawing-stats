@@ -29,6 +29,7 @@ files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
   - `types` - Shared TypeScript declarations
+  - `ui` - Shared design system
 - `python`
   - `parinton` - Local scraper and parser library for manipulating public
     drawing data with Python

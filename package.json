@@ -5,14 +5,14 @@
 	"type": "module",
 	"workspaces": [
 		"apps/**",
-		"packages/*"
+		"packages/**"
 	],
 	"lint-staged": {
 		"app": "yarn prettier:write",
 		"packages/**": "yarn prettier:write"
 	},
 	"scripts": {
-		"cleanup": "node clean.js && yarn",
+		"cleanup": "node scripts/clean.mjs && yarn",
 		"postinstall": "cd apps/website && nuxt prepare",
 		"prepare": "husky install",
 		"dev": "turbo dev --filter=website",
@@ -30,7 +30,7 @@
 		"turbo": "^1.8.2"
 	},
 	"engines": {
-		"node": ">16.0.0",
+		"node": ">18.0.0",
 		"npm": ">= 8.0.0"
 	}
 }
