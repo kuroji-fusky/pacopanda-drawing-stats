@@ -2,11 +2,12 @@
 
 ## 2023
 
-## April 20
+### April 20
 
 - Remove Fastify API in replacement for FastAPI
+- Readd Tauri app for admin dashboard
 
-## April 19
+### April 19
 
 - Utilize Poetry package manager
 
