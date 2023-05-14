@@ -32,7 +32,11 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.local
-          key: poetry-local-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
+          key:
+            poetry-local-${{ runner.os }}-${{
+            steps.setup_python.outputs.python-version }}-${{
+            hashFiles('**/poetry.lock') }}-${{
+            hashFiles('.github/workflows/*.yml') }}
 
       - name: Install Poetry ${{ env.POETRY_VERSION }}
         run: |
@@ -41,7 +45,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install Dependencies
-        run: | 
+        run: |
           poetry install
           mypy --install-types
 

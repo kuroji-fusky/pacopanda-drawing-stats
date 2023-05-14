@@ -21,9 +21,9 @@ export default defineNuxtConfig({
 				{ name: "robots", content: "noindex,nofollow" },
 			],
 			link: [
-        { rel: "shortcut icon", href: "/favicon.ico" },
-        { rel: "manifest", href: "/manifest.webmanifest"}
-      ],
+				{ rel: "shortcut icon", href: "/favicon.ico" },
+				{ rel: "manifest", href: "/manifest.webmanifest" },
+			],
 			script: [
 				{
 					// prettier-ignore

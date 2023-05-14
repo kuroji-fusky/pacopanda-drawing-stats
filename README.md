@@ -17,12 +17,13 @@ and GraphQL APIs, and utilizes Supabase as the database.
 
 ## Project structure
 
-This project is structured as a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
-uses Yarn workspaces and Turborepo to install and manage dependencies in each
-subdirectory and remotely cache builds on the cloud via Turborepo.
+This project is structured as a
+[**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it uses Yarn
+workspaces and Turborepo to install and manage dependencies in each subdirectory
+and remotely cache builds on the cloud via Turborepo.
 
-Written in TypeScript, Python, and Rust - it utilizes the ES Module syntax, with some
-files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
+Written in TypeScript, Python, and Rust - it utilizes the ES Module syntax, with
+some files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
 
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
@@ -130,6 +131,7 @@ their CDN under the hood to cache media types.
 
 ## License
 
-Paco Panda Drawing Stats' source code is open source and is licensed under [MIT](https://opensource.org/licenses/MIT).
+Paco Panda Drawing Stats' source code is open source and is licensed under
+[MIT](https://opensource.org/licenses/MIT).
 
 [it]: https://github.com/thatITfox
