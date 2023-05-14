@@ -1,26 +1,28 @@
 ![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/220274497-18b6a944-a759-469e-a10e-1d9b1ec6a95b.png)
 
-![license - pacopanda-drawing-stats](https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?color=336600)
-[![issues - pacopanda-drawing-stats](https://img.shields.io/github/issues/kuroji-fusky/pacopanda-drawing-stats)](https://github.com/kuroji-fusky/pacopanda-drawing-stats/issues)
-![](https://img.shields.io/github/last-commit/kuroji-fusky/pacopanda-drawing-stats)
-![](https://img.shields.io/github/contributors/kuroji-fusky/pacopanda-drawing-stats)
+<h1 align="center">Paco Panda Drawing Stats</h1>
 
+<p align="center">
+	<a href="https://opensource.org/licenses/MIT">
+		<img src="https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?style=flat-square" />
+	</a>
+</p>
+	
 **Paco Panda Drawing Stats** is a data analysis and data visualization project
 that collects and parses drawing data from a furry artist and illustrator Paco
 Panda.
 
 Initially made simply out of curiosity - it has expanded to provide its own REST
-and GraphQL APIs, and utilizes Redis as the main and in-memory database for its
-speed and persistence.
+and GraphQL APIs, and utilizes Supabase as the database.
 
 ## Project structure
 
-This project is a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
+This project is structured as a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo), it
 uses Yarn workspaces and Turborepo to install and manage dependencies in each
 subdirectory and remotely cache builds on the cloud via Turborepo.
 
-Written in TypeScript and Python - it utilizes the ES Module syntax, with some
-files utilize the `.cjs` file type for Prettier, Tailwind, and PostCSS configs.
+Written in TypeScript, Python, and Rust - it utilizes the ES Module syntax, with some
+files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
 
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
@@ -128,6 +130,6 @@ their CDN under the hood to cache media types.
 
 ## License
 
-MIT
+Paco Panda Drawing Stats' source code is open source and is licensed under [MIT](https://opensource.org/licenses/MIT).
 
 [it]: https://github.com/thatITfox
