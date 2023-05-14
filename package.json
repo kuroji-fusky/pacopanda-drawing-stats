@@ -8,7 +8,7 @@
 		"packages/**"
 	],
 	"lint-staged": {
-		"app": "yarn prettier:write",
+		"apps/**": "yarn prettier:write",
 		"packages/**": "yarn prettier:write"
 	},
 	"scripts": {

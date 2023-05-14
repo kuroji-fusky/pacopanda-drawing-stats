@@ -6,10 +6,6 @@ Copyright 2022-2023 Kerby Keith Aquino; MIT license
 import argparse
 import time
 
-import uvicorn
-from fastapi import FastAPI
-from pydantic import BaseModel
-
 from parinton.base import Parinton
 from parinton.constants import current_date
 from parinton.logger import ColorLogger

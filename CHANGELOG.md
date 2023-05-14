@@ -2,10 +2,15 @@
 
 ## 2023
 
+### May 15
+
+- Revert from FastAPI to Fastify (in other words, build the API back to Node.js)
+- Change database from Redis to Supabase as a Baas (Backend as a Service)
+
 ### April 20
 
 - Remove Fastify API in replacement for FastAPI
-- Readd Tauri app for admin dashboard
+- Re-add Tauri app for admin dashboard
 
 ### April 19
 

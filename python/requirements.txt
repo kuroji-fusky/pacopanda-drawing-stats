@@ -1,0 +1,9 @@
+types-beautifulsoup
+beautifulsoup
+
+requests
+
+uvicorn
+fastapi
+
+supabase
