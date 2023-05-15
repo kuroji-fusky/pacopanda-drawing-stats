@@ -19,12 +19,13 @@ favicon.ico
 *.lock
 *.toml
 *.rs
+*.py
 
 # Tauri stuff
 target
 
 # Python stuff
+python
 .mypy_cache
 venv
 *.py
-python/*.json
