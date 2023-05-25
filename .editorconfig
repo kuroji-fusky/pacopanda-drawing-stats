@@ -9,4 +9,4 @@ trim_trailing_whitespace = false
 insert_final_newline = false
 
 [*.py]
-tab_width = 2
+tab_width = 4

@@ -17,8 +17,6 @@
 		"prepare": "husky install",
 		"dev": "turbo dev --filter=website",
 		"build": "turbo build --filter=website",
-		"tauri:dev": "yarn workspace @pds/admin tauri dev",
-		"tauri:build": "yarn workspace @pds/admin tauri build",
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write ."
 	},

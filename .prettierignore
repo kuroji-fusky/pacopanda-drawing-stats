@@ -17,12 +17,7 @@ favicon.ico
 *.env*
 *.txt
 *.lock
-*.toml
-*.rs
 *.py
-
-# Tauri stuff
-target
 
 # Python stuff
 python

@@ -2,6 +2,11 @@
 
 ## 2023
 
+## May 25
+
+- Revert from Supabase to Redis
+- Purge Python and admin Tauri app for a rewrite
+
 ### May 15
 
 - Revert from FastAPI to Fastify (in other words, build the API back to Node.js)

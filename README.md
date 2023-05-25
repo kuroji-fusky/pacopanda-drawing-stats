@@ -28,11 +28,10 @@ some files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
 - `.github` - CI/CD Workflow stuff
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
-  - `admin` - A desktop dashboard app written in Tauri
+  - `api` - An API written in Fastify
   - `website` - The website written in Nuxt 3 + Tailwind CSS
 - `packages`
   - `types` - Shared TypeScript declarations
-  - `ui` - Shared design system
 - `python`
   - `parinton` - Local scraper and parser library for manipulating public
     drawing data with Python
@@ -46,7 +45,6 @@ some files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
   - Python 3.10 or higher
   - Yarn Package Manager
 - **Optional**
-  - Rust (rustc 1.6.x or higher)
   - VS 2017 Pre-requisites
   - WSL/Git Bash
 

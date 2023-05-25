@@ -4,6 +4,4 @@ beautifulsoup
 requests
 
 uvicorn
-fastapi
-
-supabase
+redis
