@@ -1,7 +1,13 @@
-types-beautifulsoup
-beautifulsoup
+mypy
 
+# Main libs
+beautifulsoup4
+colorama
 requests
-
-uvicorn
 redis
+
+# Type stubs
+types-beautifulsoup4
+types-colorama
+types-requests
+types-redis
