@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from typing import Optional
-from parinton.typings import PacoBaseURLs, ConfigLiteral
+from parinton.typings import _BaseURLs, _ConfigLiteral
 
-BASE_URL: PacoBaseURLs = {
+BASE_URL: _BaseURLs = {
     "furaffinity": "https://www.furaffinity.net",
     "weasyl": "https://www.weasyl.com",
     "inkbunny": "https://inkbunny.net"
@@ -16,7 +16,7 @@ class Parinton:
         if verbose_log is None:
             verbose_log = False
 
-    def create_config(self, environment: ConfigLiteral):
+    def create_config(self, environment: _ConfigLiteral):
         """
         Only for CLI use, don't call this function!
         """

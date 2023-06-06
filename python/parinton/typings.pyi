@@ -3,10 +3,10 @@ from typing import TypedDict, Optional, Literal
 """
 Config types
 """
-ConfigLiteral = Optional[Literal["prod", "dev"]]
+_ConfigLiteral = Optional[Literal["prod", "dev"]]
 
 
-class RedisConfig(TypedDict):
+class _RedisConfig(TypedDict):
     password: str
     username: str
     host: str
@@ -14,32 +14,32 @@ class RedisConfig(TypedDict):
 
 
 class ConfigJSONType(TypedDict):
-    development: RedisConfig
-    production: RedisConfig
+    development: _RedisConfig
+    production: _RedisConfig
 
 
 """
 Parser and selector types
 """
-class PacoBaseURLs(TypedDict):
+class _BaseURLs(TypedDict):
     furaffinity: str
     weasyl: str
     inkbunny: str
 
 
-class PaginationType(TypedDict):
+class _PaginationType(TypedDict):
     prev_selector: str
     next_selector: str
 
 
-class ArtworkDictType(TypedDict):
+class _ArtworkDictType(TypedDict):
     title: str
     description: str
     tags: str
     date: str
 
 
-class ArtworkReturnType(TypedDict):
+class _ArtworkReturnType(TypedDict):
     title: str
     description: str
     tags: list[str]
