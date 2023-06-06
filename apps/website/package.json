@@ -19,7 +19,6 @@
 		"@iconify-prerendered/vue-fa6-solid": "^0.18.1668581498",
 		"@nuxt/content": "^2.3.0",
 		"@nuxtjs/color-mode": "^3.2.0",
-		"@pds/ui": "*",
 		"@pinia/nuxt": "^0.4.6",
 		"@supabase/supabase-js": "^2.21.0",
 		"@tailwindcss/typography": "^0.5.9",
