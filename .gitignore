@@ -13,3 +13,4 @@ node_modules
 venv
 __pycache__
 *test.py
+paco-cache*
