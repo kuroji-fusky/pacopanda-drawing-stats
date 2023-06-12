@@ -10,13 +10,14 @@ MIT License
 import json
 from datetime import datetime
 from typing import Optional
+from difflib import get_close_matches
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 from requests import Session
 from requests.exceptions import ConnectionError
 
-from parinton.typings import _FixedBaseURLs, _ConfigLiteral, _ArtworkReturnType, _ArtworkDictType
+from parinton.typings import _FixedBaseURLs, _ArtworkReturnType, _ArtworkDictType
 
 BASE_URL: _FixedBaseURLs = {
 	"furaffinity": "https://www.furaffinity.net",
@@ -45,10 +46,10 @@ class Parinton:
 
 		_current_dt = datetime.now()
 		_cached_dt: str | None = None
-		_cached_idnf = "cached_time"
+		_cached_time = "cached_time"
 
 		_cache_dict: dict[str, str | _FixedBaseURLs] = {
-			_cached_idnf: _current_dt.isoformat(),
+			_cached_time: _current_dt.isoformat(),
 			'pagination': {
 				'furaffinity': '0',
 				'weasyl': '0',
@@ -58,7 +59,7 @@ class Parinton:
 
 		try:
 			_cached_dt: dict[str, str] = _load_file(_cache_filename)
-			_cached_dt = _cached_dt.get(_cached_idnf)
+			_cached_dt = _cached_dt.get(_cached_time)
 
 			print(_cached_dt)
 
@@ -73,6 +74,7 @@ class Parinton:
 		try:
 			_req = Session().get(url, timeout=None)
 			return BeautifulSoup(_req.text, "html.parser")
+
 		except ConnectionError:
 			raise ConnectionError
 
@@ -83,6 +85,12 @@ class PacoParser(Parinton):
 		self._description: Tag | None = None
 
 	def get_art_metadata(self, selector: _ArtworkDictType) -> _ArtworkReturnType:
+		"""
+		Gets the page metadata from a page request
+		
+		:param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
+		:return: An object that returns a title, description, date, and a list of tags
+		"""
 		title_selector = selector.get("title")
 		desc_selector = selector.get("description")
 		tags_selector = selector.get("tags")
@@ -106,9 +114,19 @@ class PacoParser(Parinton):
 		There's a common pattern that in every artwork descriptions; he lists what tools
 		and medium of the artwork (i.e. "Digital. Photoshop.")
 
-		my approach is to go to the last lines of the description using .split('\n')
+		My approach is to go to the last lines of the description using .split('\n')
 		and match mediums and whatever tools he uses
 		"""
 		# TODO do something with this crap
-		desc = self._description
+		_desc = self._description
+
+		_MEDIUM = ['digital', 'traditional']
+
+		# TODO use difflib.get_close_matches for this one
+		_PROGRAMS = ['photoshop', 'medibang', 'procreate']
+		_TRAD_TOOLS = ['gouaches', 'watercolors', 'colored pencils', 'markers', 'indian ink', 'pencils']
+
+		_TOOLS = [*_PROGRAMS, *_TRAD_TOOLS]
+
+		# TODO if nothing is detected, return "not specified"
 		...

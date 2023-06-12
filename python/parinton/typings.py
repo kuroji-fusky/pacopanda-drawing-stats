@@ -1,13 +1,4 @@
-from typing import TypedDict, Optional, Literal
-
-"""
-Config types
-"""
-_ConfigLiteral = Optional[Literal["prod", "dev"]]
-
-"""
-Parser and selector types
-"""
+from typing import TypedDict
 
 
 class _FixedBaseURLs(TypedDict):
