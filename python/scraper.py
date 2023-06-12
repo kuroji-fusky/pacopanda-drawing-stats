@@ -7,39 +7,23 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import argparse
-import multiprocessing
 
-from parinton import Parinton
-
+from parinton import paco
 
 def main():
 	arg_desc = "Scrapes and parses Paco art from FurAffinity, Weasyl, and InkBunny"
 	parser = argparse.ArgumentParser(description=arg_desc)
 
-	parser.add_argument('-u', '--update',
-						help="Updates the latest artwork",
+	parser.add_argument('--bypass-cache',
+						help="Bypasses cache file",
 						action='store_true')
 
-	parser.add_argument('--update-local',
-						help="Updates the latest artwork",
-						action='store_true')
+	args = parser.parse_args()
 
-	parser.add_argument('-m', '--minimal',
-						help="Minimizes console input and only prints required info"
-							 " (i.e. artwork title, current page, etc.)",
-						action='store_true')
+	paco.load_config()
 
-	parser.add_argument('-p', '--production',
-						help="Launches the server in production mode",
-						action='store_true')
-
-	parser.add_argument('--cron',
-						help="Only used for cron jobs, or task scheduler jobs for Windows",
-						action='store_true')
-	
-	paco = Parinton()
-
-	paco.check_cache()
+	if args.bypass_cache:
+		print('bypassed cache file')
 
 
 if __name__ == "__main__":

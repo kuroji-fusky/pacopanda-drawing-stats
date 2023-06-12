@@ -10,15 +10,6 @@ import parinton
 from argparse import ArgumentParser
 
 
-class PacoCharacterParser(parinton.Parinton):
-	def list_characters(self):
-		...
-
-	def add_character(self):
-		...
-
-	def remove_character(self):
-		...
 
 
 def main():

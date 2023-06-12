@@ -8,16 +8,19 @@ MIT License
 """
 
 import json
+import os
 from datetime import datetime
 from typing import Optional
-from difflib import get_close_matches
 
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from dotenv import load_dotenv
 from requests import Session
 from requests.exceptions import ConnectionError
 
+from parinton.exceptions import EnvironmentNotFound, EnvironmentValueError
 from parinton.typings import _FixedBaseURLs, _ArtworkReturnType, _ArtworkDictType
+
+# from difflib import get_close_matches
 
 BASE_URL: _FixedBaseURLs = {
 	"furaffinity": "https://www.furaffinity.net",
@@ -35,10 +38,39 @@ def _load_file(f):
 
 
 class Parinton:
-	REDIS_URL: str | None = ''
+	def __init__(self) -> None:
+		self.REDIS_URL: str | None = None
 
-	def load_config(self, fn: str):
-		...
+	def load_config(self, production: Optional[bool] = False) -> None:
+		"""
+		Loads a Redis URL based on its environment. Make sure you know what you're doing!
+		
+		:param production: A boolean whether to use the production environment
+		:return: None
+		"""
+		load_dotenv()
+
+		_PROD_URL = os.getenv('PROD_REDIS_URL')
+		_DEV_URL = os.getenv('DEV_REDIS_URL')
+		_REDIS_PROTOCOL = "redis://"
+
+		if production and _PROD_URL is None:
+			raise EnvironmentNotFound("Production mode enabled, but .env key 'PROD_REDIS_URL' isn't found!")
+
+		if _DEV_URL is None:
+			raise EnvironmentNotFound(".env key 'DEV_REDIS_URL' isn't found!")
+
+		if not _DEV_URL.startswith(_REDIS_PROTOCOL):
+			raise EnvironmentValueError("'DEV_REDIS_URL' key doesn't start begin with \"redis://\"")
+
+		if not _PROD_URL.startswith(_REDIS_PROTOCOL):
+			raise EnvironmentValueError("'PROD_REDIS_URL' key doesn't start begin with \"redis://\"")
+
+		if production and _PROD_URL:
+			self.REDIS_URL = _PROD_URL
+
+		if _DEV_URL:
+			self.REDIS_URL = _DEV_URL
 
 	@staticmethod
 	def check_cache():
@@ -78,55 +110,19 @@ class Parinton:
 		except ConnectionError:
 			raise ConnectionError
 
-
-class PacoParser(Parinton):
-	def __init__(self, url: Optional[str] | None) -> None:
-		self._url = url
-		self._description: Tag | None = None
-
-	def get_art_metadata(self, selector: _ArtworkDictType) -> _ArtworkReturnType:
+	def get_paginated_pages(self, prev_selector: str, next_selector: str) -> int:
 		"""
-		Gets the page metadata from a page request
-		
-		:param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
-		:return: An object that returns a title, description, date, and a list of tags
+		Gets a number of all the iterated pages by providing its CSS selectors with the "Previous" and "Next" buttons,
+		then stores it in cache
+
+		Sites like FurAffinity and InkBunny uses a paginated system to iterate over
+		user generated content.
+
+		:param prev_selector: The CSS selector of a "Previous" button 
+		:param next_selector: The CSS selector of a "Next" button 
+		:return: A number of all the iterated pages
 		"""
-		title_selector = selector.get("title")
-		desc_selector = selector.get("description")
-		tags_selector = selector.get("tags")
-		date_selector = selector.get("date")
-
-		_page = self.page_req(self._url)
-		_tags_list = [str(tag) for tag in _page.select(tags_selector)]
-
-		self._description = _page.select_one(desc_selector)
-
-		# TODO use param for getting the text attr
-		return {
-			"title": str(_page.select_one(title_selector)),
-			"description": str(self._description),
-			"date": str(_page.select_one(date_selector)),
-			"tags": _tags_list
-		}
-
-	def parse_medium(self) -> None:
-		"""
-		There's a common pattern that in every artwork descriptions; he lists what tools
-		and medium of the artwork (i.e. "Digital. Photoshop.")
-
-		My approach is to go to the last lines of the description using .split('\n')
-		and match mediums and whatever tools he uses
-		"""
-		# TODO do something with this crap
-		_desc = self._description
-
-		_MEDIUM = ['digital', 'traditional']
-
-		# TODO use difflib.get_close_matches for this one
-		_PROGRAMS = ['photoshop', 'medibang', 'procreate']
-		_TRAD_TOOLS = ['gouaches', 'watercolors', 'colored pencils', 'markers', 'indian ink', 'pencils']
-
-		_TOOLS = [*_PROGRAMS, *_TRAD_TOOLS]
-
-		# TODO if nothing is detected, return "not specified"
 		...
+
+
+paco = Parinton()

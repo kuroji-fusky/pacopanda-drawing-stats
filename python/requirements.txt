@@ -1,6 +1,8 @@
 mypy
 
 # Main libs
+python-dotenv
+
 beautifulsoup4
 colorama
 requests

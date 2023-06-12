@@ -7,11 +7,6 @@ class _FixedBaseURLs(TypedDict):
 	inkbunny: str
 
 
-class _PaginationType(TypedDict):
-	prev_selector: str
-	next_selector: str
-
-
 class _ArtworkDictType(TypedDict):
 	title: str
 	description: str
@@ -24,3 +19,8 @@ class _ArtworkReturnType(TypedDict):
 	description: str
 	tags: list[str]
 	date: str
+
+
+class _AverageDateReturnType(TypedDict):
+	total: int
+	average: int
