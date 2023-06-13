@@ -87,13 +87,13 @@ class PacoCharacters(parinton.Parinton):
         """
         super().__init__()
 
-    def list(self):
+    def list(self, filter_value: str) -> None:
         ...
 
-    def add(self):
+    def add(self, name: str, species: str) -> None:
         ...
 
-    def remove(self):
+    def remove(self, name: str, species: str) -> None:
         ...
 
 

@@ -18,7 +18,7 @@ from requests.exceptions import ConnectionError
 from parinton.exceptions import EnvironmentNotFound, EnvironmentValueError
 from parinton.logger import PacoLogger
 from parinton.typings import _FixedBaseURLs, _FixedBaseArtwork, _CacheDictData
-from parinton.utils import load_file, save_json, format_time
+from parinton.utils import load_file, save_file, format_time
 
 # from difflib import get_close_matches
 
@@ -32,13 +32,29 @@ logger = PacoLogger(time=True)
 
 
 class Parinton:
+    _OptBool = Optional[bool]
+
     def __init__(self) -> None:
         self.redis_url: Optional[str] = None
         self.cached_data: Optional[_CacheDictData] = None
 
         self.bypass_cache: bool = False
 
-    def _load_config(self, bypass: Optional[bool] = False, production: Optional[bool] = False) -> None:
+    def initalize(self,
+                  bypass_config: _OptBool = False,
+                  bypass_cache: _OptBool = False,
+                  production: _OptBool = False) -> None:
+        """
+        An initalizer for checking the config and cache, this must be called first before anything else!
+
+        :param bypass_config: Bypasses the config
+        :param bypass_cache: Bypasses the cache file
+        :param production: Points the config to production environment
+        """
+        self._load_config(bypass=bypass_config, production=production)
+        self._check_cache(bypass=bypass_cache)
+
+    def _load_config(self, bypass: _OptBool = False, production: _OptBool = False) -> None:
         """
         Loads a Redis URL based on its environment. Make sure you know what you're doing!
         
@@ -84,7 +100,7 @@ class Parinton:
         if _DEV_URL:
             self.redis_url = _DEV_URL
 
-    def _check_cache(self, bypass: Optional[bool] = False):
+    def _check_cache(self, bypass: _OptBool = False):
         """
         Checks for a cache file that consists of the creation date, paginated pages, and artwork metadata.
 
@@ -137,19 +153,9 @@ class Parinton:
         except FileNotFoundError:
             logger.log('warn', "{} {}".format(_logger, "No cache file found, created file and loaded"))
 
-            save_json(_prepend_cache, _filename)
+            save_file(_prepend_cache, _filename)
 
             self.cached_data = load_file(_filename)
-
-    def initalize(self, bypass_config: Optional[bool] = False, bypass_cache: Optional[bool] = False) -> None:
-        """
-        An initalizer for checking the config and cache, this must be called first before anything else!
-        
-        :param bypass_config: Bypasses the config
-        :param bypass_cache: Bypasses the cache file
-        """
-        self._load_config(bypass=bypass_config)
-        self._check_cache(bypass=bypass_cache)
 
     @staticmethod
     def page_req(url: str) -> BeautifulSoup:
