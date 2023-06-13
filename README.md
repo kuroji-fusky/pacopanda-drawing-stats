@@ -44,8 +44,8 @@ some files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
   - Node.js 18 or higher (LTS recommended)
   - Python 3.10 or higher
   - Yarn Package Manager
+  - Docker
 - **Optional**
-  - VS 2017 Pre-requisites
   - WSL/Git Bash
 
 ### Installation
@@ -56,12 +56,16 @@ Install Node dependencies with Yarn:
 yarn install
 ```
 
-Then, clone the `.env` files:
+### Running Redis locally with Docker
+
+For testing and not cost any compute instances; play it safe by self-hosting a Redis
+database with Docker (make sure you have Docker installed!)
 
 ```console
-cp apps/website/.env.example apps/website/.env
-cp apps/admin/.env.example apps/admin/.env
+docker-compose up -f redis-stack.yml
 ```
+
+
 
 ## API
 
@@ -72,7 +76,6 @@ cp apps/admin/.env.example apps/admin/.env
 ### Planned Endpoints
 
 - `/character/:character?={query}`
-- `/characters/?={query}`
 - `/artwork/:year/:title?={query}`
 
 ## About this project

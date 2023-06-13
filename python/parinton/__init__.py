@@ -18,7 +18,7 @@ from requests import Session
 from requests.exceptions import ConnectionError
 
 from parinton.exceptions import EnvironmentNotFound, EnvironmentValueError
-from parinton.typings import _FixedBaseURLs, _ArtworkReturnType, _ArtworkDictType
+from parinton.typings import _FixedBaseURLs, _FixedBaseArtwork
 
 # from difflib import get_close_matches
 
@@ -41,10 +41,11 @@ class Parinton:
 	def __init__(self) -> None:
 		self.REDIS_URL: str | None = None
 
-	def load_config(self, production: Optional[bool] = False) -> None:
+	def load_config(self, bypass: Optional[bool] = False, production: Optional[bool] = False) -> None:
 		"""
 		Loads a Redis URL based on its environment. Make sure you know what you're doing!
 		
+		:param bypass: Bypass the need to load the config
 		:param production: A boolean whether to use the production environment
 		:return: None
 		"""
@@ -53,6 +54,11 @@ class Parinton:
 		_PROD_URL = os.getenv('PROD_REDIS_URL')
 		_DEV_URL = os.getenv('DEV_REDIS_URL')
 		_REDIS_PROTOCOL = "redis://"
+		if bypass:
+			return
+
+		def _env_error(env_key):
+			raise EnvironmentValueError(f"{env_key} doesn't begin with {_REDIS_PROTOCOL}")
 
 		if production and _PROD_URL is None:
 			raise EnvironmentNotFound("Production mode enabled, but .env key 'PROD_REDIS_URL' isn't found!")
@@ -61,10 +67,10 @@ class Parinton:
 			raise EnvironmentNotFound(".env key 'DEV_REDIS_URL' isn't found!")
 
 		if not _DEV_URL.startswith(_REDIS_PROTOCOL):
-			raise EnvironmentValueError("'DEV_REDIS_URL' key doesn't start begin with \"redis://\"")
+			_env_error('DEV_REDIS_URL')
 
 		if not _PROD_URL.startswith(_REDIS_PROTOCOL):
-			raise EnvironmentValueError("'PROD_REDIS_URL' key doesn't start begin with \"redis://\"")
+			_env_error('PROD_REDIS_URL')
 
 		if production and _PROD_URL:
 			self.REDIS_URL = _PROD_URL
@@ -80,17 +86,22 @@ class Parinton:
 		_cached_dt: str | None = None
 		_cached_time = "cached_time"
 
-		_cache_dict: dict[str, str | _FixedBaseURLs] = {
+		_cache_dict: dict[str, str | _FixedBaseURLs | _FixedBaseArtwork] = {
 			_cached_time: _current_dt.isoformat(),
 			'pagination': {
 				'furaffinity': '0',
 				'weasyl': '0',
 				'inkbunny': '0'
+			},
+			'data': {
+				'furaffinity': [],
+				'weasyl': [],
+				'inkbunny': []
 			}
 		}
 
 		try:
-			_cached_dt: dict[str, str] = _load_file(_cache_filename)
+			_cached_dt: dict[str, str | dict[str, str]] = _load_file(_cache_filename)
 			_cached_dt = _cached_dt.get(_cached_time)
 
 			print(_cached_dt)

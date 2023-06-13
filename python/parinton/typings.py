@@ -14,6 +14,12 @@ class _ArtworkDictType(TypedDict):
 	date: str
 
 
+class _FixedBaseArtwork(TypedDict):
+	furaffinity: list[_ArtworkDictType]
+	weasyl: list[_ArtworkDictType]
+	inkbunny: list[_ArtworkDictType]
+
+
 class _ArtworkReturnType(TypedDict):
 	title: str
 	description: str

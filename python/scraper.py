@@ -10,6 +10,7 @@ import argparse
 
 from parinton import paco
 
+
 def main():
 	arg_desc = "Scrapes and parses Paco art from FurAffinity, Weasyl, and InkBunny"
 	parser = argparse.ArgumentParser(description=arg_desc)
