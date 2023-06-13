@@ -12,20 +12,23 @@ from parinton import paco
 
 
 def main():
-	arg_desc = "Scrapes and parses Paco art from FurAffinity, Weasyl, and InkBunny"
-	parser = argparse.ArgumentParser(description=arg_desc)
+    arg_desc = "Scrapes and parses Paco art from FurAffinity, Weasyl, and InkBunny"
+    parser = argparse.ArgumentParser(description=arg_desc)
 
-	parser.add_argument('--bypass-cache',
-						help="Bypasses cache file",
-						action='store_true')
+    parser.add_argument('--bypass-cache',
+                        help="Bypasses cache file",
+                        action='store_true')
 
-	args = parser.parse_args()
+    parser.add_argument('--bypass-config',
+                        help="Bypasses config for connecting to Redis",
+                        action='store_true')
 
-	paco.load_config()
+    args = parser.parse_args()
 
-	if args.bypass_cache:
-		print('bypassed cache file')
+    paco.load_config(bypass=args.bypass_config)
+
+    paco.check_cache(bypass=args.bypass_cache)
 
 
 if __name__ == "__main__":
-	main()
+    main()

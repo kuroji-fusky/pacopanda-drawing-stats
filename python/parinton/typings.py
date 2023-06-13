@@ -1,32 +1,35 @@
-from typing import TypedDict
+from typing import TypedDict, List, Dict
 
 
 class _FixedBaseURLs(TypedDict):
-	furaffinity: str
-	weasyl: str
-	inkbunny: str
+    furaffinity: str
+    weasyl: str
+    inkbunny: str
 
 
 class _ArtworkDictType(TypedDict):
-	title: str
-	description: str
-	tags: str
-	date: str
+    title: str
+    description: str
+    tags: str
+    date: str
 
 
 class _FixedBaseArtwork(TypedDict):
-	furaffinity: list[_ArtworkDictType]
-	weasyl: list[_ArtworkDictType]
-	inkbunny: list[_ArtworkDictType]
+    furaffinity: List[_ArtworkDictType]
+    weasyl: List[_ArtworkDictType]
+    inkbunny: List[_ArtworkDictType]
 
 
 class _ArtworkReturnType(TypedDict):
-	title: str
-	description: str
-	tags: list[str]
-	date: str
+    title: str
+    description: str
+    tags: List[str]
+    date: str
 
 
 class _AverageDateReturnType(TypedDict):
-	total: int
-	average: int
+    total: int
+    average: int
+
+
+_CacheDictData = Dict[str, str | _FixedBaseURLs | _FixedBaseArtwork]
