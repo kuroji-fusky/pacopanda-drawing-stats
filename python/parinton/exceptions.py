@@ -1,6 +1,14 @@
 class EnvironmentNotFound(KeyError):
-	pass
+    pass
 
 
 class EnvironmentValueError(ValueError):
-	pass
+    pass
+
+
+class EnvironmentProductionError(Exception):
+    pass
+
+
+class ExplicitURLError(ValueError):
+    pass
