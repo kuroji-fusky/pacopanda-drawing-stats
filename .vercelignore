@@ -2,7 +2,6 @@
 .github
 .vscode
 .husky
-scripts
 python
 
 *.md
