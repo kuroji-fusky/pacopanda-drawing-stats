@@ -46,7 +46,8 @@ def main():
 
     args = parser.parse_args()
 
-    paco_chars.bootstrap(bypass_config=args.bypass_config, bypass_cache=args.bypass_cache)
+    paco_chars.bootstrap(bypass_config=args.bypass_config,
+                         bypass_cache=args.bypass_cache)
 
 
 if __name__ == "__main__":

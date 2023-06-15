@@ -53,11 +53,10 @@ def main():
     # def furaffinity():
     #     total_pages = paco_parse.iterate_paginated_pages(entry_url=FA_GALLERY_URL,
     #                                                      next_selector='div.aligncenter .inline:last-child > form')
-    # 
+    #
     #     print(total_pages * FA_GALLERY_LIMIT)
     # TODO implement threading on these
     # furaffinity()
-
 
 
 if __name__ == "__main__":

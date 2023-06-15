@@ -55,7 +55,8 @@ class PacoArtParser(parinton.Parinton):
             if not self.bypass_cache and cached_data.get('furaffinity') == '0':
                 print('This must be a recently created cache')
 
-            logger.log('info', "{} {}".format(_logger, "Iterating gallery pages from FurAffinity"))
+            logger.log('info', "{} {}".format(
+                _logger, "Iterating gallery pages from FurAffinity"))
 
         if self.__url_startswith('weasyl'):
             # TODO replace the 'iterated_pages' with a query to iterate over
@@ -71,7 +72,8 @@ class PacoArtParser(parinton.Parinton):
 
                 final_iter_pages = iterated_pages - 1
 
-                print("{} {} {}".format(_logger, 'Iterated pages so far:', final_iter_pages))
+                print("{} {} {}".format(
+                    _logger, 'Iterated pages so far:', final_iter_pages))
 
                 if not next_button:
                     return final_iter_pages
@@ -82,7 +84,7 @@ class PacoArtParser(parinton.Parinton):
     def get_art_metadata(self, url: str, selector: ArtworkDictType) -> ArtworkReturnType:
         """
         Gets the page metadata from a page request
-    
+
         :param url: The artwork URL
         :param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
         :return: An object that returns a title, description, date, and a list of tags
@@ -108,7 +110,7 @@ class PacoArtParser(parinton.Parinton):
         """
         There's a common pattern that in every artwork descriptions; he lists what tools
         and medium of the artwork (i.e. "Digital. Photoshop.")
-    
+
         My approach is to go to the last lines of the description using .split('\n')
         and match mediums and whatever tools he uses
         """
@@ -119,7 +121,8 @@ class PacoArtParser(parinton.Parinton):
 
         # TODO use difflib.get_close_matches for this one
         PROGRAMS = ['photoshop', 'medibang', 'procreate']
-        TRADITIONAL_TOOLS = ['gouaches', 'watercolors', 'colored pencils', 'markers', 'indian ink', 'pencils']
+        TRADITIONAL_TOOLS = ['gouaches', 'watercolors',
+                             'colored pencils', 'markers', 'indian ink', 'pencils']
 
         TOOLS = [*PROGRAMS, *TRADITIONAL_TOOLS]
 
@@ -130,7 +133,7 @@ class PacoArtParser(parinton.Parinton):
     def get_average_dates(dates: list[str]) -> AverageDateReturnType:
         """
         A time series method that gets an average of artworks posted based on a ranges of dates
-        
+
         :param dates: Requires a list of date strings that will be parsed automatically 
         :return: A dict of the total and average
         """
@@ -141,7 +144,7 @@ class PacoCharacterParser(parinton.Parinton):
     def __init__(self) -> None:
         """
         For adding, removing, and editing character data from the database
-        
+
         Mostly for its use on command line only
         """
         super().__init__()

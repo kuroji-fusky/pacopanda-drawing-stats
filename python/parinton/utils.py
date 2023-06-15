@@ -35,7 +35,7 @@ def page_req(url: str) -> BeautifulSoup:
 def load_file(file: str):
     """
     Opens file, will open as JSON if file extension is detected
-    
+
     :param file: File name
     :return Nothing
     """
@@ -49,7 +49,7 @@ def load_file(file: str):
 def save_file(data, file: str) -> None:
     """
     Saves file, will autosave as JSON if file extension is detected
-    
+
     :param data: Garbage
     :param file: File name
     :return Nothing
@@ -64,7 +64,7 @@ def save_file(data, file: str) -> None:
 def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) -> None:
     """
     Saves data to cache
-    
+
     :param save_type: Must be values 'date', 'pagination', and 'data'
     :param save_value: The save value, must be a dict
     :return: 
@@ -72,7 +72,8 @@ def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) ->
     cache_data: CacheData = load_file('paco-cache.json')
 
     date_st, date_dict = save_type == "date", cache_data.get("cached_time")
-    paginate_st, paginate_dict = save_type == "pagination", cache_data.get("pagination")
+    paginate_st, paginate_dict = save_type == "pagination", cache_data.get(
+        "pagination")
     data_st, data_dict = save_type == "data", cache_data.get("data")
 
     if not date_st and not paginate_st and not date_st:
@@ -101,7 +102,8 @@ def format_time(time: timedelta) -> str:
     :raises TypeError: If the time parameter is not of type timedelta
     """
     if not isinstance(time, timedelta):
-        raise TypeError("Invalid input type. Param 'time' must be a timedelta.")
+        raise TypeError(
+            "Invalid input type. Param 'time' must be a timedelta.")
 
     _days, _seconds = divmod(time.total_seconds(), 86400)
     d = f"{int(_days)} days" if _days != 1 else f"{int(_days)} day"

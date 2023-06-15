@@ -52,7 +52,7 @@ class Parinton:
     def _load_config(self, bypass: OptBool = False, production: OptBool = False) -> None:
         """
         Loads a Redis URL based on its environment. Make sure you know what you're doing!
-        
+
         :param bypass: Bypass the need to load the config
         :param production: A boolean whether to use the production environment
         :return: None
@@ -66,11 +66,13 @@ class Parinton:
         REDIS_PROTOCOL = "redis://"
 
         if bypass:
-            logger.log('info', "{} {}".format(_logger, 'Redis config bypassed'))
+            logger.log('info', "{} {}".format(
+                _logger, 'Redis config bypassed'))
             return
 
         def env_error(env_key):
-            logger.log('error', "{} {}".format(_logger, 'Redis protocol not found!'))
+            logger.log('error', "{} {}".format(
+                _logger, 'Redis protocol not found!'))
 
             raise EnvironmentValueError(f"Key '{env_key}' doesn't begin with '{REDIS_PROTOCOL}'\n\n"
                                         "If you think this is a mistake, running tests, or populating the cache file, "
@@ -91,15 +93,18 @@ class Parinton:
                                              "Rerun the script with '--prod' flag!")
 
         if production and PROD_URL is None:
-            raise EnvironmentNotFound("Production mode enabled, but .env key 'PROD_REDIS_URL' isn't found!")
+            raise EnvironmentNotFound(
+                "Production mode enabled, but .env key 'PROD_REDIS_URL' isn't found!")
 
         if production and PROD_URL:
             self.redis_url = PROD_URL
-            logger.log('success', "{} {}".format(_logger, 'Redis production environment loaded'))
+            logger.log('success', "{} {}".format(
+                _logger, 'Redis production environment loaded'))
 
         if DEV_URL:
             self.redis_url = DEV_URL
-            logger.log('success', "{} {}".format(_logger, 'Redis dev environment loaded'))
+            logger.log('success', "{} {}".format(
+                _logger, 'Redis dev environment loaded'))
 
     def check_cache(self, bypass: OptBool = False) -> None:
         """
@@ -142,14 +147,16 @@ class Parinton:
             delta_week = delta.days > 7
 
             if not delta_week:
-                logger.log('info', "{} {}".format(_logger, "A week hasn't passed yet, repurposing cached values"))
+                logger.log('info', "{} {}".format(
+                    _logger, "A week hasn't passed yet, repurposing cached values"))
                 logger.log('info',
                            "{} {} {}".format(_logger, "Elapsed time since cache creation:", format_time(delta)))
             else:
                 ...
 
         except FileNotFoundError:
-            logger.log('warn', "{} {}".format(_logger, "No cache file found, created file and loaded"))
+            logger.log('warn', "{} {}".format(
+                _logger, "No cache file found, created file and loaded"))
 
             save_file(prepend_data, self.cache_filename)
 
