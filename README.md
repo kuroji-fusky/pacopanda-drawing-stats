@@ -1,4 +1,4 @@
-![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/220274497-18b6a944-a759-469e-a10e-1d9b1ec6a95b.png)
+![Banner for Paco Panda Drawing Stats](https://github.com/kuroji-fusky/pacopanda-drawing-stats/assets/94678583/e36ea6e1-78fa-4ff7-9488-d151bd9caf11)
 
 <h1 align="center">Paco Panda Drawing Stats</h1>
 
@@ -29,7 +29,7 @@ files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
 - `.husky` - Pre-commit hooks for lint-staging
 - `apps`
   - `api` - An API written in Fastify
-  - `website` - The website written in Nuxt 3 + Tailwind CSS
+  - `website` - The website written in Nuxt
 - `packages`
   - `types` - Shared TypeScript declarations
 - `python`
@@ -91,13 +91,13 @@ This project collects the following:
 - Number of character(s) species and names
 - Media type (either drawn digital or traditional)
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
-- The source where I got the data from (i.e. FurAffinity, DeviantArt, InkBunny,
+- The source where I got the data (i.e. FurAffinity, DeviantArt, InkBunny,
   Weasyl, etc.)
 
 Previously, I have to manually source it through FurAffinity and DeviantArt for
 his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings
 from Twitter won't be counted in order to ease the load on my end and the
-dataset as well since all the data gathered will be hardcoded to the site.
+dataset as well since all the data gathered will be hard coded to the site.
 
 ### Why did you create this project?
 
@@ -105,12 +105,12 @@ Believe it or not, it's not my intention to impress him in general.
 
 I'm just a huge fan of his artwork and his unique and adorable art style that
 I'd want to see how many characters he's drawn since the early to mid-2000s, but
-he'd for sure find it interesting as it's more of a fun project to a new hobby
+he'd for sure find it interesting as it's more of a fun project than a new hobby
 of mine, learning not only JavaScript but also learning a bit of back-end and
 basic data management in the process of other projects I do.
 
 During the early stages of this project - I have limited backend knowledge and I
-needed a help with [@thatITfox][it] for setting up a Flask web server, and now
+needed help with [@thatITfox][it] for setting up a Flask web server, and now
 currently working with Redis stuff!
 
 ### Isn't this taking it too far?
