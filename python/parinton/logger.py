@@ -1,33 +1,91 @@
 import logging
+from typing import Callable, Any
+
+from colorama import init, Fore, Style, just_fix_windows_console
 from datetime import datetime
 
+init()
 
-class LogFormatter(logging.Formatter):
-    def __init__(self, include_time):
-        self._include_time = include_time
-        super().__init__()
+just_fix_windows_console()
 
-    def format(self, record):
-        _log_time = datetime.now().strftime("%H:%M:%S") if self._include_time else ""
-        _log_level = record.levelname
-        return f"[ {_log_time} - {_log_level} ] {record.msg}"
+"""
+REFACTOR THE WHOLE THING TO THIS
+------
+def generateLogger(loggername='SM-Logger', path="logs/log.log"):
+
+    logger = logging.getLogger(loggername)
+    logger.setLevel(logging.DEBUG)
+
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.ERROR)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s\
+                              - %(levelname)s - %(message)s')
+
+    ch.setFormatter(formatter)
+
+    logger.addHandler(ch)
+
+    return logger
+
+logger = generateLogger("testlogger", "testlog.log")
+logger.WARNING("testtest")
+
+"""
 
 
 class PacoLogger:
-    _instance = None
+    def __init__(self, time: bool = False):
+        self._include_time = time
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(LogFormatter(self._include_time))
 
-    def __new__(cls, time=False):
-        if not cls._instance:
-            cls._instance = super().__new__(cls)
-            cls._instance._include_time = time
-            cls._instance.logger = logging.getLogger("PacoLogger")
-            cls._instance.logger.setLevel(logging.DEBUG)
-            console_handler = logging.StreamHandler()
-            console_handler.setFormatter(LogFormatter(cls._instance._include_time))
-            cls._instance.logger.addHandler(console_handler)
+        self.logger = logging.getLogger("PacoLogger")
+        self.logger.setLevel(logging.DEBUG)
+        self.logger.addHandler(console_handler)
 
-        return cls._instance
-
-    def log(self, level: str, *values: object) -> None:
+    def log(self, level: str, *values: str) -> None:
         message = ' '.join(str(value) for value in values)
         getattr(self.logger, level)(message)
+
+
+class LogFormatter(logging.Formatter):
+    _RC = Style.RESET_ALL
+
+    _LEVEL_COLORS = {
+        "ERROR": Fore.RED,
+        "WARNING": Fore.YELLOW,
+        "SUCCESS": Fore.GREEN,
+        "INFO": Fore.CYAN,
+        "NOTE": Fore.BLUE,
+        "VERBOSE": Fore.CYAN
+    }
+
+    def __init__(self, include_time: bool):
+        self._include_time = include_time
+        super().__init__()
+
+    def format(self, record: logging.LogRecord) -> str:
+        log_time = datetime.now().strftime("%H:%M:%S") if self._include_time else ""
+        log_level = record.levelname
+        log_color = f"{self._LEVEL_COLORS.get(log_level)}{log_level}{self._RC}"
+
+        log_message = "[ {} {} ] {}".format(log_time, log_color, record.msg)
+
+        return log_message
+
+
+def singleton(cls: type) -> Callable[[tuple[Any, ...], dict[str, Any]], Any]:
+    instances = {}
+
+    def wrapper(*args, **kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+
+    return wrapper
+
+
+@singleton
+class SingletonPacoLogger(PacoLogger):
+    pass

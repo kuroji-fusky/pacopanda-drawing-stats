@@ -23,4 +23,3 @@ favicon.ico
 python
 .mypy_cache
 venv
-*.py

@@ -2,11 +2,11 @@
 const { page } = useContent()
 
 usePageMeta({
-	title: "Home",
-	description: page.value.description,
+  title: "Home",
+  description: page.value.description,
 })
 </script>
 
 <template>
-	<ContentDoc />
+  <ContentDoc />
 </template>

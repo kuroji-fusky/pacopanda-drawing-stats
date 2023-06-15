@@ -1,34 +1,34 @@
 {
-	"name": "pandapaco-drawing-stats",
-	"license": "MIT",
-	"private": true,
-	"type": "module",
-	"workspaces": [
-		"apps/**",
-		"packages/**"
-	],
-	"lint-staged": {
-		"apps/**": "yarn prettier:write",
-		"packages/**": "yarn prettier:write"
-	},
-	"scripts": {
-		"cleanup": "node scripts/clean.mjs && yarn",
-		"postinstall": "cd apps/website && nuxt prepare",
-		"prepare": "husky install",
-		"dev": "turbo dev --filter=website",
-		"build": "turbo build --filter=website",
-		"prettier:check": "prettier --check .",
-		"prettier:write": "prettier --write ."
-	},
-	"devDependencies": {
-		"concurrently": "^7.6.0",
-		"husky": "^8.0.0",
-		"lint-staged": "^13.1.2",
-		"prettier": "^2.8.3",
-		"turbo": "^1.8.2"
-	},
-	"engines": {
-		"node": ">18.0.0",
-		"npm": ">= 8.0.0"
-	}
+  "name": "pandapaco-drawing-stats",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/**",
+    "packages/**"
+  ],
+  "lint-staged": {
+    "apps/**": "yarn prettier:write",
+    "packages/**": "yarn prettier:write"
+  },
+  "scripts": {
+    "cleanup": "node scripts/clean.mjs && yarn",
+    "postinstall": "cd apps/website && nuxt prepare",
+    "prepare": "husky install",
+    "dev": "turbo dev --filter=website",
+    "build": "turbo build --filter=website",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.3",
+    "turbo": "^1.8.2"
+  },
+  "engines": {
+    "node": ">18.0.0",
+    "npm": ">= 8.0.0"
+  }
 }

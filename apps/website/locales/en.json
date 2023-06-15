@@ -1,4 +1,4 @@
 {
-	"test": "hewwo {name}",
-	"language": "Language"
+  "test": "hewwo {name}",
+  "language": "Language"
 }
