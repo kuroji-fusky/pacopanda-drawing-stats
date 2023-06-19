@@ -34,5 +34,5 @@ class AverageDateReturnType(TypedDict):
 
 BaseLiterals = Literal["furaffinity", "weasyl", "inkbunny"]
 
-CacheData = Dict[str, str | FixedBaseURLs | FixedDictArtwork]
+CachedData = Dict[str, str | FixedBaseURLs | FixedDictArtwork]
 SaveCacheType = Literal['date', 'pagination', 'data']

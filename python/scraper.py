@@ -10,7 +10,7 @@ import argparse
 import threading
 from typing import Literal
 
-from parinton import paco, FixedBaseURLs, BASE_URL, load_file, CacheData, save_file
+from parinton import paco, FixedBaseURLs, BASE_URL, load_file, CachedData, save_file
 from parinton.parsers import paco_parse
 
 

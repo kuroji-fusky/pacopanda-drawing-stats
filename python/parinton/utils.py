@@ -7,14 +7,14 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import json
-from typing import Dict
+from typing import Dict, Any
 from datetime import timedelta
 
 from bs4 import BeautifulSoup
 from requests import Session
 from requests.exceptions import ConnectionError
 
-from parinton.types import SaveCacheType, CacheData
+from parinton.types import SaveCacheType, CachedData
 
 
 def page_req(url: str) -> BeautifulSoup:
@@ -32,7 +32,7 @@ def page_req(url: str) -> BeautifulSoup:
         raise ConnectionError
 
 
-def load_file(file: str):
+def load_file(file: str) -> Any:
     """
     Opens file, will open as JSON if file extension is detected
 
@@ -69,7 +69,7 @@ def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) ->
     :param save_value: The save value, must be a dict
     :return: 
     """
-    cache_data: CacheData = load_file('paco-cache.json')
+    cache_data: CachedData = load_file('paco-cache.json')
 
     date_st, date_dict = save_type == "date", cache_data.get("cached_time")
     paginate_st, paginate_dict = save_type == "pagination", cache_data.get(
