@@ -1,3 +1,29 @@
+<script setup lang="ts">
+const navItems = [
+  {
+    link: "/browse",
+    text: "Browse data",
+    dropdown: [
+      { link: "/browse/characters", text: "By characters" },
+      { link: "/browse/species", text: "By species" },
+      { link: "/browse/chronology", text: "By chronology" },
+      { link: "/browse/tags", text: "By tags" },
+      { subheading: "Others" },
+      { link: "/case-study", text: "Case Study" },
+    ],
+  },
+  { link: "/api", text: "API" },
+  {
+    link: "#",
+    text: "About",
+    dropdown: [
+      { link: "/about/faq", text: "FAQs" },
+      { link: "/about/how-i-gather-data", text: "How I gather data" },
+    ],
+  },
+]
+</script>
+
 <template>
   <header>
     <div id="wrapper">
@@ -36,34 +62,6 @@
     </div>
   </header>
 </template>
-
-<script setup lang="ts">
-import { IconChevronDown } from "@iconify-prerendered/vue-fa6-solid"
-
-const navItems = [
-  {
-    link: "/browse",
-    text: "Browse data",
-    dropdown: [
-      { link: "/browse/characters", text: "By characters" },
-      { link: "/browse/species", text: "By species" },
-      { link: "/browse/chronology", text: "By chronology" },
-      { link: "/browse/tags", text: "By tags" },
-      { subheading: "Others" },
-      { link: "/case-study", text: "Case Study" },
-    ],
-  },
-  { link: "/api", text: "API" },
-  {
-    link: "#",
-    text: "About",
-    dropdown: [
-      { link: "/about/faq", text: "FAQs" },
-      { link: "/about/how-i-gather-data", text: "How I gather data" },
-    ],
-  },
-]
-</script>
 
 <style lang="scss" scoped>
 #wrapper {
