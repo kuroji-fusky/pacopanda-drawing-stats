@@ -14,3 +14,6 @@ venv
 __pycache__
 *test.py
 paco-cache*
+
+# supabase for docker
+supabase
