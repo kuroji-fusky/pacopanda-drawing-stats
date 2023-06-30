@@ -1,7 +1,7 @@
 """
-Parinton
+## Parinton
 
-Parinton entry point for initialzing configs, parsers, and managing character data to the database
+Entry point for initialzing configs, parsers, and managing character data to the database
 
 Copyright 2021-2023 Kerby Keith Aquino
 MIT License
@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 from parinton.exceptions import EnvironmentValueError, EnvironmentProductionError, EnvironmentNotFound
 from parinton.logger import PacoLogger
-from parinton.types import *
+from parinton.types import CachedData, FixedBaseURLs, BaseLiterals, ArtworkDictType, ArtworkReturnType, AverageDateReturnType
 from parinton.utils import load_file, save_file, format_time, page_req
 
 logger = PacoLogger(time=True)
