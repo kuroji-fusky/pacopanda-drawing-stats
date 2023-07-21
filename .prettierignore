@@ -2,18 +2,14 @@
 node_modules
 .output
 .vercel
-.nuxt
+.next
 dist
-
-apps/admin/*.d.ts
 
 *.md
 !README.md
 !CHANGELOG.md
 
 # Files
-.gitignore
-favicon.ico
 *.env*
 *.txt
 *.lock

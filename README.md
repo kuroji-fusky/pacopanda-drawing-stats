@@ -1,3 +1,8 @@
+> I'm putting this project on hold as I usually go on and off working on this data viz project all by
+> myself. And plus, despite starting this project 2 years ago, there hasn't been any significant
+> changes in terms of working on the website - so I'm leaving it be for now, maybe I'll work on this
+> in the forseeable future.
+
 ![Banner for Paco Panda Drawing Stats](https://github.com/kuroji-fusky/pacopanda-drawing-stats/assets/94678583/e36ea6e1-78fa-4ff7-9488-d151bd9caf11)
 
 <h1 align="center">Paco Panda Drawing Stats</h1>

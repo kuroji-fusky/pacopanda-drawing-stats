@@ -1,10 +1,7 @@
 # Ignore other files and directories that won't be necessarily needed
 .github
 .vscode
-.husky
 python
 
 *.md
 LICENSE
-
-!apps/website/content/*.md

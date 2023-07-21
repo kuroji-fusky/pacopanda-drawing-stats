@@ -2,11 +2,8 @@
   "semi": false,
   "useTabs": false,
   "tabWidth": 2,
-  "quoteProps": "as-needed",
   "singleQuote": false,
   "arrowParens": "always",
-  "printWidth": 80,
-  "vueIndentScriptAndStyle": false,
   "proseWrap": "always",
   "endOfLine": "crlf"
 }

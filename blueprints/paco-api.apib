@@ -1,0 +1,102 @@
+# Paco Drawing Stats API Reference
+
+Still WIP, this shit takes ages to implement lol
+
+## Retrieve characters [GET]
+
++ Response 200 (application/json)
+{
+  "characters": [
+    {
+      "name": "Paco",
+      "other_names": [
+        "Parinton",
+        "Panda Paco",
+        "pacopanda"
+      ],
+      "species": "Panda",
+      "hybrid": false,
+      "appearances": [
+        {
+          "title": "Glasses",
+          "date": "August 2, 2023",
+          "image": "https://paco-stats.kurojifusky.com/api/images/glasses.png",
+          "characters": [
+            {
+              "name": "Paco",
+              "species": "Panda",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/paco"
+            },
+            {
+              "name": "Roni",
+              "species": "Dog/Border Collie",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/roni"
+            },
+            {
+              "name": "Steele",
+              "species": "Red Panda",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/steele"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        "Procreate",
+        "Photoshop"
+      ],
+      "medium": "Digital"
+    },
+    {
+      "name": "Roni",
+      "species": "Dog/Border Collie",
+      "hybrid": false,
+      "appearances": [
+        {
+          "title": "Glasses",
+          "date": "August 2, 2023",
+          "image": "https://paco-stats.kurojifusky.com/api/images/glasses.png",
+          "characters": [
+            {
+              "name": "Paco",
+              "species": "Panda",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/paco"
+            },
+            {
+              "name": "Roni",
+              "species": "Dog/Border Collie",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/roni"
+            },
+            {
+              "name": "Steele",
+              "species": "Red Panda",
+              "endpoint": "https://paco-stats.kurojifusky.com/api/character/steele"
+            }
+          ],
+          "tools": [
+            "Photoshop"
+          ],
+          "medium": "Digital"
+        }
+      ]
+    },
+    {
+      "name": "Yaps",
+      "species": "Fox",
+      "hybrid": false,
+      "appearances": [
+        {
+          "title": "PAWfessor Yaps",
+          "date": "Feb 10, 2022",
+          "image": "https://paco-stats.kurojifusky.com/api/images/pawfessor-yaps.png",
+          "tools": [
+            "Procreate"
+          ],
+          "medium": "Digital"
+        }
+      ]
+    }
+  ],
+  "__artwork-endpoint": "https://paco-stats.kurojifusky.com/api/artwork?q={query}",
+  "__tag-endpoint": "https://paco-stats.kurojifusky.com/api/tag?q={query}",
+  "__character-count": "320"
+}
