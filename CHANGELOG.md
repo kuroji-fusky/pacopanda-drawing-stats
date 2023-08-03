@@ -2,12 +2,12 @@
 
 ## 2023
 
-## August 3
+### August 3
 
 - Massive project purge
 - Switching web frameworks from Nuxt 3 to Next.js 13.4.12
 
-## May 25
+### May 25
 
 - Revert from Supabase to Redis
 - Purge Python and admin Tauri app for a rewrite
