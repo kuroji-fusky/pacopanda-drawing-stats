@@ -2,6 +2,10 @@
 
 ## 2023
 
+### August 20
+
+- Removed Fastify app in favor of FastAPI
+
 ### August 3
 
 - Massive project purge

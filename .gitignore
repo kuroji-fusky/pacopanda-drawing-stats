@@ -11,5 +11,5 @@ __pycache__
 *test.py
 .paco-cache.json
 
-# supabase for docker
+# supabase for docker for local testing
 supabase

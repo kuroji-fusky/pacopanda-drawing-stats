@@ -28,18 +28,15 @@ workspaces and Turborepo to install and manage dependencies in each subdirectory
 and remotely cache builds on the cloud via Turborepo.
 
 Written in TypeScript and Python - it utilizes the ES Module syntax, with some
-files utilize the `.cjs` file type for Prettier, Tailwind CSS configs.
+files utilize the `.cjs` file type for Prettier, ESLint configs.
 
 - `.github` - CI/CD Workflow stuff
-- `.husky` - Pre-commit hooks for lint-staging
-- `apps`
-  - `api` - An API written in Fastify
-  - `website` - The website written in Nuxt
-- `packages`
-  - `types` - Shared TypeScript declarations
 - `python`
+  - `blueprints` - API Documentation and Blueprints
   - `parinton` - Local scraper and parser library for manipulating public
     drawing data with Python
+- `web` - The website written in Next.js
+- [`utils`](https://github.com/kuroji-fusky/kuro-utils) - A shared submodule for common utilities
 
 ## Setup and Installation
 

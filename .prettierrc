@@ -1,9 +1,0 @@
-{
-  "semi": false,
-  "useTabs": false,
-  "tabWidth": 2,
-  "singleQuote": false,
-  "arrowParens": "always",
-  "proseWrap": "always",
-  "endOfLine": "crlf"
-}

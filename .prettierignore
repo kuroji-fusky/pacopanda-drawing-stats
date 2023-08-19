@@ -21,3 +21,6 @@ python
 venv
 
 supabase
+
+# ignore kuro-utils submodule
+utils

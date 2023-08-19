@@ -5,8 +5,9 @@
   "license": "MIT",
   "type": "module",
   "workspaces": [
-    "apps/**",
-    "packages/**"
+    "web",
+    "utils/web/**",
+    "utils/configs/**"
   ],
   "scripts": {
     "dev": "turbo dev --filter=website",
