@@ -1,4 +1,4 @@
-> **Note**
+> **Important**
 > I'm putting this project on hold as I usually go on and off working on this data viz project all by
 > myself. And plus, despite starting this project 2 years ago, there hasn't been any significant
 > changes in terms of working on the website - so I'm leaving it be for now, maybe I'll work on this
@@ -31,9 +31,9 @@ and remotely cache builds on the cloud via Turborepo.
 Written in TypeScript and Python - it utilizes the ES Module syntax, with some
 files utilize the `.cjs` file type for Prettier, ESLint configs.
 
-- `parinton` - Local scraper and parser library for manipulating public
-  drawing data with Python
-- [`utils`](https://github.com/kuroji-fusky/kuro-utils) - A shared submodule for common utilities
+- `server` - Server hosted using FastAPI; local scraper and parser library for
+  manipulating public drawing data with Python
+- `client` - Website written in Next.js and Tailwind CSS
 
 ## Setup and Installation
 
@@ -49,6 +49,21 @@ Install Node dependencies with Yarn:
 
 ```console
 yarn install
+```
+
+For Python, go to the `server` directory:
+
+```console
+cd server
+```
+
+Create a virtual environment and install the required libraries:
+
+```console
+py -m venv venv
+.\venv\Scripts\activate
+
+pip install -r requirements.txt
 ```
 
 ## API
@@ -116,3 +131,7 @@ Paco Panda Drawing Stats' source code is open source and is licensed under
 [MIT](https://opensource.org/licenses/MIT).
 
 [it]: https://github.com/thatITfox
+
+```
+
+```
