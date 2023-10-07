@@ -5,33 +5,7 @@ from colorama import init, Fore, Style, just_fix_windows_console
 from datetime import datetime
 
 init()
-
 just_fix_windows_console()
-
-"""
-REFACTOR THE WHOLE THING TO THIS
-------
-def generateLogger(loggername='SM-Logger', path="logs/log.log"):
-
-    logger = logging.getLogger(loggername)
-    logger.setLevel(logging.DEBUG)
-
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.ERROR)
-
-    formatter = logging.Formatter('%(asctime)s - %(name)s\
-                              - %(levelname)s - %(message)s')
-
-    ch.setFormatter(formatter)
-
-    logger.addHandler(ch)
-
-    return logger
-
-logger = generateLogger("testlogger", "testlog.log")
-logger.WARNING("testtest")
-
-"""
 
 
 class PacoLogger:

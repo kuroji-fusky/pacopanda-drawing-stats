@@ -1,3 +1,4 @@
+> **Note**
 > I'm putting this project on hold as I usually go on and off working on this data viz project all by
 > myself. And plus, despite starting this project 2 years ago, there hasn't been any significant
 > changes in terms of working on the website - so I'm leaving it be for now, maybe I'll work on this
@@ -30,25 +31,17 @@ and remotely cache builds on the cloud via Turborepo.
 Written in TypeScript and Python - it utilizes the ES Module syntax, with some
 files utilize the `.cjs` file type for Prettier, ESLint configs.
 
-- `.github` - CI/CD Workflow stuff
-- `python`
-  - `blueprints` - API Documentation and Blueprints
-  - `parinton` - Local scraper and parser library for manipulating public
-    drawing data with Python
-- `web` - The website written in Next.js
+- `parinton` - Local scraper and parser library for manipulating public
+  drawing data with Python
 - [`utils`](https://github.com/kuroji-fusky/kuro-utils) - A shared submodule for common utilities
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- **Required**
-  - Node.js 18 or higher (LTS recommended)
-  - Python 3.10 or higher
-  - Yarn Package Manager
-  - Docker
-- **Optional**
-  - WSL/Git Bash
+- Node.js 19 or higher (LTS recommended)
+- Python 3.11 or higher
+- Yarn
 
 ### Installation
 
@@ -58,25 +51,12 @@ Install Node dependencies with Yarn:
 yarn install
 ```
 
-### Running Redis locally with Docker
-
-For testing and not cost any compute instances; play it safe by self-hosting a
-Redis database with Docker (make sure you have Docker installed!)
-
-```console
-docker-compose up -f redis-stack.yml
-```
-
 ## API
 
 ![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
 
-> **Note** Section WIP
-
-### Planned Endpoints
-
-- `/character/:character?={query}`
-- `/artwork/:year/:title?={query}`
+> **Note**
+> Section WIP
 
 ## About this project
 

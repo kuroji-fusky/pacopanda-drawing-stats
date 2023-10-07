@@ -2,6 +2,10 @@
 
 ## 2023
 
+### October 7
+
+- Place Next.js project to root
+
 ### August 20
 
 - Removed Fastify app in favor of FastAPI
