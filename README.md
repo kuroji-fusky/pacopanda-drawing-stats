@@ -33,7 +33,7 @@ files utilize the `.cjs` file type for Prettier, ESLint configs.
 
 - `server` - Server hosted using FastAPI; local scraper and parser library for
   manipulating public drawing data with Python
-- `client` - Website written in Next.js and Tailwind CSS
+- `client` - Website written in SvelteKit and Tailwind CSS
 
 ## Setup and Installation
 

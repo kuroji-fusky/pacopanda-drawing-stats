@@ -1,8 +1,6 @@
 # Directories
 node_modules
-.output
-.vercel
-.next
+.svelte-kit
 dist
 
 *.md
@@ -16,11 +14,5 @@ dist
 *.py
 
 # Python stuff
-python
 .mypy_cache
 venv
-
-supabase
-
-# ignore kuro-utils submodule
-utils

@@ -2,9 +2,9 @@
 
 ## 2023
 
-### October 7
+### October 8
 
-- Place Next.js project to root
+- Rewritten website from Next.js to SvelteKit
 
 ### August 20
 

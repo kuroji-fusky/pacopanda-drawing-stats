@@ -1,39 +1,39 @@
 {
-  "name": "@pds/client",
-  "version": "0.1.0",
+  "name": "your-mom",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@mdx-js/loader": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "^13.5.4",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/mdx": "^2.0.8",
-    "class-variance-authority": "^0.7.0",
-    "gray-matter": "^4.0.3",
-    "gsap": "^3.12.2",
-    "lodash-es": "^4.17.21",
-    "next": "latest",
-    "next-pwa": "^5.6.0",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-icons": "^4.11.0"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.9",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "^10",
-    "eslint": "^8",
-    "eslint-config-next": "latest",
-    "postcss": "^8",
-    "tailwindcss": "^3",
-    "typescript": "latest"
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.20.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.28.0",
+    "eslint-plugin-svelte": "^2.30.0",
+    "postcss": "^8.4.31",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.3",
+    "tailwindcss": "^3.3.3",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fontsource/inter": "^5.0.13",
+    "@fontsource/open-sans": "^5.0.15",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "lucide-svelte": "^0.284.0",
+    "svelte-fa": "^3.0.4",
+    "unplugin-icons": "^0.17.0"
   }
 }
