@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Fa from "svelte-fa";
+  import Fa from "svelte-fa"
   import {
     faGithub,
     faMastodon,
     faXTwitter,
     faYoutube,
-  } from "@fortawesome/free-brands-svg-icons";
+  } from "@fortawesome/free-brands-svg-icons"
 
-  const year = new Date().getFullYear();
-  const copyright = `© 2021-${year} Kuroji Fusky, licensed under MIT`;
+  const year = new Date().getFullYear()
+  const copyright = `© 2021-${year} Kuroji Fusky, licensed under MIT`
 
   const socials = [
     {
@@ -27,7 +27,7 @@
       icon: faMastodon,
       link: "https://furry.engineer/@kurojifusky",
     },
-  ];
+  ]
 </script>
 
 <footer
@@ -37,15 +37,6 @@
     {copyright}
   </div>
   <div class="flex items-center gap-x-4">
-    <a
-      href="https://github.com/kuroji-fusky/pacopanda-drawing-stats"
-      target="_blank"
-      class="inline-flex gap-x-1 items-center hover:underline"
-    >
-      <Fa class="text-lg" icon={faGithub} fw />
-      <span>Source code</span>
-    </a>
-    <hr class="h-6 border-l border-l-red-300" />
     {#each socials as item, index (index)}
       <a href={item.link} title={item.name}>
         <Fa class="text-lg" icon={item.icon} fw />

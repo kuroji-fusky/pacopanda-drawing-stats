@@ -1,14 +1,15 @@
 <script lang="ts">
-  import type { PageLoad } from "./$types";
-  import "@fontsource/inter";
-  import "@fontsource/open-sans";
-  import "@fontsource/open-sans/600.css";
-  import "../app.css";
+  // @ts-ignore
+  import type { PageLoad } from "./$types"
+  import "@fontsource/inter"
+  import "@fontsource/open-sans"
+  import "@fontsource/open-sans/600.css"
+  import "../app.css"
 
-  import Navbar from "$lib/Navbar.svelte";
-  import Footer from "$lib/Footer.svelte";
+  import Navbar from "$lib/Navbar.svelte"
+  import Footer from "$lib/Footer.svelte"
 
-  export let data: PageLoad;
+  export let data: PageLoad
 </script>
 
 <svelte:head>
@@ -16,5 +17,7 @@
 </svelte:head>
 
 <Navbar />
-<slot />
+<main class="h-[calc(100dvh-4rem)]">
+  <slot />
+</main>
 <Footer />
