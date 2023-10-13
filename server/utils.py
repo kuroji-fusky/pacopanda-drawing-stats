@@ -1,5 +1,5 @@
 """
-## Paco Utils
+## Utils
 
 Helper functions for common file manipulations
 
@@ -37,7 +37,7 @@ def load_file(file: str) -> Any:
     Opens file, will open as JSON if file extension is detected
 
     :param file: File name
-    :return Nothing
+    :return File contents
     """
     with open(file, 'r', encoding='utf-8') as fi:
         if file.endswith('.json'):
@@ -46,22 +46,26 @@ def load_file(file: str) -> Any:
         return fi.read()
 
 
-def save_file(data, file: str) -> None:
+def save_file(data, file: str, indent: bool = False) -> None:
     """
     Saves file, will autosave as JSON if file extension is detected
 
     :param data: Garbage
     :param file: File name
-    :return Nothing
+    :return File contents
     """
     with open(file, 'w', encoding='utf-8') as fo:
         if file.endswith('.json'):
-            json.dump(data, fo, ensure_ascii=True)
+            if not indent:
+                json.dump(data, fo, ensure_ascii=True)
+                return
+
+            json.dump(data, fo, ensure_ascii=True, indent=2)
         else:
             fo.write(data)
 
 
-def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) -> None:
+def cache_data(save_type: SaveCacheType = 'data', save_value: Dict = None) -> None:
     """
     Saves data to cache
 
@@ -69,12 +73,12 @@ def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) ->
     :param save_value: The save value, must be a dict
     :return: 
     """
-    cache_data: CachedData = load_file('paco-cache.json')
+    _cache_data: CachedData = load_file('paco-cache.json')
 
-    date_st, date_dict = save_type == "date", cache_data.get("cached_time")
-    paginate_st, paginate_dict = save_type == "pagination", cache_data.get(
+    date_st, date_dict = save_type == "date", _cache_data.get("cached_time")
+    paginate_st, paginate_dict = save_type == "pagination", _cache_data.get(
         "pagination")
-    data_st, data_dict = save_type == "data", cache_data.get("data")
+    data_st, data_dict = save_type == "data", _cache_data.get("data")
 
     if not date_st and not paginate_st and not date_st:
         raise ValueError(
@@ -89,7 +93,7 @@ def save_to_cache(save_type: SaveCacheType = 'data', save_value: Dict = None) ->
     if data_st:
         data_dict |= save_value
 
-    save_file(cache_data, "paco-cache.json")
+    save_file(_cache_data, "paco-cache.json")
 
 
 def format_time(time: timedelta) -> str:

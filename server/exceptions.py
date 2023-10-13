@@ -1,0 +1,2 @@
+class ExplicitURLError(ValueError):
+    pass

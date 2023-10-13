@@ -2,14 +2,15 @@ mypy
 
 # Main libs
 python-dotenv
+fastapi
+uvicorn[standard]
 
 beautifulsoup4
 colorama
 requests
-redis
+pydantic
 
 # Type stubs
 types-beautifulsoup4
 types-colorama
 types-requests
-types-redis

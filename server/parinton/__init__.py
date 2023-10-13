@@ -12,10 +12,10 @@ from typing import Optional
 
 from bs4 import Tag
 
-from parinton.exceptions import EnvironmentValueError, EnvironmentProductionError, EnvironmentNotFound
+# from parinton.exceptions import EnvironmentValueError, EnvironmentProductionError, EnvironmentNotFound
 from parinton.logger import PacoLogger
 from parinton.types import CachedData, FixedBaseURLs, BaseLiterals, ArtworkDictType, ArtworkReturnType, AverageDateReturnType
-from parinton.utils import load_file, save_file, format_time, page_req
+from utils import load_file, page_req
 
 logger = PacoLogger(time=True)
 
