@@ -21,7 +21,7 @@ def page_req(url: str) -> BeautifulSoup:
     """
     Sends an HTTP request and returns raw HTML markup
 
-    :param url: A url required to make a request 
+    :param url: A url required to make a request
     :return: HTML output via BeautifulSoup
     """
     try:
@@ -71,7 +71,7 @@ def cache_data(save_type: SaveCacheType = 'data', save_value: Dict = None) -> No
 
     :param save_type: Must be values 'date', 'pagination', and 'data'
     :param save_value: The save value, must be a dict
-    :return: 
+    :return:
     """
     _cache_data: CachedData = load_file('paco-cache.json')
 
@@ -120,3 +120,10 @@ def format_time(time: timedelta) -> str:
     output = f"{d} {h}:{m}:{s}"
 
     return output
+
+
+def is_empty_string(s: str) -> bool:
+    """
+    A wrapper function to check if a string is empty or contains only whitespaces.
+    """
+    return not s.strip()
