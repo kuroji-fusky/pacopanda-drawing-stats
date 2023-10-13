@@ -1,3 +1,4 @@
+import sys
 from typing import Any
 import argparse
 from parinton.logger import PacoLogger
@@ -12,15 +13,20 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-A", "--add",
                     type=str,
                     nargs="+",
-                    help="Adds a character")
+                    help="adds a character")
 
 parser.add_argument("-D", "--delete",
-                    type=str,
-                    help="Deletes a character")
+                    action="store_true",
+                    help="deletes a character")
 
 parser.add_argument("-R", "--reset",
                     action="store_true",
-                    help="Removes all applied character data")
+                    help="removes all applied character data")
+
+parser.add_argument("--stats",
+                    action="store_true",
+                    help="shows a break down of all the characters")
+
 
 args = parser.parse_args()
 
@@ -28,11 +34,9 @@ args = parser.parse_args()
 filename = "characters.json"
 
 
-def set_char_data(data: list[str | Any]) -> None:
-    msg = "This file is auto-generated using `characters.py`, do not modify it directly!"
-
+def set_char_data(data: list[str, Any]) -> None:
     output = {
-        "$$msg": msg,
+        "$msg": "This file is auto-generated, do not modify it directly!",
         "data": data
     }
 
@@ -46,35 +50,41 @@ def main():
     # Initial load
     # -------------------------
     try:
-        _data = load_file(filename)
-        char_data.extend(_data["data"])
+        char_data.extend(load_file(filename)["data"])
 
     except FileNotFoundError:
         logger.log("info", "File not found, creating file")
         set_char_data([])
+
+    if args.stats:
+        unique_values = {}
+
+        for cd in char_data:
+            for k, v in cd.items():
+                unique_values.setdefault(k, set()).add(v)
+
+        total_count = len(char_data)
+        unique_species_count = len(unique_values.get("species"))
+
+        print(total_count, unique_species_count)
 
     # Exception to prevent from argument collsion
     add_args: list[str] = args.add
     reset_arg: bool = args.reset
 
     if reset_arg and add_args:
-        raise Exception("Can't use both flags for reseting and adding data.")
+        raise Exception(
+            "Can't use both 'add' and 'reset' flags for reseting and adding data.")
 
-    # -------------------------
     # Reset items
-    # -------------------------
     if reset_arg:
         set_char_data([])
 
         logger.log("info", "All data wiped!")
         return
 
-    # -------------------------
-    # Parse items
-    # -------------------------
     if not add_args:
-        raise Exception(
-            "--add flag required. Pass the --add or -A to add a character")
+        return
 
     if add_args and len(add_args) < 1:
         raise Exception("Provide at least one item")
@@ -108,4 +118,8 @@ def main():
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+
     main()

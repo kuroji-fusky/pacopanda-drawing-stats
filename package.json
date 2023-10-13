@@ -2,12 +2,16 @@
   "private": true,
   "name": "pacopanda-drawing-stats",
   "license": "MIT",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build"
+  },
   "workspaces": [
     "client"
   ],
   "devDependencies": {
-    "turbo": "^1.10.13",
-    "@turbo/gen": "^1.10.13"
+    "turbo": "latest",
+    "@turbo/gen": "latest"
   },
   "engines": {
     "node": ">=20.0.0",

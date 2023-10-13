@@ -1,0 +1,41 @@
+{
+  "$msg": "This file is auto-generated, do not modify it directly!",
+  "data": [
+    {
+      "name": "Paco",
+      "species": "Panda"
+    },
+    {
+      "name": "Roni",
+      "species": "Border Collie"
+    },
+    {
+      "name": "Art",
+      "species": "Raccoon"
+    },
+    {
+      "name": "Biro",
+      "species": "Fox"
+    },
+    {
+      "name": "Nemorio",
+      "species": "Panda"
+    },
+    {
+      "name": "Julio",
+      "species": "Bear"
+    },
+    {
+      "name": "Ringo",
+      "species": "Raccoon"
+    },
+    {
+      "name": "Aurora",
+      "species": "Fox"
+    },
+    {
+      "name": "Yaps",
+      "species": "Fox"
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 node_modules
 .DS_Store
-build
+*.pem
+
 .svelte-kit
+build
 package
 
 .env
@@ -18,10 +20,6 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
 
 .turbo
 
