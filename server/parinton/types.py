@@ -1,12 +1,6 @@
 from typing import TypedDict, List, Dict, Literal
 
 
-class FixedBaseURLs(TypedDict):
-    furaffinity: str
-    weasyl: str
-    inkbunny: str
-
-
 class ArtworkDictType(TypedDict):
     title: str
     description: str
@@ -34,5 +28,4 @@ class AverageDateReturnType(TypedDict):
 
 BaseLiterals = Literal["furaffinity", "weasyl", "inkbunny"]
 
-CachedData = Dict[str, str | FixedBaseURLs | FixedDictArtwork]
-SaveCacheType = Literal['date', 'pagination', 'data']
+CachedData = Dict[str, str | FixedDictArtwork]

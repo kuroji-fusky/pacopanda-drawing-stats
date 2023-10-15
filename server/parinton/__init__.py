@@ -14,14 +14,12 @@ from bs4 import Tag
 
 # from parinton.exceptions import EnvironmentValueError, EnvironmentProductionError, EnvironmentNotFound
 from parinton.logger import PacoLogger
-from parinton.types import CachedData, FixedBaseURLs, BaseLiterals, ArtworkDictType, ArtworkReturnType, AverageDateReturnType
+from parinton.types import ArtworkDictType, ArtworkReturnType, AverageDateReturnType
 from utils import load_file, page_req
 
 logger = PacoLogger(time=True)
 
-OptBool = Optional[bool]
-
-BASE_URL: FixedBaseURLs = {
+BASE_URL = {
     "furaffinity": "https://www.furaffinity.net",
     "weasyl": "https://www.weasyl.com",
     "inkbunny": "https://inkbunny.net"
@@ -40,12 +38,6 @@ class PacoArtParser(Parinton):
 
         self._description: Tag | None = None
 
-        self.__is_fa = self.__url_startswith('furaffinity')
-
-    @staticmethod
-    def __url_startswith(base: BaseLiterals):
-        return BASE_URL[base]
-
     def iterate_pages(self, entry_url: str, next_selector: str) -> int:
         """
         Gets a number of all the iterated pages by providing its CSS selectors with the "Previous" and "Next" buttons,
@@ -58,21 +50,6 @@ class PacoArtParser(Parinton):
         _logger = "[ 🔁 Iterator ]"
 
         iterated_pages: Optional[str | int] = 0
-        cached_data: Optional[CachedData] = None
-
-        if not self.bypass_cache:
-            cached_data = load_file(self.cache_filename)['pagination']
-
-        if self.__is_fa:
-            if not self.bypass_cache and cached_data.get('furaffinity') == '0':
-                print('This must be a recently created cache')
-
-            logger.log('info', "{} {}".format(
-                _logger, "Iterating gallery pages from FurAffinity"))
-
-        if self.__url_startswith('weasyl'):
-            # TODO replace the 'iterated_pages' with a query to iterate over
-            ...
 
         while True:
             if self.__url_startswith('furaffinity') and self.__url_startswith('inkbunny'):
@@ -87,9 +64,6 @@ class PacoArtParser(Parinton):
 
                 if not next_button:
                     return final_iter_pages
-
-            if self.__url_startswith('weasyl'):
-                ...
 
     def get_art_metadata(self, url: str, selector: ArtworkDictType) -> ArtworkReturnType:
         """
@@ -133,7 +107,7 @@ class PacoArtParser(Parinton):
         TRADITIONAL_TOOLS = ['gouaches', 'watercolors',
                              'colored pencils', 'markers', 'indian ink', 'pencils']
 
-        TOOLS = [*PROGRAMS, *TRADITIONAL_TOOLS]
+        TOOLS = [*MEDIUM, *PROGRAMS, *TRADITIONAL_TOOLS]
 
         # TODO if nothing is detected, return "Not specified"
         ...
@@ -149,25 +123,5 @@ class PacoArtParser(Parinton):
         ...
 
 
-class PacoCharacterParser(Parinton):
-    def __init__(self) -> None:
-        """
-        For adding, removing, and editing character data from the database
-
-        Mostly for its use on command line only
-        """
-        super().__init__()
-
-    def list(self, filter_value: str) -> None:
-        ...
-
-    def add(self, name: str, species: str) -> None:
-        ...
-
-    def remove(self, name: str, species: str) -> None:
-        ...
-
-
 paco = Parinton()
 paco_parse = PacoArtParser()
-paco_chars = PacoCharacterParser()
