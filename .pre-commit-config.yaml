@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/hhatto/autopep8
+    hooks:
+      - id: autopep8
+  - repo: local
+    hooks:
+      - id: husky-run-pre-commit
+        name: husky
+        language: system
+        entry: node_modules/.bin/husky-run pre-commit
+        pass_filenames: false
+        always_run: true

@@ -2,16 +2,30 @@
   "private": true,
   "name": "pacopanda-drawing-stats",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "turbo dev",
-    "build": "turbo build"
+    "build": "turbo build",
+    "prepare": "husky install"
   },
   "workspaces": [
     "client"
   ],
+  "lint-staged": {
+    "client/**": "yarn prettier --write .",
+    "server/**/!(*cache).json": "yarn prettier --write .",
+    "*.md": "yarn prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo I love Jungkook"
+    }
+  },
   "devDependencies": {
-    "turbo": "latest",
-    "@turbo/gen": "latest"
+    "@turbo/gen": "latest",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.1",
+    "turbo": "latest"
   },
   "engines": {
     "node": ">=20.0.0",
