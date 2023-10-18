@@ -1,0 +1,9 @@
+version: "3"
+services:
+  paco-api:
+    container_name: paco-api
+    restart: unless-stopped
+  
+  paco-client:
+    container_name: paco-client
+    restart: unless-stopped

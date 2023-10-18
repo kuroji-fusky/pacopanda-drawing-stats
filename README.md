@@ -15,16 +15,13 @@ Panda.
 
 ## Project structure
 
-This project is structured as a [**monorepo**](https://monorepo.tools/#what-is-a-monorepo),
-it uses Yarn workspaces and Turborepo to install and manage dependencies in each subdirectory
-and remotely cache builds on the cloud via Turborepo.
+This project is structured as a monorepo, it uses Yarn workspaces and Turborepo to install and manage dependencies in each subdirectory and remotely cache builds on the cloud via Turborepo.
 
 Written in TypeScript and Python - it utilizes the ES Module syntax, with some
 files utilize the `.cjs` file type for Prettier, ESLint configs.
 
 - `client` - Website written in SvelteKit and Tailwind CSS
-- `server` - Server using FastAPI; local scraper and parser library for
-  manipulating public drawing data with Python
+- `python` - WIP
 
 ## Setup and Installation
 
@@ -33,6 +30,7 @@ files utilize the `.cjs` file type for Prettier, ESLint configs.
 - Node.js 18 or higher (LTS recommended)
 - Python 3.11 or higher
 - Yarn
+- [Optional] Docker
 
 ### Installation
 
@@ -57,6 +55,10 @@ py -m venv venv
 pip install -r requirements.txt
 ```
 
+### Docker 
+
+TBD
+
 ## API
 
 ![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
@@ -65,7 +67,6 @@ pip install -r requirements.txt
 > Section WIP
 
 ## About this project
-
 
 The project began on October 31, 2021, and the possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine
