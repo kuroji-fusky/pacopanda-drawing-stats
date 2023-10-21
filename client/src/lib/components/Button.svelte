@@ -1,14 +1,14 @@
 <script lang="ts">
-  export let href: string
-  export let onClick: (e: MouseEvent) => void
+  export let href: string | undefined = undefined
+  export let onClick: ((e: MouseEvent) => void) | undefined = undefined
 </script>
 
 {#if !href}
+  <button on:click={onClick ?? undefined} type="button">
+    <slot />
+  </button>
+{:else}
   <a {href}>
     <slot />
   </a>
-{:else}
-  <button on:click={onClick} type="button">
-    <slot />
-  </button>
 {/if}

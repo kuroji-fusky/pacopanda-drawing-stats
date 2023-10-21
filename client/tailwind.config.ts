@@ -1,7 +1,8 @@
-import type { Config } from "tailwindcss";
-import typographyPlugin from "@tailwindcss/typography";
+import type { Config } from "tailwindcss"
+import typographyPlugin from "@tailwindcss/typography"
 
 export default {
+  darkMode: "class",
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
@@ -12,4 +13,4 @@ export default {
     },
   },
   plugins: [typographyPlugin],
-} as Config;
+} as Config

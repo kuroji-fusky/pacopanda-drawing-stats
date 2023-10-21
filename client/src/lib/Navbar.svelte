@@ -1,30 +1,42 @@
 <script lang="ts">
+  import { page } from "$app/stores"
   import Fa from "svelte-fa"
   import { faGithub } from "@fortawesome/free-brands-svg-icons"
   import { SearchIcon } from "lucide-svelte"
+  import Button from "./components/Button.svelte"
+
+  const navArr = ["Browse", "Reports", "About", "API Reference"]
 </script>
 
 <nav
   class="max-w-screen-2xl mx-auto px-8 flex justify-between items-center py-3 sticky top-0 w-full bg-white"
 >
-  <a href="/" class="grid grid-cols-[minmax(0,1fr)_auto] grid-rows-2 gap-x-3">
+  <a href="/" class="flex items-center gap-x-2.5">
     <img
       src="./max-icon.png"
       alt="PDS"
-      width="48"
-      height="48"
+      width="40"
+      height="40"
       class="aspect-square row-span-2"
     />
-    <span class="text-lg font-bold">Paco Drawing Stats</span>
-    <span>by Kuroji Fusky</span>
+    <div class="flex flex-col gap-0">
+      <span class="text-xl font-bold font-heading">Paco Drawing Stats</span>
+      <span class="text-xs">by Kuroji Fusky</span>
+    </div>
   </a>
-  <div class="flex items-center gap-x-5">
-    <a href="/browse">Browse</a>
-    <a href="/reports">Reports</a>
-    <a href="/about">About</a>
-    <button>
-      <SearchIcon size={21} aria-label="Search icon" />
-    </button>
+  <div class="flex items-center gap-x-5" data-sveltekit-preload-data>
+    {#each navArr as item}
+      <a
+        href={`/${item.replace(/\s/g, "-").toLowerCase()}`}
+        class={$page.url.pathname ===
+        `/${item.replace(/\s/g, "-").toLowerCase()}`
+          ? "hover:text-green-500 text-green-600 underline"
+          : "hover:text-green-500 hover:underline"}>{item}</a
+      >
+    {/each}
+    <Button>
+      <SearchIcon size={19} aria-label="Search icon" />
+    </Button>
     <a
       href="https://github.com/kuroji-fusky/pacopanda-drawing-stats"
       target="_blank"

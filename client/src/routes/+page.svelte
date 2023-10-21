@@ -22,14 +22,14 @@
     <a
       href="https://github.com/kuroji-fusky/pacopanda-drawing-stats"
       target="_blank"
-      class="font-heading font-semibold flex items-center gap-x-1 px-3 py-2 rounded-md bg-lime-200 hover:bg-lime-300"
+      class="font-heading font-semibold flex items-center gap-x-1 px-3 py-2 rounded-md bg-green-200 hover:bg-green-400 transition-colors"
     >
       <Fa class="text-xl" icon={faGithub} fw />
       <span> View source code </span>
     </a>
     <a
       href="/about"
-      class="font-heading font-semibold flex items-center gap-x-1 px-3 py-2 rounded-md bg-lime-200 hover:bg-lime-300"
+      class="font-heading font-semibold flex items-center gap-x-1 px-3 py-2 rounded-md bg-green-200 hover:bg-green-400 transition-colors"
     >
       <Info size={20} />
       <span> About this project </span>

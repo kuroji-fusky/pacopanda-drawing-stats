@@ -31,7 +31,7 @@
 </script>
 
 <footer
-  class="flex items-center justify-between mx-auto max-w-screen-2xl px-9 py-3.5"
+  class="flex items-center justify-between mx-auto max-w-screen-2xl px-9 py-5"
 >
   <div>
     {copyright}
