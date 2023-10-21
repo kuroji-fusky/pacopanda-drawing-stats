@@ -3,7 +3,7 @@ import argparse
 from typing import Any
 from parinton.logger import PacoLogger
 from parinton.utils import load_file, save_file, is_empty_string
-from exceptions import CharacterParseError
+from parinton.exceptions import CharacterParseError
 
 logger = PacoLogger(time=True)
 
