@@ -4,7 +4,7 @@
   export let title: string
 
   onMount(() => {
-    console.log("MY DICK")
+    console.log("Yes")
   })
 </script>
 

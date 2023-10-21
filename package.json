@@ -14,7 +14,8 @@
   "lint-staged": {
     "client/**": "yarn prettier --write .",
     "server/**/!(*cache).json": "yarn prettier --write .",
-    "*.md": "yarn prettier --write ."
+    "*.md": "yarn prettier --write .",
+    "*.{js,ts,svelte}": "eslint"
   },
   "husky": {
     "hooks": {
@@ -25,6 +26,8 @@
     "@turbo/gen": "latest",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
     "turbo": "latest"
   },
   "engines": {

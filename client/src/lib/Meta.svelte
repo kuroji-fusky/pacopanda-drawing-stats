@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { page } from "$app/stores"
+
   export let title: string
   export let description: string
   export const SITE_NAME = "Paco Drawing Stats"
@@ -16,4 +18,5 @@
   <meta name="twitter:card" content="summary_large_card" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <link rel="canonical" href={$page.url.href} />
 </svelte:head>
