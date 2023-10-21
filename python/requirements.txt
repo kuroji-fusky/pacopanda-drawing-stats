@@ -3,12 +3,14 @@ mypy
 # Main libs
 python-dotenv
 fastapi
-uvicorn[standard]
+uvicorn
 
 beautifulsoup4
 colorama
 requests
 pydantic
+
+Pillow
 
 # Type stubs
 types-beautifulsoup4

@@ -1,8 +1,8 @@
 import sys
-from typing import Any
 import argparse
+from typing import Any
 from parinton.logger import PacoLogger
-from utils import load_file, save_file, is_empty_string
+from parinton.utils import load_file, save_file, is_empty_string
 from exceptions import CharacterParseError
 
 logger = PacoLogger(time=True)
