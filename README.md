@@ -8,7 +8,7 @@
     <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/kuroji-fusky/pacopanda-drawing-stats?style=flat-square">
   </a>
 </div>
-	
+
 **Paco Panda Drawing Stats** is a data analysis and visualization project
 that collects and parses drawing data from a furry artist and illustrator
 [Paco Panda][paco].
@@ -21,12 +21,7 @@ that collects and parses drawing data from a furry artist and illustrator
 
 ## Tech stack
 
-- SvelteKit
-- Tailwind CSS
-- FastAPI
-- Turborepo
-- Docker
-- Vercel
+![](https://skillicons.dev/icons?i=js,ts,py,tailwind,svelte,fastapi,redis,docker,vercel,cloudflare)
 
 ## Setup and Installation
 
@@ -72,13 +67,6 @@ pip install -r requirements.txt
 ### Docker
 
 TBD
-
-## API
-
-![API banner](https://user-images.githubusercontent.com/94678583/203912229-9b6c2479-e999-4b36-9d54-205037691d18.png)
-
-> **Note**
-> Section WIP
 
 ## About this project
 
