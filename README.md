@@ -123,4 +123,4 @@ drawing data from his.
 Paco Panda Drawing Stats' source code is open source and is licensed under
 [MIT](https://opensource.org/licenses/MIT).
 
-[paco]: https://twitter.com/PacoPanda
+[paco]: https://twitter.com/panda_paco
