@@ -9,9 +9,17 @@
   </a>
 </div>
 
-**Paco Panda Drawing Stats** is a data analysis and visualization project
-that collects and parses drawing data from a furry artist and illustrator
-[Paco Panda][paco].
+# Paco Drawing Stats
+
+A data analysis and case study created by Kuroji Fusky that collect
+and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
+
+Using Python to gather said data and a dedicated API using a web scraper,
+BeautifulSoup4 and web framework, FastAPI.
+
+> **Important**
+> Machine Learning/AI is not used in this project! I used nothing but math
+> to parse collected data.
 
 ## Project structure
 
@@ -32,7 +40,7 @@ that collects and parses drawing data from a furry artist and illustrator
 - Yarn
 - Docker (optional)
 
-### Frontend
+### `client`
 
 Install Node dependencies with Yarn:
 
@@ -46,7 +54,7 @@ Run the dev server:
 yarn dev
 ```
 
-### Backend/Data Analysis
+### `python`
 
 Go to the `python` directory:
 
@@ -66,11 +74,11 @@ pip install -r requirements.txt
 
 ### Docker
 
-TBD
+TBA
 
 ## About this project
 
-The project began on October 31, 2021, and the possible inspiration from this
+The project began on October 31st 2021. The possible inspiration from this
 project is through McBroken (basically a McDonald's broken ice cream machine
 site) and it'd be interesting to see in all of his drawings to see said data,
 and its various datasets.
@@ -83,28 +91,6 @@ This project collects the following:
 - Programs/mediums used (i.e. Photoshop, Procreate, etc.)
 - The source where I got the data (i.e. FurAffinity, DeviantArt, InkBunny,
   Weasyl, etc.)
-
-Previously, I had to manually source it through FurAffinity and DeviantArt for
-his draft drawings (including his _Art & Biro_ comics). Unfortunately, drawings
-from Twitter won't be counted to ease the load on my end and the
-dataset since all the data gathered will be hard coded to the site.
-
-### Why did you create this project?
-
-Believe it or not, it's not my intention to impress him in general.
-
-I'm just a huge fan of his artwork and his unique and adorable art style that
-I'd want to see how many characters he's drawn since the early to mid-2000s.
-
-### Isn't this taking it too far?
-
-As someone who admires his art, yes... to some extent. Well, sure - it may feel
-like I watch him on every step, but I only use them for analytical and
-informational purposes; parsing drawing data on his Twitter profile would be
-difficult and will require more work.
-
-It's more of a serious yet passionate side-project of mine to show various kinds of
-drawing data from his.
 
 ## License
 
