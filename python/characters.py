@@ -36,7 +36,7 @@ filename = "characters.json"
 
 def set_char_data(data: list[str, Any]) -> None:
     output = {
-        "$msg": "This file is auto-generated, do not modify it directly!",
+        "__msg": "This file is auto-generated, do not modify it directly!",
         "data": data
     }
 

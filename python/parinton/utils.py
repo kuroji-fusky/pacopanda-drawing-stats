@@ -9,12 +9,16 @@ MIT License
 import json
 from typing import Dict, Any
 from datetime import timedelta
-
 from bs4 import BeautifulSoup
 from requests import Session
 from requests.exceptions import ConnectionError
 
-from parinton.types import SaveCacheType, CachedData
+
+def is_empty_string(s: str) -> bool:
+    """
+    A wrapper function to check if a string is empty or contains only whitespaces.
+    """
+    return not s.strip()
 
 
 def page_req(url: str) -> BeautifulSoup:
@@ -25,7 +29,7 @@ def page_req(url: str) -> BeautifulSoup:
     :return: HTML output via BeautifulSoup
     """
     try:
-        _req = Session().get(url, timeout=None)
+        _req = Session().get(url, timeout=None, headers={'User-Agent': 'Mozilla/5.0 kurofusky/1.0'})
         return BeautifulSoup(_req.text, "html.parser")
 
     except ConnectionError:
@@ -65,7 +69,8 @@ def save_file(data, file: str, indent: bool = False) -> None:
             fo.write(data)
 
 
-def cache_data(save_type: SaveCacheType = 'data', save_value: Dict = None) -> None:
+# TODO overhaul this helper function
+def cache_data(save_type='data', save_value: Dict = None) -> None:
     """
     Saves data to cache
 
@@ -73,24 +78,29 @@ def cache_data(save_type: SaveCacheType = 'data', save_value: Dict = None) -> No
     :param save_value: The save value, must be a dict
     :return:
     """
-    _cache_data: CachedData = load_file('paco-cache.json')
+    _cache_data = load_file('paco-cache.json')
 
-    date_st, date_dict = save_type == "date", _cache_data.get("cached_time")
-    paginate_st, paginate_dict = save_type == "pagination", _cache_data.get(
-        "pagination")
-    data_st, data_dict = save_type == "data", _cache_data.get("data")
+    is_save_type_datetime = save_type == "date"
+    is_save_type_pagination = save_type == "pagination"
+    is_save_type_data = save_type == "data"
 
-    if not date_st and not paginate_st and not date_st:
+    data_dict = _cache_data.get("data")
+    paginate_dict = _cache_data.get("pagination")
+    date_dict = _cache_data.get("cached_time")
+
+    not_vaild_save_types = not is_save_type_datetime and not is_save_type_pagination and not is_save_type_datetime
+
+    if not_vaild_save_types:
         raise ValueError(
             f"Save type \"{save_type}\" invalid. Only valid types are 'date', 'pagination', and 'data'")
 
-    if date_st:
+    if is_save_type_datetime:
         date_dict |= save_value
 
-    if paginate_st:
+    if is_save_type_pagination:
         paginate_dict |= save_value
 
-    if data_st:
+    if is_save_type_data:
         data_dict |= save_value
 
     save_file(_cache_data, "paco-cache.json")
@@ -109,21 +119,12 @@ def format_time(time: timedelta) -> str:
         raise TypeError(
             "Invalid input type. Param 'time' must be a timedelta.")
 
-    _days, _seconds = divmod(time.total_seconds(), 86400)
-    d = f"{int(_days)} days" if _days != 1 else f"{int(_days)} day"
+    _dm_days, _dm_seconds = divmod(time.total_seconds(), 86400)
 
-    h, remainder = divmod(_seconds, 3600)
+    d = f"{int(_dm_days)} days" if _dm_days != 1 else f"{int(_dm_days)} day"
+    h, remainder = divmod(_dm_seconds, 3600)
     m, s = divmod(remainder, 60)
 
     h, m, s = map(lambda v: str(v).zfill(2), map(int, (h, m, s)))
 
-    output = f"{d} {h}:{m}:{s}"
-
-    return output
-
-
-def is_empty_string(s: str) -> bool:
-    """
-    A wrapper function to check if a string is empty or contains only whitespaces.
-    """
-    return not s.strip()
+    return f"{d} {h}:{m}:{s}"
