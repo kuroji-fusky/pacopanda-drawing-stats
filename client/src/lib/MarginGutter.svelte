@@ -1,11 +1,9 @@
 <script lang="ts">
-  export let className: string = ""
+  import clsx from "clsx"
 
-  function FilterClassName(...className: string[]) {
-    return className.filter(Boolean).join(" ")
-  }
+  export let className: string = ""
 </script>
 
-<div class={FilterClassName("max-w-screen-2xl mx-auto px-8", className)}>
+<div class={clsx("max-w-screen-2xl mx-auto px-8", className)}>
   <slot />
 </div>
