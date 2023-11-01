@@ -1,5 +1,6 @@
 import argparse
 import uvicorn
+from datetime import datetime
 from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,7 +22,7 @@ app.add_middleware(
         "http://localhost",
         "http://localhost:8000",
         "http://localhost:5173",
-        "https://pacopandastats.kurojifusky.com"
+        "https://pds.kurojifusky.com"
     ],
 )
 
@@ -35,26 +36,43 @@ async def root(request: Request):
     return {
         "version": "1",
         "source_code": "https://github.com/kuroji-fusky/pacopanda-drawing-stats",
-        "artworks_url": f"{referer}/artworks",
-        "artwork_url": referer + "/artwork{/artworks}",
         "characters_url": f"{referer}/characters",
         "character_url": referer + "/character{/characters}",
+        "character_apperances_url": referer + "/character{/characters}/appearances",
+        "artworks_url": f"{referer}/artworks",
+        "artwork_url": referer + "/artwork{/artworks}",
     }
 
 
-@app.get("/artworks")
-async def artworks_list(year: int = 2023, limit: QueryLimit = "all"):
-    pass
-
-
-@app.get("/characters")
-async def characters_list(year: int = 2023, limit: QueryLimit = "all"):
-    pass
-
-
+# Ex: /character{/paco}
 @app.get("/character/{character}")
 async def character(character: str):
     pass
+
+
+# /character{/paco}/appearances{?items,year}
+@app.get("/character/{character}/appearances")
+async def character(character: str, year: int, items: str):
+    pass
+
+
+# /characters{?items,year}
+@app.get("/characters")
+async def characters_list(year: int, items: str):
+    pass
+
+
+# Ex: /artwork{/big-tree}
+@app.get("/artwork/{artwork}")
+async def artworks_list(artwork: str):
+    pass
+
+
+# /artworks{?items,year}
+@app.get("/artworks")
+async def artworks_list(year: int, items: str):
+    pass
+
 
 if __name__ == "__main__":
     APP_NAME, HOST, PORT = "server:app", "127.0.0.1", 4000
