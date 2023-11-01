@@ -1,6 +1,8 @@
 ![Banner for Paco Panda Drawing Stats](https://user-images.githubusercontent.com/94678583/208869784-c68b5483-8e18-4d01-9163-d502b4cb40c5.png)
 
 <div align="center">
+  <h1 align="center">Paco Drawing Stats</h1>
+
   <a href="https://opensource.org/licenses/MIT">
 		<img src="https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?style=flat-square">
 	</a>
@@ -9,27 +11,17 @@
   </a>
 </div>
 
-# Paco Drawing Stats
-
-A data analysis and case study created by Kuroji Fusky that collect
+A data analysis and case study created by Kuroji Fusky that collects
 and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
 
 Using Python to gather said data and a dedicated API using a web scraper,
 BeautifulSoup4 and web framework, FastAPI.
 
+The website is written in SvelteKit and TailwindCSS.
+
 > **Important**
-> Machine Learning/AI is not used in this project! I used nothing but math
+> Machine Learning/AI is not used in this project! It's nothing but simple math
 > to parse collected data.
-
-## Project structure
-
-- `client` - Website written in SvelteKit and Tailwind CSS
-- `python` - The FastAPI server, image generation, and utilities to
-  retrieve drawing data
-
-## Tech stack
-
-![](https://skillicons.dev/icons?i=js,ts,py,tailwind,svelte,fastapi,redis,docker,vercel,cloudflare)
 
 ## Setup and Installation
 
@@ -40,7 +32,7 @@ BeautifulSoup4 and web framework, FastAPI.
 - Yarn
 - Docker (optional)
 
-### `client`
+### `client` directory
 
 Install Node dependencies with Yarn:
 
@@ -54,7 +46,7 @@ Run the dev server:
 yarn dev
 ```
 
-### `python`
+### `python` directory
 
 Go to the `python` directory:
 
