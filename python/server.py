@@ -57,8 +57,9 @@ async def character(character: str):
     pass
 
 if __name__ == "__main__":
-    __ASGIAppName = "server:app"
+    APP_NAME, HOST, PORT = "server:app", "127.0.0.1", 4000
+
     if not args.prod:
-        uvicorn.run(__ASGIAppName, host="127.0.0.1", port=4000)
+        uvicorn.run(APP_NAME, host=HOST, port=PORT)
     else:
-        uvicorn.run(__ASGIAppName, host="127.0.0.1", port=4000, reload=True)
+        uvicorn.run(APP_NAME, host=HOST, port=PORT, reload=True)

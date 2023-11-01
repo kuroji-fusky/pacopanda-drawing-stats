@@ -29,7 +29,8 @@ def page_req(url: str) -> BeautifulSoup:
     :return: HTML output via BeautifulSoup
     """
     try:
-        _req = Session().get(url, timeout=None, headers={'User-Agent': 'Mozilla/5.0 kurofusky/1.0'})
+        _req = Session().get(url, timeout=None, headers={
+            'User-Agent': 'Mozilla/5.0 kurofusky/1.0'})
         return BeautifulSoup(_req.text, "html.parser")
 
     except ConnectionError:
@@ -67,43 +68,6 @@ def save_file(data, file: str, indent: bool = False) -> None:
             json.dump(data, fo, ensure_ascii=True, indent=2)
         else:
             fo.write(data)
-
-
-# TODO overhaul this helper function
-def cache_data(save_type='data', save_value: Dict = None) -> None:
-    """
-    Saves data to cache
-
-    :param save_type: Must be values 'date', 'pagination', and 'data'
-    :param save_value: The save value, must be a dict
-    :return:
-    """
-    _cache_data = load_file('paco-cache.json')
-
-    is_save_type_datetime = save_type == "date"
-    is_save_type_pagination = save_type == "pagination"
-    is_save_type_data = save_type == "data"
-
-    data_dict = _cache_data.get("data")
-    paginate_dict = _cache_data.get("pagination")
-    date_dict = _cache_data.get("cached_time")
-
-    not_vaild_save_types = not is_save_type_datetime and not is_save_type_pagination and not is_save_type_datetime
-
-    if not_vaild_save_types:
-        raise ValueError(
-            f"Save type \"{save_type}\" invalid. Only valid types are 'date', 'pagination', and 'data'")
-
-    if is_save_type_datetime:
-        date_dict |= save_value
-
-    if is_save_type_pagination:
-        paginate_dict |= save_value
-
-    if is_save_type_data:
-        data_dict |= save_value
-
-    save_file(_cache_data, "paco-cache.json")
 
 
 def format_time(time: timedelta) -> str:

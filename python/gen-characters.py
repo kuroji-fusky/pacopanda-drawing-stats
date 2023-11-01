@@ -30,27 +30,33 @@ parser.add_argument("--stats",
 
 args = parser.parse_args()
 
+FILENAME = "characters.json"
 
-filename = "characters.json"
+
+def slugify(input_str: str) -> str:
+    dash_whitespaces = input_str.replace(" ", "-")
+    lowercase_str = dash_whitespaces.lower()
+    result_str = ''.join(char
+                         if char.isalnum() or char == ')' else '-'
+                         for char in lowercase_str)
+
+    return result_str
 
 
 def set_char_data(data: list[str, Any]) -> None:
     output = {
-        "__msg": "This file is auto-generated, do not modify it directly!",
+        "__msg": "This file is auto-generated using gen-characters.py, do not modify it directly!",
         "data": data
     }
 
-    save_file(output, filename, indent=True)
+    save_file(output, FILENAME, indent=True)
 
 
 def main():
     char_data = []
 
-    # -------------------------
-    # Initial load
-    # -------------------------
     try:
-        char_data.extend(load_file(filename)["data"])
+        char_data.extend(load_file(FILENAME)["data"])
 
     except FileNotFoundError:
         logger.log("info", "File not found, creating file")
@@ -108,6 +114,7 @@ def main():
         out = {
             "name": name,
             "species": species,
+            "slug": slugify(f"{name} {species}")
         }
 
         char_data.append(out)
