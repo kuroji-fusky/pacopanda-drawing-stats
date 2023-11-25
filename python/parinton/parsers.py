@@ -1,4 +1,4 @@
-def parse_medium() -> None:
+def parse_medium():
     """
     There's a common pattern that in every artwork descriptions; he lists what tools
     and medium of the artwork (i.e. "Digital. Photoshop.")

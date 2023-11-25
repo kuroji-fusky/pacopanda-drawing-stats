@@ -7,7 +7,7 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import json
-from typing import Dict, Any
+from typing import Any
 from datetime import timedelta
 from bs4 import BeautifulSoup
 from requests import Session
@@ -70,6 +70,9 @@ def save_file(data, file: str, indent: bool = False) -> None:
             fo.write(data)
 
 
+###############################
+##        MATH STUFFS        ##
+###############################
 def format_time(time: timedelta) -> str:
     """
     Formats delta time (current time - whatever time has passed) to

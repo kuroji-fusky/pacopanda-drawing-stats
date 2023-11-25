@@ -4,6 +4,7 @@ import parinton as paco
 
 parser = argparse.ArgumentParser(description="The Paco Scraper")
 
+# TODO consolidate these into values instead of args
 parser.add_argument("--furaffinity", action="store_true")
 parser.add_argument("--weasyl", action="store_true")
 parser.add_argument("--inkbunny", action="store_true")
