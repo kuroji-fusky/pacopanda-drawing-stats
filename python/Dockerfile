@@ -1,12 +1,13 @@
 FROM python:3.11
 
-WORKDIR /api
+WORKDIR /
 
-COPY ./requirements.txt /api/requirements.txt
-COPY ./app /api/app
-COPY ./parinton /api/parinton
+COPY requirements.txt /requirements.txt
+COPY server.py /server.py
+COPY scraper.py /scraper.py
+COPY parinton/ /parinton/
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 EXPOSE 4000
 

@@ -1,7 +1,7 @@
 version: "3"
 services:
   paco-api:
-    container_name: Paco Drawings API
+    container_name: Paco Drawing API
     restart: unless-stopped
     build:
       context: .
@@ -9,11 +9,8 @@ services:
     ports:
       - "4000:4000"
 
-  paco-client:
-    container_name: Paco Client
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: client/Dockerfile
+  paco-redis:
+    image: redis/redis-stack:latest
     ports:
-      - "3000:3000"
+      - 6379:6379
+      - 8001:8001

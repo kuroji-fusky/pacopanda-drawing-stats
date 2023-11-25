@@ -5,6 +5,7 @@ python-dotenv
 fastapi
 uvicorn
 
+PyYAML
 beautifulsoup4
 colorama
 requests

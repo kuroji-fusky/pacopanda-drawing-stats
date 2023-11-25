@@ -1,0 +1,25 @@
+# Slugs are generated on the fly from a Python script
+characters:
+  - name: Paco
+    species: Panda
+  - name: Roni
+    species: Dog
+  - name: Biro
+    species: Fox
+  - name: Art
+    species: Raccoon
+  - name: Ringo
+    species: Raccoon
+  - name: Nemorio
+    species: Panda
+  - name: Juilo
+    species: Bear
+  - name: Aurora
+    species: Fox
+    matches: ["Ringo"]
+  - name: Yaps
+    species: Fox
+  - name: Rocky
+    species: Wolf
+  - name: Steele
+    species: Red Panda
