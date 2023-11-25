@@ -10,7 +10,7 @@
 </script>
 
 <Navbar />
-<main class="h-[calc(100dvh-4rem)]">
+<div class="h-[calc(100dvh-4rem)]">
   <slot />
-</main>
+</div>
 <Footer />

@@ -6,6 +6,11 @@
   import Button from "./components/Button.svelte"
 
   const navArr = ["Browse", "Reports", "About", "API Reference"]
+
+  const contentsToLowerCase = (input: string) => {
+    const filterWhitespace = input.replace(/\s/g, "-")
+    return filterWhitespace.toLowerCase()
+  }
 </script>
 
 <nav
@@ -14,7 +19,7 @@
   <a href="/" class="flex items-center gap-x-2.5">
     <img
       src="./max-icon.png"
-      alt="PDS"
+      alt="Paco Drawing Stats"
       width="40"
       height="40"
       class="aspect-square row-span-2"
@@ -27,9 +32,8 @@
   <div class="flex items-center gap-x-5" data-sveltekit-preload-data>
     {#each navArr as item}
       <a
-        href={`/${item.replace(/\s/g, "-").toLowerCase()}`}
-        class={$page.url.pathname ===
-        `/${item.replace(/\s/g, "-").toLowerCase()}`
+        href={`/${contentsToLowerCase(item)}`}
+        class={$page.url.pathname === `/${contentsToLowerCase(item)}`
           ? "hover:text-green-500 text-green-600 underline"
           : "hover:text-green-500 hover:underline"}>{item}</a
       >
