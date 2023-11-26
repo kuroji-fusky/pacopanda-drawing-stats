@@ -75,7 +75,7 @@ async def artworks_list(year: int, items: str):
 
 
 if __name__ == "__main__":
-    APP_NAME, HOST, PORT = "server:app", "127.0.0.1", 4000
+    APP_NAME, HOST, PORT = "server:app", "localhost", 4000
 
     if not args.prod:
         uvicorn.run(APP_NAME, host=HOST, port=PORT)

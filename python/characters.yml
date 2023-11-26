@@ -16,7 +16,7 @@ characters:
     species: Bear
   - name: Aurora
     species: Fox
-    matches: ["Ringo"]
+    relation: ["Ringo"]
   - name: Yaps
     species: Fox
   - name: Rocky
