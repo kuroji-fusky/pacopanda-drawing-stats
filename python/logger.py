@@ -7,18 +7,20 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import logging
+from sys import platform
 from typing import Literal
 from colorama import init, Back, Fore, Style, just_fix_windows_console as JUST_FIX_THE_GODDAMN_THING_FOR_WINDOWS_YOU_FAK
 
-init()
-JUST_FIX_THE_GODDAMN_THING_FOR_WINDOWS_YOU_FAK()
+init(autoreset=True)
+
+if platform == "win32" or platform == "cygwin":
+    JUST_FIX_THE_GODDAMN_THING_FOR_WINDOWS_YOU_FAK()
 
 LogStatus = Literal["warn", "error", "info", "debug"]
 
 
 # TODO fix duplicate stream thingy on console
 def log(status: LogStatus = "info", *args):
-    # Map status to color and log level
     status_colors = {
         "info": (Fore.WHITE, Back.BLUE, logging.INFO),
         "warn": (Fore.YELLOW, Back.BLACK, logging.WARNING),
