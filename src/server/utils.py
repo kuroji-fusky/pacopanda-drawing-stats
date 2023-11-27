@@ -5,12 +5,15 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import json
-from typing import Any
-from datetime import timedelta
-from bs4 import BeautifulSoup
-from requests import Session
-from requests.exceptions import ConnectionError
 from .logger import log
+from typing import Any, Literal
+from datetime import timedelta
+import requests
+from requests.exceptions import ConnectionError
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 
 # --------------------------------------------------------------------- #
@@ -18,6 +21,9 @@ from .logger import log
 #                                REQUESTS                               #
 #                                                                       #
 # --------------------------------------------------------------------- #
+session = requests.Session()
+
+
 def req_from_soup(url: str) -> BeautifulSoup:
     """
     Sends an HTTP request and returns raw HTML markup
@@ -32,17 +38,32 @@ def req_from_soup(url: str) -> BeautifulSoup:
     }
 
     try:
-        _req = Session().get(url, timeout=None, headers=HEADERS)
+        _req = session.get(url, timeout=None, headers=HEADERS)
         log("debug", ("Request {}, recieved status code {}").format(
             url, _req.status_code))
+
         return BeautifulSoup(_req.text, "html.parser")
 
     except ConnectionError:
         raise ConnectionError
 
 
-def req_from_selenium(url: str):
-    pass
+# ! WIP -- will be used in the future
+class WebExtractor:
+    def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
+        self.scrap_mode = mode
+        self.driver = webdriver.Firefox(keep_alive=True)
+
+    def url_request(self, url: str):
+        if self.scrap_mode == "static":
+            _req = session.get(url)
+            log("debug", ("Request {}, recieved status code {}").format(
+                url, _req.status_code))
+
+            return BeautifulSoup(_req.text, "html.parser")
+
+        if self.scrap_mode == "dynamic":
+            self.driver.get(url)
 
 
 def load_file(file: str) -> Any:
