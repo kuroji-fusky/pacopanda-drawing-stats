@@ -5,65 +5,8 @@ Copyright 2021-2023 Kerby Keith Aquino
 MIT License
 """
 import json
-from .logger import log
-from typing import Any, Literal
+from typing import Any
 from datetime import timedelta
-import requests
-from requests.exceptions import ConnectionError
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-
-
-# --------------------------------------------------------------------- #
-#                                                                       #
-#                                REQUESTS                               #
-#                                                                       #
-# --------------------------------------------------------------------- #
-session = requests.Session()
-
-
-def req_from_soup(url: str) -> BeautifulSoup:
-    """
-    Sends an HTTP request and returns raw HTML markup
-
-    :param url: A url required to make a request
-    :return: HTML output via BeautifulSoup
-    """
-    HEADERS = {
-        'User-Agent': 'Mozilla/5.0 (KuroLens; hello@kurojifusky.com)',
-        'Connection': 'keep-alive',
-        'Referer': '*'
-    }
-
-    try:
-        _req = session.get(url, timeout=None, headers=HEADERS)
-        log("debug", ("Request {}, recieved status code {}").format(
-            url, _req.status_code))
-
-        return BeautifulSoup(_req.text, "html.parser")
-
-    except ConnectionError:
-        raise ConnectionError
-
-
-# ! WIP -- will be used in the future
-class WebExtractor:
-    def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
-        self.scrap_mode = mode
-        self.driver = webdriver.Firefox(keep_alive=True)
-
-    def url_request(self, url: str):
-        if self.scrap_mode == "static":
-            _req = session.get(url)
-            log("debug", ("Request {}, recieved status code {}").format(
-                url, _req.status_code))
-
-            return BeautifulSoup(_req.text, "html.parser")
-
-        if self.scrap_mode == "dynamic":
-            self.driver.get(url)
 
 
 def load_file(file: str) -> Any:
@@ -99,11 +42,6 @@ def save_file(data, file: str, indent: bool = False) -> None:
             fo.write(data)
 
 
-# --------------------------------------------------------------------- #
-#                                                                       #
-#                                MATH                                   #
-#                                                                       #
-# --------------------------------------------------------------------- #
 def format_time(time: timedelta) -> str:
     """
     Formats delta time (current time - whatever time has passed) to
@@ -126,62 +64,3 @@ def format_time(time: timedelta) -> str:
     h, m, s = map(lambda v: str(v).zfill(2), map(int, (h, m, s)))
 
     return f"{d} {h}:{m}:{s}"
-
-
-# --------------------------------------------------------------------- #
-#                                                                       #
-#                              PARSERS                                  #
-#                                                                       #
-# --------------------------------------------------------------------- #
-def iterate_pages(entry_url: str, next_selector: str) -> int:
-    """
-    Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button
-
-    :param entry_url: The beginning point for URL to paginate and iterate over
-    :param next_selector: The CSS selector of a "Next" button 
-    :return: A number of all the iterated pages
-    """
-    _logger = "[ 🔁 Iterator ]"
-
-    iterated_pages = 0
-
-    while True:
-        iterate_url = entry_url
-
-        next_button = req_from_soup(iterate_url).select_one(next_selector)
-
-        iterated_pages += 1
-        final_iter_pages = iterated_pages - 1
-
-        print("{} {} {}".format(
-            _logger, 'Iterated pages so far:', final_iter_pages))
-
-        if not next_button:
-            print("Iterated {} page(s)", final_iter_pages)
-            return final_iter_pages
-
-
-def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
-    """
-    Gets the page metadata from a page request
-
-    :param url: The artwork URL
-    :param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
-    :return: An object that returns a title, description, date, and a list of tags
-    """
-    title_selector = selector.get("title")
-    desc_selector = selector.get("description")
-    tags_selector = selector.get("tags")
-    date_selector = selector.get("date")
-
-    _page = req_from_soup(url)
-    tags_list = [str(tag) for tag in _page.select(tags_selector)]
-
-    _description = _page.select_one(desc_selector)
-
-    return {
-        "title": str(_page.select_one(title_selector).text),
-        "date": str(_page.select_one(date_selector).get('title')),
-        "description": str(_description.text),
-        "tags": tags_list
-    }
