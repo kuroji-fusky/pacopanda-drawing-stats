@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let heading: string = "";
+  export let heading: string = ""
 </script>
 
 <div class="p-3">

@@ -9,7 +9,7 @@
     "prepare": "husky install"
   },
   "workspaces": [
-    "client"
+    "src/client/**"
   ],
   "lint-staged": {
     "client/**": "yarn prettier --write .",
@@ -32,6 +32,6 @@
   },
   "engines": {
     "node": ">=20.0.0",
-    "npm": ">=9.0.0"
+    "npm": ">=10.0.0"
   }
 }

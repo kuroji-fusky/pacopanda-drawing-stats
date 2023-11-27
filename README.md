@@ -17,10 +17,10 @@ and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
 Using Python to gather said data and a dedicated API using a web scraper,
 BeautifulSoup4 and web framework, FastAPI.
 
-The website is written in SvelteKit and TailwindCSS.
+The website is written in SvelteKit and Tailwind CSS.
 
-> **Important**
-> Machine Learning/AI is not used in this project! It's nothing but simple math
+> [!IMPORTANT]
+> Machine Learning/AI is not utilized in this project! It's nothing but simple math
 > to parse collected data.
 
 ## Setup and Installation
@@ -32,7 +32,7 @@ The website is written in SvelteKit and TailwindCSS.
 - Yarn
 - Docker (optional)
 
-### `client` directory
+### `src/client` directory
 
 Install Node dependencies with Yarn:
 
@@ -46,12 +46,12 @@ Run the dev server:
 yarn dev
 ```
 
-### `python` directory
+### `src/python` directory
 
 Go to the `python` directory:
 
 ```console
-cd python
+cd src/python
 ```
 
 Create a virtual environment and install the required libraries:
@@ -86,7 +86,7 @@ This project collects the following:
 
 ## License
 
-Paco Panda Drawing Stats' source code is open source and is licensed under
+Paco Drawing Stats' source code is open source and is licensed under
 [MIT](https://opensource.org/licenses/MIT).
 
 [paco]: https://twitter.com/panda_paco

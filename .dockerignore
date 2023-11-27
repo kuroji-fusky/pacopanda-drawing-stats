@@ -15,6 +15,4 @@ package
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-gen-characters.py
 gen-image.py
-

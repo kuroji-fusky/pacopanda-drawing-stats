@@ -5,17 +5,14 @@ from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-### Argparse ###
 parser = argparse.ArgumentParser()
 parser.add_argument("--prod",
                     action="store_true",
-                    help="Runs the server in production mode, disables reload mode")
+                    help="Runs the server in production mode, disables reload")
 
 args = parser.parse_args()
 
-### FastAPI ###
 app = FastAPI()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
