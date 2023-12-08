@@ -17,7 +17,7 @@ and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
 Using Python to gather said data and a dedicated API using a web scraper,
 BeautifulSoup4 and web framework, FastAPI.
 
-The website is written in SvelteKit and Tailwind CSS.
+The website is written in Nuxt 3 and Tailwind CSS.
 
 > [!IMPORTANT]
 > Machine Learning/AI is not utilized in this project! It's nothing but simple math

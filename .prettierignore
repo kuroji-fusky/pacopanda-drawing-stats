@@ -1,18 +1,18 @@
 # Directories
 node_modules
-.svelte-kit
+.nuxt
+.output
+.vercel
 dist
 
 *.md
 !README.md
 !CHANGELOG.md
+!src/client/content/**/*.md
 
-/build
-/package
 .env
 .env.*
 !.env.example
-vite.config.js*
 
 # Files
 *.env*

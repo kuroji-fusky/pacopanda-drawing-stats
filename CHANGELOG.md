@@ -2,6 +2,10 @@
 
 ## 2023
 
+### December 9
+
+- Rewritten website from SvelteKit to Nuxt 3
+
 ### October 8
 
 - Rewritten website from Next.js to SvelteKit
