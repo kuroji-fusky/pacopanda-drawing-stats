@@ -32,35 +32,34 @@ The website is written in Nuxt 3 and Tailwind CSS.
 - Yarn
 - Docker (optional)
 
-### `src/client` directory
+### Installation
 
-Install Node dependencies with Yarn:
+This project uses a combination of [`husky`](https://github.com/typicode/husky) and [`pre-commit`](https://pre-commit.com),
+`pre-commit` needs to be installed first.
 
-```console
+```sh
+pip install pre-commit
+```
+
+Then, install the packages from both directories
+
+```sh
+# Install client website
 yarn install
-```
 
-Run the dev server:
+# Go to server
+cd src/server
 
-```console
-yarn dev
-```
-
-### `src/python` directory
-
-Go to the `python` directory:
-
-```console
-cd src/python
-```
-
-Create a virtual environment and install the required libraries:
-
-```console
+# Setup venv
 python -m venv venv
 
+# Linux
+source venv/Scripts/activate
+
+# Windows
 .\venv\Scripts\activate
 
+# Then install the goodies
 pip install -r requirements.txt
 ```
 
