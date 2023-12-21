@@ -6,6 +6,7 @@ fastapi
 uvicorn
 
 PyYAML
+python-slugify
 beautifulsoup4
 colorama
 requests

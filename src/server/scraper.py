@@ -9,7 +9,7 @@ import argparse
 import requests
 import json
 import yaml
-from .logger import log
+from logger import log
 from typing import Literal, Any
 from datetime import timedelta
 from bs4 import BeautifulSoup
@@ -41,7 +41,7 @@ session = requests.Session()
 # --------------------------------------------------------------------- #
 def load_file(file: str) -> Any:
     """
-    Opens file, will open as JSON or parse to YAML if file extension is detected
+    Opens file, will open as JSON or parse to YAML if respective file extension is detected
 
     :param file: File name
     :return File contents
@@ -127,9 +127,6 @@ class WebExtractor:
             self._driver.get(url)
 
 
-static_extractor = WebExtractor(mode="static")
-
-
 def iterate_pages(entry_url: str) -> list[str]:
     """
     Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button,
@@ -138,6 +135,8 @@ def iterate_pages(entry_url: str) -> list[str]:
     :param next_selector: The CSS selector of a "Next" button 
     :return: A number of all the iterated pages
     """
+    static = WebExtractor(mode="static")
+
     _cache_filename = "cached-page-results.json"
     _url = {
         'fa': 'furaffinity.net',
@@ -166,7 +165,7 @@ def iterate_pages(entry_url: str) -> list[str]:
 
             next_button = None
 
-            _request = static_extractor.url_request(iterate_url)
+            _request = static.url_request(iterate_url)
 
             if _url['fa'] in entry_url:
                 # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
@@ -195,12 +194,14 @@ def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
     :param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
     :return: An object that returns a title, description, date, and a list of tags
     """
+    static = WebExtractor(mode="static")
+
     title_selector = selector.get("title")
     desc_selector = selector.get("description")
     tags_selector = selector.get("tags")
     date_selector = selector.get("date")
 
-    _page = static_extractor.url_request(url)
+    _page = static.url_request(url)
     tags_list = [str(tag) for tag in _page.select(tags_selector)]
 
     _description = _page.select_one(desc_selector)
@@ -214,16 +215,14 @@ def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
 
 
 def main():
-    print(args.platform)
-    # TODO Check cache for iterated pages, continue otherwise
+    static = WebExtractor(mode="static")
     fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda')
 
     for page_url in fa_pages:
-        _page = static_extractor.url_request(page_url)
-    ...
+        _page = static.url_request(page_url)
 
     # Convert characters.yml into dicts
-    characters = load_file("characters.yml")
+    characters: list[dict[str, str]] = load_file("characters.yml")
 
 
 if __name__ == "__main__":
