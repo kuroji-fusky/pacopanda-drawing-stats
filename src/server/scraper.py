@@ -31,7 +31,6 @@ parser.add_argument(
     help='Fetches data from a specific platform, the default is %(default)s')
 
 args = parser.parse_args()
-session = requests.Session()
 
 
 # --------------------------------------------------------------------- #
@@ -109,17 +108,18 @@ class WebExtractor:
     """
 
     def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
+        self._session = requests.Session()
         self._scrape_mode = mode
         self._driver = webdriver.Firefox(keep_alive=True)
 
     def url_request(self, url: str):
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Kurowo 1.0; https://kuroji.fusky.pet)'
+            'User-Agent': 'Mozilla/5.0 (https://kuroji.fusky.pet)'
         }
 
         if self._scrape_mode == "static":
-            _req = session.get(url, headers=headers)
-            log("debug", ("Request {}, recieved status code {}").format(url, _req.status_code))  # NOQA
+            _req = self._session.get(url, headers=headers)
+            log("debug", f"Request {url}, recieved status code {_req.status_code}")  # NOQA
 
             return BeautifulSoup(_req.text, "html.parser")
 
@@ -127,28 +127,31 @@ class WebExtractor:
             self._driver.get(url)
 
 
+paco_urls = {
+    'fa': 'furaffinity.net',
+    'ws': 'weasyl.com',
+    'ib': 'inkbunny.com',
+    'da': 'deviantart.com',
+    'tr': 'tumblr.com'
+}
+
+
 def iterate_pages(entry_url: str) -> list[str]:
     """
     Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button,
 
     :param entry_url: The beginning point for URL to paginate and iterate over
-    :param next_selector: The CSS selector of a "Next" button 
     :return: A number of all the iterated pages
     """
     static = WebExtractor(mode="static")
 
     _cache_filename = "cached-page-results.json"
-    _url = {
-        'fa': 'furaffinity.net',
-        'ws': 'weasyl.com',
-        'ib': 'inkbunny.com'
-    }
 
     # Check for cached results first to save requests
     try:
         cached_results = load_file(_cache_filename)
 
-        if _url['fa'] in entry_url:
+        if paco_urls['fa'] in entry_url:
             cached_fa_num = cached_results.get('fa')
 
             log("info", "CACHE HIT: Retrieved results: {}".format(len(cached_fa_num)))
@@ -159,23 +162,42 @@ def iterate_pages(entry_url: str) -> list[str]:
         iterated_pages = []
 
         # This'll recurse until a "Next" button is not found
+        _iterate_url = entry_url
+        iterated_pages = len(iterated_pages)
+
+        next_button = None
+
+        def update_url(url: str):
+            global _iterate_url
+
+            iterated_pages.append(url)
+            _iterate_url = url
+            return
+
         while True:
-            iterate_url = entry_url
-            iterated_pages = len(iterated_pages)
+            _request = static.url_request(_iterate_url)
 
-            next_button = None
-
-            _request = static.url_request(iterate_url)
-
-            if _url['fa'] in entry_url:
+            if paco_urls['fa'] in entry_url:
                 # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
-                next_button = _request.select('.submission-list .inline:last-child form')  # NOQA
-                iterated_pages.append(iterate_url)
+                next_button = _request.select_one('.submission-list .inline:last-child form')  # NOQA
+                next_button_link = next_button.get('href')
 
-            print("Iterated url so far: {}".format(iterated_pages))
+                update_url(next_button_link)
+
+            if paco_urls['ws'] in entry_url:
+                # TODO weasyl logic
+                next_button = _request.select_one('')
+                pass
+
+            if paco_urls['ib'] in entry_url:
+                next_button = _request.select_one('')
+                # TODO inkbunny logic
+                pass
+
+            log("debug", f"Iterated url so far: {iterated_pages}")
 
             if not next_button:
-                print("Iterated {} page(s)", iterated_pages)
+                log("info", f"Iterated {len(iterated_pages)} page(s)")
                 save_file({}, _cache_filename)
 
                 return iterated_pages
@@ -186,7 +208,7 @@ def iterate_pages(entry_url: str) -> list[str]:
 #                              PARSERS                                  #
 #                                                                       #
 # --------------------------------------------------------------------- #
-def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
+def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[str]]:
     """
     Gets the page metadata from a page request
 
@@ -196,10 +218,10 @@ def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
     """
     static = WebExtractor(mode="static")
 
-    title_selector = selector.get("title")
-    desc_selector = selector.get("description")
-    tags_selector = selector.get("tags")
-    date_selector = selector.get("date")
+    title_selector = selectors.get("title")
+    desc_selector = selectors.get("description")
+    tags_selector = selectors.get("tags")
+    date_selector = selectors.get("date")
 
     _page = static.url_request(url)
     tags_list = [str(tag) for tag in _page.select(tags_selector)]

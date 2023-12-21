@@ -1,9 +1,16 @@
+"""
+## FastAPI Server
+
+Copyright 2021-2023 Kerby Keith Aquino
+MIT License
+"""
 import argparse
 import uvicorn
 from datetime import datetime
 from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from .logger import log
 
 parser = argparse.ArgumentParser()
@@ -14,14 +21,24 @@ parser.add_argument("--prod",
 args = parser.parse_args()
 
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:4000",
+    "http://localhost:3000",
+    "https://pds.kurojifusky.com"
+]
+hosts = ["localhost", "127.0.0.1", "pds.kurojifusky.com"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost",
-        "http://localhost:8000",
-        "http://localhost:5173",
-        "https://pds.kurojifusky.com"
-    ],
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_headers=["*"],
+)
+
+app.add_middleware(
+    TrustedHostMiddleware, allowed_hosts=hosts
 )
 
 QueryLimit = Literal["all"] | int
@@ -32,7 +49,6 @@ async def root(request: Request):
     referer = str(request.base_url).strip("/")
 
     return {
-        "version": "1",
         "source_code": "https://github.com/kuroji-fusky/pacopanda-drawing-stats",
         "characters_url": f"{referer}/characters",
         "character_url": referer + "/character{/characters}",
@@ -48,13 +64,13 @@ async def character(character: str):
     pass
 
 
-# /character{/paco}/appearances{?items,year}
+# /character{/paco}/appearances{?limit,query,range}
 @app.get("/character/{character}/appearances")
 async def character(character: str, year: int, items: str):
     pass
 
 
-# /characters{?items,year}
+# /characters{?limit,query,range}
 @app.get("/characters")
 async def characters_list(year: int, items: str):
     pass
@@ -66,7 +82,7 @@ async def artworks_list(artwork: str):
     pass
 
 
-# /artworks{?items,year}
+# /artworks{?limit,query,range}
 @app.get("/artworks")
 async def artworks_list(year: int, items: str):
     pass
