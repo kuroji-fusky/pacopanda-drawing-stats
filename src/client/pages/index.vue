@@ -1,12 +1,10 @@
 <script setup lang="ts">
 useSEO({
-  title:"Paco Drawing Stats",
-  description: "Yes"
+  title: "Paco Drawing Stats",
+  description: "Yes",
 })
 </script>
 
 <template>
-  <div>
-    FRICK
-  </div>
+  <div>FRICK</div>
 </template>
