@@ -9,12 +9,12 @@ MIT License
 import logging
 from sys import platform
 from typing import Literal
-from colorama import init, Back, Fore, Style, just_fix_windows_console as JUST_FIX_THE_GODDAMN_THING_FOR_WINDOWS_YOU_FAK
+from colorama import init, Back, Fore, Style, just_fix_windows_console
 
 init(autoreset=True)
 
 if platform == "win32" or platform == "cygwin":
-    JUST_FIX_THE_GODDAMN_THING_FOR_WINDOWS_YOU_FAK()
+    just_fix_windows_console()
 
 LogStatus = Literal["warn", "error", "info", "debug"]
 
@@ -28,19 +28,16 @@ def log(status: LogStatus = "info", *args):
         "debug": (Fore.CYAN, Back.BLACK, logging.DEBUG),
     }
 
-    fore_color, back_color, log_level = status_colors.get(
-        status.lower(), status_colors["info"])
+    fore_color, back_color, log_level = status_colors.get(status.lower(), status_colors["info"])  # NOQA
 
-    logging.basicConfig(format="%(asctime)s %(message)s",
-                        datefmt="%m-%D-%Y %H:%M:%S", level=log_level)
+    logging.basicConfig(format="%(asctime)s %(message)s", datefmt="%m-%D-%Y %H:%M:%S", level=log_level)  # NOQA
     logger = logging.getLogger()
 
-    console = logging.StreamHandler()
-    formatter = logging.Formatter(
-        f"%(asctime)s {fore_color}{back_color}{Style.BRIGHT}{status.upper()}{Style.RESET_ALL} - %(message)s")
+    _format = f"%(asctime)s {fore_color}{back_color}{Style.BRIGHT}{status.upper()}{Style.RESET_ALL} - %(message)s"
+    formatter = logging.Formatter(_format)
 
+    console = logging.StreamHandler()
     console.setFormatter(formatter)
 
     logger.addHandler(console)
-
     logger.log(log_level, ' '.join(args))

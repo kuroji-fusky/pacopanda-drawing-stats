@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from .logger import log
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--prod",
@@ -75,6 +76,8 @@ if __name__ == "__main__":
     APP_NAME, HOST, PORT = "server:app", "localhost", 4000
 
     if not args.prod:
+        log("info", "Running server in production")
         uvicorn.run(APP_NAME, host=HOST, port=PORT)
     else:
+        log("info", "Running server")
         uvicorn.run(APP_NAME, host=HOST, port=PORT, reload=True)

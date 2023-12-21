@@ -8,6 +8,7 @@ import sys
 import argparse
 import requests
 import json
+import yaml
 from .logger import log
 from typing import Literal, Any
 from datetime import timedelta
@@ -19,6 +20,7 @@ from selenium.webdriver.common.by import By
 PLATFORMS = ['furaffinity', 'weasyl', 'inkbunny', 'deviantart', 'tumblr']
 
 parser = argparse.ArgumentParser(description="The Paco Scraper")
+
 parser.add_argument(
     "--platform",
     default=PLATFORMS[0],
@@ -32,18 +34,26 @@ args = parser.parse_args()
 session = requests.Session()
 
 
+# --------------------------------------------------------------------- #
+#                                                                       #
+#                          SHARED FUNCTIONS                             #
+#                                                                       #
+# --------------------------------------------------------------------- #
 def load_file(file: str) -> Any:
     """
-    Opens file, will open as JSON if file extension is detected
+    Opens file, will open as JSON or parse to YAML if file extension is detected
 
     :param file: File name
     :return File contents
     """
-    with open(file, 'r', encoding='utf-8') as fi:
+    with open(file, 'r', encoding='utf-8') as f:
         if file.endswith('.json'):
-            return json.load(fi)
+            return json.load(f)
 
-        return fi.read()
+        if file.endswith('.yml') or file.endswith('.yaml'):
+            return yaml.safe_load(f)
+
+        return f.read()
 
 
 def save_file(data, file: str, indent: bool = False) -> None:
@@ -54,15 +64,15 @@ def save_file(data, file: str, indent: bool = False) -> None:
     :param file: File name
     :return File contents
     """
-    with open(file, 'w', encoding='utf-8') as fo:
+    with open(file, 'w+', encoding='utf-8') as f:
         if file.endswith('.json'):
             if not indent:
-                json.dump(data, fo, ensure_ascii=True)
+                json.dump(data, f, ensure_ascii=True)
                 return
 
-            json.dump(data, fo, ensure_ascii=True, indent=2)
+            json.dump(data, f, ensure_ascii=True, indent=2)
         else:
-            fo.write(data)
+            f.write(data)
 
 
 def format_time(time: timedelta) -> str:
@@ -75,8 +85,7 @@ def format_time(time: timedelta) -> str:
     :raises TypeError: If the time parameter is not of type timedelta
     """
     if not isinstance(time, timedelta):
-        raise TypeError(
-            "Invalid input type. Param 'time' must be a timedelta.")
+        raise TypeError("Invalid input type. Param 'time' must be a timedelta.")  # NOQA
 
     _dm_days, _dm_seconds = divmod(time.total_seconds(), 86400)
 
@@ -96,56 +105,81 @@ def format_time(time: timedelta) -> str:
 # --------------------------------------------------------------------- #
 class WebExtractor:
     """
-    The combined powers of BeautifulSoup and Selenium, all in one class.
+    The combined powers of BeautifulSoup and Selenium, all in one class!
     """
 
     def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
-        self.scrape_mode = mode
-        self.driver = webdriver.Firefox(keep_alive=True)
+        self._scrape_mode = mode
+        self._driver = webdriver.Firefox(keep_alive=True)
 
     def url_request(self, url: str):
-        if self.scrape_mode == "static":
-            _req = session.get(url)
-            log("debug", ("Request {}, recieved status code {}").format(
-                url, _req.status_code))
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Kurowo 1.0; https://kuroji.fusky.pet)'
+        }
+
+        if self._scrape_mode == "static":
+            _req = session.get(url, headers=headers)
+            log("debug", ("Request {}, recieved status code {}").format(url, _req.status_code))  # NOQA
 
             return BeautifulSoup(_req.text, "html.parser")
 
-        if self.scrape_mode == "dynamic":
-            self.driver.get(url)
+        if self._scrape_mode == "dynamic":
+            self._driver.get(url)
 
 
-crispy_dib = WebExtractor(mode="static")
-crispy_zim = WebExtractor(mode="dynamic")
+static_extractor = WebExtractor(mode="static")
 
 
-def iterate_pages(entry_url: str, next_selector: str) -> int:
+def iterate_pages(entry_url: str) -> list[str]:
     """
-    Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button
+    Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button,
 
     :param entry_url: The beginning point for URL to paginate and iterate over
     :param next_selector: The CSS selector of a "Next" button 
     :return: A number of all the iterated pages
     """
-    _logger = "[ 🔁 Iterator ]"
+    _cache_filename = "cached-page-results.json"
+    _url = {
+        'fa': 'furaffinity.net',
+        'ws': 'weasyl.com',
+        'ib': 'inkbunny.com'
+    }
 
-    iterated_pages = 0
+    # Check for cached results first to save requests
+    try:
+        cached_results = load_file(_cache_filename)
 
-    while True:
-        iterate_url = entry_url
+        if _url['fa'] in entry_url:
+            cached_fa_num = cached_results.get('fa')
 
-        next_button = crispy_dib.url_request(
-            iterate_url).select_one(next_selector)
+            log("info", "CACHE HIT: Retrieved results: {}".format(len(cached_fa_num)))
+            return cached_fa_num
 
-        iterated_pages += 1
-        final_iter_pages = iterated_pages - 1
+    except FileNotFoundError:
+        log("info", "CACHE MISS: Iterating...")
+        iterated_pages = []
 
-        print("{} {} {}".format(
-            _logger, 'Iterated pages so far:', final_iter_pages))
+        # This'll recurse until a "Next" button is not found
+        while True:
+            iterate_url = entry_url
+            iterated_pages = len(iterated_pages)
 
-        if not next_button:
-            print("Iterated {} page(s)", final_iter_pages)
-            return final_iter_pages
+            next_button = None
+
+            _request = static_extractor.url_request(iterate_url)
+
+            if _url['fa'] in entry_url:
+                # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
+                next_button = _request.select('.submission-list .inline:last-child form')  # NOQA
+                iterated_pages.append(iterate_url)
+
+            print("Iterated url so far: {}".format(iterated_pages))
+
+            if not next_button:
+                print("Iterated {} page(s)", iterated_pages)
+                save_file({}, _cache_filename)
+
+                return iterated_pages
 
 
 # --------------------------------------------------------------------- #
@@ -166,7 +200,7 @@ def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
     tags_selector = selector.get("tags")
     date_selector = selector.get("date")
 
-    _page = crispy_dib.url_request(url)
+    _page = static_extractor.url_request(url)
     tags_list = [str(tag) for tag in _page.select(tags_selector)]
 
     _description = _page.select_one(desc_selector)
@@ -182,10 +216,14 @@ def get_art_metadata(url: str, selector: str) -> dict[str, Any]:
 def main():
     print(args.platform)
     # TODO Check cache for iterated pages, continue otherwise
-    # fa_art = iterate_pages(
-    #     entry_url='https://www.furaffinity.net/gallery/pacopanda',
-    #     next_selector='.submission-list .aligncenter .inline:last-child form')
+    fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda')
+
+    for page_url in fa_pages:
+        _page = static_extractor.url_request(page_url)
     ...
+
+    # Convert characters.yml into dicts
+    characters = load_file("characters.yml")
 
 
 if __name__ == "__main__":
