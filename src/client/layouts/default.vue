@@ -6,7 +6,7 @@ gsap.registerEffect(ScrollTrigger)
 </script>
 
 <template>
-  <div>
+  <div class="font-body text-sm">
     <BaseNavbar />
     <slot />
     <BaseFooter />
