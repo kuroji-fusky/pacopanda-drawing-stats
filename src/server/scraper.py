@@ -102,28 +102,46 @@ def format_time(time: timedelta) -> str:
 #                            WEB EXTRACTOR                              #
 #                                                                       #
 # --------------------------------------------------------------------- #
+class StaticWebdriverError(Exception):
+    """
+    Throws an exception that invoke a Selenium-specific function when 'static' mode is specified,
+    used the WebExtractor class.
+    """
+    pass
+
+
 class WebExtractor:
     """
     The combined powers of BeautifulSoup and Selenium, all in one class!
     """
 
     def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
-        self._session = requests.Session()
         self._scrape_mode = mode
-        self._driver = webdriver.Firefox(keep_alive=True)
+        self._is_static_mode = self._scrape_mode == "static"
+        self._is_dynamic_mode = self._scrape_mode == "dynamic"
 
-    def url_request(self, url: str):
-        headers = {
+        self._session = requests.Session()
+        self._headers = {
             'User-Agent': 'Mozilla/5.0 (https://kuroji.fusky.pet)'
         }
 
-        if self._scrape_mode == "static":
-            _req = self._session.get(url, headers=headers)
+        _profile = webdriver.FirefoxProfile()
+        _profile.set_preference("general.useragent.override", self._headers)
+
+        self._driver = webdriver.Firefox(_profile)
+
+    def _check_static_error(self):
+        if self._is_static_mode:
+            raise StaticWebdriverError("Can't invoke a Selenium-specific function when 'static' mode is specified.")  # NOQA
+
+    def url_request(self, url: str):
+        if self._is_static_mode:
+            _req = self._session.get(url, headers=self._headers)
             log("debug", f"Request {url}, recieved status code {_req.status_code}")  # NOQA
 
             return BeautifulSoup(_req.text, "html.parser")
 
-        if self._scrape_mode == "dynamic":
+        if self._is_dynamic_mode:
             self._driver.get(url)
 
 
@@ -224,16 +242,16 @@ def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[st
     date_selector = selectors.get("date")
 
     _page = static.url_request(url)
-    tags_list = [str(tag) for tag in _page.select(tags_selector)]
-
     _description = _page.select_one(desc_selector)
 
-    return {
+    output = {
         "title": str(_page.select_one(title_selector).text),
         "date": str(_page.select_one(date_selector).get('title')),
         "description": str(_description.text),
-        "tags": tags_list
+        "tags": [str(tag) for tag in _page.select(tags_selector)]
     }
+
+    return output
 
 
 def main():
