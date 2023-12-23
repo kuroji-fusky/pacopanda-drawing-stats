@@ -2,10 +2,22 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
+    [
+      "@nuxt/image",
+      {
+        quality: 85,
+      },
+    ],
     "@nuxt/content",
-    "@nuxt/image",
+    [
+      "nuxt-simple-sitemap",
+      {
+        exclude: ["api/**"],
+        credits: false,
+      },
+    ],
     "nuxt-lucide-icons",
-    "nuxt-simple-sitemap",
+    "nuxt-headlessui",
     "nuxt-lodash",
   ],
   app: {
@@ -27,9 +39,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  image: {
-    quality: 85,
-  },
   build: {
     transpile: ["gsap"],
   },
@@ -38,6 +47,7 @@ export default defineNuxtConfig({
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
+      ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
     },
   },
 })

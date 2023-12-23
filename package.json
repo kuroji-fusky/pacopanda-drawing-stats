@@ -10,7 +10,7 @@
     "postinstall": "cd src/client && nuxt prepare"
   },
   "workspaces": [
-    "src/client/**"
+    "src/client"
   ],
   "lint-staged": {
     "client/**": "yarn prettier --write .",
@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo I love Jungkook"
+      "pre-commit": "echo It's me, hi, I'm the problem it's me"
     }
   },
   "devDependencies": {

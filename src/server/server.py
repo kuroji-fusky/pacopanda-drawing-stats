@@ -6,17 +6,20 @@ MIT License
 """
 import argparse
 import uvicorn
-from datetime import datetime
 from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from .logger import log
+from logger import log
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--prod",
                     action="store_true",
                     help="Runs the server in production mode, disables reload")
+
+parser.add_argument("--gql", "--graphql",
+                    action="store_true",
+                    help="Runs the server in GraphQL mode")
 
 args = parser.parse_args()
 

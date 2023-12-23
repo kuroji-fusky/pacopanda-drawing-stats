@@ -9,6 +9,7 @@ import argparse
 import requests
 import json
 import yaml
+from functools import partial
 from logger import log
 from typing import Literal, Any
 from datetime import timedelta
@@ -164,6 +165,7 @@ def iterate_pages(entry_url: str) -> list[str]:
     static = WebExtractor(mode="static")
 
     _cache_filename = "cached-page-results.json"
+    _cache_prefix = ""
 
     # Check for cached results first to save requests
     try:
@@ -195,22 +197,13 @@ def iterate_pages(entry_url: str) -> list[str]:
         while True:
             _request = static.url_request(_iterate_url)
 
+            # TODO use a callback function to simplify this to the main func
             if paco_urls['fa'] in entry_url:
                 # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
                 next_button = _request.select_one('.submission-list .inline:last-child form')  # NOQA
                 next_button_link = next_button.get('href')
 
                 update_url(next_button_link)
-
-            if paco_urls['ws'] in entry_url:
-                # TODO weasyl logic
-                next_button = _request.select_one('')
-                pass
-
-            if paco_urls['ib'] in entry_url:
-                next_button = _request.select_one('')
-                # TODO inkbunny logic
-                pass
 
             log("debug", f"Iterated url so far: {iterated_pages}")
 
