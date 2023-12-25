@@ -18,16 +18,24 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-PLATFORMS = ['furaffinity', 'weasyl', 'inkbunny', 'deviantart', 'tumblr']
+base_urls = {
+    'furaffinity': 'furaffinity.net',
+    'weasyl': 'weasyl.com',
+    'inkbunny': 'inkbunny.com',
+    'deviantart': 'deviantart.com',
+    'tumblr': 'tumblr.com'
+}
+
+platforms = list(yeet for yeet in base_urls.keys())
 
 parser = argparse.ArgumentParser(description="The Paco Scraper")
 
 parser.add_argument(
     "--platform",
-    default=PLATFORMS[0],
-    const=PLATFORMS[0],
+    default=platforms[0],
+    const=platforms[0],
     nargs='?',
-    choices=PLATFORMS,
+    choices=platforms,
     type=str,
     help='Fetches data from a specific platform, the default is %(default)s')
 
@@ -123,7 +131,7 @@ class WebExtractor:
 
         self._session = requests.Session()
         self._headers = {
-            'User-Agent': 'Mozilla/5.0 (https://kuroji.fusky.pet)'
+            'User-Agent': 'Mozilla/5.0 (https://kurojifusky.com)'
         }
 
         _profile = webdriver.FirefoxProfile()
@@ -146,15 +154,6 @@ class WebExtractor:
             self._driver.get(url)
 
 
-paco_urls = {
-    'fa': 'furaffinity.net',
-    'ws': 'weasyl.com',
-    'ib': 'inkbunny.com',
-    'da': 'deviantart.com',
-    'tr': 'tumblr.com'
-}
-
-
 def iterate_pages(entry_url: str) -> list[str]:
     """
     Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button,
@@ -171,10 +170,10 @@ def iterate_pages(entry_url: str) -> list[str]:
     try:
         cached_results = load_file(_cache_filename)
 
-        if paco_urls['fa'] in entry_url:
+        if base_urls['furaffinity'] in entry_url:
             cached_fa_num = cached_results.get('fa')
 
-            log("info", "CACHE HIT: Retrieved results: {}".format(len(cached_fa_num)))
+            log("info", f"CACHE HIT: Retrieved results: {len(cached_fa_num)}")
             return cached_fa_num
 
     except FileNotFoundError:
@@ -198,7 +197,7 @@ def iterate_pages(entry_url: str) -> list[str]:
             _request = static.url_request(_iterate_url)
 
             # TODO use a callback function to simplify this to the main func
-            if paco_urls['fa'] in entry_url:
+            if base_urls['furaffinity'] in entry_url:
                 # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
                 next_button = _request.select_one('.submission-list .inline:last-child form')  # NOQA
                 next_button_link = next_button.get('href')
