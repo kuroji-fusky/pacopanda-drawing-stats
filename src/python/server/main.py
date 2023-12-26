@@ -10,7 +10,7 @@ from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from logger import log
+from ..logger import log
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--prod",

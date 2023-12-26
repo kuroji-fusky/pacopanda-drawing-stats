@@ -9,12 +9,14 @@ import argparse
 import requests
 import json
 import yaml
-from functools import partial
-from logger import log
+from ..logger import log
 from typing import Literal, Any
+from functools import partial
 from datetime import timedelta
+from slugify import slugify
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver import Firefox as WebDriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
@@ -25,8 +27,7 @@ base_urls = {
     'deviantart': 'deviantart.com',
     'tumblr': 'tumblr.com'
 }
-
-platforms = list(yeet for yeet in base_urls.keys())
+platforms = list(url for url in base_urls.keys())
 
 parser = argparse.ArgumentParser(description="The Paco Scraper")
 
@@ -42,11 +43,6 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-# --------------------------------------------------------------------- #
-#                                                                       #
-#                          SHARED FUNCTIONS                             #
-#                                                                       #
-# --------------------------------------------------------------------- #
 def load_file(file: str) -> Any:
     """
     Opens file, will open as JSON or parse to YAML if respective file extension is detected
@@ -126,32 +122,33 @@ class WebExtractor:
 
     def __init__(self, mode: Literal["static", "dynamic"] = "static") -> None:
         self._scrape_mode = mode
+
         self._is_static_mode = self._scrape_mode == "static"
         self._is_dynamic_mode = self._scrape_mode == "dynamic"
 
-        self._session = requests.Session()
-        self._headers = {
-            'User-Agent': 'Mozilla/5.0 (https://kurojifusky.com)'
-        }
-
-        _profile = webdriver.FirefoxProfile()
-        _profile.set_preference("general.useragent.override", self._headers)
-
-        self._driver = webdriver.Firefox(_profile)
-
     def _check_static_error(self):
-        if self._is_static_mode:
+        if self._is_static_mode or self._driver is None:
             raise StaticWebdriverError("Can't invoke a Selenium-specific function when 'static' mode is specified.")  # NOQA
 
     def url_request(self, url: str):
+        _session = requests.Session()
+        _headers = {
+            'User-Agent': 'Mozilla/5.0 (https://kurojifusky.com)',
+            'Referer': url
+        }
+
         if self._is_static_mode:
-            _req = self._session.get(url, headers=self._headers)
+            _req = _session.get(url, headers=self._headers)
             log("debug", f"Request {url}, recieved status code {_req.status_code}")  # NOQA
 
             return BeautifulSoup(_req.text, "html.parser")
 
         if self._is_dynamic_mode:
-            self._driver.get(url)
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("general.useragent.override", _headers)
+
+            driver = webdriver.Firefox(profile)
+            driver.get(url)
 
 
 def iterate_pages(entry_url: str) -> list[str]:
@@ -218,12 +215,12 @@ def iterate_pages(entry_url: str) -> list[str]:
 #                              PARSERS                                  #
 #                                                                       #
 # --------------------------------------------------------------------- #
-def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[str]]:
+def get_art_metadata(url: str, **selectors) -> dict[str, str | int | list[str]]:
     """
     Gets the page metadata from a page request
 
     :param url: The artwork URL
-    :param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
+    :param selectors: a keyword args of CSS selectors for title, description, date, and iterable tags
     :return: An object that returns a title, description, date, and a list of tags
     """
     extractor = WebExtractor(mode="static")
@@ -248,7 +245,11 @@ def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[st
 
 def main():
     extractor = WebExtractor(mode="static")
-    fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda')
+
+    def fa_fetch():
+        pass
+
+    fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda', fa_fetch)  # NOQA
 
     for page_url in fa_pages:
         _page = extractor.url_request(page_url)
