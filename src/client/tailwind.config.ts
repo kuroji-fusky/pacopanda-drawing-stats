@@ -4,8 +4,8 @@ import typographyPlugin from "@tailwindcss/typography"
 const extendDefaults = {
   fonts: ["system-ui", "sans-serif"],
   unset: {
-    unset: "unset",
-  },
+    unset: "unset"
+  }
 }
 
 export default {
@@ -17,18 +17,18 @@ export default {
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
-    "./nuxt.config.ts",
+    "./nuxt.config.ts"
   ],
   theme: {
     extend: {
       fontFamily: {
         heading: ["Inter", ...extendDefaults.fonts],
-        body: ["Open Sans", ...extendDefaults.fonts],
+        body: ["Open Sans", ...extendDefaults.fonts]
       },
       inset: extendDefaults.unset,
       spacing: extendDefaults.unset,
-      margin: extendDefaults.unset,
-    },
+      margin: extendDefaults.unset
+    }
   },
-  plugins: [typographyPlugin],
+  plugins: [typographyPlugin]
 } as Config

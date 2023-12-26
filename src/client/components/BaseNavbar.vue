@@ -5,11 +5,11 @@ const navLinks = [
     subitems: [
       { name: "By species", link: "/browse?filter=species" },
       { name: "By character", link: "/browse?filter=characters" },
-      { name: "By chronological order", link: "/browse?filter=chrono" },
-    ],
+      { name: "By chronological order", link: "/browse?filter=chrono" }
+    ]
   },
   { name: "Reports" },
-  { name: "About" },
+  { name: "About" }
 ]
 </script>
 

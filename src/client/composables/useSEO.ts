@@ -3,7 +3,7 @@ export default function useSEO({
   description,
   image,
   card,
-  type,
+  type
 }: {
   title: string
   description: string
@@ -25,10 +25,10 @@ export default function useSEO({
     ogUrl: parsedUrl,
     ogType: type ?? "website",
     twitterCard: card ?? "summary",
-    twitterCreator: "@kurojifusky",
+    twitterCreator: "@kurojifusky"
   })
 
   useHead({
-    link: [{ rel: "canonical", href: parsedUrl }],
+    link: [{ rel: "canonical", href: parsedUrl }]
   })
 }

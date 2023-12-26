@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useSEO({
   title: "Paco Drawing Stats",
-  description: "Yes",
+  description: "Yes"
 })
 </script>
 

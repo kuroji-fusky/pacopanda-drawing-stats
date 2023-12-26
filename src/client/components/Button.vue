@@ -6,21 +6,21 @@ const button = cva("button", {
     variant: {
       primary: "bg-green-100 hover:bg-green-200 text-black",
       secondary: "bg-green-200 hover:bg-green-300 text-black",
-      disabled: "bg-gray-400 text-gray-800",
-    },
+      disabled: "bg-gray-400 text-gray-800"
+    }
   },
   compoundVariants: [
     {
       variant: "primary",
-      class: "primaryMid",
-    },
-  ],
+      class: "primaryMid"
+    }
+  ]
 })
 
 type ButtonProps = VariantProps<typeof button>
 
 withDefaults(defineProps<{ variant: ButtonProps["variant"] }>(), {
-  variant: "primary",
+  variant: "primary"
 })
 </script>
 

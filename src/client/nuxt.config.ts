@@ -5,25 +5,25 @@ export default defineNuxtConfig({
     [
       "@nuxt/image",
       {
-        quality: 85,
-      },
+        quality: 85
+      }
     ],
     "@nuxt/content",
     [
       "nuxt-simple-sitemap",
       {
         exclude: ["api/**"],
-        credits: false,
-      },
+        credits: false
+      }
     ],
     "nuxt-lucide-icons",
     "nuxt-headlessui",
-    "nuxt-lodash",
+    "nuxt-lodash"
   ],
   app: {
     head: {
       htmlAttrs: {
-        lang: "en",
+        lang: "en"
       },
       script: [],
       link: [
@@ -31,23 +31,23 @@ export default defineNuxtConfig({
           rel: "shortcut icon",
           sizes: "128x128",
           type: "image/x-icon",
-          href: "/favicon.ico",
-        },
+          href: "/favicon.ico"
+        }
       ],
       bodyAttrs: {
-        class: "",
-      },
-    },
+        class: ""
+      }
+    }
   },
   build: {
-    transpile: ["gsap"],
+    transpile: ["gsap"]
   },
   css: ["~/assets/global.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
-      ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
-    },
-  },
+      ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {})
+    }
+  }
 })
