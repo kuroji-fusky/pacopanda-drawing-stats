@@ -95,8 +95,8 @@ if __name__ == "__main__":
     APP_NAME, HOST, PORT = "server:app", "localhost", 4000
 
     if not args.prod:
-        log("info", "Running server in production")
-        uvicorn.run(APP_NAME, host=HOST, port=PORT)
-    else:
         log("info", "Running server")
         uvicorn.run(APP_NAME, host=HOST, port=PORT, reload=True)
+    else:
+        log("info", "Running server in production")
+        uvicorn.run(APP_NAME, host=HOST, port=PORT)
