@@ -3,9 +3,8 @@ FROM python:3.11
 WORKDIR /
 
 COPY requirements.txt /requirements.txt
-COPY server.py /server.py
-COPY scraper.py /scraper.py
-COPY parinton/ /parinton/
+COPY server/main.py /server.py
+COPY data/scraper.py /scraper.py
 
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 

@@ -161,7 +161,7 @@ def iterate_pages(entry_url: str) -> list[str]:
     :param entry_url: The beginning point for URL to paginate and iterate over
     :return: A number of all the iterated pages
     """
-    static = WebExtractor(mode="static")
+    extractor = WebExtractor(mode="static")
 
     _cache_filename = "cached-page-results.json"
     _cache_prefix = ""
@@ -194,7 +194,7 @@ def iterate_pages(entry_url: str) -> list[str]:
             return
 
         while True:
-            _request = static.url_request(_iterate_url)
+            _request = extractor.url_request(_iterate_url)
 
             # TODO use a callback function to simplify this to the main func
             if base_urls['furaffinity'] in entry_url:
@@ -226,14 +226,14 @@ def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[st
     :param selector: Requires a dict of CSS selectors for title, description, date, and iterable tags
     :return: An object that returns a title, description, date, and a list of tags
     """
-    static = WebExtractor(mode="static")
+    extractor = WebExtractor(mode="static")
 
     title_selector = selectors.get("title")
     desc_selector = selectors.get("description")
     tags_selector = selectors.get("tags")
     date_selector = selectors.get("date")
 
-    _page = static.url_request(url)
+    _page = extractor.url_request(url)
     _description = _page.select_one(desc_selector)
 
     output = {
@@ -247,11 +247,11 @@ def get_art_metadata(url: str, selectors: dict) -> dict[str, str | int | list[st
 
 
 def main():
-    static = WebExtractor(mode="static")
+    extractor = WebExtractor(mode="static")
     fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda')
 
     for page_url in fa_pages:
-        _page = static.url_request(page_url)
+        _page = extractor.url_request(page_url)
 
     # Convert characters.yml into dicts
     characters: list[dict[str, str]] = load_file("characters.yml")

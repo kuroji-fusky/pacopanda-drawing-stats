@@ -92,7 +92,7 @@ async def artworks_list(year: int, items: str):
 
 
 if __name__ == "__main__":
-    APP_NAME, HOST, PORT = "server:app", "localhost", 4000
+    APP_NAME, HOST, PORT = "main:app", "localhost", 4000
 
     if not args.prod:
         log("info", "Running server")

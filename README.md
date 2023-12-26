@@ -14,8 +14,8 @@
 A data analysis and case study created by Kuroji Fusky that collects
 and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
 
-Using Python to gather said data and a dedicated API using a web scraper,
-BeautifulSoup4 and web framework, FastAPI.
+Using Python to gather said data and a dedicated GraphQL and REST API using
+a web scraper, BeautifulSoup4 and web framework, FastAPI.
 
 The website is written in Nuxt 3 and Tailwind CSS.
 
@@ -67,6 +67,20 @@ pip install -r requirements.txt
 
 TBA
 
+## API
+
+### Endpoints
+
+> [!NOTE]
+> Currently, both the GraphQL and REST APIs only accept `GET` requests. Any
+> other request method will respond with `405 Method Not Allowed`
+> or `403 Forbidden`.
+
+- `/artworks`
+- `/artwork{/big-tree}`
+- `/characters`
+- `/character{/kuroji}`
+
 ## About this project
 
 The project began on October 31st 2021. The possible inspiration from this
@@ -85,7 +99,6 @@ This project collects the following:
 
 ## License
 
-Paco Drawing Stats' source code is open source and is licensed under
-[MIT](https://opensource.org/licenses/MIT).
+[MIT](https://opensource.org/licenses/MIT)
 
 [paco]: https://twitter.com/panda_paco

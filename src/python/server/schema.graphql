@@ -1,0 +1,83 @@
+type Query {
+  getCharacters(
+    limit: Int
+    range: String
+    year: Int
+    filter: String
+  ): CharacterGroupResponse!
+  getCharacter(name: String): CharacterResponse!
+  getArtwork(
+    limit: Int
+    range: String
+    year: Int
+    filter: String
+  ): ArtworkResponseLite!
+  getArtworks(name: String, limit: Int, range: String): ArtworkResponse!
+}
+
+interface ArtworkBase {
+  name: String!
+  description: String!
+  date: String!
+  tags: [String!]!
+  links: [ArtworkLink!]!
+}
+
+type ArtworkResponseLite implements ArtworkBase {
+  name: String!
+  description: String!
+  date: String!
+  tags: [String!]!
+  links: [ArtworkLink!]!
+  characters: [CharacterResponseLite!]!
+}
+
+type ArtworkResponse implements ArtworkBase {
+  name: String!
+  description: String!
+  date: String!
+  tags: [String!]!
+  links: [ArtworkLink!]!
+  characters: [CharacterResponseLite!]!
+}
+
+interface CharacterBase {
+  name: String!
+  full_name: String!
+  slug: String!
+  species: String!
+  is_hybrid: Boolean!
+}
+
+type CharacterResponse implements CharacterBase {
+  name: String!
+  full_name: String!
+  slug: String!
+  species: String!
+  is_hybrid: Boolean!
+  appearances: [ArtworkResponse!]!
+}
+
+type CharacterResponseLite implements CharacterBase {
+  name: String!
+  full_name: String!
+  slug: String!
+  species: String!
+  is_hybrid: Boolean!
+  total_appearances: Int!
+}
+
+type CharacterGroupResponse {
+  last_updated: String
+  data: [CharacterResponse!]!
+}
+
+type ArtworkGroupResponse {
+  last_updated: String
+  data: [ArtworkResponse!]!
+}
+
+type ArtworkLink {
+  platform: String!
+  link: String!
+}
