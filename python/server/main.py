@@ -1,8 +1,8 @@
 """
 ## FastAPI Server
 
-Copyright 2021-2023 Kerby Keith Aquino
-MIT License
+Copyright 2021-2024 Kerby Keith Aquino
+Licensed under Apache-2.0
 """
 import argparse
 import uvicorn

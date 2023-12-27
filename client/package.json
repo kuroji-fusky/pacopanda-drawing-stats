@@ -7,8 +7,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "preview": "nuxt preview"
   },
   "devDependencies": {
     "@fontsource/inter": "^5.0.16",
@@ -22,14 +21,14 @@
     "class-variance-authority": "^0.7.0",
     "cssnano": "^6.0.2",
     "gsap": "^3.12.3",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.9",
     "nuxt-headlessui": "^1.1.5",
     "nuxt-lodash": "^2.5.3",
     "nuxt-lucide-icons": "^1.0.3",
     "nuxt-simple-sitemap": "^4.1.7",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
-    "vue": "^3.3.10",
+    "vue": "^3.4",
     "vue-router": "^4.2.5"
   }
 }

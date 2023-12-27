@@ -1,5 +1,11 @@
 # Changelog
 
+## 2024
+
+### January 23
+
+- Update project license from MIT to Apache-2.0
+
 ## 2023
 
 ### December 9

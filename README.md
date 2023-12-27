@@ -3,7 +3,7 @@
 <div align="center">
   <h1 align="center">Paco Drawing Stats</h1>
 
-  <a href="https://opensource.org/licenses/MIT">
+  <a href="https://opensource.org/licenses/apache-2-0">
 		<img src="https://img.shields.io/github/license/kuroji-fusky/pacopanda-drawing-stats?style=flat-square">
 	</a>
   <a href="https://www.codefactor.io/repository/github/kuroji-fusky/pacopanda-drawing-stats">
@@ -11,17 +11,26 @@
   </a>
 </div>
 
-A data analysis and case study created by Kuroji Fusky that collects
-and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
-
-Using Python to gather said data and a dedicated GraphQL and REST API using
-a web scraper, BeautifulSoup4 and web framework, FastAPI.
-
-The website is written in Nuxt 3 and Tailwind CSS.
-
 > [!IMPORTANT]
 > Machine Learning/AI is not utilized in this project! It's nothing but simple math
 > to parse collected data.
+
+A data analysis and case study created by Kuroji Fusky that collects
+and parses drawing data from a furry artist and illustrator [Paco Panda][paco].
+
+## How it works
+
+The main gist of the project is that it uses a web scraper written in Python to get new
+drawing submission from his socials; then cleans up the data and adds it to the
+database. And using that to build this website and the underlying APIs on it!
+
+It uses a combination of [BeautifulSoup4](<https://en.wikipedia.org/wiki/Beautiful_Soup_(HTML_parser)>)
+and [Selenium WebDriver](https://www.selenium.dev/) to scrap drawing data from Paco's
+socials and adds it to a Redis database that pushes the image binary and the JSON data
+along with it.
+
+Once we got the scraped data, it uses FastAPI to provide a REST API and does the data science
+stuff on the fly.
 
 ## Setup and Installation
 
@@ -30,25 +39,18 @@ The website is written in Nuxt 3 and Tailwind CSS.
 - Node.js 20 or higher (LTS recommended)
 - Python 3.11 or higher
 - Yarn
-- Docker (optional)
+- Docker
 
 ### Installation
 
-This project uses a combination of [`husky`](https://github.com/typicode/husky) and [`pre-commit`](https://pre-commit.com),
-`pre-commit` needs to be installed first.
-
-```sh
-pip install pre-commit
-```
-
-Then, install the packages from both directories
+Install the packages from both directories
 
 ```sh
 # Install client website
 yarn install
 
 # Go to server
-cd src/server
+cd src/python
 
 # Setup venv
 python -m venv venv
@@ -63,23 +65,34 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
+**[Optional]** This project uses both [`husky`](https://github.com/typicode/husky) and [`pre-commit`](https://pre-commit.com), `pre-commit` needs to be installed first.
+
+```sh
+pip install pre-commit
+```
+
 ### Docker
 
 TBA
 
 ## API
 
-### Endpoints
-
 > [!NOTE]
-> Currently, both the GraphQL and REST APIs only accept `GET` requests. Any
+> Currently, the public APIs only accept `GET` requests. Any
 > other request method will respond with `405 Method Not Allowed`
 > or `403 Forbidden`.
+>
+> `👑` - only allowed to be pushed with an auth token
 
-- `/artworks`
-- `/artwork{/big-tree}`
-- `/characters`
-- `/character{/kuroji}`
+### Endpoints
+
+- `GET /stats{?filters}`
+- `GET /artworks`
+- `GET /artwork{/title}`
+- `GET /characters`
+- `GET /character{?names}`
+- `POST /new/character/` 👑
+- `POST /new/artwork/` 👑
 
 ## About this project
 
@@ -99,6 +112,6 @@ This project collects the following:
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[Apache License, Version 2.0](https://opensource.org/license/apache-2-0)
 
 [paco]: https://twitter.com/panda_paco

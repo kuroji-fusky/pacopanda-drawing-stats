@@ -1,18 +1,16 @@
 """
 ## Scraper
 
-Copyright 2021-2023 Kerby Keith Aquino
-MIT License
+Copyright 2021-2024 Kerby Keith Aquino
+Licensed under Apache-2.0
 """
 import sys
 import argparse
 import requests
-import json
-import yaml
+from typing import Literal
 from ..logger import log
-from typing import Literal, Any
 from functools import partial
-from datetime import timedelta
+from utils import load_file, save_file, load_characters
 from slugify import slugify
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -41,65 +39,6 @@ parser.add_argument(
     help='Fetches data from a specific platform, the default is %(default)s')
 
 args = parser.parse_args()
-
-
-def load_file(file: str) -> Any:
-    """
-    Opens file, will open as JSON or parse to YAML if respective file extension is detected
-
-    :param file: File name
-    :return File contents
-    """
-    with open(file, 'r', encoding='utf-8') as f:
-        if file.endswith('.json'):
-            return json.load(f)
-
-        if file.endswith('.yml') or file.endswith('.yaml'):
-            return yaml.safe_load(f)
-
-        return f.read()
-
-
-def save_file(data, file: str, indent: bool = False) -> None:
-    """
-    Saves file, will autosave as JSON if file extension is detected
-
-    :param data: Garbage
-    :param file: File name
-    :return File contents
-    """
-    with open(file, 'w+', encoding='utf-8') as f:
-        if file.endswith('.json'):
-            if not indent:
-                json.dump(data, f, ensure_ascii=True)
-                return
-
-            json.dump(data, f, ensure_ascii=True, indent=2)
-        else:
-            f.write(data)
-
-
-def format_time(time: timedelta) -> str:
-    """
-    Formats delta time (current time - whatever time has passed) to
-    readable time
-
-    :param time: Requires a timedelta type
-    :return: A string with a readable time format D HH:MM:SS
-    :raises TypeError: If the time parameter is not of type timedelta
-    """
-    if not isinstance(time, timedelta):
-        raise TypeError("Invalid input type. Param 'time' must be a timedelta.")  # NOQA
-
-    _dm_days, _dm_seconds = divmod(time.total_seconds(), 86400)
-
-    d = f"{int(_dm_days)} days" if _dm_days != 1 else f"{int(_dm_days)} day"
-    h, remainder = divmod(_dm_seconds, 3600)
-    m, s = divmod(remainder, 60)
-
-    h, m, s = map(lambda v: str(v).zfill(2), map(int, (h, m, s)))
-
-    return f"{d} {h}:{m}:{s}"
 
 
 # --------------------------------------------------------------------- #
@@ -133,7 +72,7 @@ class WebExtractor:
     def url_request(self, url: str):
         _session = requests.Session()
         _headers = {
-            'User-Agent': 'Mozilla/5.0 (https://kurojifusky.com)',
+            'User-Agent': 'Mozilla/5.0 (https://kurojifusky.com) - for Paco Drawing Stats',
             'Referer': url
         }
 
@@ -247,6 +186,7 @@ def main():
     extractor = WebExtractor(mode="static")
 
     def fa_fetch():
+        # Do stuff here
         pass
 
     fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda', fa_fetch)  # NOQA
@@ -254,8 +194,7 @@ def main():
     for page_url in fa_pages:
         _page = extractor.url_request(page_url)
 
-    # Convert characters.yml into dicts
-    characters: list[dict[str, str]] = load_file("characters.yml")
+    characters = load_characters()
 
 
 if __name__ == "__main__":

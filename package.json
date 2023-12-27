@@ -1,28 +1,30 @@
 {
   "private": true,
   "name": "pacopanda-drawing-stats",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "prepare": "husky install",
-    "postinstall": "cd src/client && nuxt prepare"
+    "postinstall": "cd client && nuxt prepare"
   },
   "workspaces": [
-    "src/client"
+    "client",
+    "utils/configs/prettier"
   ],
   "lint-staged": {
     "client/**": "yarn prettier --write .",
-    "server/**/!(*cache).json": "yarn prettier --write .",
+    "python/**/!(*cache).json": "yarn prettier --write .",
     "*.md": "yarn prettier --write ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo It's me, hi, I'm the problem it's me"
+      "pre-commit": "echo."
     }
   },
   "devDependencies": {
+    "@kuro-utils/prettier": "*",
     "@turbo/gen": "latest",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.1",
@@ -32,11 +34,5 @@
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "useTabs": false,
-    "tabWidth": 2,
-    "trailingComma": "none"
   }
 }
