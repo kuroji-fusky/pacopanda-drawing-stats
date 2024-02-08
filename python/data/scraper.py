@@ -9,8 +9,7 @@ import argparse
 import requests
 from typing import Literal
 from ..logger import log
-from functools import partial
-from utils import load_file, save_file, load_characters
+from utils import load_characters
 from slugify import slugify
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -89,71 +88,13 @@ class WebExtractor:
             driver = webdriver.Firefox(profile)
             driver.get(url)
 
-
-def iterate_pages(entry_url: str) -> list[str]:
-    """
-    Gets a number of all the iterated pages by providing its CSS selectors with the "Next" button,
-
-    :param entry_url: The beginning point for URL to paginate and iterate over
-    :return: A number of all the iterated pages
-    """
-    extractor = WebExtractor(mode="static")
-
-    _cache_filename = "cached-page-results.json"
-    _cache_prefix = ""
-
-    # Check for cached results first to save requests
-    try:
-        cached_results = load_file(_cache_filename)
-
-        if base_urls['furaffinity'] in entry_url:
-            cached_fa_num = cached_results.get('fa')
-
-            log("info", f"CACHE HIT: Retrieved results: {len(cached_fa_num)}")
-            return cached_fa_num
-
-    except FileNotFoundError:
-        log("info", "CACHE MISS: Iterating...")
-        iterated_pages = []
-
-        # This'll recurse until a "Next" button is not found
-        _iterate_url = entry_url
-        iterated_pages = len(iterated_pages)
-
-        next_button = None
-
-        def update_url(url: str):
-            global _iterate_url
-
-            iterated_pages.append(url)
-            _iterate_url = url
-            return
-
-        while True:
-            _request = extractor.url_request(_iterate_url)
-
-            # TODO use a callback function to simplify this to the main func
-            if base_urls['furaffinity'] in entry_url:
-                # FurAffinity, for some reason, wraps the Next button on a <form> which is strange
-                next_button = _request.select_one('.submission-list .inline:last-child form')  # NOQA
-                next_button_link = next_button.get('href')
-
-                update_url(next_button_link)
-
-            log("debug", f"Iterated url so far: {iterated_pages}")
-
-            if not next_button:
-                log("info", f"Iterated {len(iterated_pages)} page(s)")
-                save_file({}, _cache_filename)
-
-                return iterated_pages
-
-
 # --------------------------------------------------------------------- #
 #                                                                       #
 #                              PARSERS                                  #
 #                                                                       #
 # --------------------------------------------------------------------- #
+
+
 def get_art_metadata(url: str, **selectors) -> dict[str, str | int | list[str]]:
     """
     Gets the page metadata from a page request
@@ -185,14 +126,10 @@ def get_art_metadata(url: str, **selectors) -> dict[str, str | int | list[str]]:
 def main():
     extractor = WebExtractor(mode="static")
 
-    def fa_fetch():
-        # Do stuff here
-        pass
+    # fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda', fa_fetch)  # NOQA
 
-    fa_pages = iterate_pages('https://www.furaffinity.net/gallery/pacopanda', fa_fetch)  # NOQA
-
-    for page_url in fa_pages:
-        _page = extractor.url_request(page_url)
+    # for page_url in fa_pages:
+    #     _page = extractor.url_request(page_url)
 
     characters = load_characters()
 
