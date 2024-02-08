@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <div class="mx-auto max-w-screen-2xl">
-    <footer class="px-8 py-3.5 flex items-center justify-between">
+    <footer class="flex items-center justify-between px-8 py-3.5">
       <span>
         {{
           `Copyright © 2021-${currentYear} Kuroji Fusky, licensed under the`
