@@ -56,7 +56,9 @@ def format_time(time: timedelta) -> str:
     if not isinstance(time, timedelta):
         raise TypeError("Invalid input type. Param 'time' must be a timedelta.")  # NOQA
 
-    _dm_days, _dm_seconds = divmod(time.total_seconds(), 86400)
+    SECS_IN_DAYS = 86400
+
+    _dm_days, _dm_seconds = divmod(time.total_seconds(), SECS_IN_DAYS)
 
     d = f"{int(_dm_days)} days" if _dm_days != 1 else f"{int(_dm_days)} day"
     h, remainder = divmod(_dm_seconds, 3600)

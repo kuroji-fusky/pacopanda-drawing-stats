@@ -1,0 +1,50 @@
+# Slugs are generated on the fly from a Python script
+- name: Paco
+  species: Panda
+- name: Roni
+  species: Dog
+- name: Biro
+  species: Fox
+- name: Art
+  species: Raccoon
+- name: Koidel
+  species: Coyote
+- name: Ringo
+  species: Raccoon
+- name: Nemorio
+  species: Panda
+- name: Juilo
+  species: Bear
+- name: Aurora
+  species: Fox
+- name: Yaps
+  species: Fox
+- name: Rocky
+  species: Wolf
+- name: Steele
+  species: Red Panda
+- name: Haven
+  species: Fusky
+- name: Nacho
+  species: Husky
+- name: Strut
+  species: Raccoon
+- name: Scamp
+  species: Red Panda
+- name: Hukley
+  species: Fox
+- name: Andy
+  species: Wolf
+- name: Cove
+  species: Otter
+- name: Blue
+  species: Otter
+- name: Izzy
+  species: Otter
+- name: Soul
+  species: Dragon
+- name: Maks Rosebuster
+  species: Fox
+- name: Zak
+  species: Fox
+  username_match: ["FoxyFriendBacklash"]

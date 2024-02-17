@@ -14,9 +14,8 @@
     "utils/configs/prettier"
   ],
   "lint-staged": {
-    "client/**": "yarn prettier --write .",
-    "python/**/!(*cache).json": "yarn prettier --write .",
-    "*.md": "yarn prettier --write ."
+    "client/**": "yarn prettier --write \"**/*.{json,cjs,js,ts,vue,md}\"",
+    "server/**/!(*cache).json": "yarn prettier --write ."
   },
   "husky": {
     "hooks": {
