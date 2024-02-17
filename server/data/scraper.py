@@ -4,6 +4,7 @@
 Copyright 2021-2024 Kerby Keith Aquino
 Licensed under Apache-2.0
 """
+import re
 import sys
 import argparse
 from utils import load_characters
@@ -31,6 +32,10 @@ parser.add_argument(
     help='Fetches data from a specific platform, the default is %(default)s')
 
 args = parser.parse_args()
+
+
+class RequiredParameter(Exception):
+    pass
 
 
 def get_art_metadata(url: str, **selectors) -> dict[str, str | int | list[str]]:
@@ -61,9 +66,31 @@ def get_art_metadata(url: str, **selectors) -> dict[str, str | int | list[str]]:
     return output
 
 
+def parse_medium(description: str, tags: list[str]) -> dict[str, str]:
+    if description is None or tags is None:
+        raise RequiredParameter("Param can't be None or empty string")
+
+    parsed_desc = description.splitlines()[-1]
+
+
+def parse_characters(description: str, tags: list[str]) -> dict[str, str]:
+    if description is None or tags is None:
+        raise RequiredParameter("Param can't be None or empty string")
+
+    char_list = load_characters()
+
+    # This will be utilized 90% of the time
+    desc_split = description.splitlines()
+    parsed_desc = list(filter(None, desc_split))
+
+    mediums = parsed_desc[-1]
+
+    parsed_medium = [re.sub(r'\.|\/', '', x) for x in mediums.split()]
+    parsed_medium = list(filter(None, parsed_medium))
+
+
 def main():
     extractor = WebExtractor(mode="static")
-    characters = load_characters()
 
 
 if __name__ == "__main__":
