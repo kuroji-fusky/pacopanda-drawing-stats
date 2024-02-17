@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         credits: false
       }
     ],
-    "nuxt-lucide-icons",
+    ["nuxt-icon", { size: 22 }],
     "nuxt-headlessui",
     "nuxt-lodash"
   ],
@@ -35,7 +35,7 @@ export default defineNuxtConfig({
         }
       ],
       bodyAttrs: {
-        class: ""
+        class: "font-body text-sm"
       }
     }
   },

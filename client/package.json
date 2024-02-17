@@ -23,6 +23,7 @@
     "gsap": "^3.12.3",
     "nuxt": "^3.9",
     "nuxt-headlessui": "^1.1.5",
+    "nuxt-icon": "^0.6.8",
     "nuxt-lodash": "^2.5.3",
     "nuxt-lucide-icons": "^1.0.3",
     "nuxt-simple-sitemap": "^4.1.7",

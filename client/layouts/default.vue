@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+// import { gsap } from "gsap"
+// import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerEffect(ScrollTrigger)
+// gsap.registerEffect(ScrollTrigger)
 </script>
 
 <template>
-  <div class="font-body text-sm">
-    <BaseNavbar />
+  <BaseNavbar />
+  <div class="px-5 lg:px-8">
     <slot />
-    <BaseFooter />
   </div>
+  <BaseFooter />
 </template>

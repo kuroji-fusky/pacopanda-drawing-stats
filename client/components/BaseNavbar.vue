@@ -14,11 +14,11 @@ const navLinks = [
 
 <template>
   <div class="sticky top-0 z-10 mx-auto max-w-screen-2xl">
-    <header class="flex items-center justify-between px-8 py-3.5">
+    <header class="font-heading flex items-center justify-between px-8 py-3.5">
       <NuxtLink to="/">logo</NuxtLink>
       <nav class="flex items-center gap-x-1">
-        <button class="rounded-md border border-green-400 px-3 py-2">
-          <LucideSearch :size="19" />
+        <button class="rounded-md border border-green-400 px-2.5 py-2">
+          <Icon name="lucide:search" />
         </button>
         <template v-for="item in navLinks">
           <NuxtLink
@@ -36,15 +36,21 @@ const navLinks = [
               {{ item.name }}
             </NuxtLink>
             <div
-              class="pointer-events-none absolute top-9 z-10 flex w-fit translate-y-1 flex-col rounded-md bg-white py-2 opacity-0 shadow-md transition-all group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
+              class="group pointer-events-none absolute right-0 top-0 z-10 opacity-0 transition-opacity group-hover:opacity-100"
             >
-              <NuxtLink
-                v-for="subitem in navLinks[0].subitems"
-                :to="subitem.link"
-                class="whitespace-nowrap px-3 py-1 hover:bg-green-300"
-              >
-                {{ subitem.name }}
-              </NuxtLink>
+              <div class="mt-6 pt-2 group-hover:pointer-events-auto">
+                <div
+                  class="flex w-fit translate-y-0.5 flex-col rounded-md border border-green-500 bg-white py-2 shadow-md transition-transform group-hover:translate-y-0"
+                >
+                  <NuxtLink
+                    v-for="subitem in navLinks[0].subitems"
+                    :to="subitem.link"
+                    class="whitespace-nowrap px-3 py-1.5 hover:bg-green-300"
+                  >
+                    {{ subitem.name }}
+                  </NuxtLink>
+                </div>
+              </div>
             </div>
           </div>
         </template>

@@ -1,5 +1,10 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
+
+const socials = [
+  { name: "GitHub", icon: "fa6-brands:github" },
+  { name: "Mastodon", icon: "fa6-brands:mastodon" }
+]
 </script>
 
 <template>
@@ -12,10 +17,16 @@ const currentYear = new Date().getFullYear()
         <NuxtLink
           to="https://opensource.org/license/apache-2-0/"
           :external="true"
-          >Apache License, Version 2.0.</NuxtLink
+          class="hlink"
+          >Apache- 2.0</NuxtLink
         >
+        {{ ` license.` }}
       </span>
-      <div>github stuff and socials</div>
+      <div>
+        <NuxtLink v-for="(item, index) in socials" :key="index">
+          <Icon :name="item.icon" />
+        </NuxtLink>
+      </div>
     </footer>
   </div>
 </template>

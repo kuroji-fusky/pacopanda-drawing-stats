@@ -681,6 +681,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify/collections@^1.0.374":
+  version "1.0.395"
+  resolved "https://registry.yarnpkg.com/@iconify/collections/-/collections-1.0.395.tgz#a3d2f63227bb26749d828a70b95c1c53b31c501c"
+  integrity sha512-NwzLrvQDEAsXpCwRGzI6uSE6gJT5u1/AZLPRPRSqTIOym5NRahpQL/VTFUH8DU0YVWVj6ulfxlHdtAz6lp38Rg==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
@@ -698,6 +705,13 @@
     kolorist "^1.8.0"
     local-pkg "^0.5.0"
     mlly "^1.5.0"
+
+"@iconify/vue@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@iconify/vue/-/vue-4.1.1.tgz#c143c2973a4990ba2b47b766f80a9bca97937305"
+  integrity sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg==
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 "@img/sharp-darwin-arm64@0.33.2":
   version "0.33.2"
@@ -6158,6 +6172,16 @@ nuxt-headlessui@^1.1.5:
     "@headlessui/vue" "^1.0.0"
     "@nuxt/kit" "^3.8.2"
     pathe "^1.1.1"
+
+nuxt-icon@^0.6.8:
+  version "0.6.8"
+  resolved "https://registry.yarnpkg.com/nuxt-icon/-/nuxt-icon-0.6.8.tgz#15c36e92e4baa03adf322938dba86bb872b6251f"
+  integrity sha512-6eWlNOb6Uvp63uXFdhcmsB1JlubDv76Pot/VwmIu0yJxDYhwytbnv3WAjw2khl2l7W/65V4eMGIEeX9C5Ahxng==
+  dependencies:
+    "@iconify/collections" "^1.0.374"
+    "@iconify/vue" "^4.1.1"
+    "@nuxt/devtools-kit" "^1.0.6"
+    "@nuxt/kit" "^3.9.0"
 
 nuxt-lodash@^2.5.3:
   version "2.5.3"

@@ -24,6 +24,8 @@ export default function useSEO({
     ogImage: image,
     ogUrl: parsedUrl,
     ogType: type ?? "website",
+    twitterTitle: title,
+    twitterDescription: description,
     twitterCard: card ?? "summary",
     twitterCreator: "@kurojifusky"
   })
