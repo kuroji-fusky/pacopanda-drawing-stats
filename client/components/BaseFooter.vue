@@ -3,7 +3,7 @@ const currentYear = new Date().getFullYear()
 
 const socials = [
   { name: "GitHub", icon: "fa6-brands:github" },
-  { name: "Mastodon", icon: "fa6-brands:mastodon" }
+  { name: "Mastodon", icon: "fa6-brands:mastodon" },
 ]
 </script>
 
